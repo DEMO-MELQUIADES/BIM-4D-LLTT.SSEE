@@ -14117,7 +14117,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
           mm.style.bottom = 'auto'; mm.style.right = 'auto'; };
         const setMin = v => { mm.classList.toggle('min', !!v); mt.textContent = v ? '▢ Ver' : '–'; mt.title = v ? 'Mostrar el trazo' : 'Plegar el trazo'; st.mm = v ? 1 : 0; save(); encajar(); };
         mt.onclick = () => setMin(!mm.classList.contains('min'));
-        if (st.mm === undefined && window.innerWidth <= 860) st.mm = 1;
+        if (st.mm === undefined && (window.innerWidth <= 860 || window.innerHeight <= 820)) st.mm = 1;
         if (st.mm) { mm.classList.add('min'); mt.textContent = '▢ Ver'; mt.title = 'Mostrar el trazo'; }
         window.mmRestablecer = () => { pos = null; ['left', 'top', 'bottom', 'right'].forEach(k => { mm.style[k] = ''; }); };
         const hd = mm.querySelector('.mm-head');
