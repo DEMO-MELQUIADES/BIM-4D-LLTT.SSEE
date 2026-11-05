@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Demo · Control 4D y Presentación BIM · LT 138 kV Cerro Azul</title>
+<title>Demo · LT 220 kV Río Claro – Cerro Azul · control de obra y BIM 4D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -2173,28 +2173,28 @@
 
 <style>
 :root{
-  --bg:#0a111c; --panel:#0f1a2b; --panel-2:#0C1524; --panel-3:#14223a;
-  --ink:#edf0f5; --ink-2:#a2b2cb; --ink-mut:#647a9c; --line:#172439; --line-2:#21324f;
-  --sky:#2e5faf; --sky-2:#89abe1; --sky-soft:rgba(32,70,131,.20);
+  --bg:#0a121e; --panel:#0e1b2f; --panel-2:#0B1627; --panel-3:#13243f;
+  --ink:#ecf0f6; --ink-2:#9eb1cf; --ink-mut:#5e78a2; --line:#16263f; --line-2:#385d99;
+  --sky:#2c67c7; --sky-2:#86aae4; --sky-soft:rgba(38,94,185,.20);
   --amber:#d79a32; --amber-soft:rgba(215,154,50,.16);
   --lime:#7fc99a; --lime-soft:rgba(127,201,154,.16);
   --red:#d9714f; --red-soft:rgba(217,113,79,.16);
-  --plan:#8797b0;
-  --c-acc:#d79a32; --c-civ:#204683; --c-elm:#89abe1;
-  --exc:#8c7b42; --sol:#a4a4a4; --stub:#c9a227; --acer:#d79a32; --enco:#3f6aae; --conc:#8f979d;
+  --plan:#8296b5;
+  --c-acc:#d79a32; --c-civ:#265eb9; --c-elm:#86aae4;
+  --exc:#8c7b42; --sol:#a4a4a4; --stub:#c9a227; --acer:#d79a32; --enco:#3c6dbd; --conc:#8f979d;
   --grid:rgba(234,241,248,.07);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px -18px rgba(0,0,0,.75);
 }
 :root[data-theme="light"]{
-  --bg:#edeff3; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e4e9f1;
-  --ink:#0c182b; --ink-2:#303f58; --ink-mut:#617492; --line:#d8dfea; --line-2:#bec9db;
-  --sky:#204683; --sky-2:#132035; --sky-soft:rgba(32,70,131,.12);
+  --bg:#eceff4; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e3e9f2;
+  --ink:#0b192f; --ink-2:#486592; --ink-mut:#5e769d; --line:#d6dfec; --line-2:#bcc9dd;
+  --sky:#265eb9; --sky-2:#122139; --sky-soft:rgba(38,94,185,.12);
   --amber:#9a6e22; --amber-soft:rgba(215,154,50,.20);
   --lime:#1f9d57; --lime-soft:rgba(31,157,87,.14);
   --red:#b5452a; --red-soft:rgba(181,69,42,.12);
-  --plan:#8392ab;
-  --c-acc:#9a6e22; --c-civ:#204683; --c-elm:#3f6aae;
-  --exc:#8c7b42; --sol:#8b9490; --stub:#a8871c; --acer:#9a6e22; --enco:#214988; --conc:#667081;
+  --plan:#7e91b0;
+  --c-acc:#9a6e22; --c-civ:#265eb9; --c-elm:#3c6dbd;
+  --exc:#8c7b42; --sol:#8b9490; --stub:#a8871c; --acer:#9a6e22; --enco:#275fba; --conc:#667690;
   --grid:rgba(15,28,42,.08);
   --shadow:0 1px 2px rgba(15,28,42,.06),0 12px 30px -16px rgba(15,28,42,.28);
 }
@@ -2212,9 +2212,9 @@ h1,h2,h3{font-family:"Manrope",sans-serif;letter-spacing:-.01em}
 
 /* ===== TOPBAR ===== */
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0;
-  background:linear-gradient(115deg,#132035,#204683);border:1px solid var(--line);border-radius:11px;
+  background:linear-gradient(115deg,#122139,#265eb9);border:1px solid var(--line);border-radius:11px;
   padding:8px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#182c4d,#204683)}
+:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2c59a1,#265eb9)}
 .topbar::after{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
   background-size:24px 24px;-webkit-mask-image:radial-gradient(120% 140% at 88% -30%,#000,transparent 62%)}
@@ -2283,7 +2283,7 @@ canvas{max-width:100%}
 .bim-btn:hover{border-color:var(--line-2);color:var(--ink);background:var(--panel-3)}
 .bim-btn.active{background:var(--sky);border-color:var(--sky);color:#fff}
 .bim-btn.amber{background:var(--amber);border-color:var(--amber);color:#111;font-weight:700}
-.bim-viewport{position:relative;background:radial-gradient(circle at center,#14223a 0%,#080e17 100%);border-radius:11px;border:1px solid var(--line);overflow:hidden;min-height:460px;display:flex;flex-direction:column}
+.bim-viewport{position:relative;background:radial-gradient(circle at center,#13243f 0%,#070e19 100%);border-radius:11px;border:1px solid var(--line);overflow:hidden;min-height:460px;display:flex;flex-direction:column}
 #bimCanvasWrap{flex:1;position:relative;width:100%;height:100%;min-height:360px}
 #bimCanvasWrap canvas{width:100% !important;height:100% !important;outline:none;display:block}
 .bim-overlay-hud{position:absolute;top:10px;left:12px;z-index:2;display:flex;flex-direction:column;gap:5px;pointer-events:none}
@@ -2489,7 +2489,7 @@ th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
 .bb-kpi .l{font-size:.53rem;color:var(--ink-mut);font-weight:600;text-transform:uppercase;letter-spacing:.3px;line-height:1.1}
 .bb-kpi .v{font-family:"Manrope",system-ui,sans-serif;font-weight:800;font-size:.82rem;font-variant-numeric:tabular-nums;line-height:1.15}
 @media(max-width:1250px){.bim-bottom-grid{grid-template-columns:1fr}.bb-right{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:8px}}
-:root[data-theme="light"] .bim-viewport{background:radial-gradient(circle at center,#f1f4f8 0%,#d8dfeb 100%)}
+:root[data-theme="light"] .bim-viewport{background:radial-gradient(circle at center,#f0f4f9 0%,#d6dfed 100%)}
 .bim-hint{font-size:.6rem;color:var(--ink-2);background:var(--panel);border:1px solid var(--line);
   padding:3px 8px;border-radius:6px;display:inline-block;box-shadow:var(--shadow)}
 .bim-cam-tools .bim-btn{background:var(--panel);color:var(--ink-2);border-color:var(--line-2)}
@@ -2701,7 +2701,7 @@ body.fs-css-on{overflow:hidden}
 /* v72.32: foto que no se pudo cargar (ver _cargarFotosCampo) */
 figure.ft-rota,.hi-foto.ft-rota{display:none!important}
 .lt-p.ft-rota img{visibility:hidden}
-.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}</style>
+</style>
 <script>
 /* GLTFLoader */
 ( function () {
@@ -7494,8 +7494,8 @@ body.lay-drag.h{cursor:row-resize!important}
 body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
 .bim-btn:disabled{opacity:.45;cursor:not-allowed}
 .bim-sep{width:1px;height:20px;background:var(--line-2);margin:0 3px;flex:0 0 auto}   /* v72.12: grupos de la barra del BIM */
-.bim-btn.vista-ini,.fh-ini{border:1px solid var(--c-civ,#204683)!important;color:var(--c-civ,#204683)!important;background:var(--panel)!important;font-weight:800}
-.bim-btn.vista-ini:hover,.fh-ini:hover{background:var(--c-civ,#204683)!important;color:#fff!important}
+.bim-btn.vista-ini,.fh-ini{border:1px solid var(--c-civ,#265eb9)!important;color:var(--c-civ,#265eb9)!important;background:var(--panel)!important;font-weight:800}
+.bim-btn.vista-ini:hover,.fh-ini:hover{background:var(--c-civ,#265eb9)!important;color:#fff!important}
 .lay-reset{cursor:pointer;border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink-2);border-radius:7px;padding:4px 9px;font-size:.62rem;font-weight:700;font-family:inherit}
 .lay-reset:hover{border-color:var(--sky);color:var(--ink)}
 @media(max-width:1100px){.gut,.lay-reset,.lay-hint{display:none!important}}
@@ -7780,9 +7780,9 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
 /* ---- v42 (M-11 / M-12): contraste de textos pequeños en oliva / teal / rojo ---- */
 :root:not([data-theme="dark"]) .pc-val,:root:not([data-theme="dark"]) .pc-sec span{color:#79561a}
 :root:not([data-theme="dark"]) #v-dec .dc-cnt .w,:root:not([data-theme="dark"]) #v-dec .hz.warn .sev,:root:not([data-theme="dark"]) #v-dec .hz-grp.warn .hz-gh .sev{color:#614310;border-color:#614310}
-:root:not([data-theme="dark"]) .la .ck span.ok{color:#10336c}
-:root[data-theme="dark"] .pc-val,:root[data-theme="dark"] .pc-sec span{color:#83a5dd}
-:root[data-theme="dark"] .chip.on{color:#0a111c}
+:root:not([data-theme="dark"]) .la .ck span.ok{color:#1757bf}
+:root[data-theme="dark"] .pc-val,:root[data-theme="dark"] .pc-sec span{color:#7fa5e1}
+:root[data-theme="dark"] .chip.on{color:#0a121e}
 :root[data-theme="dark"] .bms-kpis .k.ev .v{color:#e8806a}
 :root[data-theme="dark"] .bms-kpis .k.lb1 .v{color:#bda171}
 /* ---- Reportes semanales ---- */
@@ -7890,7 +7890,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
 
 <div class="topbar">
   <div class="tb-l">
-    <h1><b class="demo-tag">Demo</b>LT 138 kV · Derivación L-2045 → SE Cerro Azul <span>· 8.3 km · Doble Terna</span></h1>
+    <h1><b class="demo-tag">Demo</b>LT 220 kV · SE Río Claro → SE Cerro Azul <span>· 8.3 km · Doble Terna</span></h1>
     <div class="sub">Control 4D de Construcción & Modelo BIM Federado — 19 Estructuras de Celosía Metálica</div>
   </div>
   <div class="tb-m">
@@ -7912,11 +7912,9 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
   <button data-v="v-res" class="active"><span class="ic">◈</span> Resumen</button>
   <button data-v="v-bim" class="bim-badge"><span class="ic">🏛️</span> BIM 4D · Construcción</button>
   <button data-v="v-fot"><span class="ic">📷</span> Fotos de obra</button>
-  <button data-v="v-rep"><span class="ic">📋</span> Reportes diarios</button>
   <button data-v="v-hit"><span class="ic">⚠️</span> Eventos del proyecto</button>
   <button data-v="v-proc"><span class="ic">🏗️</span> Proceso Constructivo</button>
-  <button data-v="v-ing"><span class="ic">📐</span> Ingeniería LT</button>
-  <button data-v="v-flujo"><span class="ic">🧭</span> Cómo se hace</button>
+  <button data-v="v-rep"><span class="ic">📋</span> Reportes diarios</button>
 </div>
 
 <div class="views">
@@ -7975,7 +7973,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
     <!-- Barra de herramientas BIM -->
     <div class="bim-top-bar">
       <div class="bim-controls">
-        <button class="bim-btn active" id="btnRoute3D" title="Toda la línea: vuelve a la ruta de las 19 torres y encuadra el trazo completo"><span class="ic">🗺️</span> Ver todo el trazo</button>
+        <button class="bim-btn active" id="btnRoute3D" title="Toda la línea: vuelve a la ruta de las 19 torres y encuadra el trazo completo"><span class="ic">🗺️</span> Vista general</button>
         <span class="bim-sep"></span>
         <select id="bimTowerSelect" style="background:var(--panel-2);color:var(--ink);border:1px solid var(--line-2);border-radius:6px;padding:4px 8px;font-size:.72rem;font-family:inherit;font-weight:600"></select>
         <button class="bim-btn active" id="btnCamIso"><span class="ic">📐</span> Isométrica</button>
@@ -8003,7 +8001,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
     <!-- Columna izquierda: trazo + estructuras -->
 
     <div class="bim-towers-bar" id="bimTowersBar">
-      <div class="btb-head"><b><span class="dot"></span>19 torres</b><span>Derivación L-2045 → SE Cerro Azul · 8.3 km · clic: elegir la torre · otro clic en ella: su detalle</span>
+      <div class="btb-head"><b><span class="dot"></span>19 torres</b><span>SE Río Claro → SE Cerro Azul · 8.3 km · clic: elegir la torre · otro clic en ella: su detalle</span>
       <div class="bimx-filt" id="bimxFilt"></div>
       <div class="mt-layer" id="mtLayer"><span>Mapa:</span></div>
       </div>
@@ -8027,7 +8025,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
     <!-- Visor WebGL 3D: solo el modelo, el cubo de navegación y la ventana móvil del trazo -->
     <div class="bim-viewport">
       <div class="mt-win" id="mtPatasWin" style="display:none"><div class="mt-win-h"><b id="mtWinT">Cimentaciones</b><button id="mtWinMin" title="Plegar / desplegar">–</button></div><div class="mt-win-s" id="mtWinS"></div><div class="mt-win-grid" id="mtWinGrid"></div><div class="mt-win-f" id="mtWinF"></div></div>
-      <div class="bim-minimap" id="bimMinimap"><div class="mm-head" title="Arrastra para mover la ventana del trazo"><span>Trazo<small>Derivación L-2045 → SE Cerro Azul</small></span><button id="mmToggle" title="Plegar / desplegar el trazo">–</button></div><div id="d4Route" class="d4-route"></div></div>
+      <div class="bim-minimap" id="bimMinimap"><div class="mm-head" title="Arrastra para mover la ventana del trazo"><span>Trazo<small>SE Río Claro → SE Cerro Azul</small></span><button id="mmToggle" title="Plegar / desplegar el trazo">–</button></div><div id="d4Route" class="d4-route"></div></div>
       <div id="bimCanvasWrap"></div>
       <button class="bim-fs-salir" id="btnFsSalir" title="Salir de pantalla completa (Esc)">✕ Salir de pantalla completa</button>
 
@@ -8107,12 +8105,12 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
     <div class="bim-leyenda ruta" id="bimLeyenda">
       <div class="bim-legend-box">
         <span class="lg-mod"><i style="background:#8f979d"></i> Fundación</span>
-        <span class="lg-mod"><i style="background:#a2b2cb"></i> Patas / Cuerpo</span>
-        <span class="lg-mod"><i style="background:#89abe1"></i> Crucetas</span>
+        <span class="lg-mod"><i style="background:#9eb1cf"></i> Patas / Cuerpo</span>
+        <span class="lg-mod"><i style="background:#86aae4"></i> Crucetas</span>
         <span class="lg-mod"><i style="background:#e4e8e2"></i> Aisladores</span>
         <span class="lg-mod"><i style="background:#8f979d"></i> Conductores · 2 ternas (6)</span>
-        <span class="lg-mod"><i style="background:#dce3ed"></i> Cables de guarda ×2 (OPGW / EHS)</span>
-        <span><i style="background:rgba(137,171,225,.28)"></i> Proyectado</span>
+        <span class="lg-mod"><i style="background:#dbe2ee"></i> Cables de guarda ×2 (OPGW / EHS)</span>
+        <span><i style="background:rgba(134,170,228,.28)"></i> Proyectado</span>
         <span class="lg-cam"><i style="background:#e5372c"></i> Camino carrozable</span>
         <span class="lg-cam"><i style="background:#a23fd0"></i> Camino peatonal</span>
       </div>
@@ -8212,12 +8210,12 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
 
   <!-- ==================== PROCESO CONSTRUCTIVO ==================== -->
   <!-- ==================== INGENIERÍA LT (v72.65 · 29-Oct-26) ====================
-       Pedido del usuario (encargo del jefe de proyecto): «crear una pestaña y subir el status de la ingeniería de la LT 138 kV»;
-       fuente única, el control semanal (hojas Entregables LT138kV, Resumen ID LT138kV, Dashboard y PV_AC). «Aparte la curva de
+       Pedido del usuario (encargo del jefe de proyecto): «crear una pestaña y subir el status de la ingeniería de la LT 220 kV»;
+       fuente única, el control semanal (hojas Entregables LT220kV, Resumen ID LT220kV, Dashboard y PV_AC). «Aparte la curva de
        ingeniería… no mezclar»: esta pestaña no toca ninguna cifra de construcción. Datos: bloque INGENIERIA (ingenieria_build.py). -->
   <section id="v-ing" class="view">
     <div class="card ing-cab">
-      <div class="ing-cab-top"><h3><span class="dot"></span>Ingeniería de detalle · Línea de transmisión 138 kV</h3><span class="ing-sub" id="ingSub"></span></div>
+      <div class="ing-cab-top"><h3><span class="dot"></span>Ingeniería de detalle · Línea de transmisión 220 kV</h3><span class="ing-sub" id="ingSub"></span></div>
       <div class="ing-kpis" id="ingKpis"></div>
     </div>
     <div class="card ing-grupos"><h3><span class="dot"></span>Avance por grupo de entregables</h3>
@@ -8231,119 +8229,6 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
   </section>
 
   <!-- ==================== FOTOS DE OBRA (v72.3 · línea de tiempo v72.7) ==================== -->
-  <!-- ==================== CÓMO SE HACE (solo demo pública) ==================== -->
-  <section id="v-flujo" class="view">
-   <div class="fl-wrap">
-
-    <header class="card fl-hero">
-      <div class="fl-kick">Cómo se hace</div>
-      <h2>Del reporte de campo y la foto del celular al gemelo 4D, todos los días</h2>
-      <p>La plataforma se rehace cada día con los reportes de obra. La IA (Claude) lee los informes, los convierte en datos, corre los cálculos en Python, revisa el resultado y publica. En paralelo, un proceso automático ordena las fotos de obra: las fecha, las ubica en su torre, protege la privacidad e identifica la fase constructiva con modelos de visión. Todo termina en modelos BIM 4D —la línea y sus subestaciones— que muestran qué se construyó, dónde y cuándo.</p>
-      <div class="fl-chips"><span>HTML + Three.js + Chart.js</span><span>Python</span><span>GitHub Pages y Actions</span><span>Claude (IA)</span><span>YOLO11 → DINOv2 · SigLIP 2 · DINOv3</span><span>Relieve y ortofoto en vivo</span></div>
-    </header>
-
-    <div class="card fl-mapa">
-      <h3><span class="dot"></span>El sistema en una mirada</h3>
-      <div class="desc">Dos carriles que corren en paralelo y se juntan en el BIM 4D.</div>
-
-      <div class="fl-lab a">Carril de datos · corte diario (lo arma la IA a pedido)</div>
-      <div class="fl-lane a">
-        <div class="fl-n"><i>📋</i><b>Campo</b><span>Reporte diario (Excel), informe de supervisión (Word), datos de campo por pata y base de seguimiento semanal.</span></div>
-        <div class="fl-n"><i>☁️</i><b>Nube</b><span>Una carpeta por día. Los archivos originales nunca se modifican.</span></div>
-        <div class="fl-n"><i>🤖</i><b>IA + generador</b><span>Estructura los hechos del día y corre los builders: % por torre, pata y fase, curva S, ritmo y pronóstico.</span></div>
-        <div class="fl-n"><i>✅</i><b>Revisión</b><span>Nada sobre 100 %, N/A no es 0 %, misma fecha en todo, torre por torre contra ayer, vista en PC y celular.</span></div>
-        <div class="fl-n"><i>🌐</i><b>Portal</b><span>Plantilla + datos del día en GitHub Pages: tablero de la línea, BIM general y una página por subestación.</span></div>
-      </div>
-
-      <div class="fl-lab b">Carril de fotos · automático cada noche</div>
-      <div class="fl-lane b">
-        <div class="fl-n"><i>📱</i><b>Celular</b><span>Fotos originales: conservan fecha y GPS.</span></div>
-        <div class="fl-n"><i>📍</i><b>Fecha y lugar</b><span>EXIF o sello leído por OCR. Torre a ≤ 80 m, camino a ≤ 150 m; si no, una zona.</span></div>
-        <div class="fl-n"><i>🛡️</i><b>Privacidad</b><span>Rostros difuminados; documentos y fotos sin valor de obra, fuera.</span></div>
-        <div class="fl-n"><i>🧠</i><b>Identificación</b><span>Clasificador de visión + texto del reporte del día + fotos de la misma ráfaga: fase y pata.</span></div>
-        <div class="fl-n"><i>👁️</i><b>Revisión</b><span>La IA revisa por visión las dudosas; una persona corrige con el código de la foto.</span></div>
-        <div class="fl-n"><i>🏛️</i><b>Ficha de torre</b><span>Historial por torre y camino, ligado al % oficial de ese día.</span></div>
-      </div>
-      <div class="fl-loop">↺ Cada corrección vuelve al entrenamiento: el modelo se reentrena y se adopta solo si acierta más que el vigente en fotos que ninguno de los dos vio.</div>
-      <div class="fl-junta"><b>🏛️ BIM 4D</b> — el % oficial del día pinta cada torre y cada pata; las fotos de esa fecha y ese lugar son su evidencia.</div>
-    </div>
-
-    <div class="fl-g3">
-      <div class="card fl-c">
-        <h3><span class="dot"></span>Corte diario · paso a paso</h3>
-        <ol class="fl-ol">
-          <li><b>Insumos.</b> Baja los archivos del día de la nube; si llega una versión «actualizada», usa esa.</li>
-          <li><b>Hechos.</b> Pasa el informe de supervisión a datos: clima, frentes, personal, equipos, restricciones, calidad, seguridad, ambiente y social.</li>
-          <li><b>Cálculo.</b> Builders en Python: avance oficial por actividad y torre, reparto por pata, metrados, caminos de acceso, curva S y plan de recuperación.</li>
-          <li><b>Texto.</b> Redacta los comentarios de la curva, el reporte diario y los eventos del proyecto.</li>
-          <li><b>Verificación.</b> Compara con el corte anterior y explica cada cambio de %; si algo no cuadra, no publica.</li>
-          <li><b>Publicación y memoria.</b> Sube el corte y anota decisiones, fuentes e historial para el día siguiente.</li>
-        </ol>
-        <div class="fl-nota">Regla dura: nunca inventa un número. Si un dato no está en la fuente, queda vacío y se pregunta.</div>
-      </div>
-
-      <div class="card fl-c">
-        <h3><span class="dot"></span>BIM 4D · cómo se modela</h3>
-        <ul class="fl-ul">
-          <li><b>Torre.</b> Torre de celosía de doble terna armada en código, separada por etapa constructiva y repetida en las 19 ubicaciones.</li>
-          <li><b>Cimentación por pata.</b> Excavación, solado, stub, acero, encofrado, concreto, relleno y puesta a tierra, cada pata con su % del día.</li>
-          <li><b>4D.</b> La línea de tiempo recorre los cortes y cada pieza toma el color de su fase.</li>
-          <li><b>BIM general.</b> Relieve y ortofoto que se piden en vivo al abrir la página; encima, la línea existente, el seccionamiento, la derivación y las tres subestaciones.</li>
-          <li><b>Subestaciones.</b> Levantadas en código desde sus planos (disposición, secciones, unifilar); la del integrador con su avance diario, cronograma y fotos.</li>
-          <li><b>Diseño y datos separados.</b> Una plantilla versionada + un corte por fecha: un cambio de diseño no toca los datos.</li>
-        </ul>
-      </div>
-
-      <div class="card fl-c">
-        <h3><span class="dot"></span>Identificación de imágenes · de YOLO a modelos base</h3>
-        <ul class="fl-ul">
-          <li><b>Inicio.</b> YOLO11 entrenado con fotos etiquetadas por visión y por el pie de foto de los informes.</li>
-          <li><b>Hoy.</b> Modelos base sin reentrenar (DINOv2, SigLIP 2 y DINOv3) describen la foto entera, sus 4 cuadrantes y una versión a mayor resolución; una regresión logística decide la fase. Entrenamiento en minutos, no en horas.</li>
-          <li><b>Pistas extra.</b> El texto del reporte del día (qué se hizo en esa torre) y las fotos vecinas de la misma ráfaga.</li>
-          <li><b>En esta demo.</b> Pestaña «Fotos de obra»: cada foto con su torre, fase, pata y quién la etiquetó.</li>
-        </ul>
-        <div class="fl-barras" aria-label="Acierto en fotos que el modelo no vio">
-          <div class="fl-bt">Acierto en fotos que el modelo no vio</div>
-          <div class="fl-b"><span>YOLO11s</span><em style="--v:68"></em><b>68 %</b></div>
-          <div class="fl-b"><span>DINOv2</span><em style="--v:70"></em><b>70 %</b></div>
-          <div class="fl-b"><span>Vista compuesta</span><em style="--v:75.5"></em><b>75 %</b></div>
-          <div class="fl-b"><span>+ SigLIP 2</span><em style="--v:77"></em><b>77 %</b></div>
-          <div class="fl-b"><span>+ DINOv3</span><em style="--v:78"></em><b>78 %</b></div>
-          <div class="fl-b on"><span>+ reporte y ráfaga</span><em style="--v:81"></em><b>&gt; 80 %</b></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="fl-g2">
-      <div class="card fl-c">
-        <h3><span class="dot"></span>Qué hace la IA y qué decide la persona</h3>
-        <div class="fl-dos">
-          <div><div class="fl-st">La IA</div><ul class="fl-ul">
-            <li>Lee y estructura los reportes del día.</li>
-            <li>Corre los cálculos, los revisa y explica las diferencias.</li>
-            <li>Redacta los comentarios, el reporte diario y los eventos.</li>
-            <li>Etiqueta fotos por visión y revisa las dudosas.</li>
-            <li>Propone mejoras con un plan corto antes de tocar nada.</li></ul></div>
-          <div><div class="fl-st">La persona</div><ul class="fl-ul">
-            <li>Sube los insumos y pide el corte.</li>
-            <li>Aprueba planes y cualquier cambio de regla de cálculo.</li>
-            <li>Corrige datos y fotos.</li>
-            <li>Decide qué se publica y qué ve el público.</li></ul></div>
-        </div>
-      </div>
-      <div class="card fl-c">
-        <h3><span class="dot"></span>Esta demo</h3>
-        <ul class="fl-ul">
-          <li><b>Las mismas herramientas.</b> Tablero de la línea (resumen, curva S, pronóstico, decisiones, BIM 4D, proceso, fotos, eventos y reportes), BIM general y las tres subestaciones.</li>
-          <li><b>Datos ficticios.</b> Nombres, ubicación, cotas, avances y metrados cambiados; sin montos ni nombres de personas.</li>
-          <li><b>Fotos.</b> De obra, sin personas, recortadas para quitar logos y sellos de fecha, hora y coordenadas, y guardadas sin metadatos.</li>
-        </ul>
-      </div>
-    </div>
-
-   </div>
-  </section>
-
   <section id="v-fot" class="view">
     <div class="card fot-hist"><h3 class="fh-tit"><span class="dot"></span><span id="fotTitulo">Línea de tiempo</span><span class="fh-acc" id="fotAcc"></span></h3>
       <div class="desc" id="fotDesc"></div>
@@ -8585,7 +8470,7 @@ function showTip(html,x,y){
   tip.style.left=nx+'px';tip.style.top=ny+'px';
 }
 function hideTip(){tip.classList.remove('on');}
-const colOf = p=>p>=99.5?css('--lime'):p>0?css('--amber'):css('--red');
+const colOf = p=>p>=99.5?css('--lime'):p>0?(css('--amber-fill')||css('--amber')):css('--red');
 
 /* =========================================================================
    2. PRESENTACIÓN EJECUTIVA BIM (SLIDE DECK)
@@ -8734,6 +8619,8 @@ function initBIM3D() {
       const hits = rc.intersectObjects(towerObjs.map(o=>o.userData.hitProxy).filter(Boolean), false);   // v72.13: solo los cilindros de selección
       const h0 = hits.find(x=>x.object.userData && x.object.userData.routeHit);
       if (h0) { const k = h0.object.userData.idx; selectTower(k); try { irATorreRuta(k); } catch(err){} return; }
+      const hs = rc.intersectObjects(window._patiosSE || [], true);
+      if (hs.length) { let o = hs[0].object; while (o && !(o.userData && o.userData.se)) o = o.parent; if (o && window.demoSE) { window.demoSE(o.userData.se); return; } }
     }
     const rect = bimRenderer.domElement.getBoundingClientRect();
     mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
@@ -8944,10 +8831,10 @@ function createGroundPlatform() {
   bimGroundGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(ptsZ), axesMat));
 }
 
-/* Construcción Paramétrica del Modelo BIM de la Torre 138 kV */
+/* Construcción Paramétrica del Modelo BIM de la Torre 220 kV */
 
 /* =========================================================================
-   MOTOR BIM 4D — modelo GLB real (torre doble terna 138 kV, 47 m)
+   MOTOR BIM 4D — modelo GLB real (torre doble terna 220 kV, 47 m)
    Geometrías fusionadas por ETAPA CONSTRUCTIVA para permitir 19 instancias.
    ========================================================================= */
 
@@ -8965,7 +8852,7 @@ const CABLE_ANCHORS = [
 ];
 let routeSpans = [];
 /* Trazo real del proyecto (KMZ ITER_0_V1) proyectado a metros locales */
-const GEO = {"towers": [{"t": "T01", "e": 3306.2, "n": -2260.7, "z": 4476.3, "km": 0.0, "span": 147.0, "lat": -15.925693, "lon": -71.174662}, {"t": "T02", "e": 3240.4, "n": -2129.3, "z": 4465.0, "km": 147.6, "span": 138.5, "lat": -15.924503, "lon": -71.17527}, {"t": "T03", "e": 3178.4, "n": -2005.4, "z": 4460.5, "km": 286.8, "span": 229.1, "lat": -15.92338, "lon": -71.175843}, {"t": "T04", "e": 3018.9, "n": -1841.0, "z": 4451.3, "km": 516.3, "span": 540.9, "lat": -15.921886, "lon": -71.177324}, {"t": "T05", "e": 2642.3, "n": -1452.7, "z": 4439.1, "km": 1058.7, "span": 553.8, "lat": -15.918358, "lon": -71.180822}, {"t": "T06", "e": 2256.7, "n": -1055.2, "z": 4422.0, "km": 1613.9, "span": 228.1, "lat": -15.914746, "lon": -71.184404}, {"t": "T07", "e": 2097.9, "n": -891.4, "z": 4417.7, "km": 1842.6, "span": 496.9, "lat": -15.913258, "lon": -71.185878}, {"t": "T08", "e": 1616.8, "n": -767.0, "z": 4425.1, "km": 2339.1, "span": 938.8, "lat": -15.91211, "lon": -71.190364}, {"t": "T09", "e": 714.0, "n": -509.6, "z": 4437.3, "km": 3277.3, "span": 592.1, "lat": -15.909739, "lon": -71.19878}, {"t": "T10", "e": 144.6, "n": -347.2, "z": 4377.9, "km": 3869.0, "span": 714.7, "lat": -15.908243, "lon": -71.204088}, {"t": "T11", "e": -542.7, "n": -151.2, "z": 4349.9, "km": 4583.4, "span": 349.0, "lat": -15.906438, "lon": -71.210495}, {"t": "T12", "e": -828.6, "n": 49.0, "z": 4359.8, "km": 4932.8, "span": 453.5, "lat": -15.904614, "lon": -71.213154}, {"t": "T13", "e": -1141.1, "n": 377.7, "z": 4370.3, "km": 5387.5, "span": 597.4, "lat": -15.901627, "lon": -71.216056}, {"t": "T14", "e": -1312.3, "n": 950.0, "z": 4318.5, "km": 5988.1, "span": 253.7, "lat": -15.896446, "lon": -71.217626}, {"t": "T15", "e": -1529.2, "n": 1081.6, "z": 4334.4, "km": 6241.9, "span": 653.7, "lat": -15.895246, "lon": -71.219645}, {"t": "T16", "e": -2088.0, "n": 1420.8, "z": 4342.1, "km": 6896.2, "span": 414.4, "lat": -15.892152, "lon": -71.224844}, {"t": "T17", "e": -2442.2, "n": 1635.9, "z": 4334.4, "km": 7311.0, "span": 743.7, "lat": -15.89019, "lon": -71.22814}, {"t": "T18", "e": -3052.8, "n": 2060.5, "z": 4358.2, "km": 8055.6, "span": 208.8, "lat": -15.886321, "lon": -71.233819}, {"t": "T19", "e": -3224.2, "n": 2179.8, "z": 4342.1, "km": 8264.7, "span": 0.0, "lat": -15.885234, "lon": -71.235413}], "se": {"e": -3206.6, "n": 2217.0}, "portico": {"e": -3203.9, "n": 2218.8, "z": 4340.5}, "verts": [{"v": "V1", "e": 3176.9, "n": -2005.6}, {"v": "V2", "e": 2096.7, "n": -890.7}, {"v": "V3", "e": 1615.3, "n": -767.3}, {"v": "V4", "e": -545.3, "n": -150.5}, {"v": "V5", "e": -831.3, "n": 49.9}, {"v": "V6", "e": -1144.5, "n": 377.3}, {"v": "V7", "e": -1315.5, "n": 947.8}, {"v": "V8", "e": -2445.7, "n": 1636.3}, {"v": "V9", "e": -3225.8, "n": 2180.1}], "total": 8264.7, "zmin": 4318.5, "zmax": 4476.3, "lat0": -15.905098, "lon0": -71.205421};
+const GEO = {"towers": [{"t": "T01", "e": 3306.2, "n": -2260.7, "z": 4476.3, "km": 0.0, "span": 147.0, "lat": -15.925693, "lon": -71.174662}, {"t": "T02", "e": 3240.4, "n": -2129.3, "z": 4465.0, "km": 147.6, "span": 138.5, "lat": -15.924503, "lon": -71.17527}, {"t": "T03", "e": 3178.4, "n": -2005.4, "z": 4460.5, "km": 286.8, "span": 229.1, "lat": -15.92338, "lon": -71.175843}, {"t": "T04", "e": 3018.9, "n": -1841.0, "z": 4451.3, "km": 516.3, "span": 540.9, "lat": -15.921886, "lon": -71.177324}, {"t": "T05", "e": 2642.3, "n": -1452.7, "z": 4439.1, "km": 1058.7, "span": 553.8, "lat": -15.918358, "lon": -71.180822}, {"t": "T06", "e": 2256.7, "n": -1055.2, "z": 4422.0, "km": 1613.9, "span": 228.1, "lat": -15.914746, "lon": -71.184404}, {"t": "T07", "e": 2097.9, "n": -891.4, "z": 4417.7, "km": 1842.6, "span": 496.9, "lat": -15.913258, "lon": -71.185878}, {"t": "T08", "e": 1616.8, "n": -767.0, "z": 4425.1, "km": 2339.1, "span": 938.8, "lat": -15.91211, "lon": -71.190364}, {"t": "T09", "e": 714.0, "n": -509.6, "z": 4437.3, "km": 3277.3, "span": 592.1, "lat": -15.909739, "lon": -71.19878}, {"t": "T10", "e": 144.6, "n": -347.2, "z": 4377.9, "km": 3869.0, "span": 714.7, "lat": -15.908243, "lon": -71.204088}, {"t": "T11", "e": -542.7, "n": -151.2, "z": 4349.9, "km": 4583.4, "span": 349.0, "lat": -15.906438, "lon": -71.210495}, {"t": "T12", "e": -828.6, "n": 49.0, "z": 4359.8, "km": 4932.8, "span": 453.5, "lat": -15.904614, "lon": -71.213154}, {"t": "T13", "e": -1141.1, "n": 377.7, "z": 4370.3, "km": 5387.5, "span": 597.4, "lat": -15.901627, "lon": -71.216056}, {"t": "T14", "e": -1312.3, "n": 950.0, "z": 4318.5, "km": 5988.1, "span": 253.7, "lat": -15.896446, "lon": -71.217626}, {"t": "T15", "e": -1529.2, "n": 1081.6, "z": 4334.4, "km": 6241.9, "span": 653.7, "lat": -15.895246, "lon": -71.219645}, {"t": "T16", "e": -2088.0, "n": 1420.8, "z": 4342.1, "km": 6896.2, "span": 414.4, "lat": -15.892152, "lon": -71.224844}, {"t": "T17", "e": -2442.2, "n": 1635.9, "z": 4334.4, "km": 7311.0, "span": 743.7, "lat": -15.89019, "lon": -71.22814}, {"t": "T18", "e": -3052.8, "n": 2060.5, "z": 4358.2, "km": 8055.6, "span": 208.8, "lat": -15.886321, "lon": -71.233819}, {"t": "T19", "e": -3224.2, "n": 2179.8, "z": 4342.1, "km": 8264.7, "span": 0.0, "lat": -15.885234, "lon": -71.235413}], "se": {"e": -3206.6, "n": 2217.0}, "portico": {"e": -3203.9, "n": 2218.8, "z": 4340.5}, "verts": [{"v": "V1", "e": 3176.9, "n": -2005.6}, {"v": "V2", "e": 2096.7, "n": -890.7}, {"v": "V3", "e": 1615.3, "n": -767.3}, {"v": "V4", "e": -545.3, "n": -150.5}, {"v": "V5", "e": -831.3, "n": 49.9}, {"v": "V6", "e": -1144.5, "n": 377.3}, {"v": "V7", "e": -1315.5, "n": 947.8}, {"v": "V8", "e": -2445.7, "n": 1636.3}, {"v": "V9", "e": -3225.8, "n": 2180.1}], "total": 8264.7, "zmin": 4318.5, "zmax": 4476.3, "lat0": -15.905098, "lon0": -71.205421, "se0": {"e": 3337.5, "n": -2323.3}};
 /* Curvas planificadas del cronograma (hoja Construcción) para la ventana de 40 semanas */
 const CURVAS = ⟦bloque:CURVAS⟧;
 /* coherencia: el avance global de obra civil se deriva siempre de las torres */
@@ -8996,7 +8883,7 @@ function paletaOrtoActiva(){ try { return ortoActiva() && bimRouteMode; } catch(
 function repartoActivo(){ return espaciadoUniforme && !ortoActiva() && !(typeof realista!=='undefined' && realista); }   // v71: Realista = vanos reales siempre · v72.11: sin botón Realista, la ortofoto activa pone los vanos reales
 const ESP_ALPHA = 0.45;                // 0 = vanos reales · 1 = equidistante
 /* Ajustes de realismo controlables desde la interfaz */
-/* Tipos de aislador usuales en 138 kV. El modelo trae la cadena como una malla
+/* Tipos de aislador usuales en 220 kV. El modelo trae la cadena como una malla
    fusionada, así que el tipo no se puede deducir de la geometría: se elige aquí. */
 const AISLADORES = {
   vidrio: { nm:'Vidrio templado', mat:{
@@ -9123,8 +9010,8 @@ function bimThemeColors(){
   }
   const light = document.documentElement.getAttribute('data-theme') === 'light';
   return light
-    ? { bg:0xf1f4f8, fog:0xe3efeb, ground:0x8c9a6a, wire:0x6f7d58, ghost: (TEXR() ? 0x3f4a54 : 0x8593a0) }   // v72.50: grafito sobre la puna texturizada (el gris claro se perdía)
-    : { bg:0x080e17, fog:0x080e17, ground:0x3b4a36, wire:0x4c5d47, ghost:0xa9b6c2 };
+    ? { bg:0xf0f4f9, fog:0xe3efeb, ground:0x8c9a6a, wire:0x6f7d58, ghost: (TEXR() ? 0x3f4a54 : 0x8593a0) }   // v72.50: grafito sobre la puna texturizada (el gris claro se perdía)
+    : { bg:0x070e19, fog:0x070e19, ground:0x3b4a36, wire:0x4c5d47, ghost:0xa9b6c2 };
 }
 
 function glbStageOf(n){
@@ -9140,7 +9027,7 @@ function glbStageOf(n){
 }
 
 /* =========================================================================
-   TORRE PARAMÉTRICA 138 kV — reemplaza al modelo GLB
+   TORRE PARAMÉTRICA 220 kV — reemplaza al modelo GLB
    Planos: ME_TS2-Rev.B (silueta, cuerpos, ménsulas) y ME_TS2-STUB-Rev.B.
 
    Motivo del cambio: el GLB traía la base 44 % más abierta que el plano
@@ -9891,7 +9778,7 @@ function pintarEvidResumen(){
    ===================================================================== */
 const FASE_COLOR = {acceso:'#6b8e23', 'topografía':'#1fa2c4', 'excavación':'#b07a3a', solado:'#9aa5b1', stub:'#4a6fa5', acero:'#c0392b', encofrado:'#d9a441', vaciado:'#17a398', relleno:'#7a5c3a', pat:'#8e44ad', otras:'#8f9a96'};
 const FASES_ORD = [...FASES_OBRA, 'otras'];
-const faseColor = f => f && f.fase ? (FASE_COLOR[f.fase]||'#8f9a96') : '#bec5d0';
+const faseColor = f => f && f.fase ? (FASE_COLOR[f.fase]||'#8f9a96') : '#bbc4d3';
 const FASE_ACT = {acceso:'Caminos', 'excavación':'Excavación', solado:'Solado', stub:'Stub', acero:'Acero', encofrado:'Encofrado', vaciado:'Concreto', relleno:'Relleno', pat:'PAT'};   // fase de la foto → actividad del Resumen
 let fotSel = {zona:'Todas', sem:null, celda:null, fase:'Todas', cat:'Todas', obs:null};   // v72.7: semana y celda elegidas en la línea de tiempo · v72.8: obs = lista «Por revisar» elegida
 let fotListaActual = [];
@@ -9973,7 +9860,7 @@ function pintarPlanoFotos(){
   }
   dibujarPlano();
   document.getElementById('fotLeyenda').innerHTML = Object.entries(FASE_COLOR).filter(([k])=>FOTOS_CAMPO.some(f=>f.fase===k)).map(([k,c])=>`<span><i style="background:${c}"></i>${FASE_TXT[k]||k}</span>`).join('')+
-    `<span><i style="background:transparent;border:2px solid var(--c-civ,#204683)"></i>torre con fotos</span>`+(FOTOS_CAMPO.some(f=>!f.utm&&f.torre)?`<span><i style="background:transparent;border:1px dashed #1a1a1a"></i>posición aproximada</span>`:'')+
+    `<span><i style="background:transparent;border:2px solid var(--c-civ,#265eb9)"></i>torre con fotos</span>`+(FOTOS_CAMPO.some(f=>!f.utm&&f.torre)?`<span><i style="background:transparent;border:1px dashed #1a1a1a"></i>posición aproximada</span>`:'')+
     (hayCamp?`<span><i class="lg-camp"></i>campamento</span>`:'');
 }
 function dibujarPlano(){
@@ -10080,7 +9967,7 @@ const ltRango = w => `${ltDM(w)} al ${ltDM(ltMas(w,6))}`;
 const faseDe = f => f.fase || 'otras';
 const ltNom = k => FASE_TXT[k]||k;
 const zonaFila = fotZona;   // v72.8: torre, camino o zona (Campamento · Charlas · Otras)
-const ltRgba = (hex,a) => { const n=parseInt(String(hex||'#bec5d0').slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
+const ltRgba = (hex,a) => { const n=parseInt(String(hex||'#bbc4d3').slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
 const ltOrd = L => L.slice().sort((a,b)=>(a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||'')));
 function ltSemanas(desde, hasta){ const L=[]; for(let w=ltLunes(desde); w<=hasta; w=ltMas(w,7)) L.push(w); return L; }
 /* la foto que representa un grupo: pie del PPT o revisada primero, luego la de mayor confianza, luego la más reciente */
@@ -10113,7 +10000,7 @@ function ltMatriz(fil, W){
       if(!L) return `<div class="lt-v${cs}"></div>`;
       const cnt={}; L.forEach(f=>{ const k=faseDe(f); cnt[k]=(cnt[k]||0)+1; }); const ks=FASES_ORD.filter(k=>cnt[k]);
       const pk = ks.length>4 ? FASES_ORD.filter(k=>ks.slice().sort((a,b)=>cnt[b]-cnt[a]).slice(0,4).includes(k)) : ks;   // v72.9: hasta 4 puntos (las fases con más fotos), en el orden de la leyenda
-      return `<button type="button" class="lt-c${cs}${c.z===z&&c.w===w?' sel':''}${L.some(f=>f.coherente===false)?' inco':''}" data-z="${z}" data-w="${w}" title="${z} · semana del ${ltRango(w)} · ${L.length} foto${L.length>1?'s':''}: ${ks.map(k=>`${ltNom(k)} ${cnt[k]}`).join(', ')}">${L.length}<span class="pts">${pk.map(k=>`<i style="background:${FASE_COLOR[k]||'#bec5d0'}"></i>`).join('')}</span></button>`; }).join('');
+      return `<button type="button" class="lt-c${cs}${c.z===z&&c.w===w?' sel':''}${L.some(f=>f.coherente===false)?' inco':''}" data-z="${z}" data-w="${w}" title="${z} · semana del ${ltRango(w)} · ${L.length} foto${L.length>1?'s':''}: ${ks.map(k=>`${ltNom(k)} ${cnt[k]}`).join(', ')}">${L.length}<span class="pts">${pk.map(k=>`<i style="background:${FASE_COLOR[k]||'#bbc4d3'}"></i>`).join('')}</span></button>`; }).join('');
   let h = ltCabecera(W) + DATA.towers.map(t=>fila(t.t)).join('');
   if (cams.length) h += `<div class="lt-grupo" title="Cada camino lleva la torre (o el tramo de torres) a la que sirve según la hoja PORCENTAJE POR TORRE; sus fotos cuentan también en esa torre">Caminos de acceso · con la torre a la que sirven</div>` + cams.map(fila).join('');
   if (zonas.length) h += `<div class="lt-grupo">Otras zonas · campamento, charlas y otras (sin torre ni camino)</div>` + zonas.map(fila).join('');
@@ -10130,7 +10017,7 @@ function ltPelicula(fil, W){
   let h = ltCabecera(W) + `<div class="lt-carril tot"><span>Todas las fases</span></div>` +
     W.map(w=>{ const L=T[w], cs=fotSel.sem===w?' csel':''; return L ? `<button type="button" class="lt-c tot${cs}${!c.fase&&c.w===w?' sel':''}" data-w="${w}" title="Semana del ${ltRango(w)} · ${L.length} foto${L.length>1?'s':''}">${L.length}</button>` : `<div class="lt-v lt-vt${cs}"></div>`; }).join('');
   fases.forEach(k=>{
-    const Lf=fil.filter(f=>faseDe(f)===k), fs=Lf.map(f=>f.fecha).sort(), ws=W.filter(w=>G[k+'|'+w]), col=FASE_COLOR[k]||'#bec5d0', nom=ltNom(k);
+    const Lf=fil.filter(f=>faseDe(f)===k), fs=Lf.map(f=>f.fecha).sort(), ws=W.filter(w=>G[k+'|'+w]), col=FASE_COLOR[k]||'#bbc4d3', nom=ltNom(k);
     h += `<button type="button" class="lt-carril${c.fase===k&&!c.w?' sel':''}" data-f="${k}" title="Ver todas las fotos de ${nom}"><span><i style="background:${col}"></i>${nom}</span><small>${Lf.length} · ${ltDM(fs[0])}${fs[0]!==fs[fs.length-1]?' → '+ltDM(fs[fs.length-1]):''}</small></button>`;
     h += W.map(w=>{ const L=G[k+'|'+w], cs=fotSel.sem===w?' csel':'';
       if(!L){ const tramo = ws.length>1 && w>ws[0] && w<ws[ws.length-1]; return `<div class="lt-p${cs}"${tramo?` style="background:${ltRgba(col,.16)}"`:''}></div>`; }
@@ -10268,7 +10155,7 @@ function pintarHistorialFotos(enPlay){
     $a.querySelectorAll('button[data-ir]').forEach(b=>b.onclick=()=>{ ltParar(); fotSel.zona=b.dataset.ir; fotSel.celda=null; fotSel.sem=null; renderFotosTab(); });
     $a.querySelector('.fh-ini').onclick=vistaInicialFotos; }
   const chip=(k,v,txt,col)=>`<button data-k="${k}" data-v="${v}" class="${fotSel[k]===v?'on':''}">${col?`<i style="background:${col}"></i>`:''}${txt}</button>`;
-  $f.innerHTML = (fases.length>1?`<div class="ff-fila"><span class="sep">Fase</span>${chip('fase','Todas','Todas')}${fases.map(x=>chip('fase',x,ltNom(x),FASE_COLOR[x]||'#bec5d0')).join('')}</div>`:'')+
+  $f.innerHTML = (fases.length>1?`<div class="ff-fila"><span class="sep">Fase</span>${chip('fase','Todas','Todas')}${fases.map(x=>chip('fase',x,ltNom(x),FASE_COLOR[x]||'#bbc4d3')).join('')}</div>`:'')+
     `<div class="ff-fila">${cats.length>1?`<span class="sep">Categoría</span>${chip('cat','Todas','Todas')}${cats.map(x=>chip('cat',x,x)).join('')}`:''}`+
     (fotSel.obs ? '' : `<span class="lt-pasos" title="Semana anterior o siguiente con fotos"><button type="button" class="lt-paso" data-d="-1">‹</button><span>semana</span><button type="button" class="lt-paso" data-d="1">›</button></span>`)+`</div>`;
   $f.querySelectorAll('button[data-k]').forEach(b=>b.onclick=()=>{ ltParar(); fotSel[b.dataset.k]=b.dataset.v; fotSel.celda=null; pintarHistorialFotos(); });
@@ -10443,7 +10330,7 @@ function updateBIM4D(){
       const bd = obj.userData.accBadge;
       bd.visible = (obj.userData.towerIdx === d4sel);
       if(bd.userData.lastVal !== r){
-        const col = pa>=99.5 ? '#204683' : (pa>0 ? '#d79a32' : '#8b9490');
+        const col = pa>=99.5 ? '#265eb9' : (pa>0 ? '#d79a32' : '#8b9490');
         const nb = makeTowerLabelSprite('Vía ' + r + '%', col, 0.034, true);
         bd.material.map.dispose(); bd.material.dispose();
         bd.material = nb.material; bd.scale.copy(nb.scale);
@@ -10779,8 +10666,8 @@ function validarBIM(){
 window.CONFIG=CONFIG; window.getScheduleStatus=getScheduleStatus; window.towerStatusModel=towerStatusModel; window.validarBIM=validarBIM;
 
 function towerStatusColor(pct){
-  if(pct>=99.5) return 0x204683;   // teal corporativo
-  if(pct>=40)   return 0x89abe1;   // menta
+  if(pct>=99.5) return 0x265eb9;   // teal corporativo
+  if(pct>=40)   return 0x86aae4;   // menta
   if(pct>0)     return 0xd79a32;   // lima
   return 0x8b9490;                 // gris neutro
 }
@@ -11063,7 +10950,7 @@ function buildRouteBIM(){
     if(bis.lengthSq()<1e-6) bis.copy(dout);
     obj.lookAt(pts[i].clone().add(bis.normalize()));
 
-    const lbl = makeTowerLabelSprite(t.t, '#a2b2cb', 0.046, true);
+    const lbl = makeTowerLabelSprite(t.t, '#9eb1cf', 0.046, true);
     lbl.position.set(0, 27, 0); obj.add(lbl);
     obj.userData.nameLbl = lbl;
     // v72.25/v72.26: viñeta naranja «DD-Mes» (fecha del corte, no «hoy»; la leyenda dice «Intervenida el DD-Mes») sobre la torre intervenida el día del corte (solo se ve en el corte)
@@ -11081,7 +10968,7 @@ function buildRouteBIM(){
 
     // halo de selección
     const halo = new THREE.Mesh(new THREE.RingGeometry(5.2, 6.4, 40),
-      new THREE.MeshBasicMaterial({color:0x89abe1, side:THREE.DoubleSide, transparent:true, opacity:.9, visible:false}));   // v63: sin aureola de selección
+      new THREE.MeshBasicMaterial({color:0x86aae4, side:THREE.DoubleSide, transparent:true, opacity:.9, visible:false}));   // v63: sin aureola de selección
     halo.rotation.x=-Math.PI/2; halo.position.copy(pts[i]); halo.position.y+=0.65;
     halo.visible=false; bimTowerGroup.add(halo); obj.userData.halo = halo;
 
@@ -11112,13 +10999,16 @@ function buildRouteBIM(){
     });
   }
 
-  // ---- SE Cerro Azul y Pórtico de llegada (rediseño: patio 138 kV doble terna alineado con la línea) ----
-  const lastP = towerPos(DATA.towers.length-1);
+  // demo pública: dos subestaciones (inicio junto a la T01 y llegada junto a la última torre), cada una clicable
+  window._patiosSE = [];
+  const _patioSE = (iT, iV, nombre, clave) => {
+  // ---- SE Cerro Azul y Pórtico de llegada (rediseño: patio 220 kV doble terna alineado con la línea) ----
+  const lastP = towerPos(iT);
   const seRaw = geoPos(GEO.se.e, GEO.se.n, terrainZAt(GEO.se.e, GEO.se.n));
   // dirección de llegada: se prolonga el eje del último vano (T18→T19), de modo que la línea entra recta al pórtico.
   // (El punto de la SE del KMZ está a ~40 m de T19, es decir, el apoyo terminal queda pegado al patio; en el
   //  modelo esquemático el patio se dibuja a continuación de la línea para que la llegada sea legible.)
-  const prevP = towerObjs.length > 1 ? towerObjs[towerObjs.length-2].position : null;
+  const prevP = towerObjs.length > 1 ? towerObjs[iV].position : null;
   const spanDir = prevP ? new THREE.Vector3().subVectors(lastP, prevP).setY(0).normalize() : new THREE.Vector3(1,0,0);
   let away = spanDir.clone();
   if (away.lengthSq() < 1e-4) away = new THREE.Vector3().subVectors(seRaw, lastP).setY(0).normalize();
@@ -11151,7 +11041,7 @@ function buildRouteBIM(){
     aceroO: new THREE.MeshStandardMaterial({color:0x8f979d, roughness:.6,  metalness:.4}),
     porcel: new THREE.MeshStandardMaterial({color:0xc9c3b3, roughness:.7,  metalness:.05}),
     tanque: new THREE.MeshStandardMaterial({color:0x9aa3a8, roughness:.55, metalness:.5}),
-    trafo:  new THREE.MeshStandardMaterial({color:0x204683, roughness:.7,  metalness:.25}),
+    trafo:  new THREE.MeshStandardMaterial({color:0x265eb9, roughness:.7,  metalness:.25}),
     casa:   new THREE.MeshStandardMaterial({color:0xb6ae9e, roughness:.9,  metalness:0}),
     techo:  new THREE.MeshStandardMaterial({color:0x6d7276, roughness:.85, metalness:.1}),
     cobre:  new THREE.MeshStandardMaterial({color:0x9aa1a6, roughness:.45, metalness:.65}),
@@ -11242,7 +11132,7 @@ function buildRouteBIM(){
     seYard.add(pararrayos(cx-2.7, GZ+1.5));      // pararrayos de línea
   });
 
-  // --- barra colectora 138 kV: 3 tubos sobre soportes ---
+  // --- barra colectora 220 kV: 3 tubos sobre soportes ---
   const barY = 0.5+7.0;
   [-11, -5.5, 0, 5.5, 11].forEach(px=> PH.forEach((ph,fi)=> seYard.add(soporteBarra(px, ZB+ph*0.9, 7.0))));
   PH.forEach((ph)=>{
@@ -11274,15 +11164,15 @@ function buildRouteBIM(){
   seYard.position.copy(seP);
   seYard.lookAt(seP.clone().add(away));          // +Z local apunta lejos de la línea: el pórtico (z<0) mira a T19
   seYard.updateMatrixWorld(true);
-  bimTowerGroup.add(seYard);
+  bimTowerGroup.add(seYard); seYard.userData.se = clave; window._patiosSE.push(seYard);
 
-  const seLbl = makeTowerLabelSprite('SE Cerro Azul', '#89abe1', 0.055, true);
+  const seLbl = makeTowerLabelSprite(nombre, '#86aae4', 0.055, true);
   seLbl.position.copy(seP); seLbl.position.y += 15;
-  bimTowerGroup.add(seLbl);
+  bimTowerGroup.add(seLbl); seLbl.userData.se = clave; window._patiosSE.push(seLbl);
 
   // --- vano de llegada: cada conductor de T19 va a su cadena del pórtico; los cables de guarda a las puntas ---
   const seLineMat = new THREE.LineBasicMaterial({color:0x9aa9b8, transparent:true, opacity:.55});
-  const A = towerObjs[towerObjs.length-1];
+  const A = towerObjs[iT];
   if (A){
     A.updateMatrixWorld(true);
     const conds = CABLE_ANCHORS.filter(c=>c.k==='cond');
@@ -11311,6 +11201,10 @@ function buildRouteBIM(){
       bimTowerGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(new THREE.QuadraticBezierCurve3(pa, mid, pb).getPoints(18)), seLineMat));
     });
   }
+
+  };
+  _patioSE(DATA.towers.length-1, DATA.towers.length-2, 'SE Cerro Azul', 'llegada');
+  if (DATA.towers.length > 1) _patioSE(0, 1, 'SE Río Claro', 'inicio');
 
   updateBIM4D();
 
@@ -11443,7 +11337,7 @@ function buildTowerBIM(towerIndex){
     const c = m.geometry.boundingBox.getCenter(new THREE.Vector3());
     const L = PATA_LETTER[n];
     const p = pataOverall(t, L, d4i);
-    const col = p>=99.5 ? '#204683' : (p>0 ? '#d79a32' : '#c96a4a');
+    const col = p>=99.5 ? '#265eb9' : (p>0 ? '#d79a32' : '#c96a4a');
     const spr = makeTowerLabelSprite('Pata '+L+' · '+Math.round(p)+'%', col, 4.6);
     spr.position.set(c.x*3.1, 4.5 + (n-1)*3.6, c.z*3.1);
     obj.add(spr);
@@ -12049,7 +11943,7 @@ function renderCamProc(){
 
   const usa = t => camSel==='Todos' || t.deps.some(d=>d.c===camSel) || (t.peat && t.peat.c===camSel);
   const fil = TW.filter(usa);
-  const col = p => p>=99.5 ? 'var(--c-civ,#204683)' : (p>0 ? 'var(--amber)' : 'var(--red)');
+  const col = p => p>=99.5 ? 'var(--c-civ,#265eb9)' : (p>0 ? 'var(--amber)' : 'var(--red)');
   const difs = fil.filter(t=>Math.abs(t.real-ofi(t.t))>5);
   // indicadores
   let k;
@@ -12343,7 +12237,7 @@ function drawRoute(){
   // SE Cerro Azul
   s+=`<rect x="${sx(GEO.se.e)-4}" y="${sy(GEO.se.n)-4}" width="8" height="8" rx="1.5" fill="${css('--sky')}"/>`;
   s+=`<text x="${sx(GEO.se.e)}" y="${sy(GEO.se.n)-8}" font-size="7" fill="${css('--sky')}" text-anchor="middle" font-family="monospace">SE Cerro Azul</text>`;
-  s+=`<text x="${sx(T[0].e)}" y="${sy(T[0].n)+13}" font-size="7" fill="${css('--ink-mut')}" text-anchor="middle" font-family="monospace">T01</text>`;
+  s+=`<text x="${sx(T[0].e)}" y="${sy(T[0].n)+13}" font-size="7" fill="${css('--ink-mut')}" text-anchor="middle" font-family="monospace">T01</text>`;s+=`<rect x="${sx(3337.5)-4}" y="${sy(-2323.3)-4}" width="8" height="8" rx="1.5" fill="${css('--sky')}"/>`;s+=`<text x="${sx(3337.5)}" y="${sy(-2323.3)+14}" font-size="7" fill="${css('--sky')}" text-anchor="middle" font-family="monospace">SE Río Claro</text>`;
   // torres
   T.forEach((t,i)=>{
     const cx=sx(t.e), cy=sy(t.n), col=colOf(DATA.towers[i]?DATA.towers[i].pct:0), sel=(i===d4sel);
@@ -13562,7 +13456,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
     const T = DATA.towers;
     const n = { all: T.length, done: T.filter(t => stOf(t)==='done').length, prog: T.filter(t => stOf(t)==='prog').length,
                 none: T.filter(t => stOf(t)==='none').length, rest: T.filter(t => restLevel(t)==='red').length, wait: T.filter(t => restLevel(t)==='amber').length, hoy: T.filter(t => intervDe(t.t)).length };
-    const opts = [['all','Todas'],['hoy','Intervenidas el ' + intervFecha()],['prog','En ejecución'],['done','Cimentación lista'],['none','Sin iniciar'],['rest','Bloqueadas'],['wait','Esperan recurso']].filter(o => o[0] !== 'hoy' || n.hoy);   // v72.25: «Intervenidas el DD-Mes» · v33: 'done' = 4 zapatas al 100 % (el % del tile incluye caminos y remediación)
+    const opts = [['all','Todas'],['hoy','Intervenidas el ' + intervFecha()],['prog','En ejecución'],['done','Terminadas'],['none','Sin iniciar'],['rest','Bloqueadas'],['wait','Esperan recurso']].filter(o => o[0] !== 'hoy' || n.hoy);   // v72.25: «Intervenidas el DD-Mes» · v33: 'done' = 4 zapatas al 100 % (el % del tile incluye caminos y remediación)
     const cEl = $('bimxCnt'); if (cEl) cEl.remove();
     el.innerHTML = `<span class="fl">Filtro:</span>` + opts.map(([k, lab]) => `<button class="chip${filt===k?' on':''}${k==='rest'?' d':k==='done'?' g':k==='prog'||k==='wait'?' w':k==='hoy'?' hoy':''}" data-f="${k}" title="${k==='hoy' ? 'Mostrar las torres trabajadas el día del corte (celdas marcadas en el Resumen del reporte diario)' : k==='all' ? 'Mostrar las 19 torres' : (k==='done' ? 'Mostrar solo las torres con la cimentación (4 zapatas) concluida' : 'Mostrar solo las torres ' + lab.toLowerCase())}">${lab} · ${n[k]}</button>`).join('');
     el.querySelectorAll('button').forEach(b => b.onclick = () => { filt = b.dataset.f; renderFilters(); drawTowerList(); });
@@ -14325,7 +14219,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
       `<span class="sep"></span>` +
       `<span class="k">Planilla</span><span class="v">solado ${F1(m.solado)} m³ · concreto ${F1(m.concreto)} m³ · encofrado ${F1(m.encofrado)} m² · acero ${F1(m.acero)} kg · relleno ${F1(m.relleno)} m³</span>` +
       (m.contr && m.contr.excav ? `<span class="k">Contractual</span><span class="v">${F1(m.contr.excav.cant)} m³ · PU US$ ${F1(m.contr.excav.pu)}/m³ · <b>US$ ${F1(m.contr.excav.usd)}</b></span>` : '') +
-      `<span class="k">Fuente</span><span class="v"><small>${q.src === 'plano' ? 'dimensiones y metrados por pata de los planos de fundación DEMO-LT-OC-531…535 (rev. 1–2, abr–may 2026) según tipo de torre y zona de suelo; foso = Bz + espacio de trabajo (√(excavación / he)); hs del stub de las plantillas de la hoja Fundación' : 'base ' + m.dims.fuente + '; alturas de pedestal y stub de las plantillas de la hoja Fundación'}. Volúmenes por torre de la planilla de metrados. Orden de patas según plano de derivación: B·C arriba (hacia la siguiente torre), A·D abajo.</small></span>` +
+      `<span class="k">Fuente</span><span class="v"><small>${q.src === 'plano' ? 'dimensiones y metrados por pata de los planos de fundación DEMO-LT-OC-531…535 (rev. 1–2, abr–may 2026) según tipo de torre y zona de suelo; foso = Bz + espacio de trabajo (√(excavación / he)); hs del stub de las plantillas de la hoja Fundación' : 'base ' + m.dims.fuente + '; alturas de pedestal y stub de las plantillas de la hoja Fundación'}. Volúmenes por torre de la planilla de metrados. Orden de patas según plano de la línea: B·C arriba (hacia la siguiente torre), A·D abajo.</small></span>` +
       `</div>`;
     el.innerHTML = h;
   }
@@ -14345,7 +14239,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
   window.addEventListener('load', () => setTimeout(bindPanelTabs, 0));
   const _drawScene = window.drawScene;
   // ---------- pestaña Corte: sección por pata según las plantillas de la hoja Fundación (v28) ----------
-  // Orden en planta (plano de derivación): B · C arriba (hacia la siguiente torre), A · D abajo. Cada pata se dibuja en
+  // Orden en planta (plano de la línea): B · C arriba (hacia la siguiente torre), A · D abajo. Cada pata se dibuja en
   // elevación: foso Le × he, solado, zapata Bz × hz, pedestal a × (hasta +hp), stub inclinado hacia el eje (hs sobre el
   // pedestal) con las cotas he, ht, hs, hp y Le como en los esquemas de la hoja Fundación.
   const MONO = 'JetBrains Mono, monospace', SANS = 'Archivo, Arial, sans-serif';
@@ -14609,7 +14503,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
     const Bz = roca ? Le : Math.max(0.8, Le - 0.3);
     return { roca, Le, Pe, Bz, hz, a, hp, hs, e, hc: Pe - e - hz + hp, HT: Pe - e + hp, Lst: +(Pe - e - 0.2 + hp + hs).toFixed(2), fam, famN: fam, zona: s, plano: null, src: 'derivado' };
   }
-  // ---------- orden de patas A·B·C·D según el plano de derivación (v28) ----------
+  // ---------- orden de patas A·B·C·D según el plano de la línea (v28) ----------
   // En planta, con el eje de línea hacia arriba (hacia la siguiente torre): B (izq.) y C (der.) arriba, A (izq.) y D (der.) abajo.
   // El GLB nombra las cimentaciones fundacion_1..4 en su propio orden: se permutan una sola vez para que fund_n ↔ PATA_LETTER[n].
   function ensurePataOrder(){
@@ -14751,7 +14645,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
         legExt.visible = false; legExt.userData = { bimPart: 'ghost', towerIdx: obj.userData.towerIdx }; obj.add(legExt);
       }
       // anillo de resalte (al pasar el puntero por la ventana de cimentaciones)
-      const hl = new THREE.Mesh(new THREE.RingGeometry(Le * 0.72, Le * 0.72 + 0.28, 40), new THREE.MeshBasicMaterial({ color: 0x2e5faf, transparent: true, opacity: .85, side: THREE.DoubleSide, depthWrite: false }));
+      const hl = new THREE.Mesh(new THREE.RingGeometry(Le * 0.72, Le * 0.72 + 0.28, 40), new THREE.MeshBasicMaterial({ color: 0x2c67c7, transparent: true, opacity: .85, side: THREE.DoubleSide, depthWrite: false }));
       hl.rotation.x = -Math.PI / 2; hl.position.y = 0.06; hl.visible = false; g.add(hl);
       const lbl = makeTowerLabelSprite(PL[n], '#c9a46a', 0.026, true); lbl.position.set(sx * (Le / 2 + 1.6), 0.5, sz * (Le / 2 + 1.6)); lbl.visible = false; g.add(lbl);
       obj.add(g);
@@ -15111,7 +15005,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
       pts: [[870,0],[1001,0],[1001,555],[750,555],[500,440],[485,410],[490,392],[505,375],[530,365],[550,370],[575,365],[600,350],[620,340],[650,345],[670,350],[700,345],[720,350],[750,360],[780,370],[800,380],[820,385],[845,390],[860,380],[880,365],[895,340],[900,320],[915,300],[920,270],[915,250],[910,225],[915,200],[917,170],[915,145],[905,120],[892,100],[880,80],[885,55],[875,30]] }
   ];
   const LINES = [
-    { id: 'l2045', nm: 'Línea L-2045 (existente)', col: '#31d7e8', w: 2.2, dash: [8, 5], lab: [790, 522], pts: [[0,442],[500,483],[750,505],[1001,530]] },
+    { id: 'l2201', nm: 'Línea L-2201 (existente)', col: '#31d7e8', w: 2.2, dash: [8, 5], lab: [790, 522], pts: [[0,442],[500,483],[750,505],[1001,530]] },
     { id: 'acceso', nm: 'Vía de acceso a Cerro Azul', col: '#7ee26a', w: 2, pts: [[265,75],[260,95],[240,108],[200,165],[185,175],[183,195],[188,215],[198,235],[200,245],[220,260],[240,290],[250,315],[245,345],[236,372],[236,395]] },
     { id: 'via', nm: 'Vía afirmada', col: '#e8c84a', w: 1.6, pts: [[0,470],[50,468],[100,455],[150,450],[190,430],[225,410],[236,395],[270,400],[300,430],[330,430],[350,400],[380,415],[410,440],[450,430],[500,415],[540,420],[600,405],[650,400],[700,345]] },
     { id: 'via2', nm: 'Vía comunal', col: '#e8c84a', w: 1.6, pts: [[775,0],[780,55],[800,75],[820,110],[815,150],[820,210],[830,240],[840,260],[820,280],[810,310],[800,350],[770,390],[800,420],[830,450],[860,460],[900,480],[930,500],[960,490],[990,480]] }
@@ -15190,7 +15084,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
   function init(){
     const bar = document.querySelector('#v-bim .bim-controls');
     if (bar && !$('btnZonas')){
-      const b = document.createElement('button'); b.className = 'bim-btn' + (show ? ' active' : ''); b.id = 'btnZonas'; b.title = 'Comunidades campesinas, terreno BNV, vías y línea L-2045 sobre el terreno (referencia del trazo de ruta)';
+      const b = document.createElement('button'); b.className = 'bim-btn' + (show ? ' active' : ''); b.id = 'btnZonas'; b.title = 'Comunidades campesinas, terreno BNV, vías y línea L-2201 sobre el terreno (referencia del trazo de ruta)';
       b.innerHTML = '<span class="ic">🗾</span> Zonas';
       b.onclick = () => aplicar(!show);
       const anchor = $('btnOrto'); if (anchor && anchor.parentNode === bar) anchor.insertAdjacentElement('afterend', b); else bar.appendChild(b);
@@ -15198,7 +15092,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
     const leg = document.querySelector('#v-bim .bim-legend-box');
     if (leg && !leg.querySelector('.rt-leg')){
       leg.insertAdjacentHTML('beforeend', ZONES.map(z => `<span class="rt-leg"><i style="background:${z.col};opacity:.8"></i>${z.nm}</span>`).join('') +
-        `<span class="rt-leg"><i style="background:#31d7e8"></i>L-2045 existente</span><span class="rt-leg"><i style="background:#7ee26a"></i>vía de acceso</span>`);
+        `<span class="rt-leg"><i style="background:#31d7e8"></i>L-2201 existente</span><span class="rt-leg"><i style="background:#7ee26a"></i>vía de acceso</span>`);
     }
     if (typeof bimRouteMode !== 'undefined' && bimRouteMode && typeof GLB_READY !== 'undefined' && GLB_READY){ try { addOverlay(); } catch(e){} }
     try { drawRoute(); } catch(e){}
@@ -15454,7 +15348,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
     const cube = new THREE.Mesh(new THREE.BoxGeometry(CS, CS, CS), faces.map(f => new THREE.MeshBasicMaterial({ map: tex(f[0], f[1], 128, 128, f[0].length > 4 ? 26 : 30) })));
     sc.add(cube);
     sc.add(new THREE.LineSegments(new THREE.EdgesGeometry(cube.geometry), new THREE.LineBasicMaterial({ color: 0x55606b })));
-    const hl = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x2e5faf, transparent: true, opacity: .62, depthTest: false }));
+    const hl = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x2c67c7, transparent: true, opacity: .62, depthTest: false }));
     hl.visible = false; hl.renderOrder = 3; sc.add(hl);
     const ring = new THREE.Mesh(new THREE.RingGeometry(0.76 * CS, 0.88 * CS, 64), new THREE.MeshBasicMaterial({ color: 0x8a949d, transparent: true, opacity: .5, side: THREE.DoubleSide }));
     ring.rotation.x = -Math.PI / 2; ring.position.y = -0.5 * CS - 0.06; sc.add(ring);
@@ -16223,7 +16117,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
    fotos de la torre y de su camino de acceso, por día, con desplazamiento propio. Con el panel angosto (320 px) o en celular, una columna. */
 .slide-deck{container-type:inline-size}
 #p-patas .pp-izq{display:contents}
-#p-patas .ft-dia{margin:7px 0 3px;font-size:.56rem;font-weight:700;color:var(--ink-2);display:flex;align-items:baseline;gap:4px} #p-patas .ft-dia.hoy{color:var(--c-civ,#204683)} #p-patas .ft-dia small{font-weight:600;color:var(--ink-mut)}
+#p-patas .ft-dia{margin:7px 0 3px;font-size:.56rem;font-weight:700;color:var(--ink-2);display:flex;align-items:baseline;gap:4px} #p-patas .ft-dia.hoy{color:var(--c-civ,#265eb9)} #p-patas .ft-dia small{font-weight:600;color:var(--ink-mut)}
 #p-patas .ft-lista .ft-tira{content-visibility:auto;contain-intrinsic-size:auto 120px}
 #p-patas .ft figcaption b{font-weight:700;color:var(--ink)}
 @media(min-width:861px){ @container (min-width:600px){
@@ -16247,9 +16141,9 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .ft{margin:0;cursor:pointer;border-radius:6px;overflow:hidden;background:var(--panel-2);border:2px solid transparent}
 .ft img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
 .ft figcaption{font-size:.52rem;color:var(--ink-2);padding:2px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .ft figcaption i{font-style:normal;color:var(--ink-mut)}
-.ft.hoy{border-color:var(--c-civ,#204683)} .ft.rev{outline:1px dashed var(--amber)} .ft.infer{outline:1px dotted var(--ink-mut)}
+.ft.hoy{border-color:var(--c-civ,#265eb9)} .ft.rev{outline:1px dashed var(--amber)} .ft.infer{outline:1px dotted var(--ink-mut)}
 .ft-mas{font-size:.58rem;color:var(--ink-mut);align-self:center;text-align:center}
-.ft{position:relative} .ft-fase{position:absolute;left:4px;top:4px;font-size:.5rem;font-weight:700;letter-spacing:.2px;padding:1px 5px;border-radius:999px;background:rgba(20,42,78,.88);color:#fff;pointer-events:none}
+.ft{position:relative} .ft-fase{position:absolute;left:4px;top:4px;font-size:.5rem;font-weight:700;letter-spacing:.2px;padding:1px 5px;border-radius:999px;background:rgba(37,87,167,.88);color:#fff;pointer-events:none}
 .ft-fase.inco{background:var(--amber);color:#1a1a1a} .ft.inco{border-color:var(--amber)} .ft-inco{color:var(--amber)} .ft-fases{font-style:normal;color:var(--ink-mut);font-weight:500}
 .ft-cont.cam{margin-top:10px} .ft-tira.cam{grid-template-columns:repeat(6,minmax(0,1fr))} @media(max-width:860px){.ft-tira.cam{grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* ===== Fotos de obra (v72.3) ===== */
@@ -16269,7 +16163,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .fot-plano{background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:4px;margin-top:4px}
 .fot-plano svg{width:100%;height:auto;display:block}
 .fot-plano .lin{fill:none;stroke:var(--ink-mut);stroke-width:1.1}
-.fot-plano .cam{fill:none;stroke:#838ea1;stroke-width:.9;opacity:.75} .fot-plano .cam.peat{stroke-dasharray:3 3}
+.fot-plano .cam{fill:none;stroke:#7d8da7;stroke-width:.9;opacity:.75} .fot-plano .cam.peat{stroke-dasharray:3 3}
 .fot-plano .tw{fill:var(--panel);stroke:var(--ink-2);stroke-width:1;cursor:pointer} .fot-plano .tw.con{fill:var(--lime)} .fot-plano .tw.sel{stroke:var(--sky);stroke-width:2.5}
 .fot-plano .tl{font:600 7px "JetBrains Mono",monospace;fill:var(--ink-2);pointer-events:none}
 .fot-plano .pt{cursor:pointer;stroke:#fff;stroke-width:.7} .fot-plano .pt.conf{fill-opacity:.35;stroke:#1a1a1a;stroke-dasharray:1.5 1}
@@ -16279,25 +16173,25 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .fot-filtros{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:2px 0 6px}
 .fot-filtros .sep{font-size:.55rem;color:var(--ink-mut);font-weight:800;letter-spacing:.4px;margin:0 4px 0 6px;text-transform:uppercase}
 .fot-filtros button{font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:999px;cursor:pointer;border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink-2)}
-.fot-filtros button.on{background:var(--c-civ,#204683);border-color:var(--c-civ,#204683);color:#fff}
+.fot-filtros button.on{background:var(--c-civ,#265eb9);border-color:var(--c-civ,#265eb9);color:#fff}
 .fot-filtros button i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;vertical-align:0}
 /* ===== Línea de tiempo fotográfica (v72.7) ===== */
 #fotLinea{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
 #fotLinea .lt-scroll{flex:1 1 auto;max-height:none;min-height:0;border-bottom:0;margin-bottom:0}
 #fotDetalle{flex:1 1 auto;min-height:0;overflow:auto;padding:0 4px 6px 0}
-.lt-play{font-size:.6rem;font-weight:800;padding:3px 11px;border-radius:999px;cursor:pointer;border:1px solid var(--c-civ,#204683);background:var(--panel);color:var(--c-civ,#204683)}
-.lt-play.on{background:var(--c-civ,#204683);color:#fff}
+.lt-play{font-size:.6rem;font-weight:800;padding:3px 11px;border-radius:999px;cursor:pointer;border:1px solid var(--c-civ,#265eb9);background:var(--panel);color:var(--c-civ,#265eb9)}
+.lt-play.on{background:var(--c-civ,#265eb9);color:#fff}
 .lt-scroll{overflow:auto;max-width:100%;max-height:46vh;padding-bottom:6px;border-bottom:1px solid var(--line);margin-bottom:8px}
 /* v72.11: barra de desplazamiento también arriba de la línea de tiempo, navegación entre zonas y semanas, nota de totales */
 .lt-hbar{overflow-x:auto;overflow-y:hidden;height:12px;flex:0 0 auto;margin:0 0 3px;cursor:ew-resize}
 .lt-hbar > div{height:1px}
 .lt-hbar::-webkit-scrollbar{height:10px} .lt-hbar::-webkit-scrollbar-thumb{background:var(--sky);border-radius:5px} .lt-hbar::-webkit-scrollbar-track{background:var(--panel-2);border-radius:5px}
 .lt-nav{display:inline-flex;gap:4px;margin-right:6px}
-.lt-nav button{border-color:var(--c-civ,#204683)!important;color:var(--c-civ,#204683)!important;background:var(--panel)!important}
-.lt-nav button:hover{background:var(--c-civ,#204683)!important;color:#fff!important}
+.lt-nav button{border-color:var(--c-civ,#265eb9)!important;color:var(--c-civ,#265eb9)!important;background:var(--panel)!important}
+.lt-nav button:hover{background:var(--c-civ,#265eb9)!important;color:#fff!important}
 .lt-pasos{display:inline-flex;align-items:center;gap:3px;margin-left:auto}
-.lt-paso{font:800 .8rem/1 "Inter",system-ui,sans-serif!important;padding:1px 9px!important;border-radius:999px;cursor:pointer;border:1px solid var(--c-civ,#204683)!important;background:var(--panel)!important;color:var(--c-civ,#204683)!important}
-.lt-paso:hover{background:var(--c-civ,#204683)!important;color:#fff!important}
+.lt-paso{font:800 .8rem/1 "Inter",system-ui,sans-serif!important;padding:1px 9px!important;border-radius:999px;cursor:pointer;border:1px solid var(--c-civ,#265eb9)!important;background:var(--panel)!important;color:var(--c-civ,#265eb9)!important}
+.lt-paso:hover{background:var(--c-civ,#265eb9)!important;color:#fff!important}
 #v-fot .fot-zona{display:block;overflow:visible;min-height:auto!important}
 .fz-grid{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:14px;align-items:start}
 .fz-info{display:flex;flex-direction:column;gap:8px;min-width:0}
@@ -16324,7 +16218,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .lt-sem small{font-size:.92em;font-weight:500;opacity:.8}
 .lt-sem:hover{background:var(--panel-2);color:var(--ink)} .lt-sem.sel{background:var(--sky);color:#fff}
 .lt-fila{position:sticky;left:0;z-index:2;background:var(--panel-2);border:1px solid var(--line-2);border-radius:6px;text-align:center;padding:0 4px;font:700 .62rem "JetBrains Mono",monospace;color:var(--ink);cursor:pointer;height:26px;white-space:nowrap;box-shadow:0 1px 0 var(--line-2),-3px 0 0 var(--panel),3px 0 0 var(--panel)}
-.lt-fila:hover{background:var(--c-civ,#204683);border-color:var(--c-civ,#204683);color:#fff} .lt-fila.vacia{background:var(--panel);border-style:dashed;color:var(--ink-mut);font-weight:500;cursor:default;box-shadow:-3px 0 0 var(--panel),3px 0 0 var(--panel)}   /* v72.11: botones (reemplazan a los chips de zona) */
+.lt-fila:hover{background:var(--c-civ,#265eb9);border-color:var(--c-civ,#265eb9);color:#fff} .lt-fila.vacia{background:var(--panel);border-style:dashed;color:var(--ink-mut);font-weight:500;cursor:default;box-shadow:-3px 0 0 var(--panel),3px 0 0 var(--panel)}   /* v72.11: botones (reemplazan a los chips de zona) */
 .lt-grupo{grid-column:1 / -1;font-size:.55rem;font-weight:800;color:var(--ink-mut);text-transform:uppercase;letter-spacing:.4px;padding:7px 0 2px}
 .lt-v{height:25px;border-radius:4px} .lt-vt{height:22px}
 .lt-v.csel,.lt-p.csel:not(.hay){background:var(--panel-2)}
@@ -16342,7 +16236,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .lt-p.hay{cursor:pointer;border:2px solid var(--fc);background:var(--panel-2);transition:transform .12s}
 .lt-p.hay img{width:100%;height:100%;object-fit:cover;display:block}
 .lt-p.hay:hover{transform:translateY(-1px)} .lt-p.sel{outline:2px solid var(--sky);outline-offset:1px;z-index:1}
-.lt-p .n{position:absolute;right:3px;bottom:3px;background:rgba(5,11,20,.72);color:#fff;font:700 .5rem "JetBrains Mono",monospace;padding:0 4px;border-radius:999px;line-height:1.5}
+.lt-p .n{position:absolute;right:3px;bottom:3px;background:rgba(5,11,22,.72);color:#fff;font:700 .5rem "JetBrains Mono",monospace;padding:0 4px;border-radius:999px;line-height:1.5}
 .lt-cab{font-size:.7rem;font-weight:800;color:var(--ink);display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;padding-top:2px} .lt-cab small{font-weight:600;color:var(--ink-mut)}
 .lt-chip{display:inline-block;padding:0 6px;border-radius:999px;color:#fff;font-size:.52rem;font-weight:700;line-height:1.6}
 .lt-av{font-size:.6rem;color:var(--ink-2);margin:3px 0 2px} .lt-av b{color:var(--ink)}
@@ -16352,14 +16246,14 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .lt-res{font-size:.6rem;color:var(--ink-2);margin:0 0 4px 8px;line-height:1.35} .lt-res i{color:var(--ink-mut)}
 .ft-tira.lt-tira{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:7px}
 .lt-tira .ft figcaption{font-size:.56rem;white-space:normal;line-height:1.25}
-.ft-ir{display:inline-block;margin:2px 0 6px;font-size:.6rem;font-weight:800;padding:3px 10px;border-radius:999px;border:1px solid var(--c-civ,#204683);background:var(--panel);color:var(--c-civ,#204683);cursor:pointer}
+.ft-ir{display:inline-block;margin:2px 0 6px;font-size:.6rem;font-weight:800;padding:3px 10px;border-radius:999px;border:1px solid var(--c-civ,#265eb9);background:var(--panel);color:var(--c-civ,#265eb9);cursor:pointer}
 @media (prefers-reduced-motion:reduce){ .lt-p.hay{transition:none} .lt-p.hay:hover{transform:none} }
 .fot-vacio{padding:18px 10px;text-align:center;color:var(--ink-mut);font-size:.68rem;line-height:1.5}
-#ftBox .ftb-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:56px;border:0;border-radius:8px;background:rgba(255,255,255,.85);font-size:24px;cursor:pointer;color:#142a4e}
+#ftBox .ftb-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:56px;border:0;border-radius:8px;background:rgba(255,255,255,.85);font-size:24px;cursor:pointer;color:#2557a7}
 #ftBox .ftb-prev{left:-46px} #ftBox .ftb-next{right:-46px} #ftBox .ftb-nav:disabled{opacity:.25;cursor:default}
 @media(max-width:1200px){ #v-fot{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)} }
 @media(max-width:860px){ #v-fot.view.on{display:flex!important;flex-direction:column;gap:10px} #v-fot .fot-hist{order:-2;height:auto} #v-fot .fot-fotos{order:-1;height:auto} #fotDetalle{overflow:auto;max-height:78vh} #fotLinea .lt-scroll{max-height:64vh} .lt-mx .lt-sem{height:auto;line-height:1.05;white-space:normal} .lt-mx .lt-sem small{display:block} .lt-hbar{display:none!important} .lt-mx{grid-template-columns:46px repeat(var(--n),minmax(26px,1fr));min-width:calc(46px + var(--n) * 28px)} .lt-pel{grid-template-columns:98px repeat(var(--n),minmax(56px,1fr));min-width:calc(98px + var(--n) * 59px)} .ft-tira.lt-tira{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))} .lt-play{margin-left:0} .fot-kpis{grid-template-columns:repeat(3,minmax(0,1fr))} #ftBox .ftb-prev{left:4px} #ftBox .ftb-next{right:4px} }
-#ftBox{position:fixed;inset:0;z-index:99999;background:rgba(5,11,20,.86);display:none;align-items:center;justify-content:center;padding:24px}
+#ftBox{position:fixed;inset:0;z-index:99999;background:rgba(5,11,22,.86);display:none;align-items:center;justify-content:center;padding:24px}
 #ftBox .ftb-in{position:relative;max-width:min(1200px,96vw);max-height:92vh;display:flex;flex-direction:column;gap:8px}
 #ftBox img{max-width:100%;max-height:82vh;object-fit:contain;border-radius:8px;background:#000}
 #ftBox .ftb-desc{color:#f5d7a3;font-weight:600} .ft figcaption .ft-desc{display:block;white-space:normal;color:var(--ink);font-weight:600;font-size:.54rem;line-height:1.25;margin-top:1px}
@@ -16369,7 +16263,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .fot-obs .fo-t small{font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink-mut)}
 .fot-obs button{display:inline-flex;align-items:center;gap:5px;margin:0 4px 4px 0;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:999px;cursor:pointer;border:1px dashed var(--amber);background:var(--amber-soft);color:var(--ink)}
 .fot-obs button b{font:800 .58rem "JetBrains Mono",monospace}
-.fot-obs button.on{background:var(--c-civ,#204683);border:1px solid var(--c-civ,#204683);color:#fff}
+.fot-obs button.on{background:var(--c-civ,#265eb9);border:1px solid var(--c-civ,#265eb9);color:#fff}
 .fot-chips button.zona{font-style:italic}
 .lt-fila.zona{font-family:"Inter",system-ui,sans-serif;font-style:italic}
 /* v72.44: torre intervenida el día del corte en la línea de tiempo de Fotos (como .d4-tw.iv del BIM) */
@@ -16377,34 +16271,34 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .lt-fila .hoy{position:absolute;top:-7px;right:-5px;background:#e4572e;color:#fff;font:700 .5rem/1 "Inter",system-ui,sans-serif;font-variant-numeric:tabular-nums;padding:2px 4px;border-radius:999px;box-shadow:0 1px 3px rgba(0,0,0,.25);pointer-events:none;z-index:1}
 /* v72.38: el botón de un camino lleva debajo la torre (o el tramo) a la que sirve */
 .lt-fila.cam{line-height:1.05;padding-top:1px} .lt-fila.cam small{display:block;font:600 .46rem/1.1 "JetBrains Mono",monospace;color:var(--ink-mut);letter-spacing:0} .lt-fila.cam:hover small{color:#fff}
-.ft-fase.yolo{background:rgba(20,42,78,.55);outline:1px dashed rgba(255,255,255,.9);outline-offset:-3px}
+.ft-fase.yolo{background:rgba(37,87,167,.55);outline:1px dashed rgba(255,255,255,.9);outline-offset:-3px}
 .ft-fase.otras{background:rgba(90,98,105,.78);font-weight:600}   /* v72.33: «Otras fotos» con su etiqueta (pedido del usuario) */
-.ft-fec{position:absolute;right:4px;top:4px;font-size:.48rem;font-weight:800;padding:1px 5px;border-radius:999px;background:var(--amber);color:#0c1320;pointer-events:none}
+.ft-fec{position:absolute;right:4px;top:4px;font-size:.48rem;font-weight:800;padding:1px 5px;border-radius:999px;background:var(--amber);color:#0b1423;pointer-events:none}
 .ft figcaption .ft-obs{display:block;white-space:normal;font:600 .52rem "JetBrains Mono",monospace;color:var(--ink);background:var(--amber-soft);border-radius:4px;padding:1px 4px;margin-top:2px;line-height:1.3}
 .lt-obs-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.62rem;color:var(--ink-2);padding:2px 0 8px;border-bottom:1px solid var(--line);margin-bottom:4px}
-.lt-obs-x{margin-left:auto;font-size:.6rem;font-weight:800;padding:3px 11px;border-radius:999px;cursor:pointer;border:1px solid var(--c-civ,#204683);background:var(--panel);color:var(--c-civ,#204683)}
+.lt-obs-x{margin-left:auto;font-size:.6rem;font-weight:800;padding:3px 11px;border-radius:999px;cursor:pointer;border:1px solid var(--c-civ,#265eb9);background:var(--panel);color:var(--c-civ,#265eb9)}
 .fot-plano .camp circle{fill:rgba(181,87,123,.12);stroke:#b5577b;stroke-width:.9;stroke-dasharray:2 1.5} .fot-plano .camp path{fill:#b5577b}
 .fot-plano .camp.con{cursor:pointer} .fot-plano .camp.sel circle{stroke-width:2;fill:rgba(181,87,123,.22)}
 .fot-leyenda .lg-camp{border-radius:2px;background:#b5577b;clip-path:polygon(50% 0,100% 100%,0 100%)}
-#ftBox .ftb-priv{color:#97a9c5;font-size:.72rem}
+#ftBox .ftb-priv{color:#93a8c9;font-size:.72rem}
 /* v72.9 · tres columnas, índice de «Por revisar», puntos de fase, plano con zoom */
 .lt-obs-idx{flex:1 1 auto;min-height:0;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:5px;align-content:start;padding:2px 2px 6px}
 .lt-obs-idx button{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 8px;text-align:left;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);cursor:pointer;color:var(--ink)}
 .lt-obs-idx button b{font:700 .66rem "JetBrains Mono",monospace}
 .lt-obs-idx button .n{justify-self:end;font:800 .6rem "JetBrains Mono",monospace;background:var(--amber-soft);border-radius:999px;padding:1px 7px}
 .lt-obs-idx button small{grid-column:1 / -1;font-size:.54rem;color:var(--ink-mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lt-obs-idx button:hover{border-color:var(--c-civ,#204683)}
+.lt-obs-idx button:hover{border-color:var(--c-civ,#265eb9)}
 #fotDetalle .lt-cab{position:sticky;top:0;z-index:2;background:var(--panel);padding-bottom:4px}
 .fot-plano{position:relative}
 .fot-plano .fp-svg{touch-action:none;cursor:grab;overflow:hidden;border-radius:6px} .fot-plano .fp-svg.arr{cursor:grabbing}
 .fot-plano .fp-ctl{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:3px;z-index:2}
 .fot-plano .fp-ctl button{width:26px;height:26px;border-radius:7px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);font:700 15px/1 "Inter",system-ui,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.fot-plano .fp-ctl button:hover{border-color:var(--c-civ,#204683);color:var(--c-civ,#204683)} .fot-plano .fp-ctl button:disabled{opacity:.35;cursor:default}
+.fot-plano .fp-ctl button:hover{border-color:var(--c-civ,#265eb9);color:var(--c-civ,#265eb9)} .fot-plano .fp-ctl button:disabled{opacity:.35;cursor:default}
 .fot-plano .fp-k{position:absolute;left:8px;bottom:6px;font:600 .5rem "JetBrains Mono",monospace;color:var(--ink-mut);background:var(--panel);border-radius:5px;padding:1px 5px;opacity:.9;pointer-events:none}
 .fot-plano.grande{position:fixed;inset:4vh 4vw;z-index:9500;margin:0;padding:8px;display:flex;flex-direction:column;box-shadow:0 18px 60px rgba(0,0,0,.35)}
 .fot-plano.grande .fp-svg{flex:1 1 auto;min-height:0} .fot-plano.grande svg{height:100%} .fot-plano.grande .tl{font-size:10px}
-.fp-fondo{position:fixed;inset:0;z-index:9400;background:rgba(5,11,20,.55)}
-#ftBox .ftb-pie{color:#fff;font-size:.8rem;text-align:center} #ftBox .ftb-pie small{color:#97a9c5} .ftb-rev{color:#f0c674}
+.fp-fondo{position:fixed;inset:0;z-index:9400;background:rgba(5,11,22,.55)}
+#ftBox .ftb-pie{color:#fff;font-size:.8rem;text-align:center} #ftBox .ftb-pie small{color:#93a8c9} .ftb-rev{color:#f0c674}
 #ftBox .ftb-x{position:absolute;top:-6px;right:-6px;width:34px;height:34px;border-radius:50%;border:0;background:#fff;font-size:22px;cursor:pointer;line-height:1}
 /* ==========================================================================================================
    v72.13 · BIM despejado (pedido del usuario, 27-Set-26): el visor 3D muestra solo el modelo, el cubo y la
@@ -16644,7 +16538,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 #v-rep .rp-izq{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:10px;min-width:0} #v-rep .rp-lado{grid-column:2;grid-row:2}
 /* v72.60: resumen del día y áreas (anexos) */
 .rp-ejec{margin:4px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:3px}
-.rp-ejec li{font-size:.7rem;line-height:1.4;color:var(--ink)} .rp-ejec li::marker{color:var(--accent,#23457b)}
+.rp-ejec li{font-size:.7rem;line-height:1.4;color:var(--ink)} .rp-ejec li::marker{color:var(--accent,#2c5fb2)}
 .rp-ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
 .rp-a{border:1px solid var(--line-2);border-radius:10px;padding:7px 10px;background:var(--panel-2);display:flex;flex-direction:column;gap:4px;min-width:0}
 .rp-a-cab{display:flex;align-items:center;gap:6px} .rp-a-cab b{font-size:.72rem;color:var(--ink)}
@@ -16655,7 +16549,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .rp-a-chip.med{background:color-mix(in srgb,#d8a200 22%,var(--panel));border-color:transparent;color:#8a6400}
 .rp-a ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:3px}
 .rp-a li{font-size:.65rem;line-height:1.35;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;padding-left:10px;text-indent:-10px}
-.rp-a li::before{content:'▸ ';color:var(--accent,#23457b);font-size:.6rem}
+.rp-a li::before{content:'▸ ';color:var(--accent,#2c5fb2);font-size:.6rem}
 .rp-a li.sin{color:var(--ink-2)} .rp-a li.sin::before{content:''}
 .rp-a-cif{font-size:.6rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:3px 8px} .rp-a-cif b{color:var(--ink);font-weight:700}
 .rp-a-pre{font-size:.6rem;color:var(--ink-mut);line-height:1.3}
@@ -16671,7 +16565,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .rp-dia.ok em{color:var(--green,#4b7f2f)} .rp-dia.med em{color:#b8860b} .rp-dia.mal em{color:var(--red,#b4342b)}
 .rp-dia i{font-style:normal;font-size:.52rem;color:var(--ink-mut);line-height:1.1;margin-top:1px;white-space:nowrap}
 .rp-kpi-res i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px;vertical-align:0} .rp-kpi-res i.ok{background:var(--green,#4b7f2f)} .rp-kpi-res i.med{background:#e0a800} .rp-kpi-res i.mal{background:var(--red,#b4342b)} .rp-kpi-res i.np{background:#2f6fa8}
-.rp-dia.on{border-color:var(--accent,#23457b);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent,#23457b) 28%,transparent);background:var(--panel)}
+.rp-dia.on{border-color:var(--accent,#2c5fb2);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent,#2c5fb2) 28%,transparent);background:var(--panel)}
 .rp-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .rp-kpi{border:1px solid var(--line-2);border-radius:10px;padding:8px 10px;background:var(--panel-2);display:flex;flex-direction:column;line-height:1.15}
 .rp-kpi b{font-size:1.35rem;font-weight:800;letter-spacing:-.02em} .rp-kpi span{font-size:.66rem;color:var(--ink-2);font-weight:600;text-transform:uppercase;letter-spacing:.03em} .rp-kpi small{font-size:.62rem;color:var(--ink-mut);margin-top:2px}
@@ -16695,14 +16589,14 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .rp-t-res{font-size:.63rem;margin:0;color:var(--red,#b4342b)}
 .rp-t-tx{font-size:.64rem;line-height:1.4;margin:0;color:var(--ink-2);display:none}
 .rp-t-tx.open{display:block;border-top:1px dashed var(--line-2);padding-top:4px}
-.rp-mas{align-self:flex-start;border:0;background:none;color:var(--accent,#23457b);font:inherit;font-size:.6rem;cursor:pointer;padding:0;text-decoration:underline dotted}
+.rp-mas{align-self:flex-start;border:0;background:none;color:var(--accent,#2c5fb2);font:inherit;font-size:.6rem;cursor:pointer;padding:0;text-decoration:underline dotted}
 .rp-otras{grid-column:1 / -1;font-size:.64rem;color:var(--ink-mut)}
 .rp-vacio{font-size:.7rem;color:var(--ink-mut)}
 .rp-h3b{margin-top:12px}
 .rp-cifras{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:4px 0 6px}
 .rp-cifras > div{border:1px solid var(--line-2);border-radius:9px;padding:6px 4px;text-align:center;background:var(--panel-2);line-height:1.1}
 .rp-cifras b{display:block;font-size:1.15rem;font-weight:800} .rp-cifras span{font-size:.58rem;color:var(--ink-mut);text-transform:uppercase;letter-spacing:.03em} .rp-cifras i{font-style:normal;color:#b8860b}
-.rp-cifras .tot{background:var(--panel);border-color:var(--accent,#23457b)} .rp-cifras .tot b{color:var(--accent,#23457b)}
+.rp-cifras .tot{background:var(--panel);border-color:var(--accent,#2c5fb2)} .rp-cifras .tot b{color:var(--accent,#2c5fb2)}
 .rp-falta{font-size:.62rem;color:var(--red,#b4342b);margin:0 0 4px}
 .rp-det summary{font-size:.64rem;color:var(--ink-mut);cursor:pointer;list-style:none;padding:3px 0}
 .rp-det summary::before{content:'▸ ';} .rp-det[open] summary::before{content:'▾ ';}
@@ -17242,57 +17136,44 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 @media(max-width:1100px){.ing-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:860px){ #v-ing.view.on{display:flex!important;flex-direction:column;gap:10px} .ing-g{grid-template-columns:1fr} .ing-sub{margin-left:0} }
 
+/* ===== demo pública: interfaz para gestión de proyectos ===== */
+#btnCamIso,#btnCamFront,#btnCamTop,#btnGhost,#btnCaminos,#btnRender,#btnZonas,#btnVistaIni,#btnPresentMode,#bimTowerSelect,#mtLayer,#themeBtn,.bim-top-bar .bim-sep,#bimxFilt button[data-f="none"],#bimxFilt button[data-f="rest"],#bimxFilt button[data-f="wait"]{display:none!important}
+.view.on{animation:dmIn .42s cubic-bezier(.2,.75,.2,1) both}
+@keyframes dmIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card,.kpi{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card:hover,.kpi:hover{transform:translateY(-2px);box-shadow:0 14px 32px -18px rgba(37,99,235,.45);border-color:rgba(59,130,246,.35)}
+.nav button,.bim-btn,.iconbtn,.d4-tw{transition:background-color .18s ease,color .18s ease,box-shadow .18s ease,transform .12s ease}
+.nav button:active,.bim-btn:active,.d4-tw:active{transform:scale(.97)}
+.nav button.active{box-shadow:0 6px 16px -8px rgba(37,99,235,.6)}
+.kpi .val{animation:dmPop .6s cubic-bezier(.2,.75,.2,1) both}
+@keyframes dmPop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dm-sechips{display:inline-flex;gap:6px;margin-left:auto}
+.dm-sechips button{font:600 11.5px/1 inherit;font-family:inherit;border:1px solid var(--line-2);background:var(--panel);color:var(--sky);border-radius:999px;
+  padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.dm-sechips button i{width:9px;height:9px;border-radius:2px;background:var(--sky);display:inline-block}
+.dm-sechips button:hover{background:var(--sky);color:#fff}
+.dm-sechips button:hover i{background:#fff}
+.dm-se{position:absolute;left:14px;top:14px;z-index:30;width:min(330px,calc(100% - 28px));background:var(--panel);color:var(--ink);
+  border:1px solid var(--line-2);border-radius:14px;padding:14px 16px 14px;box-shadow:0 20px 48px -20px rgba(15,40,90,.45);
+  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.dm-se.on{opacity:1;transform:none;pointer-events:auto}
+.dm-se .dm-k{font:700 10.5px/1.2 inherit;font-family:inherit;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);padding-right:24px}
+.dm-se h3{font-size:19px;margin:4px 0 6px;color:var(--ink)}
+.dm-se p{font-size:12.5px;line-height:1.5;color:var(--ink-2);margin:0 0 10px}
+.dm-se .dm-cif{display:flex;align-items:baseline;gap:8px;margin:0 0 12px;padding:9px 11px;border-radius:10px;background:var(--sky-soft)}
+.dm-se .dm-cif b{font-size:22px;color:var(--sky);white-space:nowrap}
+.dm-se .dm-cif span{font-size:12px;color:var(--ink-2)}
+.dm-se .dm-go{display:block;text-align:center;background:var(--sky);color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 12px}
+.dm-se .dm-go:hover{filter:brightness(1.08)}
+.dm-se .dm-x{position:absolute;right:8px;top:6px;border:0;background:none;font-size:20px;line-height:1;color:var(--ink-mut);cursor:pointer;padding:4px 6px}
+@media (max-width:700px){.dm-se{left:8px;right:8px;top:auto;bottom:8px;width:auto}.dm-sechips{margin-left:0}}
+:root[data-theme="light"]{--c-civ:#2563eb;--c-elm:#93c5fd;--c-acc:#e9a23b}
+@media (max-width:700px){.topbar .tb-l .sub{display:none}.topbar .tb-m>span:not(:last-child){display:none}}
+
 /* demo pública */
 #demoChip{position:fixed;right:14px;bottom:14px;z-index:9999;max-width:calc(100vw - 28px);background:#2563eb;color:#fff;font:600 12px/1.35 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.18);pointer-events:none;opacity:.92}
 @media (max-width:700px){#demoChip{font-size:10.5px;padding:6px 10px;right:8px;bottom:8px}}
-
-/* demo pública · pestaña «Cómo se hace» */
-#v-flujo.view.on{display:block}
-#v-flujo .fl-wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:8px;padding-bottom:64px}
-#v-flujo .card{overflow:visible}
-#v-flujo .fl-hero{padding:14px 16px;background:linear-gradient(120deg,var(--panel) 55%,var(--sky-soft))}
-#v-flujo .fl-kick{font:700 .62rem/1 "Inter",sans-serif;letter-spacing:.8px;text-transform:uppercase;color:var(--sky)}
-#v-flujo .fl-hero h2{font-size:1.25rem;font-weight:800;margin:4px 0 6px;color:var(--ink)}
-#v-flujo .fl-hero p{font-size:.8rem;line-height:1.5;color:var(--ink-2);max-width:980px;margin:0}
-#v-flujo .fl-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-#v-flujo .fl-chips span{font:600 .66rem/1 "Inter",sans-serif;padding:5px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);background:var(--panel-2)}
-#v-flujo .fl-lab{font:700 .64rem/1 "Inter",sans-serif;text-transform:uppercase;letter-spacing:.5px;margin:10px 0 6px}
-#v-flujo .fl-lab.a{color:var(--sky)} #v-flujo .fl-lab.b{color:var(--amber)}
-#v-flujo .fl-lane{display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:20px}
-#v-flujo .fl-lane.a{--n:5;--c:var(--sky)} #v-flujo .fl-lane.b{--n:6;--c:var(--amber)}
-#v-flujo .fl-n{position:relative;background:var(--panel-2);border:1px solid var(--line-2);border-top:3px solid var(--c);border-radius:9px;padding:8px 9px;display:flex;flex-direction:column;gap:3px}
-#v-flujo .fl-n i{font-style:normal;font-size:1.05rem;line-height:1}
-#v-flujo .fl-n b{font:700 .76rem/1.2 "Manrope",sans-serif;color:var(--ink)}
-#v-flujo .fl-n span{font-size:.66rem;line-height:1.38;color:var(--ink-2)}
-#v-flujo .fl-n:not(:last-child)::after{content:"";position:absolute;top:50%;right:-17px;width:11px;height:2px;background:var(--c)}
-#v-flujo .fl-n:not(:last-child)::before{content:"";position:absolute;top:calc(50% - 4px);right:-20px;border:5px solid transparent;border-left:6px solid var(--c);border-right:0}
-#v-flujo .fl-loop{margin-top:8px;font-size:.68rem;line-height:1.4;color:var(--ink-2);border:1px dashed var(--lime);border-radius:8px;padding:6px 9px;background:var(--lime-soft)}
-#v-flujo .fl-junta{margin-top:8px;font-size:.72rem;line-height:1.4;color:var(--ink);border-radius:8px;padding:8px 10px;background:var(--sky-soft);border:1px solid var(--line-2)}
-#v-flujo .fl-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-#v-flujo .fl-g2{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:8px}
-#v-flujo .fl-c h3{margin-bottom:6px}
-#v-flujo .fl-ol,#v-flujo .fl-ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
-#v-flujo .fl-ol li,#v-flujo .fl-ul li{font-size:.7rem;line-height:1.45;color:var(--ink-2)}
-#v-flujo .fl-ol li b,#v-flujo .fl-ul li b{color:var(--ink)}
-#v-flujo .fl-nota{margin-top:8px;font-size:.66rem;line-height:1.4;color:var(--ink-2);border-left:3px solid var(--amber);padding:4px 8px;background:var(--amber-soft);border-radius:0 6px 6px 0}
-#v-flujo .fl-barras{margin-top:10px;display:flex;flex-direction:column;gap:4px}
-#v-flujo .fl-bt{font:600 .62rem/1 "Inter",sans-serif;color:var(--ink-mut);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
-#v-flujo .fl-b{display:grid;grid-template-columns:108px minmax(0,1fr) 44px;align-items:center;gap:6px;font-size:.66rem;color:var(--ink-2)}
-#v-flujo .fl-b em{height:9px;border-radius:5px;background:linear-gradient(90deg,var(--sky) calc(var(--v)*1%),var(--line) 0)}
-#v-flujo .fl-b b{font-family:"JetBrains Mono",monospace;font-weight:600;text-align:right;color:var(--ink)}
-#v-flujo .fl-b.on em{background:linear-gradient(90deg,var(--amber) calc(var(--v)*1%),var(--line) 0)}
-#v-flujo .fl-dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-#v-flujo .fl-st{font:700 .66rem/1 "Inter",sans-serif;text-transform:uppercase;letter-spacing:.5px;color:var(--sky);margin-bottom:5px}
-@media(max-width:1100px){ #v-flujo .fl-g3{grid-template-columns:1fr 1fr} #v-flujo .fl-lane.b{--n:3} #v-flujo .fl-lane.b .fl-n:nth-child(3)::after,#v-flujo .fl-lane.b .fl-n:nth-child(3)::before{display:none} }
-@media(max-width:860px){
-  #v-flujo .fl-g3,#v-flujo .fl-g2,#v-flujo .fl-dos{grid-template-columns:1fr}
-  #v-flujo .fl-lane,#v-flujo .fl-lane.b{grid-template-columns:1fr;gap:16px}
-  #v-flujo .fl-n:not(:last-child)::after{top:auto;bottom:-13px;right:auto;left:22px;width:2px;height:9px}
-  #v-flujo .fl-n:not(:last-child)::before{top:auto;bottom:-16px;right:auto;left:18px;border:5px solid transparent;border-top:6px solid var(--c);border-bottom:0}
-  #v-flujo .fl-lane.b .fl-n:nth-child(3)::after,#v-flujo .fl-lane.b .fl-n:nth-child(3)::before{display:block}
-  #v-flujo .fl-hero h2{font-size:1.08rem}
-}
-</style>
+.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}#bTema,#themeBtn{display:none!important}:root[data-theme="light"]{--bg:#f2f5fa;--sky:#2563eb;--sky-soft:rgba(37,99,235,.10);--amber:#b7791f;--amber-soft:rgba(245,158,11,.16);--amber-fill:#f59e0b}:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2563eb 0%,#3b82f6 60%,#60a5fa 100%)}:root[data-theme="light"] .verdict .big{color:var(--amber)!important}.nav button.bim-badge::after{background:#f59e0b!important;color:#1f2937!important}.topbar .demo-tag{background:#fff;color:#2563eb}</style>
 <script id="ingenieria-data">window.INGENIERIA = ⟦bloque:INGENIERIA⟧;</script>
 <script>
 // ===== Ingeniería LT (v72.65, 29-Oct-26) · estado de la ingeniería de detalle desde el control semanal =====
@@ -17400,7 +17281,66 @@ html body #v-bim > .bim-stages{grid-row:7!important}
   tabla();
 })();
 </script>
-<div id="demoChip">Demo con datos ficticios · LT 138 kV Pampa Alta – Cerro Azul</div>
-<script>(function(){function ir(){if(!/^#flujo/.test(location.hash))return;var n=0;(function go(){n++;var b=document.querySelector('[data-v="v-flujo"]');if(!b){if(n<120)setTimeout(go,250);return;}b.click();try{scrollTo(0,0);}catch(e){}})();}ir();addEventListener("hashchange",ir);})();</script>
+<script>(function(){
+  // ---------- tarjeta de cada subestación (clic en su patio del BIM o en sus botones de la franja de torres)
+  var MES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'];
+  function fc(s){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return m ? m[3] + '-' + MES[+m[2] - 1] + '-' + m[1].slice(2) : ''; }
+  var SE = {
+    inicio: { n: 'SE Río Claro', r: 'Subestación de inicio · 220 kV', u: 'se-rio-claro/',
+      d: 'Ampliación de la SE: bahía de salida de la L-2201 y su nuevo tablero de control y protección. Avance diario, cronograma, fotos y recorrido por la sala.' },
+    llegada: { n: 'SE Cerro Azul', r: 'Subestación de llegada · 220/10 kV', u: 'se-cerro-azul/',
+      d: 'SE nueva: patio de 220 kV con dos bahías de línea y una de transformador, transformador de 10/12,5 MVA y salas de 10 kV, en 3D desde la ingeniería de detalle.' }
+  };
+  var avRio = null;
+  try { import('./se-rio-claro/rio4d.js').then(function(m){ var T = m.U4D.total, i = -1; T.ejec.forEach(function(v, k){ if (v != null) i = k; });
+    if (i >= 0) avRio = { v: T.ejec[i] * 100, f: m.U4D.fechas[i] }; }).catch(function(){}); } catch(e){}
+  function tarjeta(){ var c = document.getElementById('dmSE'); if (!c){ c = document.createElement('div'); c.id = 'dmSE'; c.className = 'dm-se';
+    (document.querySelector('#v-bim .bim-viewport') || document.body).appendChild(c); } return c; }
+  window.demoSE = function(k){
+    var s = SE[k]; if (!s) return; var c = tarjeta();
+    var cif = k === 'inicio' ? (avRio ? '<div class="dm-cif"><b>' + avRio.v.toFixed(1).replace('.', ',') + ' %</b><span>avance al ' + fc(avRio.f) + '</span></div>' : '')
+      : '<div class="dm-cif"><b>3D</b><span>modelo listo · obra de la SE por iniciar</span></div>';
+    c.innerHTML = '<button class="dm-x" aria-label="Cerrar">×</button><div class="dm-k">' + s.r + '</div><h3>' + s.n + '</h3><p>' + s.d + '</p>' + cif +
+      '<a class="dm-go" href="' + s.u + '">Ver detalle de la subestación →</a>';
+    c.classList.remove('on'); void c.offsetWidth; c.classList.add('on');
+    c.querySelector('.dm-x').onclick = function(){ c.classList.remove('on'); };
+  };
+  function chips(){
+    var h = document.querySelector('#bimTowersBar .btb-head'); if (!h) return setTimeout(chips, 400);
+    if (h.querySelector('.dm-sechips')) return;
+    var w = document.createElement('div'); w.className = 'dm-sechips';
+    w.innerHTML = '<button type="button" data-se="inicio"><i></i>SE Río Claro · inicio</button><button type="button" data-se="llegada"><i></i>SE Cerro Azul · llegada</button>';
+    w.onclick = function(e){ var b = e.target.closest('button'); if (b) window.demoSE(b.dataset.se); };
+    h.appendChild(w);
+  }
+  chips();
+  // ---------- cifras que cuentan al cargar (tarjetas de indicadores del Resumen)
+  function contar(el){
+    if (el.dataset.dmc) return; var tn = null;
+    for (var i = 0; i < el.childNodes.length; i++){ var n = el.childNodes[i]; if (n.nodeType === 3 && /\d/.test(n.nodeValue)) { tn = n; break; } }
+    if (!tn) return; var m = /^(\s*)(-?\d+(?:[.,]\d+)?)([\s\S]*)$/.exec(tn.nodeValue); if (!m) return;
+    el.dataset.dmc = '1'; var dec = (m[2].split(/[.,]/)[1] || '').length, sep = m[2].indexOf(',') >= 0 ? ',' : '.', fin = parseFloat(m[2].replace(',', '.')), t0 = performance.now();
+    (function paso(t){ var k = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - k, 3); tn.nodeValue = m[1] + (fin * e).toFixed(dec).replace('.', sep) + m[3];
+      if (k < 1) requestAnimationFrame(paso); })(t0);
+  }
+  function kpis(){
+    document.querySelectorAll('.kpi .val').forEach(function(el){
+      if (/\d/.test(el.textContent)) return contar(el);
+      new MutationObserver(function(ms, ob){ if (/\d/.test(el.textContent)) { ob.disconnect(); contar(el); } }).observe(el, { childList: true, characterData: true, subtree: true });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', kpis); else kpis();
+  // ---------- enlaces directos: #bim abre el BIM 4D; #torre=T05 abre el BIM en esa torre
+  function irHash(){
+    var h = location.hash || ''; if (!/^#(bim|torre=)/.test(h)) return; var n = 0;
+    (function go(){ var b = document.querySelector('[data-v="v-bim"]'); if (!b) { if (n++ < 80) setTimeout(go, 250); return; } b.click();
+      var m = /^#torre=(T\d{2})/.exec(h); if (!m) return; var j = 0;
+      (function sel(){ var el = Array.prototype.find.call(document.querySelectorAll('#d4TowerList .d4-tw'), function(x){ return x.textContent.trim().indexOf(m[1]) === 0; });
+        if (!el) { if (j++ < 120) setTimeout(sel, 300); return; } el.click(); })();
+    })();
+  }
+  irHash(); addEventListener('hashchange', irHash);
+})();</script>
+<div id="demoChip">Demo con datos ficticios · LT 220 kV Río Claro – Cerro Azul</div>
 </body>
 </html>

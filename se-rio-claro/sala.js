@@ -181,7 +181,7 @@ export function filasDe(equipos) {
     es.sort((a, b) => a.X * dx + a.Y * dy - (b.X * dx + b.Y * dy));
     const celdas = es[0].tipo === 'celda';
     const ord = es.map((e) => e.n).filter((n) => celdas || typeof n === 'number').sort((a, b) => String(a).localeCompare(String(b), 'es', { numeric: true }));
-    const extra = celdas ? [] : es.filter((e) => typeof e.n !== 'number').map((e) => e.n === 'CPM' ? 'CPM L-2045' : String(e.n));
+    const extra = celdas ? [] : es.filter((e) => typeof e.n !== 'number').map((e) => e.n === 'CPM' ? 'CPM L-2201' : String(e.n));
     const rango = ord.length === 1 ? `${ord[0]}` : `${ord[0]}–${ord[ord.length - 1]}`;
     const nombre = es.length === 1 ? (extra.length ? extra[0] : `Tablero ${ord[0]}`) : celdas ? `Celdas ${rango}` : `Tableros ${rango}${extra.length ? ' y ' + extra.join(', ') : ''}`;
     const rumbo = ny > 0.5 ? 'norte' : ny < -0.5 ? 'sur' : nx > 0.5 ? 'este' : 'oeste';

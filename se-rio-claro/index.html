@@ -4,28 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Demo · SE Río Claro · Tablero BIM 4D</title>
-<meta name="description" content="Tablero de control de la SE Río Claro: servicio de Integrador Demo para el nuevo tablero CPM L-2045 (=E01+WR01) y modelo 3D de la implementación del TP-385 30/36 MVA, con resumen, BIM 4D, cronograma, fotos de obra y reportes diarios.">
+<meta name="description" content="Tablero de control de la SE Río Claro: servicio de Integrador Demo para el nuevo tablero CPM L-2201 (=E01+WR01) y modelo 3D de la implementación del TP-385 30/36 MVA, con resumen, BIM 4D, cronograma, fotos de obra y reportes diarios.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_uchu_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:(t||'dark');})();</script>
+<script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_uchu_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:'light';})();</script>
 <style>
-/* 22-Oct-26 · tablero de la SE Río Claro con la distribución, la paleta y los botones del tablero de la LT 138 kV Cerro Azul
+/* 22-Oct-26 · tablero de la SE Río Claro con la distribución, la paleta y los botones del tablero de la LT 220 kV Cerro Azul
    (tema oscuro en :root y claro en [data-theme="light"], como en la LT; claro por defecto) */
 :root{
-  --bg:#0a111c; --panel:#0f1a2b; --panel-2:#0C1524; --panel-3:#14223a;
-  --ink:#edf0f5; --ink-2:#a2b2cb; --ink-mut:#647a9c; --line:#172439; --line-2:#21324f;
-  --sky:#2e5faf; --sky-2:#89abe1; --sky-soft:rgba(32,70,131,.20);
-  --amber:#d79a32; --amber-soft:rgba(215,154,50,.16); --lime:#7fc99a; --red:#d9714f; --plan:#8797b0;
+  --bg:#0a121e; --panel:#0e1b2f; --panel-2:#0B1627; --panel-3:#13243f;
+  --ink:#ecf0f6; --ink-2:#9eb1cf; --ink-mut:#5e78a2; --line:#16263f; --line-2:#385d99;
+  --sky:#2c67c7; --sky-2:#86aae4; --sky-soft:rgba(38,94,185,.20);
+  --amber:#d79a32; --amber-soft:rgba(215,154,50,.16); --lime:#7fc99a; --red:#d9714f; --plan:#8296b5;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px -18px rgba(0,0,0,.75);
   --E:#9aa4ad; --P:#4f8be8; --C:#3fb36a; --R:#e07b1f;
   /* nombres que usa el visor 3D */
   --ink2:var(--ink-2); --ink3:var(--ink-mut); --hover:var(--panel-3); --acc:var(--sky); --acc-soft:var(--sky-soft); --panel-solid:var(--panel); --r:11px;
 }
 :root[data-theme="light"]{
-  --bg:#edeff3; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e4e9f1;
-  --ink:#0c182b; --ink-2:#303f58; --ink-mut:#617492; --line:#d8dfea; --line-2:#bec9db;
-  --sky:#204683; --sky-2:#132035; --sky-soft:rgba(32,70,131,.12);
-  --amber:#9a6e22; --amber-soft:rgba(215,154,50,.20); --lime:#1f9d57; --red:#b5452a; --plan:#8392ab;
+  --bg:#eceff4; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e3e9f2;
+  --ink:#0b192f; --ink-2:#486592; --ink-mut:#5e769d; --line:#d6dfec; --line-2:#bcc9dd;
+  --sky:#265eb9; --sky-2:#122139; --sky-soft:rgba(38,94,185,.12);
+  --amber:#9a6e22; --amber-soft:rgba(215,154,50,.20); --lime:#1f9d57; --red:#b5452a; --plan:#7e91b0;
   --shadow:0 1px 2px rgba(15,28,42,.06),0 12px 30px -16px rgba(15,28,42,.28);
   --E:#7c8794; --P:#1f5fd6; --C:#22a04b;
 }
@@ -42,8 +42,8 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
 .oculto{display:none!important}
 
 /* ===== TOPBAR (igual a la LT) ===== */
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(115deg,#132035,#204683);border:1px solid var(--line);border-radius:11px;padding:8px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#182c4d,#204683)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(115deg,#122139,#265eb9);border:1px solid var(--line);border-radius:11px;padding:8px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2c59a1,#265eb9)}
 .topbar::after{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(120% 140% at 88% -30%,#000,transparent 62%)}
 .tb-l,.tb-m,.tb-r{position:relative;z-index:1}
 .tb-l h1{font-size:.96rem;line-height:1.15;color:#fff;font-weight:800}
@@ -87,7 +87,7 @@ main.views{flex:1;min-height:0;position:relative}
 .vacio{color:var(--ink-mut);font-size:.68rem;padding:4px 0}
 .fuente{font-size:.6rem;color:var(--ink-mut);margin-top:8px;line-height:1.35}
 .pill{display:inline-block;font-size:.6rem;font-style:normal;font-weight:700;border:1px solid var(--line-2);border-radius:999px;padding:0 7px;white-space:nowrap;color:var(--ink-2)}
-.pill.ok{border-color:#204683;color:#204683}.pill.warn{border-color:#e08a1e;color:#c46f0b}
+.pill.ok{border-color:#265eb9;color:#265eb9}.pill.warn{border-color:#e08a1e;color:#c46f0b}
 :root:not([data-theme="light"]) .pill.ok{border-color:var(--sky-2);color:var(--sky-2)}:root:not([data-theme="light"]) .pill.warn{color:#f0a64a}
 table.kv{width:100%;border-collapse:collapse;font-size:.68rem}
 table.kv td{border-top:1px solid var(--line);padding:4px 4px;vertical-align:top}
@@ -98,18 +98,18 @@ table.tb td{padding:5px 4px;border-bottom:1px solid var(--line);vertical-align:t
 table.tb small,.ri small{display:block;color:var(--ink-mut);font-size:.6rem;margin-top:1px}
 .leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.6rem;color:var(--ink-2);margin-top:6px}
 .leg i{display:inline-block;width:12px;height:8px;border-radius:2px;margin-right:4px;vertical-align:0}
-.leg .lp{border-top:2px dashed var(--plan);height:0;width:14px;border-radius:0;vertical-align:3px}.leg .le{background:#204683}.leg .lc{border-left:2px solid #d9714f;width:2px;height:10px;border-radius:0;vertical-align:-1px}
+.leg .lp{border-top:2px dashed var(--plan);height:0;width:14px;border-radius:0;vertical-align:3px}.leg .le{background:#265eb9}.leg .lc{border-left:2px solid #d9714f;width:2px;height:10px;border-radius:0;vertical-align:-1px}
 .leg .lpb{background:var(--panel-3);border:1px solid var(--line-2)}
-.leg .b1,.chart .b1{background:#132035;fill:#132035}.leg .b2,.chart .b2{background:#204683;fill:#204683}.leg .b3,.chart .b3{background:#c89030;fill:#c89030}
-:root:not([data-theme="light"]) .chart .b1{fill:#89abe1}:root:not([data-theme="light"]) .leg .b1{background:#89abe1}
+.leg .b1,.chart .b1{background:#122139;fill:#122139}.leg .b2,.chart .b2{background:#265eb9;fill:#265eb9}.leg .b3,.chart .b3{background:#c89030;fill:#c89030}
+:root:not([data-theme="light"]) .chart .b1{fill:#86aae4}:root:not([data-theme="light"]) .leg .b1{background:#86aae4}
 .chart{width:100%;height:auto;display:block}
 .chart text{font:500 10px "Inter",sans-serif;fill:var(--ink-mut)}
 .chart .ax{font-size:9.5px}.chart .lb{font:700 11px "Manrope",sans-serif;fill:var(--ink)}
 .chart .gl{stroke:var(--line);stroke-width:1}
 .chart .pl{fill:none;stroke:var(--plan);stroke-width:2;stroke-dasharray:5 4}
-.chart .el{fill:none;stroke:#204683;stroke-width:2.6}.chart .ar{fill:rgba(32,70,131,.14)}
-:root:not([data-theme="light"]) .chart .el{stroke:#89abe1}:root:not([data-theme="light"]) .chart .ar{fill:rgba(137,171,225,.12)}
-.chart .cl{stroke:#d9714f;stroke-width:1.5;stroke-dasharray:3 3}.chart .ep{fill:#204683;stroke:var(--panel);stroke-width:2}
+.chart .el{fill:none;stroke:#265eb9;stroke-width:2.6}.chart .ar{fill:rgba(38,94,185,.14)}
+:root:not([data-theme="light"]) .chart .el{stroke:#86aae4}:root:not([data-theme="light"]) .chart .ar{fill:rgba(134,170,228,.12)}
+.chart .cl{stroke:#d9714f;stroke-width:1.5;stroke-dasharray:3 3}.chart .ep{fill:#265eb9;stroke:var(--panel);stroke-width:2}
 .chart .ep.dd{stroke-width:1.2}.chart .aj{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-dasharray:2 2;cursor:help}
 /* 25-Oct-26: avance día a día (una columna por día) y nota del acumulado que no retrocede */
 .dd-wrap{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:9px}
@@ -153,8 +153,8 @@ table.dd tr:last-child td,table.dd tr:last-child th{border-bottom:0}
 .bim-btn.active,.bim-btn.on{background:var(--sky);border-color:var(--sky);color:#fff}
 .bim-btn .ic{font-size:.8rem;line-height:1}
 .bim-sep{width:1px;height:20px;background:var(--line-2);margin:0 3px;flex:0 0 auto}
-.bim-btn.vista-ini{border:1px solid #204683;color:#204683;background:var(--panel);font-weight:800}
-.bim-btn.vista-ini:hover{background:#204683;color:#fff}
+.bim-btn.vista-ini{border:1px solid #265eb9;color:#265eb9;background:var(--panel);font-weight:800}
+.bim-btn.vista-ini:hover{background:#265eb9;color:#fff}
 :root:not([data-theme="light"]) .bim-btn.vista-ini{border-color:var(--sky-2);color:var(--sky-2)}
 .bim-towers-bar{grid-column:1/-1;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:7px 12px 8px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:5px;min-width:0}
 .btb-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:.62rem;color:var(--ink-mut)}
@@ -218,7 +218,7 @@ table.dd tr:last-child td,table.dd tr:last-child th{border-bottom:0}
 .se-viewcube .vc-tools button{border:1px solid var(--line-2);background:var(--panel);color:var(--ink-2);border-radius:6px;font-size:.62rem;line-height:1;padding:4px 7px;box-shadow:var(--shadow)}
 body.sala .se-viewcube{display:none}
 #coord{position:absolute;top:10px;left:10px;z-index:4;background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:4px 9px;font:11px "JetBrains Mono",monospace;color:var(--ink-2);box-shadow:var(--shadow);max-width:calc(100% - 80px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rot{font:500 11px/1.2 "Inter",sans-serif;color:#fff;background:rgba(14,20,32,.8);padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translateY(-6px);border-left:3px solid var(--E)}
+.rot{font:500 11px/1.2 "Inter",sans-serif;color:#fff;background:rgba(13,21,34,.8);padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translateY(-6px);border-left:3px solid var(--E)}
 .rot.P{border-left-color:#5b9bff}.rot.C{border-left-color:#3fcf72}
 .num{font:600 10.5px/1 "JetBrains Mono",monospace;color:#18212b;background:rgba(255,255,255,.92);border:1px solid #9aa4ad;border-radius:4px;padding:2px 4px;text-align:center}
 .num b{font-weight:700}.num span{display:none}
@@ -232,7 +232,7 @@ body.dentro .num{font:600 12px/1.15 "Inter",sans-serif;padding:4px 8px 5px;borde
 body.dentro .num b{display:block;font-size:17px;line-height:1.05}
 body.dentro .num span{display:block;font:500 11px/1.2 "JetBrains Mono",monospace;opacity:.92;margin-top:1px}
 body.dentro #mirando{pointer-events:auto;cursor:pointer}
-#mirando{position:absolute;left:50%;bottom:calc(var(--mapaH,0px) + 14px);transform:translateX(-50%);z-index:5;pointer-events:none;background:rgba(14,20,32,.86);color:#fff;font-size:12.5px;line-height:1.3;padding:6px 11px;border-radius:9px;max-width:min(440px,90%);text-align:center;border-left:4px solid #9aa4ad}
+#mirando{position:absolute;left:50%;bottom:calc(var(--mapaH,0px) + 14px);transform:translateX(-50%);z-index:5;pointer-events:none;background:rgba(13,21,34,.86);color:#fff;font-size:12.5px;line-height:1.3;padding:6px 11px;border-radius:9px;max-width:min(440px,90%);text-align:center;border-left:4px solid #9aa4ad}
 #mirando b{font-size:13.5px}#mirando small{display:block;opacity:.8;font-size:11.5px}
 #mapa{position:absolute;z-index:5;bottom:10px;left:10px;background:var(--panel);border:1px solid var(--line-2);box-shadow:var(--shadow);border-radius:10px;padding:5px 8px 7px;touch-action:none}
 #mapa.arrastrando{opacity:.9;box-shadow:0 10px 30px rgba(0,0,0,.25)}
@@ -251,7 +251,7 @@ body.dentro #mirando{pointer-events:auto;cursor:pointer}
 #barraEnc .t b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #barraEnc .t small{display:block;color:var(--ink-mut);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 body.encuadre #mira,body.encuadre #mirando,body.encuadre #hud{display:none!important}
-#hud{position:absolute;left:50%;bottom:calc(var(--mapaH,0px) + 54px);transform:translateX(-50%);z-index:6;pointer-events:none;background:rgba(14,20,32,.84);color:#fff;font-size:12.5px;padding:7px 12px;border-radius:14px;max-width:92%;text-align:center;line-height:1.35}
+#hud{position:absolute;left:50%;bottom:calc(var(--mapaH,0px) + 54px);transform:translateX(-50%);z-index:6;pointer-events:none;background:rgba(13,21,34,.84);color:#fff;font-size:12.5px;padding:7px 12px;border-radius:14px;max-width:92%;text-align:center;line-height:1.35}
 #joy{position:fixed;z-index:30;width:110px;height:110px;border-radius:50%;border:2px solid rgba(255,255,255,.55);background:rgba(255,255,255,.12);pointer-events:none;transform:translate(-50%,-50%)}
 #joy i{position:absolute;left:50%;top:50%;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.75);transform:translate(-50%,-50%)}
 #mira{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border:2px solid rgba(255,255,255,.8);border-radius:50%;pointer-events:none;z-index:6;mix-blend-mode:difference}
@@ -259,12 +259,12 @@ body.sala #coord{display:none}
 /* película: el visor ocupa toda la pantalla */
 #cine{position:absolute;inset:0;z-index:8;pointer-events:none;display:none}
 #cine.on{display:block}
-#cine .sub{position:absolute;left:0;right:0;bottom:28px;background:rgba(11,15,22,.72);color:#fff;padding:14px 36px 18px}
+#cine .sub{position:absolute;left:0;right:0;bottom:28px;background:rgba(11,16,24,.72);color:#fff;padding:14px 36px 18px}
 #cine .sub b{display:block;font-size:22px;font-weight:600;margin-bottom:6px}
 #cine .sub span{font-size:14px;opacity:.85}
 #cine .sub i{position:absolute;right:36px;bottom:14px;font:12px "JetBrains Mono",monospace;opacity:.6;font-style:normal}
-#cine .salir{position:absolute;top:14px;right:14px;pointer-events:auto;font-size:13px;color:#fff;background:rgba(11,15,22,.7);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:6px 12px}
-#cine .rec{position:absolute;top:18px;left:18px;color:#fff;font-size:12.5px;background:rgba(11,15,22,.7);border-radius:999px;padding:5px 10px;display:none;align-items:center;gap:6px}
+#cine .salir{position:absolute;top:14px;right:14px;pointer-events:auto;font-size:13px;color:#fff;background:rgba(11,16,24,.7);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:6px 12px}
+#cine .rec{position:absolute;top:18px;left:18px;color:#fff;font-size:12.5px;background:rgba(11,16,24,.7);border-radius:999px;padding:5px 10px;display:none;align-items:center;gap:6px}
 #cine .rec::before{content:'';width:9px;height:9px;border-radius:50%;background:#e74c3c;animation:par 1s infinite}
 #cine .rec.on{display:flex}
 @keyframes par{50%{opacity:.25}}
@@ -389,7 +389,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
 #alzado .filas button{font-size:12px;padding:4px 9px}
 #alzado .lienzo{flex:1;overflow:auto;padding:8px 14px 14px}
 #alzado canvas{display:block;margin:0 auto;cursor:pointer}
-#visor{position:fixed;inset:0;z-index:70;background:rgba(6,10,16,.88);display:none;place-items:center;padding:20px}
+#visor{position:fixed;inset:0;z-index:70;background:rgba(6,10,17,.88);display:none;place-items:center;padding:20px}
 #visor.on{display:grid}
 #visor img{height:84vh;width:auto;max-width:96vw;object-fit:contain;border-radius:6px} /* siempre grande: la foto ocupa el alto de la pantalla */
 #visor p{color:#fff;text-align:center;margin:10px 0 0;font-size:13px;max-width:900px}
@@ -430,7 +430,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
   #cine .sub{padding:10px 14px 14px;bottom:0}#cine .sub b{font-size:16px}#cine .sub span{font-size:12px}#cine .sub i{display:none}
   .ficha img.frente{max-height:170px}
 }
-.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}</style>
+.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}#bTema,#themeBtn{display:none!important}:root[data-theme="light"]{--bg:#f2f5fa;--sky:#2563eb;--sky-soft:rgba(37,99,235,.10);--amber:#b7791f;--amber-soft:rgba(245,158,11,.16);--amber-fill:#f59e0b}:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2563eb 0%,#3b82f6 60%,#60a5fa 100%)}:root[data-theme="light"] .verdict .big{color:var(--amber)!important}.nav button.bim-badge::after{background:#f59e0b!important;color:#1f2937!important}.topbar .demo-tag{background:#fff;color:#2563eb}#vistas button[data-v="trafo"],#vistas button[data-v="secA"],#vistas button[data-v="secB"],#vistas button[data-v="sub"],#bPelRec{display:none!important}</style>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
 </script>
@@ -440,13 +440,13 @@ input[type=range]{width:100%;accent-color:var(--sky)}
 
 <header class="topbar">
   <div class="tb-l">
-    <h1><b class="demo-tag">Demo</b>SE Río Claro · <span>Nuevo tablero CPM L-2045 (=E01+WR01)</span></h1>
-    <div class="sub">Servicio de Integrador Demo (DEMO-OS) · implementación del TP-385 30/36 MVA, 138/22,9/10 kV · modelo BIM en código desde los planos OE-601…615</div>
+    <h1><b class="demo-tag">Demo</b>SE Río Claro · <span>Nuevo tablero CPM L-2201 (=E01+WR01)</span></h1>
+    <div class="sub">Servicio de Integrador Demo (DEMO-OS) · implementación del TP-385 30/36 MVA, 220/22,9/10 kV · modelo BIM en código desde los planos OE-601…615</div>
   </div>
   <div class="tb-m"><span>Propietario <b>Cliente Demo</b></span><span>Contratista <b id="hdContr">Integrador Demo</b></span><span>Supervisión <b>Demo</b></span><span>Corte <b id="hdCorte">—</b> (<span id="hdRep">diario</span>)</span></div>
   <div class="tb-r">
     <span class="badge" id="hdBadge">—</span>
-    <a class="iconbtn" href="../" title="Volver a la portada (LT 138 kV Cerro Azul y SE Río Claro)">← Portada</a>
+    <a class="iconbtn" href="../" title="Volver a la portada (LT 220 kV Cerro Azul y SE Río Claro)">← Portada</a>
     <button class="iconbtn" id="bTema" title="Tema claro u oscuro">☀</button>
   </div>
 </header>
@@ -535,10 +535,10 @@ input[type=range]{width:100%;accent-color:var(--sky)}
           <p class="ayuda" id="ayudaSala"></p>
           <label class="capa"><input type="checkbox" id="vZon" checked> Resaltar zonas en obra</label>
           <label class="capa"><input type="checkbox" id="vDes2"> Destapar foso y canaletas</label>
-          <h2>Trabajos de Integrador Demo · CPM L-2045</h2>
+          <h2>Trabajos de Integrador Demo · CPM L-2201</h2>
           <label class="capa"><input type="checkbox" id="vAx" checked> Mostrar trabajos de Integrador Demo</label>
           <div id="integPanel"></div>
-          <div class="ley2"><span><i style="background:#2f6fe4"></i>Nuevo</span><span><i style="background:#8e44ad"></i>Nuevo · Integrador Demo (CPM L-2045)</span><span><i style="background:#e07b1f"></i>Existente con intervención (cables nuevos o reconexión)</span><span><i style="background:#c9a227"></i>Existente relacionado (cables existentes)</span></div>
+          <div class="ley2"><span><i style="background:#2f6fe4"></i>Nuevo</span><span><i style="background:#8e44ad"></i>Nuevo · Integrador Demo (CPM L-2201)</span><span><i style="background:#e07b1f"></i>Existente con intervención (cables nuevos o reconexión)</span><span><i style="background:#c9a227"></i>Existente relacionado (cables existentes)</span></div>
           <h2>Filas de tableros</h2>
           <div class="chipsObra" id="pasillos"></div>
           <h2>Zonas en obra</h2>
@@ -566,7 +566,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
         <label class="capa"><input type="checkbox" id="vCad"> Plano CAD sobre el terreno</label>
         <label class="capa"><input type="checkbox" id="vSom" checked> Sombras</label>
         <label class="capa"><input type="checkbox" id="vZon0"> Zonas en obra del TP-385 (sala de control)</label>
-        <label class="capa"><input type="checkbox" id="vAx0" checked> Trabajos de Integrador Demo (CPM L-2045)</label>
+        <label class="capa"><input type="checkbox" id="vAx0" checked> Trabajos de Integrador Demo (CPM L-2201)</label>
         <div class="fuente">Fuente del modelo: planos DEMO-SE-OE-601…615 (Rev. 0/1), planos funcionales Rev. D y metrado OE · Supervisión Demo / Cliente Demo. Lo que los planos no detallan va marcado «referencial» en la ficha.</div>
       </div>
     </aside>
@@ -749,7 +749,7 @@ function ocultamiento() {
   }
 }
 // ---------- capas, etapas, visibilidad
-const NOMBRES = { patio138: 'Patio 138 kV', transformadores: 'Transformadores', patio33: 'Patio 33 kV', cables: 'Conductores y cables', obraCivil: 'Obras civiles', sala: 'Sala de control', edificaciones: 'Otras edificaciones', tierra: 'Puesta a tierra', cerco: 'Cerco y gaviones', terreno: 'Terreno y patio' };
+const NOMBRES = { patio138: 'Patio 220 kV', transformadores: 'Transformadores', patio33: 'Patio 33 kV', cables: 'Conductores y cables', obraCivil: 'Obras civiles', sala: 'Sala de control', edificaciones: 'Otras edificaciones', tierra: 'Puesta a tierra', cerco: 'Cerco y gaviones', terreno: 'Terreno y patio' };
 const capaOn = {}; Object.keys(NOMBRES).forEach((k) => (capaOn[k] = k !== 'tierra'));
 let etapa = 3;
 function visibilidad() {
@@ -1393,15 +1393,15 @@ function panelSala() {
   $('#obraLista').onclick = ir; $('#eqLista').onclick = ir;
   $('#ayudaSala').textContent = movil ? 'Toca un tablero en el 3D, en la lista o en el plano y la cámara lo centra; ◀ ▶ pasa al vecino. 🚶 Caminar para moverte libre.' : 'Clic en un tablero (3D, lista o plano) y la cámara lo centra; ◀ ▶, ← → o la rueda pasan al vecino, ↑ ↓ cambian de fila, arrastrar gira alrededor. 🚶 Caminar para moverte libre.';
 }
-// ---------- trabajos de Integrador Demo (control diario del nuevo tablero CPM L-2045, Excel de Integrador Demo)
+// ---------- trabajos de Integrador Demo (control diario del nuevo tablero CPM L-2201, Excel de Integrador Demo)
 // Cada «TABLERO / UBICACIÓN» del Excel se lleva a un elemento del modelo. Ningún plano disponible ubica el nuevo CPM ni las
 // rutas de Integrador Demo: las ubicaciones son SUPUESTAS a partir del propio control diario y se dicen así en la ficha.
 var integOn = true, axRot = [], m4d = null; // m4d: BIM 4D (cuatrod.js)
 const AX_ZONAS = [
-  { u: ['CPM L-2045', 'Patio → CPM'], eq: 'CPM', nombre: 'Nuevo CPM L-2045', sup: 'Se supone en el lugar del tablero 19 (registrador de fallas): Integrador Demo lo retiró al almacén el 17–18-Oct (restricción R-05) y montó el nuevo tablero el 18-Oct.' },
+  { u: ['CPM L-2201', 'Patio → CPM'], eq: 'CPM', nombre: 'Nuevo CPM L-2201', sup: 'Se supone en el lugar del tablero 19 (registrador de fallas): Integrador Demo lo retiró al almacén el 17–18-Oct (restricción R-05) y montó el nuevo tablero el 18-Oct.' },
   { u: ['SSAA'], eq: 'T16', nombre: 'SS.AA.', sup: 'Se supone el tablero 16 (SS.AA. 220 Vca / 110 Vcc / 48 Vcc, =E1.A01.SSAA), junto al nuevo CPM; el control de Integrador Demo no dice cuáles tableros de SS.AA.' },
   { u: ['SCADA SE'], eq: 'T2', nombre: 'SCADA', sup: 'Se supone el tablero 2 (SCADA TAS-SEL); el control de Integrador Demo dice «SCADA de la SE».' },
-  { u: ['Patio', 'Patio → CPM'], reg: 'Bahía L-2045', nombre: 'Patio · bahía L-2045', sup: 'Se supone que los cables multiconductores salen de los equipos de la llegada L-2045 hacia el nuevo CPM; el control no indica qué canaletas se destaparon.' },
+  { u: ['Patio', 'Patio → CPM'], reg: 'Bahía L-2201', nombre: 'Patio · bahía L-2201', sup: 'Se supone que los cables multiconductores salen de los equipos de la llegada L-2201 hacia el nuevo CPM; el control no indica qué canaletas se destaparon.' },
   { u: ['Almacén', 'Tablero RF'], reg: 'Almacén', nombre: 'Almacén', sup: 'Se supone el almacén del plano OE-604: ahí se recibieron y prepararon los cables y quedó resguardado el registrador de fallas retirado (R-05).' },
 ];
 const pct0 = (v) => (v == null ? '—' : Math.round(v * 100) + ' %');
@@ -1468,9 +1468,9 @@ function seccionInteg(info) {
   const acts = [...new Map(zs.flatMap((z) => z.acts).map((a) => [a.n, porN[String(a.n)] || a])).values()];
   const nums_ = new Set(acts.map((a) => String(a.n)));
   const habs = INTEG.habilitantes.filter((h) => nums_.has(String(h.act)) && h.estado !== 'Aprobado / cumplido');
-  const EST4 = { pend: ['Por iniciar', ''], curso: ['En curso', '#926414'], term: ['Terminada', '#204683'], atras: ['Detrás de lo programado', '#c46f0b'], cond: ['Condicionada', ''] };
+  const EST4 = { pend: ['Por iniciar', ''], curso: ['En curso', '#926414'], term: ['Terminada', '#265eb9'], atras: ['Detrás de lo programado', '#c46f0b'], cond: ['Condicionada', ''] };
   const est = (a) => { if (en4) { const [t, c] = EST4[m4d.estadoAct(a, m4d.i)]; return `<span class="pill" style="${c ? `border-color:${c};color:${c}` : ''}">${t}</span>`; }
-    return `<span class="pill" style="${a.estado === 'Completada' ? 'border-color:#204683;color:#204683' : a.estado === 'En curso' ? 'border-color:#926414;color:#926414' : ''}">${esc_(a.estado || '—')}</span>`; };
+    return `<span class="pill" style="${a.estado === 'Completada' ? 'border-color:#265eb9;color:#265eb9' : a.estado === 'En curso' ? 'border-color:#926414;color:#926414' : ''}">${esc_(a.estado || '—')}</span>`; };
   const filas = acts.map((a) => `<tr><td><b>${esc_(a.n)}</b> · ${esc_(a.nombre)}<small style="display:block;color:var(--ink3)">línea base ${fAx(a.ini)} → ${fAx(a.fin)}</small></td><td style="white-space:nowrap">${pct0(a.ev)} <small style="color:var(--ink3)">/ ${pct0(a.pv)}</small><br>${est(a)}</td></tr>`).join('');
   const hb = habs.length ? `<div style="margin-top:6px"><b style="color:#c46f0b">Habilitantes pendientes</b>${habs.map((h) => `<div>${esc_(h.id)} · ${esc_(h.nombre)} — ${esc_(h.estado || 'sin estado')}${h.alerta ? ' · ' + esc_(h.alerta) : ''}</div>`).join('')}</div>` : '';
   return `<div class="integ"><b>Trabajos de Integrador Demo · ${en4 ? `BIM 4D al ${fAx(m4d.fecha)}${m4d.i > m4d.corte ? ' (programado)' : ''}` : `control diario del ${fAx(INTEG.fecha)}`}</b>
@@ -1696,11 +1696,11 @@ function bucle(now) {
 // ---------- BIM 4D del servicio de Integrador Demo (cuatrod.js): zonas del modelo por estado a la fecha, panel bajo la vista
 const sup = (eq, reg) => (AX_ZONAS.find((z) => (eq && z.eq === eq) || (reg && z.reg === reg)) || {}).sup;
 const ZONAS4D = {
-  cpm: { eq: 'CPM', corto: 'CPM', nombre: 'Nuevo CPM L-2045', sup: sup('CPM') },
+  cpm: { eq: 'CPM', corto: 'CPM', nombre: 'Nuevo CPM L-2201', sup: sup('CPM') },
   t19: { eq: 'T19', corto: 'Tablero RF', nombre: 'Tablero 19 · registrador de fallas', sup: 'El tablero 19 sale de la sala el 17–18-Oct (restricción R-05) y en su lugar se supone el nuevo CPM.' },
   ssaa: { eq: 'T16', corto: 'SS.AA.', nombre: 'SS.AA. (tablero 16)', sup: sup('T16') },
   scada: { eq: 'T2', corto: 'SCADA', nombre: 'SCADA (tablero 2)', sup: sup('T2') },
-  patio: { reg: 'Bahía L-2045', corto: 'Patio', nombre: 'Patio · bahía L-2045', sup: sup(null, 'Bahía L-2045') },
+  patio: { reg: 'Bahía L-2201', corto: 'Patio', nombre: 'Patio · bahía L-2201', sup: sup(null, 'Bahía L-2201') },
   almacen: { reg: 'Almacén', corto: 'Almacén', nombre: 'Almacén', sup: sup(null, 'Almacén') },
 };
 const objZona = (z) => (z.eq ? EQ[z.eq]?.obj : REG.find((x) => x.info && x.info.id === z.reg)?.obj);

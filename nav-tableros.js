@@ -9,26 +9,22 @@
   const src = (document.currentScript && document.currentScript.src) || '';
   const BASE = src ? new URL('.', src).href : new URL('./', location.href).href;
   const T = [
-    { k: 'portada', n: 'Portada', s: 'menú principal del proyecto', u: '', g: 'casa' },
-    { k: 'lt', n: 'LT 138 kV Pampa Alta – Cerro Azul', s: 'BIM 4D de la línea', u: 'tablero.html', g: 'torre' },
-    { k: 'bim', n: 'BIM general', s: '3 SE y la L-2045 en 3D', u: 'bim-general/', g: 'cubo' },
-    { k: 'sri', n: 'SE Río Claro', s: 'tablero CPM · Integrador Demo', u: 'se-rio-claro/', g: 'se' },
-    { k: 'scz', n: 'SE Cerro Azul', s: '138/10 kV · nueva', u: 'se-cerro-azul/', g: 'se' },
-    { k: 'spa', n: 'SE Pampa Alta', s: '220/138 kV · origen de la L-2045', u: 'se-pampa-alta/', g: 'se' },
-    { k: 'flujo', n: 'Cómo se hace', s: 'IA, fotos y BIM 4D', u: 'tablero.html#flujo', g: 'flujo' },
+    { k: 'portada', n: 'Inicio', s: 'el proyecto en una mirada', u: '', g: 'casa' },
+    { k: 'lt', n: 'LT 220 kV Río Claro – Cerro Azul', s: 'avance, BIM 4D, fotos y eventos', u: 'tablero.html', g: 'torre' },
+    { k: 'sri', n: 'SE Río Claro', s: 'inicio · ampliación en 4D', u: 'se-rio-claro/', g: 'se' },
+    { k: 'scz', n: 'SE Cerro Azul', s: 'llegada · SE nueva en 3D', u: 'se-cerro-azul/', g: 'se' },
   ];
   const G = {
     casa: '<path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>',
     cubo: '<path d="M12 2.8l8.2 4.6v9.2L12 21.2l-8.2-4.6V7.4z"/><path d="M12 12l8.2-4.6M12 12v9.2M12 12L3.8 7.4"/>',
     torre: '<path d="M12 2.5L7 21.5M12 2.5l5 19M6 7h12M7.6 12h8.8M9 16.5h6M7 21.5l5-5 5 5"/>',
-    flujo: '<path d="M4 6h9M4 12h16M4 18h7"/><circle cx="17" cy="6" r="2.2"/><circle cx="14" cy="18" r="2.2"/>',
     se: '<circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="3.2"/>',
   };
   const svg = (g) => `<svg viewBox="0 0 24 24" aria-hidden="true">${G[g]}</svg>`;
   // tablero actual por la ruta
   const rel = (() => { try { const p = new URL(location.href).pathname, b = new URL(BASE).pathname; return p.startsWith(b) ? p.slice(b.length) : p; } catch (e) { return ''; } })();
-  const actual = rel.startsWith('bim-general') ? 'bim' : rel.startsWith('se-rio-claro') ? 'sri' : rel.startsWith('se-cerro-azul') ? 'scz'
-    : rel.startsWith('se-pampa-alta') ? 'spa' : /^(tablero|visita)\.html/.test(rel) ? 'lt' : 'portada';
+  const actual = rel.startsWith('se-rio-claro') ? 'sri' : rel.startsWith('se-cerro-azul') ? 'scz'
+    : /^(tablero|visita)\.html/.test(rel) ? 'lt' : 'portada';
 
   const css = `
 .ntb{position:relative;display:inline-flex;font:500 13px/1.2 "Inter",system-ui,sans-serif}
@@ -36,19 +32,19 @@
 .ntb-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ntb-btn .ntb-v{font-size:10px;opacity:.8;transition:transform .15s}
 .ntb.abierto .ntb-btn .ntb-v{transform:rotate(180deg)}
-.ntb-btn:not(.iconbtn){border:1px solid rgba(255,255,255,.35);background:rgba(14,20,32,.55);color:#fff;border-radius:999px;padding:6px 12px}
-.ntb-menu{position:fixed;top:0;left:0;z-index:10050;min-width:268px;background:#111720;color:#fff;border:1px solid rgba(215,154,50,.35);
-  border-radius:12px;padding:6px;box-shadow:0 14px 34px rgba(0,0,0,.35);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .14s,transform .14s}
+.ntb-btn:not(.iconbtn){border:1px solid #c9d6ea;background:#fff;color:#1e4fa3;border-radius:999px;padding:6px 12px}
+.ntb-menu{position:fixed;top:0;left:0;z-index:10050;min-width:268px;background:#ffffff;color:#0b192f;border:1px solid #d6dfec;
+  border-radius:12px;padding:6px;box-shadow:0 18px 40px -12px rgba(15,40,90,.28);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .14s,transform .14s}
 .ntb-menu.abierto{opacity:1;transform:none;pointer-events:auto}
 .ntb-menu::before{content:"";position:absolute;top:-9px;right:0;left:0;height:9px}
-.ntb-menu a{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:0 10px;padding:7px 9px;border-radius:8px;color:#fff;text-decoration:none}
-.ntb-menu a svg{width:18px;height:18px;fill:none;stroke:#d79a32;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;justify-self:center}
+.ntb-menu a{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:0 10px;padding:7px 9px;border-radius:8px;color:#0b192f;text-decoration:none}
+.ntb-menu a svg{width:18px;height:18px;fill:none;stroke:#2563eb;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;justify-self:center}
 .ntb-menu a b{display:block;font:600 13.5px/1.2 "Manrope","Inter",sans-serif;letter-spacing:.005em}
-.ntb-menu a small{display:block;font-size:11px;color:#a2b3cf;margin-top:1px}
-.ntb-menu a:hover,.ntb-menu a:focus-visible{background:rgba(215,154,50,.14);outline:none}
-.ntb-menu a.aqui{background:rgba(255,255,255,.06);cursor:default}
-.ntb-menu a.aqui::after{content:"aquí";font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#111720;background:#d79a32;border-radius:999px;padding:2px 7px}
-.ntb-menu hr{border:0;border-top:1px solid rgba(255,255,255,.1);margin:5px 4px}
+.ntb-menu a small{display:block;font-size:11px;color:#5e769d;margin-top:1px}
+.ntb-menu a:hover,.ntb-menu a:focus-visible{background:#eef4ff;outline:none}
+.ntb-menu a.aqui{background:#f3f6fb;cursor:default}
+.ntb-menu a.aqui::after{content:"aquí";font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#2563eb;border-radius:999px;padding:2px 7px}
+.ntb-menu hr{border:0;border-top:1px solid #e3e9f3;margin:5px 4px}
 .ntb-fijo{position:fixed;top:12px;right:14px;z-index:10050}
 @media (max-width:560px){.ntb-btn .ntb-t{display:none}.ntb-menu{min-width:244px}}
 @media print{.ntb{display:none}}`;

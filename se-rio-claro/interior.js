@@ -156,30 +156,30 @@ export const TABLEROS = [
   // n, nombre, tipo, X, Y, rot (el frente queda en +z local; rot 180 mira al norte, −90 al oeste, 90 al este), w, d
   { n: 1, nombre: 'Tablero de telecomunicaciones', sigla: 'TCC', tipo: 'com', X: 26.03, Y: -3.42, rot: 180, w: 0.82, d: 0.64 },
   { n: 2, nombre: 'Tablero SCADA', sigla: 'TAS-SEL', tipo: 'com', X: 26.88, Y: -3.42, rot: 180, w: 0.82, d: 0.64, datos: { Función: 'Adquisición y supervisión; concentra los IED SEL de la subestación' } },
-  { n: 3, nombre: 'Mando y supervisión: llegada 138 kV y salida 33 kV Mina Sur e Mina Norte', sigla: 'TSM', tipo: 'ctrl', X: 27.79, Y: -3.42, rot: 180, w: 0.82, d: 0.64 },
-  { n: 4, nombre: 'Mando y supervisión: llegada 138 kV y salida 10 kV Río Claro', sigla: 'TSM', tipo: 'ctrl', X: 28.79, Y: -3.42, rot: 180, w: 1.05, d: 0.64 },
-  { n: 5, nombre: 'Protección y medida Río Claro 138/10 kV', sigla: 'TPM', tipo: 'prot', X: 29.94, Y: -3.42, rot: 180, w: 0.82, d: 0.64, visor: ['SEL 351A'], fun: ['=B00.TT-382'], obra: 'rel',
+  { n: 3, nombre: 'Mando y supervisión: llegada 220 kV y salida 33 kV Mina Sur e Mina Norte', sigla: 'TSM', tipo: 'ctrl', X: 27.79, Y: -3.42, rot: 180, w: 0.82, d: 0.64 },
+  { n: 4, nombre: 'Mando y supervisión: llegada 220 kV y salida 10 kV Río Claro', sigla: 'TSM', tipo: 'ctrl', X: 28.79, Y: -3.42, rot: 180, w: 1.05, d: 0.64 },
+  { n: 5, nombre: 'Protección y medida Río Claro 220/10 kV', sigla: 'TPM', tipo: 'prot', X: 29.94, Y: -3.42, rot: 180, w: 0.82, d: 0.64, visor: ['SEL 351A'], fun: ['=B00.TT-382'], obra: 'rel',
     obraTxt: 'Entrega la señal de tensión de barra del TT-382 al tablero 18 (cables existentes WGCP0150001 y WGCP0150002; en el diagrama de bloques figura como «TPM. Cliente B00.TT.382 señal de barra»).',
     datos: { Relés: 'R51 SEL 351A (50/51) · lado 10 kV TP-384', Medición: 'TC 1050–1300/5 A cl. 3,0' } },
   { n: 6, nombre: 'SS.AA. 220/48 V Río Claro', sigla: 'TSA', tipo: 'aux', X: 30.8, Y: -3.42, rot: 180, w: 0.82, d: 0.64 },
   { n: 7, nombre: 'Automatización SAS', sigla: 'SAS', cod: '=E1.A01.CS01', tipo: 'ctrl', X: 31.65, Y: -3.42, rot: 180, w: 0.82, d: 0.64, visor: ['SAS'], obra: 'rel',
     obraTxt: 'Cables existentes con el 17 (CP02), el 18 (CP01) y SS.AA.; la ficha Rev. D no le asigna cables nuevos.' },
   { n: 8, nombre: 'Rectificadores 48 Vcc de Mina Norte y Río Claro', tipo: 'aux', X: 32.52, Y: -3.42, rot: 180, w: 0.82, d: 0.64 },
-  { n: 9, nombre: 'Protección llegada 138 kV y salida 33 kV Mina Norte y Mina Sur', sigla: 'TP', tipo: 'prot', X: 32.6, Y: -2.68, rot: -90, w: 0.82, d: 0.7, visor: ['KCGG 140', 'SEL 387E'],
+  { n: 9, nombre: 'Protección llegada 220 kV y salida 33 kV Mina Norte y Mina Sur', sigla: 'TP', tipo: 'prot', X: 32.6, Y: -2.68, rot: -90, w: 0.82, d: 0.7, visor: ['KCGG 140', 'SEL 387E'],
     datos: { 'TP-383 AT': 'R22 GEC Alsthom KCGG 140 (50/51 · 50N/51N) · R21 SEL 387E (87T) · R23 86 bloqueo', 'TP-383 BT': 'R41 KCGG 140 (50/51 · 50N/51N)', 'TP-384': 'R32 SEL 351A (50/51 · 50N/51N · 27/59) · R31 SEL 387E (87T) · R33 86', 'Salidas 33 kV': 'IN-330 Merlin Gerin SB6-72 · R51 SEL 351A' } },
   { n: 10, nombre: 'Medición de Mina Norte, Mina Sur y Río Claro', sigla: 'TM', tipo: 'ctrl', X: 32.6, Y: -1.85, rot: -90, w: 0.82, d: 0.7, visor: ['ION 7650'], datos: { Medidores: 'ION 7650 Schneider (energía) · PM5560 (tensión de barra)' } },
   { n: 11, nombre: 'SS.AA. 220/48 V Mina Norte', sigla: 'TSA', tipo: 'aux', X: 32.6, Y: -1.0, rot: -90, w: 0.82, d: 0.7 },
   { n: 12, nombre: 'Regulación del transformador TP-384', tipo: 'reg', X: 34.7, Y: -1.23, rot: 90, w: 0.8, d: 0.8 },
   { n: 13, nombre: 'Regulación del transformador TP-383', tipo: 'reg', X: 34.7, Y: -2.06, rot: 90, w: 0.8, d: 0.8 },
-  { n: 14, nombre: 'Protección de línea 138 kV L-2045', tipo: 'prot', X: 34.7, Y: -2.91, rot: 90, w: 0.8, d: 0.8, visor: ['SEL 421', 'SEL 351A'],
-    datos: { Relés: 'R11 SEL 421 (21/21N · 79) · R13 SEL 351A (27) · R12 GEC Alsthom KCEG 140 (67N)', Registrador: 'DFR Qualitrol IDM+', 'Transformadores de medida': 'TC-380 ABB IMB170 400/1/1/1 A · TT-380 Arteche DDB-245 138/√3 / 0,1/√3 kV', Interruptor: 'IN-380 General Electric GL313F3/4031P 3 150 A · 170 kV · 40 kA' } },
+  { n: 14, nombre: 'Protección de línea 220 kV L-2201', tipo: 'prot', X: 34.7, Y: -2.91, rot: 90, w: 0.8, d: 0.8, visor: ['SEL 421', 'SEL 351A'],
+    datos: { Relés: 'R11 SEL 421 (21/21N · 79) · R13 SEL 351A (27) · R12 GEC Alsthom KCEG 140 (67N)', Registrador: 'DFR Qualitrol IDM+', 'Transformadores de medida': 'TC-380 ABB IMB170 400/1/1/1 A · TT-380 Arteche DDB-245 220/√3 / 0,1/√3 kV', Interruptor: 'IN-380 General Electric GL313F3/4031P 3 150 A · 245 kV · 40 kA' } },
   { n: 15, nombre: 'Rectificador 220 Vca / 110–48 Vcc', sigla: 'PMI', tipo: 'aux', X: 34.7, Y: -3.69, rot: 90, w: 0.8, d: 0.8 },
   { n: 16, nombre: 'Servicios auxiliares 220 Vca / 110 Vcc / 48 Vcc', sigla: 'SS.AA.', cod: '=E1.A01.SSAA', tipo: 'aux', X: 36.55, Y: -3.69, rot: -90, w: 0.8, d: 0.8, obra: 'interv',
     obraTxt: 'Circuitos nuevos para el TP-385 (alimentación del Qualitrol, mando y motor del CBC, ventiladores, 220 V ininterrumpida) y para el tablero 22; reconexión de la alimentación del IN-383.',
     datos: { 'Montaje nuevo (metrado)': 'ITM 3×50 A 220–240 Vca 20 kA · 2×32 A 250 Vcc · 2 × 2×10 A 250 Vcc para el TP-385', Borneras: 'XDC1 (110 Vcc) · XAC1 / XAC2 (220 Vca) · X30 (ficha Rev. D)' } },
-  { n: 17, nombre: 'Protección diferencial de barra 138 kV', sigla: 'CP-02', cod: '=E1.A01.CP02', tipo: 'prot', X: 36.55, Y: -2.88, rot: -90, w: 0.8, d: 0.8, visor: ['REB 670', '87B 50BF'], obra: 'interv',
+  { n: 17, nombre: 'Protección diferencial de barra 220 kV', sigla: 'CP-02', cod: '=E1.A01.CP02', tipo: 'prot', X: 36.55, Y: -2.88, rot: -90, w: 0.8, d: 0.8, visor: ['REB 670', '87B 50BF'], obra: 'interv',
     obraTxt: 'Reconexión de los disparos al IN-383 y a los IN-380/381/382 (cables reubicados por obras civiles) e intercambio de corrientes y disparos con el CP01 del TP-385.',
-    datos: { Relé: 'REB 670 ABB (87B · 50BF)', Zonas: 'Línea L-2045 · TP-383 · TP-384 · TP-385 (bahía IN-383: TC 170–200/1/1/1 A, 15 VA, 5P20)' } },
+    datos: { Relé: 'REB 670 ABB (87B · 50BF)', Zonas: 'Línea L-2201 · TP-383 · TP-384 · TP-385 (bahía IN-383: TC 170–200/1/1/1 A, 15 VA, 5P20)' } },
   { n: 18, nombre: 'Protección y control del transformador TP-385', sigla: 'CP01', cod: '=E1.A01.CP01', tipo: 'prot', X: 36.55, Y: -2.02, rot: -90, w: 0.8, d: 0.8, visor: ['RET 670', 'REC 650'], obra: 'interv',
     obraTxt: 'Tablero existente (esquemas funcionales de 2016) actualizado en la Rev. D del 23-10-2025 «para ingreso TP-36MVA»: cables nuevos a los TC y al gabinete del TP-385, reconexión de los cables del IN-383; mantiene los existentes a SB-383, K03, K01, TT-382, CP02, CS01 y SS.AA.',
     datos: { 'Protección principal': 'RET 670 ABB — 87T · 50/51 · 50N/51N (relé -FP1)', 'Protección de respaldo': 'REC 650 ABB — 50/51 · 50N/51N · 27/59 (relé -FP2)', Bloqueo: '86T relé de disparo y bloqueo', Medición: 'ION 7650 Schneider (-P11) · tensión de barra desde el TT-382', Comunicaciones: 'Switch AFS670 (-TJ1 / -TJ2)', 'TC AT': '170–200/1/1/1 A · 15 VA cl. 0,2 / 5P20 / 5P20', 'TC neutro 22,9 kV': '900–1 100/1/1/1 A', 'TC 10 kV': '2 100–2 500/1/1/1 A', Mandos: 'Cierre y disparo (bobinas 1 y 2) del IN-383 · apertura y cierre del SB-383 · disparo y cierre del IN-10' } },
@@ -241,17 +241,17 @@ export function construirInterior(ctx) {
   reg(t22, 'sala', info22);
   equipo({ key: 'T22', n: 22, tipo: 'tablero', cod: '=A1.C01.REGT', nombre: 'Regulación del transformador TP-385', X: 38.6, Y: -4.55, rot: 180, w: 0.8, d: 0.6, h: 1.9, zocalo: 0.2, yPiso: y2, piso: 2, obj: t22, info: info22, obra: 'nuevo' });
   ctx.t22 = t22;
-  // nuevo tablero CPM de la L-2045 (=E01+WR01) que instala Integrador Demo — proyecto de la derivación de la L-2045 a la SE Cerro Azul.
+  // nuevo tablero CPM de la L-2201 (=E01+WR01) que instala Integrador Demo — proyecto de la LT 220 kV de la SE Río Claro a la SE Cerro Azul.
   // Ubicación SUPUESTA: en el lugar del tablero 19 (registrador de fallas), que Integrador Demo retiró al almacén el 17–18-Oct (R-05 de su
   // control diario) y montó el nuevo tablero el 18-Oct. Ningún plano lo ubica: se confirma en campo y se corrige aquí.
   const t19 = TABLEROS.find((t) => t.n === 19);
-  const cpm = gabinete({ w: t19.w, h: 2.2, d: t19.d, tex: frenteTablero({ num: 'CPM', nombre: 'Protección y control de la L-2045 (nuevo · Integrador Demo)', cod: '=E01+WR01', tipo: 'prot', w: t19.w, h: 2.2, nuevo: true, visor: ['L-2045', ''] }), X: t19.X, Y: t19.Y, rot: t19.rot, mat: M.tableroNuevo, piso });
-  const infoCPM = { id: 'CPM L-2045', nombre: 'Tablero de protección y control de la L-2045 (=E01+WR01) · nuevo, lo instala Integrador Demo', estado: 'P', obra: 'integ', integ: 'CPM L-2045',
+  const cpm = gabinete({ w: t19.w, h: 2.2, d: t19.d, tex: frenteTablero({ num: 'CPM', nombre: 'Protección y control de la L-2201 (nuevo · Integrador Demo)', cod: '=E01+WR01', tipo: 'prot', w: t19.w, h: 2.2, nuevo: true, visor: ['L-2201', ''] }), X: t19.X, Y: t19.Y, rot: t19.rot, mat: M.tableroNuevo, piso });
+  const infoCPM = { id: 'CPM L-2201', nombre: 'Tablero de protección y control de la L-2201 (=E01+WR01) · nuevo, lo instala Integrador Demo', estado: 'P', obra: 'integ', integ: 'CPM L-2201',
     obraTxt: 'Ubicación supuesta: en el lugar del tablero 19 (registrador de fallas), que Integrador Demo retiró al almacén el 17–18-Oct; el nuevo tablero se montó el 18-Oct. Ningún plano disponible lo ubica: confirmar en campo.',
-    datos: { Código: '=E01+WR01 (control diario de Integrador Demo)', Contratista: 'Integrador Demo · DEMO-OS · OS demo', Proyecto: 'Derivación LT 138 kV Pampa Alta – Río Claro (L-2045) a SE Cerro Azul', Ubicación: 'Sala de control, primer piso · supuesta (ver nota)' },
+    datos: { Código: '=E01+WR01 (control diario de Integrador Demo)', Contratista: 'Integrador Demo · DEMO-OS · OS demo', Proyecto: 'LT 220 kV Río Claro – Cerro Azul (L-2201)', Ubicación: 'Sala de control, primer piso · supuesta (ver nota)' },
     planos: ['Control diario de Integrador Demo (Excel)'], lista: true };
   reg(cpm, 'sala', infoCPM);
-  equipo({ key: 'CPM', n: 'CPM', tipo: 'tablero', cod: '=E01+WR01', nombre: 'Protección y control de la L-2045 (nuevo · Integrador Demo)', X: t19.X, Y: t19.Y, rot: t19.rot, w: t19.w, d: t19.d, h: 2.2, yPiso: piso, piso: 1, obj: cpm, info: infoCPM, obra: 'integ', reemplaza: 'T19' });
+  equipo({ key: 'CPM', n: 'CPM', tipo: 'tablero', cod: '=E01+WR01', nombre: 'Protección y control de la L-2201 (nuevo · Integrador Demo)', X: t19.X, Y: t19.Y, rot: t19.rot, w: t19.w, d: t19.d, h: 2.2, yPiso: piso, piso: 1, obj: cpm, info: infoCPM, obra: 'integ', reemplaza: 'T19' });
   ctx.cpm = cpm;
   ctx.sala.add(zonas);
 

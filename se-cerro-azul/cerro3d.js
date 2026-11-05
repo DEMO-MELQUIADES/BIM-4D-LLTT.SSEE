@@ -24,11 +24,11 @@ export function en(o, X, Y, h = 0, rotDeg = 0) { o.position.set(X, h, -Y); o.rot
 export const EJE = { 1: 0, 2: 8, 3: 22, 4: 36, 5: 50, 6: 67 };
 export const FILA = { A: 0, B: 13.5, C: 29.5, D: 35.0, E: 56 };
 const FASES = [['R', 4], ['S', 7], ['T', 10]];            // fases de cada bahía: eje + 4 / 7 / 10 m (OE-605, OE-606 C-C y D-D)
-const BARRA_Y = { R: 17.5, S: 21.5, T: 25.5 };            // barras 138 kV: B + 4 / 8 / 12 m (OE-605 «BARRA 138 kV», OE-606 A-A)
+const BARRA_Y = { R: 17.5, S: 21.5, T: 25.5 };            // barras 220 kV: B + 4 / 8 / 12 m (OE-605 «BARRA 220 kV», OE-606 A-A)
 export const BAHIAS = [
   { k: 'b1', x0: 8, nombre: 'Bahía de transformador', dest: 'A transformador TP-390', tipo: 'trafo' },
-  { k: 'b2', x0: 36, nombre: 'Bahía de línea L-2046', dest: 'Salida L-2046 a SE Río Claro', tipo: 'linea' },
-  { k: 'b3', x0: 22, nombre: 'Bahía de línea L-2045', dest: 'Salida L-2045 a SE Pampa Alta', tipo: 'linea' },
+  { k: 'b2', x0: 36, nombre: 'Bahía de línea L-2202', dest: 'Llegada L-2202 desde SE Río Claro', tipo: 'linea' },
+  { k: 'b3', x0: 22, nombre: 'Bahía de línea L-2201', dest: 'Llegada L-2201 desde SE Río Claro', tipo: 'linea' },
 ];
 // Torre T19 de la LT (tablero de la LT, lat −15,885235 lon −71,235414 → UTM 260 641,47 / 8242 480,68)
 export const T19 = { X: 59.09, Y: -22.26 };
@@ -50,20 +50,20 @@ export function reg(obj, capa, info) {
   return obj;
 }
 export const NOMBRES_CAPA = {
-  patio138: 'Patio 138 kV · equipos', portico: 'Pórtico 138 kV', barras: 'Barras y conductores', linea: 'Llegada de la LT (T19)',
+  patio138: 'Patio 220 kV · equipos', portico: 'Pórtico 220 kV', barras: 'Barras y conductores', linea: 'Llegada de la LT (T19)',
   trafo: 'Transformador de potencia', mt10: 'Salas eléctricas y 10 kV', ssaa: 'Servicios auxiliares', obraCivil: 'Obra civil (bases, canaletas, vía)',
   tierra: 'Red de tierra', edif: 'Edificaciones', cerco: 'Cerco perimétrico', terreno: 'Terreno y explanación',
 };
 export const ORIGEN = { D: 'Dibujado desde planos', F: 'Plano de fabricante aprobado', R: 'Referencial' };
-export const SISTEMAS = { at: '138 kV', mt: '10 kV', ssaa: 'Servicios auxiliares', ctrl: 'Control y protección', est: 'Estructuras', civ: 'Obra civil', lin: 'Línea de transmisión', ter: 'Terreno' };
+export const SISTEMAS = { at: '220 kV', mt: '10 kV', ssaa: 'Servicios auxiliares', ctrl: 'Control y protección', est: 'Estructuras', civ: 'Obra civil', lin: 'Línea de transmisión', ter: 'Terreno' };
 
 // ------------------------------------------------------------------ planos (código corto → título completo)
 export const PLANOS = {
   'OE-605': 'DEMO-SE-OE-605 Disposición de equipos – Planta · Rev. 0 · 31-Oct-23',
   'OE-606': 'DEMO-SE-OE-606 Disposición de equipos – Secciones 1 (A-A, B-B) y 2 (C-C, D-D) · Rev. 0 · 31-Oct-23',
-  'OE-604': 'DEMO-SE-OE-604 Detalle de llegada y salida de línea 138 kV · Rev. 0 · 16-Oct-25',
-  'OE-611': 'DEMO-SE-OE-611 Diagrama de cargas pórtico 138 kV (1/2) y 10 kV (2/2)',
-  'OE-612': 'DEMO-SE-OE-612 Diagrama de cargas equipos 138 kV · 06-Oct-23',
+  'OE-604': 'DEMO-SE-OE-604 Detalle de llegada y salida de línea 220 kV · Rev. 0 · 16-Oct-25',
+  'OE-611': 'DEMO-SE-OE-611 Diagrama de cargas pórtico 220 kV (1/2) y 10 kV (2/2)',
+  'OE-612': 'DEMO-SE-OE-612 Diagrama de cargas equipos 220 kV · 06-Oct-23',
   'OE-602': 'DEMO-SE-OE-602 Diagrama unifilar',
   'ME_P': 'ME_P-Rev.001 Pórtico P-19 m (Fabricante Demo) · aprobado Supervisión Demo 02-Oct-23',
   'ME_TC': 'ME_TC-Rev.001 Soporte de transformador de corriente (Fabricante Demo) · aprobado',
@@ -76,7 +76,7 @@ export const PLANOS = {
   'OE-619': 'DEMO-SE-OE-619 (1de3) Montaje del transformador de SS.AA.',
   'OE-609': 'DEMO-SE-OE-609 Red de tierra profunda – Planta (1/2, PDF) y detalles (2/2) · 13-Set-23',
   'OC-705': 'DEMO-SE-OC-705 (5 a 8 de 8) Bases para pararrayos, TT, TC y aislador portabarras',
-  'OC-706': 'DEMO-SE-OC-706 Bases para pórticos 138 kV (1de2) y 10 kV (2de2)',
+  'OC-706': 'DEMO-SE-OC-706 Bases para pórticos 220 kV (1de2) y 10 kV (2de2)',
   'OC-302': 'DEMO-SE-OC-302 (1de14) Explanaciones – Planta (superficie de diseño)',
   'OC-710': 'DEMO-SE-OC-710 Cerco perimétrico (elevaciones 2 y 3 de 4, detalles 4 de 4)',
   'OC-713': 'DEMO-SE-OC-713 Almacén general (1de2 y 2de2)',
@@ -85,7 +85,7 @@ export const PLANOS = {
   'OC-716': 'DEMO-SE-OC-716 Sistema séptico',
   'OEM': 'OEM-406023-CMB-ER / ER1 / ER2 Sala eléctrica prefabricada (OEM Electric) · arreglo general, secciones y cimentación · Rev. A/B',
   'A11': 'Anexo 11 – Lista de equipos y características técnicas, proyecto Cerro Azul',
-  'LT': 'Tablero BIM 4D de la LT 138 kV Pampa Alta – Cerro Azul (coordenadas de la torre T19)',
+  'LT': 'Tablero BIM 4D de la LT 220 kV Río Claro – Cerro Azul (coordenadas de la torre T19)',
 };
 const P = (...k) => k.map((x) => PLANOS[x] || x);
 
@@ -93,38 +93,38 @@ const P = (...k) => k.map((x) => PLANOS[x] || x);
 // {key, item (globo del OE-605), nombre, origen D/F/R, sistema, datos [[campo, valor, fuente]], planos, nota}
 const fi = (o) => ({ planos: [], datos: [], ...o });
 export const F = {
-  trafo: fi({ key: 'trafo', item: 1, nombre: 'Transformador de potencia trifásico 138/10 kV', origen: 'R', sistema: 'at',
+  trafo: fi({ key: 'trafo', item: 1, nombre: 'Transformador de potencia trifásico 220/10 kV', origen: 'R', sistema: 'at',
     datos: [['Marca / tipo', 'ABB · TD2LF', 'OE-605 ítem 1'], ['Tensiones', '138 ± 2 / −14 × 1,25 % / 10 kV', 'OE-605'], ['Potencia', '10 MVA ONAN · 12,5 MVA ONAF', 'OE-605'],
       ['Grupo de conexión', 'YNd5', 'OE-605'], ['Cantidad', '1', 'OE-605'], ['Huella en planta', '6,48 × 3,65 m (con radiadores), centro X 51,90 · Y 35,38', 'OE-605 bloque TP1'],
       ['Bahía', 'Eje 4–5 «A transformador TP-390»', 'OE-605 / OE-606 C-C']],
     planos: P('OE-605', 'OE-606', 'OC-703'),
     nota: 'Posición y huella del plano; la forma (tanque, radiadores, conservador, bushings) es referencial hasta tener el plano del fabricante. Nota 3 del OC-703: «el transformador de potencia está preparado para ser instalado en la SE Río Claro». La base tiene vía de rodadura hacia el este y el norte.' }),
-  pr: fi({ key: 'pr', item: 2, nombre: 'Pararrayos de óxido metálico 138 kV', origen: 'D', sistema: 'at',
-    datos: [['Marca / tipo', 'TRIDELTA · SB 123/SH-A-I', 'OE-605 ítem 2'], ['Ur / Uc', '123 kV / 98 kV', 'OE-605'], ['Corriente nominal de descarga', '20 kA', 'OE-605'],
+  pr: fi({ key: 'pr', item: 2, nombre: 'Pararrayos de óxido metálico 220 kV', origen: 'D', sistema: 'at',
+    datos: [['Marca / tipo', 'TRIDELTA · SB 123/SH-A-I', 'OE-605 ítem 2'], ['Ur / Uc', '198 kV / 156 kV', 'OE-605'], ['Corriente nominal de descarga', '20 kA', 'OE-605'],
       ['Cantidad', '9 (3 por bahía)', 'OE-605'], ['Altura del equipo', '1,905 m', 'OE-612'], ['Soporte', 'celosía de 3,20 m', 'OE-612 · ME_PA']],
     planos: P('OE-605', 'OE-606', 'OE-612', 'ME_PA', 'OC-705'), nota: 'Silueta del pararrayos referencial (alto y soporte del plano).' }),
-  tt: fi({ key: 'tt', item: 3, nombre: 'Transformador de tensión capacitivo 138 kV', origen: 'D', sistema: 'at',
-    datos: [['Marca / tipo', 'PFIFFNER · ECF 170', 'OE-605 ítem 3'], ['Relación', '138/√3 / 0,1/√3 / 0,1/√3 / 0,1/√3 kV', 'OE-605'], ['Devanados', '2 × 20 VA-3P; 1 × 20 VA-CL 0,2', 'OE-605'],
-      ['BIL', '750 kVp', 'OE-605'], ['Cantidad', '9 (3 por línea y 3 en barra)', 'OE-605'], ['Peso / altura', '415 kg · 2,411 m', 'OE-612'], ['Soporte', 'celosía 0,55 × 0,55 × 2,50 m', 'OE-612 · ME_TT']],
+  tt: fi({ key: 'tt', item: 3, nombre: 'Transformador de tensión capacitivo 220 kV', origen: 'D', sistema: 'at',
+    datos: [['Marca / tipo', 'PFIFFNER · ECF 170', 'OE-605 ítem 3'], ['Relación', '220/√3 / 0,1/√3 / 0,1/√3 / 0,1/√3 kV', 'OE-605'], ['Devanados', '2 × 20 VA-3P; 1 × 20 VA-CL 0,2', 'OE-605'],
+      ['BIL', '1050 kVp', 'OE-605'], ['Cantidad', '9 (3 por línea y 3 en barra)', 'OE-605'], ['Peso / altura', '415 kg · 2,411 m', 'OE-612'], ['Soporte', 'celosía 0,55 × 0,55 × 2,50 m', 'OE-612 · ME_TT']],
     planos: P('OE-605', 'OE-606', 'OE-612', 'ME_TT', 'OC-705') }),
   sl: fi({ key: 'sl', item: 4, nombre: 'Seccionador de línea tripolar con cuchilla de puesta a tierra', origen: 'D', sistema: 'at',
-    datos: [['Marca / tipo', 'COELME · TCB-E', 'OE-605 ítem 4'], ['In / Un', '1250 A · 170 kV', 'OE-605'], ['Icc', '31,5 kA / 1 s', 'OE-605'], ['BIL', '750 kVp', 'OE-605'],
+    datos: [['Marca / tipo', 'COELME · TCB-E', 'OE-605 ítem 4'], ['In / Un', '1250 A · 245 kV', 'OE-605'], ['Icc', '31,5 kA / 1 s', 'OE-605'], ['BIL', '1050 kVp', 'OE-605'],
       ['Cantidad', '2 (bahías de línea)', 'OE-605'], ['Estructura', '2,50 m', 'OE-606 B-B'], ['Base', '7,50 × 4,30 m', 'OC-703 BSL']],
     planos: P('OE-605', 'OE-606', 'OC-703'), nota: 'Apertura central giratoria (3 columnas por polo) dibujada en posición cerrada; columnas y brazos referenciales.' }),
-  tc: fi({ key: 'tc', item: 5, nombre: 'Transformador de corriente 138 kV', origen: 'D', sistema: 'at',
+  tc: fi({ key: 'tc', item: 5, nombre: 'Transformador de corriente 220 kV', origen: 'D', sistema: 'at',
     datos: [['Marca / tipo', 'PFIFFNER · JOF 170', 'OE-605 ítem 5'], ['Relación', '400-200 / 1-1-1-1 A', 'OE-605'], ['Núcleos', '1 × 20 VA-CL 0,2S; 3 × 20 VA-5P20', 'OE-605'],
-      ['BIL', '750 kVp', 'OE-605'], ['Cantidad', '6 (bahías de línea)', 'OE-605'], ['Peso / altura', '370 kg · 2,648 m', 'OE-612'], ['Soporte', 'celosía 0,55 × 0,55 × 3,20 m (L4×4×1/4")', 'ME_TC']],
+      ['BIL', '1050 kVp', 'OE-605'], ['Cantidad', '6 (bahías de línea)', 'OE-605'], ['Peso / altura', '370 kg · 2,648 m', 'OE-612'], ['Soporte', 'celosía 0,55 × 0,55 × 3,20 m (L4×4×1/4")', 'ME_TC']],
     planos: P('OE-605', 'OE-606', 'OE-612', 'ME_TC', 'OC-705') }),
-  int: fi({ key: 'int', item: 6, nombre: 'Interruptor de potencia de mando unipolar 138 kV', origen: 'D', sistema: 'at',
-    datos: [['Marca / tipo', 'CG Power and Industrial · 200-SFM-50AA', 'OE-605 ítem 6'], ['In', '2000 A', 'OE-605'], ['Un (placa del plano)', '127 kV', 'OE-605'], ['Icc', '40 kA', 'OE-605'],
+  int: fi({ key: 'int', item: 6, nombre: 'Interruptor de potencia de mando unipolar 220 kV', origen: 'D', sistema: 'at',
+    datos: [['Marca / tipo', 'CG Power and Industrial · 200-SFM-50AA', 'OE-605 ítem 6'], ['In', '2000 A', 'OE-605'], ['Un (placa del plano)', '245 kV', 'OE-605'], ['Icc', '40 kA', 'OE-605'],
       ['BIL', '1050 kVp', 'OE-605'], ['Cantidad', '3 (uno por bahía, polos independientes)', 'OE-605'], ['Altura', 'soporte 2,64 m · total 7,08 m', 'OE-606 D-D'], ['Base por polo', '1,90 × 1,90 m', 'OC-703 BIP']],
     planos: P('OE-605', 'OE-606', 'OC-703'), nota: 'Columna y cámara del polo referenciales; las alturas (2,64 m y 7,08 m) son las del OE-606.' }),
   sb: fi({ key: 'sb', item: 7, nombre: 'Seccionador de barra tripolar', origen: 'D', sistema: 'at',
-    datos: [['Marca / tipo', 'COELME · TCB', 'OE-605 ítem 7'], ['In / Un', '1250 A · 170 kV', 'OE-605'], ['Icc', '31,5 kA / 1 s', 'OE-605'], ['BIL', '750 kVp', 'OE-605'],
+    datos: [['Marca / tipo', 'COELME · TCB', 'OE-605 ítem 7'], ['In / Un', '1250 A · 245 kV', 'OE-605'], ['Icc', '31,5 kA / 1 s', 'OE-605'], ['BIL', '1050 kVp', 'OE-605'],
       ['Cantidad', '3 (uno por bahía)', 'OE-605'], ['Estructura / polo', '2,50 m + 1,99 m', 'OE-606 C-C'], ['Base', '8,48 × 4,30 m', 'OC-703 BSB']],
     planos: P('OE-605', 'OE-606', 'OC-703') }),
-  as: fi({ key: 'as', item: 8, nombre: 'Aislador soporte 138 kV', origen: 'D', sistema: 'at',
-    datos: [['Marca / modelo', 'CERISOL · C10-750 5600', 'OE-605 ítem 8'], ['Un / Icc', '170 kV · 31,5 kA / 1 s', 'OE-605'], ['BIL', '750 kVp', 'OE-605'],
+  as: fi({ key: 'as', item: 8, nombre: 'Aislador soporte 220 kV', origen: 'D', sistema: 'at',
+    datos: [['Marca / modelo', 'CERISOL · C10-750 5600', 'OE-605 ítem 8'], ['Un / Icc', '245 kV · 31,5 kA / 1 s', 'OE-605'], ['BIL', '1050 kVp', 'OE-605'],
       ['Cantidad', '6 (bahía de transformador)', 'OE-605'], ['Altura', '1,70 m sobre soporte de 3,20 m', 'OE-612 · ME_AS']],
     planos: P('OE-605', 'OE-606', 'OE-612', 'ME_AS', 'OC-705'), nota: 'El OE-606 (sección A-A) marca además el ítem 10 «aislador soporte CERISOL C20-450, 31,5 kA/1 s, 450 kVp» (3 u.) junto a esta fila; su ubicación exacta queda por confirmar.' }),
   sala: fi({ key: 'sala', item: 9, nombre: 'Sala eléctrica prefabricada (shelter)', origen: 'F', sistema: 'mt',
@@ -176,12 +176,12 @@ export const F = {
   tabTransf: fi({ key: 'tabTransf', item: 15, nombre: 'Tablero de transferencia automática', origen: 'R', sistema: 'ssaa',
     datos: [['Características', '380-220 V · 400 A · 60 Hz', 'OE-605 ítem 15'], ['Cantidad', '1', 'OE-605'], ['Huella', '0,80 × 0,80 m (X 4,39–5,19 · Y 36,47–37,27)', 'OE-622']], planos: P('OE-605', 'OE-622'), nota: 'Alto no indicado (1,80 m referencial).' }),
   // estructuras y conductores
-  portico: fi({ key: 'portico', nombre: 'Pórtico 138 kV P-19 m', origen: 'F', sistema: 'est',
+  portico: fi({ key: 'portico', nombre: 'Pórtico 220 kV P-19 m', origen: 'F', sistema: 'est',
     datos: [['Fabricante', 'Fabricante Demo', 'ME_P'], ['Columnas', '8 (C1, C2, C3) · 4 ejes × 2 filas', 'ME_P · OC-703 BP1'], ['Altura total', '19,00 m (castillete de cable de guarda)', 'ME_P'],
       ['Separación', '14,00 m (frontal) · 16,00 m (lateral)', 'ME_P'], ['Viga V1 (frontal)', 'de 15,50 a 16,50 m · luz libre 13,00 m', 'ME_P vista frontal'], ['Viga V2 (lateral)', 'de 11,50 a 12,50 m · luz libre 15,00 m', 'ME_P vista lateral'],
       ['Sección de columna', '1,00 × 1,00 m · plancha base con pernos a 1,718 m', 'ME_P'], ['Acero', 'perfil A572 Gr. 50, planchas A36, galvanizado en caliente', 'ME_P notas']],
     planos: P('ME_P', 'OE-611', 'OE-606', 'OC-706', 'OC-703'), nota: 'Columnas, vigas y castilletes con sus medidas; el despiece de la celosía (barras y diagonales) es simplificado.' }),
-  barras: fi({ key: 'barras', nombre: 'Barras 138 kV (simple barra)', origen: 'D', sistema: 'at',
+  barras: fi({ key: 'barras', nombre: 'Barras 220 kV (simple barra)', origen: 'D', sistema: 'at',
     datos: [['Conductor', 'ACAR 557 mm² (1100 MCM) · Ø 30,65 mm · 1,537 kg/m', 'OE-612'], ['Carga de rotura', '10 204 kg', 'OE-612'], ['Fases', 'R, S, T a 4, 8 y 12 m de la fila B (Y = 17,5 / 21,5 / 25,5 m)', 'OE-605 · OE-606 A-A'],
       ['Altura', '≈ 12,3 m, tendidas entre las vigas V2 de los ejes 2 a 5', 'OE-606 D-D'], ['Templado', '1 % de la carga de rotura', 'OE-612 nota 2']],
     planos: P('OE-605', 'OE-606', 'OE-612'), nota: 'Flechas y puentes alrededor de las columnas dibujados como en las secciones; los herrajes y conectores son referenciales.' }),
@@ -190,16 +190,16 @@ export const F = {
     planos: P('OE-606', 'OE-605'), nota: 'Recorridos de las bajadas y conexiones entre equipos según las secciones A-A y B-B; las curvas son referenciales.' }),
   guarda: fi({ key: 'guarda', nombre: 'Cable de guarda EHS 40 mm²', origen: 'D', sistema: 'est',
     datos: [['Cable', 'EHS 40 mm²', 'OE-606 · OE-604'], ['Altura', '19,00 m (castilletes del pórtico)', 'ME_P · OE-606']], planos: P('OE-606', 'OE-604', 'ME_P') }),
-  linea: fi({ key: 'linea', nombre: 'Llegada de la LT 138 kV (derivación L-2046 y L-2045)', origen: 'D', sistema: 'lin',
+  linea: fi({ key: 'linea', nombre: 'Llegada de la LT 220 kV (circuitos L-2202 y L-2201)', origen: 'D', sistema: 'lin',
     datos: [['Conductor', 'AAAC 253 mm²', 'OE-604 · OE-606 B-B'], ['Amarre en el pórtico', '16,00 m (viga V1 sur, fila B)', 'OE-604'], ['Torre T19 → pórtico', '50,69 m (distancia horizontal en la sección)', 'OE-604'],
-      ['Amarres en T19', 'S a 16,30 m, T y R encima (≈ 5,4 m entre fases)', 'OE-604 sección'], ['Circuitos', 'L-2046 → bahía eje 2–3 · L-2045 → bahía eje 3–4', 'OE-605 · OE-606 C-C']],
+      ['Amarres en T19', 'S a 16,30 m, T y R encima (≈ 5,4 m entre fases)', 'OE-604 sección'], ['Circuitos', 'L-2202 → bahía eje 2–3 · L-2201 → bahía eje 3–4', 'OE-605 · OE-606 C-C']],
     planos: P('OE-604', 'OE-606', 'LT'), nota: 'La posición de la T19 sale del tablero de la LT; su cota de terreno es la de la superficie de diseño del OC-302.' }),
   t23: fi({ key: 't23', nombre: 'Torre T19 (terminal de la LT)', origen: 'R', sistema: 'lin',
     datos: [['Ubicación', 'UTM 260 641,47 E · 8 242 480,68 N (WGS-84 19S)', 'tablero LT'], ['Cota en el tablero de la LT', '4 344,2 m s.n.m.', 'tablero LT'], ['Altura de amarres', 'fase más baja 16,30 m', 'OE-604']],
     planos: P('LT', 'OE-604'), nota: 'Torre dibujada como silueta referencial: su modelo detallado está en el tablero de la LT. Ojo: el OE-605 de 2023 dibuja las salidas hacia el sureste; el OE-604 de Oct-25 y el tablero de la LT las llevan a la T19 junto a la esquina A-6.' }),
   // obra civil
-  basePortico: fi({ key: 'basePortico', nombre: 'Base de pórtico 138 kV (BP1)', origen: 'D', sistema: 'civ', datos: [['Cantidad', '8', 'OC-703'], ['Huella', '3,21 × 3,19 m', 'OC-703']], planos: P('OC-703', 'OC-706') }),
-  baseEq: fi({ key: 'baseEq', nombre: 'Bases de equipos 138 kV', origen: 'D', sistema: 'civ',
+  basePortico: fi({ key: 'basePortico', nombre: 'Base de pórtico 220 kV (BP1)', origen: 'D', sistema: 'civ', datos: [['Cantidad', '8', 'OC-703'], ['Huella', '3,21 × 3,19 m', 'OC-703']], planos: P('OC-703', 'OC-706') }),
+  baseEq: fi({ key: 'baseEq', nombre: 'Bases de equipos 220 kV', origen: 'D', sistema: 'civ',
     datos: [['Interruptor (BIP)', '9 polos · 1,90 × 1,90 m', 'OC-703'], ['Seccionador de barra (BSB)', '3 · 8,48 × 4,30 m', 'OC-703'], ['Seccionador de línea (BSL)', '2 · 7,50 × 4,30 m', 'OC-703'],
       ['Transformador de corriente (BTC)', '6 · 2,10 × 2,10 m', 'OC-703'], ['Transformador de tensión (BTT)', '9 · 1,80 × 1,80 m', 'OC-703'], ['Pararrayos (BPR)', '9 · 1,60 × 1,60 m', 'OC-703'], ['Aislador soporte (BAS)', '6 · 1,60 × 1,60 m', 'OC-703']],
     planos: P('OC-703', 'OC-705'), nota: 'Huellas del OC-703. Pedestal y zapata con las medidas del OC-705 cuando el plano las trae; las bases de interruptor y seccionadores (OC-705 1 a 4 de 8) no se pudieron bajar de Drive (archivos > 6 MB).' }),
@@ -279,7 +279,7 @@ function dado(w, d, hSob = 0.2, zap = null, hPed = 1.1, hZap = 0.4) {
   return g;
 }
 
-// ------------------------------------------------------------------ equipos 138 kV (origen local en la base, a nivel del patio)
+// ------------------------------------------------------------------ equipos 220 kV (origen local en la base, a nivel del patio)
 const H_SOP = 0.20; // tope del pedestal sobre la grava (OC-705 5 a 8 de 8)
 function pararrayosEq() {
   const g = new THREE.Group();
@@ -399,7 +399,7 @@ function transformador() {
   // conservador a lo largo de X
   const cons = cil(0.36, 0.36, L * 0.62, pint, 22, -L * 0.12, yb + H + 0.95, W * 0.1); cons.rotation.z = Math.PI / 2; g.add(cons);
   for (const x of [-L * 0.35, L * 0.1]) g.add(caja(0.1, 0.95, 0.1, pint, x, yb + H + 0.45, W * 0.1));
-  // bushings 138 kV hacia el sur (−Y → +z) y neutro
+  // bushings 220 kV hacia el sur (−Y → +z) y neutro
   for (let i = -1; i <= 1; i++) {
     const b = new THREE.Group(); b.add(cil(0.2, 0.24, 0.3, pint, 16, 0, 0.15, 0));
     const a = aislador(1.55, M.aisladorGris, 0.09, 0.18, 0.055); a.position.y = 0.3; b.add(a);
@@ -444,9 +444,9 @@ export async function construir(escena, avisar = () => {}) {
   // todo lo que está dentro del cerco se arma en un grupo reflejado (X → 67 − X); la llegada de la LT y el terreno quedan fuera
   const pat = new THREE.Group(); pat.name = 'patio (espejo)'; pat.scale.x = -1; pat.position.x = ESPEJO; escena.add(pat);
   const r0 = ROT.length, e0 = ETQ.length, h0 = HUECOS.length;
-  avisar('Pórtico 138 kV…');
+  avisar('Pórtico 220 kV…');
   portico(pat);
-  avisar('Equipos 138 kV…');
+  avisar('Equipos 220 kV…');
   equipos(pat);
   avisar('Barras y conductores…');
   conductores(pat);
@@ -526,7 +526,7 @@ export function actualizarHuecos(escena) {
   return n;
 }
 
-// ---------- pórtico 138 kV (ME_P-Rev.001)
+// ---------- pórtico 220 kV (ME_P-Rev.001)
 const COL_X = [8, 22, 36, 50], COL_Y = [13.5, 29.5];
 const H_V1 = [15.5, 16.5], H_V2 = [11.5, 12.5], H_PUNTA = 19.0;
 function portico(escena) {
@@ -554,13 +554,13 @@ function portico(escena) {
   const bases = new THREE.Group();
   for (const x of COL_X) for (const y of COL_Y) { const b = dado(2.0, 2.0, H_SOP, [3.21, 3.19], 1.8, 0.5); en(b, x, y); bases.add(b); }
   escena.add(reg(bases, 'obraCivil', F.basePortico));
-  ROT.push({ texto: 'Pórtico 138 kV P-19 m', X: 29, Y: 13.5, h: 20.3, capa: 'portico' });
-  ROT.push({ texto: 'Barras 138 kV', X: 6.2, Y: 21.5, h: 13.2, capa: 'barras', menor: true });
+  ROT.push({ texto: 'Pórtico 220 kV P-19 m', X: 29, Y: 13.5, h: 20.3, capa: 'portico' });
+  ROT.push({ texto: 'Barras 220 kV', X: 6.2, Y: 21.5, h: 13.2, capa: 'barras', menor: true });
 }
 
 // ---------- equipos por bahía
 const POS = {}; // posiciones de bornes para los conductores {clave: [Vector3...]}
-// códigos de equipo del unifilar OE-602 (bahía eje 2–3 = L-2046 Río Claro; eje 3–4 = L-2045 Pampa Alta)
+// códigos de equipo del unifilar OE-602 (bahía eje 2–3 = L-2202; eje 3–4 = L-2201; las dos llegan de la SE Río Claro)
 export const COD = {
   b1: { sb: 'SB-4294', int: 'IN-4284', pr: 'PR-2804' },
   b2: { pr: 'PR-2802', tt: 'TT-2802', sl: 'SL-4292', tc: 'TC-2802', int: 'IN-4282', sb: 'SB-4292' },
@@ -610,7 +610,7 @@ function equipos(escena) {
       cod = COD.trafo; const tp = transformador(); add(tp, 'trafo', F.trafo, 15.10, 35.38, 0.3, 0);
       POS.trafo = { X: 15.10, Y: 35.38 - tp.userData.dzAT, h: 0.3 + tp.userData.tAT };
       ETQ.push({ n: 1, key: 'trafo', X: 17.5, Y: 35.4, h: 5.6 });
-      ROT.push({ texto: 'Transformador 10/12,5 MVA 138/10 kV', X: 15.1, Y: 38.5, h: 6.0, capa: 'trafo' });
+      ROT.push({ texto: 'Transformador 10/12,5 MVA 220/10 kV', X: 15.1, Y: 38.5, h: 6.0, capa: 'trafo' });
     }
   }
   // TT de barra (OC-703: eje 5, Y = 17,5 / 21,5 / 25,5) y su tablero de agrupamiento
@@ -687,8 +687,8 @@ function llegadaLinea(escena) {
     gT.add(barra(a, b, 0.09, M.fantasma));
   }
   gT.userData.t23 = true; escena.add(reg(gT, 'linea', F.t23));   // userData.t23: el BIM general oculta solo la silueta (su T19 es la del tablero)
-  ROT.push({ texto: 'Torre T19 (LT 138 kV)', X: T19.X, Y: T19.Y, h: zT + hG + 1.5, capa: 'linea' });
-  // vanos: L-2046 (bahía eje 3-4) a un lado y L-2045 (bahía eje 4-5) al otro; fases R, S, T
+  ROT.push({ texto: 'Torre T19 (LT 220 kV)', X: T19.X, Y: T19.Y, h: zT + hG + 1.5, capa: 'linea' });
+  // vanos: L-2202 (bahía eje 3-4) a un lado y L-2201 (bahía eje 4-5) al otro; fases R, S, T
   const lado = { b2: 1, b3: -1 };
   for (const b of BAHIAS.filter((x) => x.tipo === 'linea')) for (const [ph, dx] of FASES) {
     const X = esp(b.x0 + dx);

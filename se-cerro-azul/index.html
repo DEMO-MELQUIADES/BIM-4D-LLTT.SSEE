@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Demo · SE Cerro Azul · Modelo 3D</title>
-<meta name="description" content="Tablero de la SE Cerro Azul 138/10 kV (Cliente Demo): modelo 3D en código del patio de llaves, pórtico P-19 m, transformador 10/12,5 MVA, salas eléctricas, servicios auxiliares y obras civiles, levantado desde los planos de ingeniería de detalle, con fichas, unifilar enlazado y plano CAD.">
+<meta name="description" content="Tablero de la SE Cerro Azul 220/10 kV (Cliente Demo): modelo 3D en código del patio de llaves, pórtico P-19 m, transformador 10/12,5 MVA, salas eléctricas, servicios auxiliares y obras civiles, levantado desde los planos de ingeniería de detalle, con fichas, unifilar enlazado y plano CAD.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_scz_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:(t||'dark');})();</script>
+<script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_scz_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:'light';})();</script>
 <style>
 /* 23-Oct-26 · espacio de la SE Cerro Azul con la distribución, la paleta y los botones del tablero de la LT y de la SE Río Claro */
 :root{
-  --bg:#0a111c; --panel:#0f1a2b; --panel-2:#0C1524; --panel-3:#14223a;
-  --ink:#edf0f5; --ink-2:#a2b2cb; --ink-mut:#647a9c; --line:#172439; --line-2:#21324f;
-  --sky:#2e5faf; --sky-2:#89abe1; --sky-soft:rgba(32,70,131,.20); --amber:#d79a32; --red:#d9714f;
+  --bg:#0a121e; --panel:#0e1b2f; --panel-2:#0B1627; --panel-3:#13243f;
+  --ink:#ecf0f6; --ink-2:#9eb1cf; --ink-mut:#5e78a2; --line:#16263f; --line-2:#385d99;
+  --sky:#2c67c7; --sky-2:#86aae4; --sky-soft:rgba(38,94,185,.20); --amber:#d79a32; --red:#d9714f;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px -18px rgba(0,0,0,.75);
-  --D:#3fb36a; --F:#4f8be8; --R:#e07b1f; --glass:rgba(15,26,43,.93);
+  --D:#3fb36a; --F:#4f8be8; --R:#e07b1f; --glass:rgba(14,27,47,.93);
 }
 :root[data-theme="light"]{
-  --bg:#edeff3; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e4e9f1;
-  --ink:#0c182b; --ink-2:#303f58; --ink-mut:#617492; --line:#d8dfea; --line-2:#bec9db;
-  --sky:#204683; --sky-2:#132035; --sky-soft:rgba(32,70,131,.12); --amber:#9a6e22; --red:#b5452a;
+  --bg:#eceff4; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e3e9f2;
+  --ink:#0b192f; --ink-2:#486592; --ink-mut:#5e769d; --line:#d6dfec; --line-2:#bcc9dd;
+  --sky:#265eb9; --sky-2:#122139; --sky-soft:rgba(38,94,185,.12); --amber:#9a6e22; --red:#b5452a;
   --shadow:0 1px 2px rgba(15,28,42,.06),0 12px 30px -16px rgba(15,28,42,.28);
   --D:#22a04b; --F:#1f5fd6; --R:#d0701a; --glass:rgba(255,255,255,.94);
 }
@@ -36,8 +36,8 @@ button.on{background:var(--sky);border-color:var(--sky);color:#fff}
 button:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
 .oculto{display:none!important}
 /* ===== TOPBAR (igual a la LT y a la SE Río Claro) ===== */
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(115deg,#132035,#204683);border:1px solid var(--line);border-radius:11px;padding:8px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#182c4d,#204683)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(115deg,#122139,#265eb9);border:1px solid var(--line);border-radius:11px;padding:8px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2c59a1,#265eb9)}
 .topbar::after{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(120% 140% at 88% -30%,#000,transparent 62%)}
 .tb-l,.tb-m,.tb-r{position:relative;z-index:1}
 .tb-l h1{font-size:.96rem;line-height:1.15;color:#fff;font-weight:800}
@@ -96,7 +96,7 @@ table.tb small{display:block;color:var(--ink-mut);font-size:.6rem;margin-top:1px
 #vista{position:absolute;inset:0}
 #vista canvas{display:block;touch-action:none}
 #rotulos{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2;isolation:isolate}
-.rot{font:500 11px/1.2 "Inter",sans-serif;color:#fff;background:rgba(14,20,32,.8);padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translateY(-6px);border-left:3px solid var(--sky)}
+.rot{font:500 11px/1.2 "Inter",sans-serif;color:#fff;background:rgba(13,21,34,.8);padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translateY(-6px);border-left:3px solid var(--sky)}
 .num{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:600 11px/1 "JetBrains Mono",monospace;color:#c0392b;background:rgba(255,255,255,.95);border:2px solid #c0392b;box-shadow:0 2px 6px rgba(0,0,0,.25);pointer-events:auto;cursor:pointer}
 .num.R{border-style:dashed}
 .num:hover{background:#c0392b;color:#fff}
@@ -162,7 +162,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
 #uniSvg{flex:1;overflow:hidden;cursor:grab;color:var(--ink);background:var(--panel);touch-action:none}
 #uniSvg svg{width:100%;height:100%;display:block}
 #uniSvg.drag{cursor:grabbing}
-#hud{position:absolute;left:50%;bottom:52px;transform:translateX(-50%);z-index:6;pointer-events:none;background:rgba(14,20,32,.86);color:#fff;font-size:.7rem;padding:6px 12px;border-radius:14px;max-width:92%;text-align:center;line-height:1.35}
+#hud{position:absolute;left:50%;bottom:52px;transform:translateX(-50%);z-index:6;pointer-events:none;background:rgba(13,21,34,.86);color:#fff;font-size:.7rem;padding:6px 12px;border-radius:14px;max-width:92%;text-align:center;line-height:1.35}
 .tbv{position:absolute;z-index:5;top:10px;left:272px;display:flex;gap:5px;flex-wrap:wrap}
 .tbv button{background:var(--glass);box-shadow:var(--shadow);font-size:.7rem}
 @media (max-width: 1100px){ #v-res{grid-template-columns:repeat(3,minmax(0,1fr))} #v-res .wide,#v-res .half{grid-column:span 3} }
@@ -180,16 +180,16 @@ input[type=range]{width:100%;accent-color:var(--sky)}
   #uni{left:6px;right:6px;bottom:46px;height:52%}
   #v-res{grid-template-columns:repeat(2,minmax(0,1fr))} #v-res .wide,#v-res .half{grid-column:span 2}
 }
-.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}</style>
+.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}#bTema,#themeBtn{display:none!important}:root[data-theme="light"]{--bg:#f2f5fa;--sky:#2563eb;--sky-soft:rgba(37,99,235,.10);--amber:#b7791f;--amber-soft:rgba(245,158,11,.16);--amber-fill:#f59e0b}:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2563eb 0%,#3b82f6 60%,#60a5fa 100%)}:root[data-theme="light"] .verdict .big{color:var(--amber)!important}.nav button.bim-badge::after{background:#f59e0b!important;color:#1f2937!important}.topbar .demo-tag{background:#fff;color:#2563eb}#izq h2:nth-of-type(2),#modoColor,#leySis,#leyOri,#izq h2:nth-of-type(4),#corteEje,#corte,#izq label.capa:has(#vNum),#izq label.capa:has(#vTapa),#izq label.capa:has(#vSom){display:none!important}</style>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
 </script>
 </head>
 <body>
 <header class="topbar">
-  <div class="tb-l"><h1><b class="demo-tag">Demo</b>SE Cerro Azul <span>· 138/10 kV · 10/12,5 MVA</span></h1>
-    <div class="sub">Derivación LT 138 kV Pampa Alta – Río Claro a la SE Cerro Azul · obras electromecánicas y civiles · modelo 3D levantado desde la ingeniería de detalle</div></div>
-  <div class="tb-m"><span>Patio <b>67 × 56 m</b></span><span>Cota <b>4 340,45 m s.n.m.</b></span><span>Bahías <b>3 × 138 kV</b></span><span>Salidas <b>3 × 10 kV</b></span></div>
+  <div class="tb-l"><h1><b class="demo-tag">Demo</b>SE Cerro Azul <span>· 220/10 kV · 10/12,5 MVA</span></h1>
+    <div class="sub">LT 220 kV Río Claro – Cerro Azul · llegada a la SE Cerro Azul · obras electromecánicas y civiles · modelo 3D levantado desde la ingeniería de detalle</div></div>
+  <div class="tb-m"><span>Patio <b>67 × 56 m</b></span><span>Cota <b>4 340,45 m s.n.m.</b></span><span>Bahías <b>3 × 220 kV</b></span><span>Salidas <b>3 × 10 kV</b></span></div>
   <div class="tb-r"><span class="badge">Modelo 3D · sin avance de obra aún</span><a class="iconbtn" href="../" title="Volver a la portada">⌂ Portada</a><button class="iconbtn" id="bTema" title="Tema claro u oscuro">◐</button></div>
 </header>
 <nav class="nav" id="nav" aria-label="Pestañas">
@@ -216,7 +216,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
           <button data-v="planta">Planta</button>
           <button data-v="aa">Sección A-A · trafo</button>
           <button data-v="bb">Sección B-B · línea</button>
-          <button data-v="portico">Pórtico 138 kV</button>
+          <button data-v="portico">Pórtico 220 kV</button>
           <button data-v="linea">Llegada LT · T19</button>
           <button data-v="trafo">Transformador</button>
           <button data-v="salas">Salas y 10 kV</button>
@@ -300,8 +300,8 @@ function resumen() {
   const S = [['S1', 0, 0, '4 340,77'], ['S2', 0, 56, '4 340,43'], ['S3', 67, 56, '4 340,12'], ['S4', 67, 0, '4 340,46']];
   $('#v-res').innerHTML = `
     <div class="verdict wide"><div class="big">Modelo 3D listo · avance por cargar</div><div class="txt">Este espacio reúne la <b>SE Cerro Azul</b> levantada en 3D desde sus planos (disposición OE-605, secciones OE-606, llegada de línea OE-604, pórtico P-19 m aprobado, obras civiles OC-703 y explanación OC-302). Todavía <b>no hay reportes diarios de la subestación</b>: el BIM 4D (avance por equipo y por base, curvas y fotos) se enciende cuando lleguen, como en la SE Río Claro.</div></div>
-    ${k('Bahías 138 kV', '3', 'transformador + líneas L-2046 y L-2045', true)}
-    ${k('Transformador', '10/12,5 <span>MVA</span>', 'ABB TD2LF · 138/10 kV · YNd5')}
+    ${k('Bahías 220 kV', '3', 'transformador + líneas L-2202 y L-2201', true)}
+    ${k('Transformador', '10/12,5 <span>MVA</span>', 'ABB TD2LF · 220/10 kV · YNd5')}
     ${k('Salidas 10 kV', '3', 'Mina 1, Mina 2 y Mina 3')}
     ${k('Salas eléctricas', '2', 'OEM Electric · 12 × 3 × 3 m')}
     ${k('Patio', '67 × 56 <span>m</span>', 'plataforma 71,16 × 59,16 m')}
@@ -336,7 +336,7 @@ function planos() {
 }
 const USO = {
   'OE-605': 'ubicación de cada equipo, fases R-S-T, globos 1–15, salas, SSAA, caseta y almacén', 'OE-606': 'alturas de pórtico, barras (12,3 m), tendidos (16 m), equipos y recorridos de bajadas',
-  'OE-604': 'llegada desde la torre T19 (amarres a 16 m y 16,30 m, 50,69 m)', 'OE-611': 'disposición del pórtico 138 kV y salidas', 'OE-612': 'alturas, pesos y soportes de TC, TT, pararrayos y aisladores; conductor de barras',
+  'OE-604': 'llegada desde la torre T19 (amarres a 16 m y 16,30 m, 50,69 m)', 'OE-611': 'disposición del pórtico 220 kV y salidas', 'OE-612': 'alturas, pesos y soportes de TC, TT, pararrayos y aisladores; conductor de barras',
   'OE-602': 'unifilar enlazado y códigos de equipos (IN-4280…, SB-4290…, TP-390)',
   'OE-622': 'posición de las salas ER1 y ER2, losa y equipos de SS.AA. y ductos PVC enterrados (manda sobre el OC-703)', 'OE-626': 'salida en 10 kV: vanos Mina 1-2-3, pararrayos, seccionadores, cable N2XSOH y amarre a 7,20 m',
   'OE-619': 'montaje del transformador de SS.AA.: cerco, envolvente y base', 'OE-609': 'red de tierra profunda: conductor, cuadrícula 8 × 8 m, 15 pozos y conexiones', ME_P: 'geometría del pórtico P-19 m (columnas, V1, V2, castilletes)', ME_TC: 'soporte de TC 0,55 × 3,20 m',
@@ -344,9 +344,9 @@ const USO = {
   'OC-705': 'bases de pararrayos, TT, TC y aislador', 'OC-706': 'bases del pórtico 10 kV', 'OC-302': 'superficie del terreno y taludes', 'OC-710': 'cerco perimétrico', 'OC-713': 'almacén general',
   'OC-714': 'portón principal', 'OC-715': 'cisterna', 'OC-716': 'sistema séptico', OEM: 'salas eléctricas ER1 y ER2', A11: 'características de equipos', LT: 'posición de la torre T19',
 };
-const PEND = [['OE-625 Sistema de apantallamiento (9 MB)', 'puntas y cables de apantallamiento adicionales'], ['OE-617 Cadena de aisladores 138 kV (22 MB)', 'herrajes y número de discos de las cadenas'],
+const PEND = [['OE-625 Sistema de apantallamiento (9 MB)', 'puntas y cables de apantallamiento adicionales'], ['OE-617 Cadena de aisladores 220 kV (22 MB)', 'herrajes y número de discos de las cadenas'],
   ['OE-618 Fuerza e iluminación exterior (17 MB)', 'postes y reflectores del patio'], ['OE-609 / OE-610 Mallas de tierra – planta (11 MB c/u)', 'malla de tierra profunda y superficial (hay PDF; falta vectorizarlo)'],
-  ['OC-705 1 a 4 de 8 (≈ 11 MB c/u)', 'detalle de bases de interruptor y seccionadores'], ['OC-706 1de2 Bases del pórtico 138 kV (11 MB)', 'pedestal y zapata del pórtico'],
+  ['OC-705 1 a 4 de 8 (≈ 11 MB c/u)', 'detalle de bases de interruptor y seccionadores'], ['OC-706 1de2 Bases del pórtico 220 kV (11 MB)', 'pedestal y zapata del pórtico'],
   ['OC-709 Caseta de vigilancia (8 MB c/u)', 'arquitectura de la caseta'], ['OC-710 1 de 4 Cerco – planta (6,9 MB)', 'trazo del cerco y ubicación de juntas']];
 resumen(); planos();
 
@@ -602,7 +602,7 @@ function irA(info, obj) {
   volar(c.clone().addScaledVector(dir, Math.max(r * 1.7, 6)), c);
 }
 const GRUPOS_L = [
-  ['Patio 138 kV', ['pr', 'tt', 'sl', 'tc', 'int', 'sb', 'as', 'tabTC', 'tabTT', 'armario']],
+  ['Patio 220 kV', ['pr', 'tt', 'sl', 'tc', 'int', 'sb', 'as', 'tabTC', 'tabTT', 'armario']],
   ['Transformación', ['trafo']],
   ['Estructuras y conductores', ['portico', 'barras', 'conductores', 'guarda']],
   ['Llegada de la línea', ['linea', 't23']],
@@ -611,7 +611,7 @@ const GRUPOS_L = [
   ['Edificaciones y cerco', ['caseta', 'almacen', 'residuos', 'cisterna', 'septico', 'cerco', 'porton']],
   ['Terreno', ['terreno']],
 ];
-const RES_L = [['3 bahías', '138 kV · simple barra'], ['10/12,5 MVA', 'TP-390 · 138/10 kV'], ['P-19 m', 'pórtico de 8 columnas'], ['3 salidas', '10 kV · Mina 1, 2, 3']];
+const RES_L = [['3 bahías', '220 kV · simple barra'], ['10/12,5 MVA', 'TP-390 · 220/10 kV'], ['P-19 m', 'pórtico de 8 columnas'], ['3 salidas', '10 kV · Mina 1, 2, 3']];
 function lista(filtro = '') {
   const l = $('#lista'); const f = filtro.trim().toLowerCase();
   if (!l.querySelector('#buscar')) {

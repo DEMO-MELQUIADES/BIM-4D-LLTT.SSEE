@@ -40,12 +40,12 @@ export const ESTADOS = { E: 'Existente', P: 'Proyectado', C: 'Nueva obra civil' 
 
 // ------------------------------------------------------------------ disposición (del DWG)
 export const L = {
-  // pórtico rectangular de barras 138 kV (4 columnas)
+  // pórtico rectangular de barras 220 kV (4 columnas)
   g138: { xs: [18.7, 34.6], ys: [34.2, 18.2], hBarra: 9.0, hLinea: 11.5, hCol: 12.3, punta: 2.5 },
   barra: { T: 30.2, S: 26.2, R: 22.2 },            // fases de barra (E–O)
-  lineaX: [22.7, 26.7, 30.7],                       // conductores N–S (llegada L-2045 y bajada TP-384)
+  lineaX: [22.7, 26.7, 30.7],                       // conductores N–S (llegada L-2201 y bajada TP-384)
   eqX: [23.7, 26.7, 29.7],                          // fases de equipos (3,20 m)
-  // bahía de llegada L-2045 (de norte a sur)
+  // bahía de llegada L-2201 (de norte a sur)
   y380: { PR: 38.2, TT: 35.2, SL: 32.4, IN: 28.5, TC: 24.8, SB: 22.0 },
   // bahía TP-384 (al sur de la barra)
   y384: { SB: 15.2, IN: 11.2, PR: 8.2, TPc: [26.7, 5.8] },
@@ -69,18 +69,18 @@ const F = {
       Grupo: 'YNyn0d5 · 60 Hz', Regulación: 'Bajo carga (OLTC) con tablero de regulación automática (T1)', Altura: '7,203 m del nivel de base al borne AT',
       Nota: 'Equipo existente suministrado por Cliente Demo; se traslada, monta y prueba en la SE Río Claro (actividad del fabricante).' },
     planos: ['DEMO-SE-OE-605', 'OE-606', 'OE-612 (1/2 y 2/2)'], cod: ['=TP-385', '=TP-385 (CBC)'] },
-  IN385: { id: 'IN-383', nombre: 'Interruptor de potencia 145/170 kV de la bahía del TP-385', estado: 'E', cod: '=IN-383', obra: 'interv',
+  IN385: { id: 'IN-383', nombre: 'Interruptor de potencia 245 kV de la bahía del TP-385', estado: 'E', cod: '=IN-383', obra: 'interv',
     obraTxt: 'Equipo existente. Se reconectan sus cables de control, disparo y fuerza, reubicados durante las obras civiles (ficha de conexionado Rev. D).',
-    datos: { Código: 'IN-383 (OE-603 y esquemas funcionales =E1.A01.CP01)', Marca: 'ABB', Tipo: 'LTB 170D1/B (leyenda OE-605, ítem 3)', 'Corriente nominal': '2 000 A (OE-605) · el OE-603 indica 3 150 A: verificar en placa', 'Tensión': '170 kV', 'Corriente de corte': '40 kA', BIL: '750 kVp',
+    datos: { Código: 'IN-383 (OE-603 y esquemas funcionales =E1.A01.CP01)', Marca: 'ABB', Tipo: 'LTB 170D1/B (leyenda OE-605, ítem 3)', 'Corriente nominal': '2 000 A (OE-605) · el OE-603 indica 3 150 A: verificar en placa', 'Tensión': '245 kV', 'Corriente de corte': '40 kA', BIL: '1050 kVp',
       'Mando': 'Gabinete central de interruptor (cables de control por PVC SAP 4×Ø2" a la canaleta C1)' },
     planos: ['OE-603', 'OE-605', 'OE-606', 'OE-614'] },
   SB385: { id: 'SB-383', nombre: 'Seccionador de barra tripolar de mando motorizado', estado: 'E', cod: '=SB-383', obra: 'rel',
     obraTxt: 'Equipo existente; sus cables al tablero 18 (CP01), al 17 (CP02) y a SS.AA. figuran como existentes en la ficha Rev. D.',
-    datos: { Código: 'SB-383 (OE-603 y esquemas funcionales)', Marca: 'ABB', Tipo: 'SDF170 (leyenda OE-605, ítem 4)', 'Corriente nominal': '1 600 A (OE-605) · el OE-603 indica 1 250 A: verificar en placa', 'Tensión': '170 kV', 'Corto circuito': '31,5 kA / 1 s', BIL: '750 kVp' }, planos: ['OE-603', 'OE-605', 'OE-606'] },
-  AS385: { id: 'Aislador soporte', nombre: 'Aislador soporte 138 kV (fase T) · ítem 5 del OE-605', estado: 'E',
-    datos: { Marca: 'EMEK', Modelo: 'C4-750', 'Corto circuito': '31,5 kA / 1 s', BIL: '750 kVp', Montaje: 'Pedestal de 2,50 m; aislador de 1,786 m' }, planos: ['OE-605', 'OE-606'] },
-  PR385: { id: 'PR-383', nombre: 'Pararrayos de óxido metálico 120 kV (3)', estado: 'P',
-    datos: { Marca: 'Cooper Power', Tipo: 'VariSTAR U3', Ur: '120 kV', Uc: '98 kV', Clase: '3 · 10 kA', Montaje: 'Ménsula del transformador (lo suministra el fabricante del transformador)' }, planos: ['OE-605', 'OE-606', 'OE-612'] },
+    datos: { Código: 'SB-383 (OE-603 y esquemas funcionales)', Marca: 'ABB', Tipo: 'SDF170 (leyenda OE-605, ítem 4)', 'Corriente nominal': '1 600 A (OE-605) · el OE-603 indica 1 250 A: verificar en placa', 'Tensión': '245 kV', 'Corto circuito': '31,5 kA / 1 s', BIL: '1050 kVp' }, planos: ['OE-603', 'OE-605', 'OE-606'] },
+  AS385: { id: 'Aislador soporte', nombre: 'Aislador soporte 220 kV (fase T) · ítem 5 del OE-605', estado: 'E',
+    datos: { Marca: 'EMEK', Modelo: 'C4-750', 'Corto circuito': '31,5 kA / 1 s', BIL: '1050 kVp', Montaje: 'Pedestal de 2,50 m; aislador de 1,786 m' }, planos: ['OE-605', 'OE-606'] },
+  PR385: { id: 'PR-383', nombre: 'Pararrayos de óxido metálico 198 kV (3)', estado: 'P',
+    datos: { Marca: 'Cooper Power', Tipo: 'VariSTAR U3', Ur: '198 kV', Uc: '156 kV', Clase: '3 · 10 kA', Montaje: 'Ménsula del transformador (lo suministra el fabricante del transformador)' }, planos: ['OE-605', 'OE-606', 'OE-612'] },
   K03: { id: 'K03', nombre: 'Celda de media tensión — llegada del transformador TP-385', estado: 'E', cod: '=K03+K03', obra: 'interv',
     obraTxt: 'Celda existente «a ser conectada con el nuevo transformador» (nota del OE-607): llega el cable 10 kV del TP-385 y sale el cable nuevo de señal de tensión al tablero 22 (WGK034001).',
     datos: { Marca: 'Siemens', Modelo: 'NXPLUS C', Tensión: '24 kV', Corriente: '1 250 A', 'Corto circuito': '25 kA', 'Interruptor (OE-603)': 'IN-116 · 1 250 A · 17,5 kV · 25 kA', 'Relé (OE-603)': 'Siemens 7SJ82 (27/59 · 59N · 50/51 · 25)', 'Medida (OE-603)': 'TC-105 1 000/1/1 A · TT-103 10/√3 / 0,1/√3 kV · medidor PM9510DC · pararrayos PR-105', Conexión: 'Cable N2XSOH 12/20 kV 500 mm² desde la cajuela 10 kV (OE-603: 3F × 2 × 1×500 mm², 35 m)' }, planos: ['OE-603', 'OE-605', 'OE-607', 'OE-609'] },
@@ -238,7 +238,7 @@ export function construir(escena) {
   return { terreno: TER };
 }
 
-// ---------- patio 138 kV
+// ---------- patio 220 kV
 function patio138() {
   const G = L.g138, hb = G.hBarra, hl = G.hLinea;
   // 4 columnas y 4 vigas (dos niveles)
@@ -255,10 +255,10 @@ function patio138() {
   const vW = new THREE.Mesh(P.vigaCelosia(G.ys[0] - G.ys[1] - 0.9, 0.9, 0.9, 0.9), M.acero);
   const vE = vW.clone(); en(vW, G.xs[0], (G.ys[0] + G.ys[1]) / 2, hb, 90); en(vE, G.xs[1], (G.ys[0] + G.ys[1]) / 2, hb, 90);
   [vN, vS, vW, vE].forEach((v) => { v.castShadow = true; est.add(v); });
-  reg(est, 'patio138', { id: 'Pórtico 138 kV', nombre: 'Estructura de barras 138 kV (4 columnas de celosía)', estado: 'E',
+  reg(est, 'patio138', { id: 'Pórtico 220 kV', nombre: 'Estructura de barras 220 kV (4 columnas de celosía)', estado: 'E',
     datos: { Planta: `${(G.xs[1] - G.xs[0]).toFixed(1)} × ${(G.ys[0] - G.ys[1]).toFixed(1)} m entre ejes de columnas`, 'Vigas de barra (E–O)': `≈ ${hb} m`, 'Vigas de línea (N–S)': `≈ ${hl} m`, 'Cable de guarda': '40 mm² EHS en castilletes' },
     planos: ['OE-604', 'OE-606'], aprox: true });
-  etiqueta(est, 'Barra 138 kV', hb + 1.5, 26.6, 26.2);
+  etiqueta(est, 'Barra 220 kV', hb + 1.5, 26.6, 26.2);
 
   // barras E–O: de la viga oeste a la viga este y su prolongación al pórtico de la bahía TP-385
   const B = new THREE.Group();
@@ -277,7 +277,7 @@ function patio138() {
     const b2 = p3(X, G.ys[1] + 2.3, hl - 0.45), b = p3(X, G.ys[1] + 0.45, hl - 0.45);
     B.add(P.cadena(a, a2), P.cadena(b, b2), conectar(a2, b2, 0.5, 0.016));
   }
-  reg(B, 'cables', { id: 'Barra 138 kV', nombre: 'Barras flexibles 138 kV y conductores de cruce', estado: 'E',
+  reg(B, 'cables', { id: 'Barra 220 kV', nombre: 'Barras flexibles 220 kV y conductores de cruce', estado: 'E',
     datos: { Fases: 'T (Y 30,2) · S (Y 26,2) · R (Y 22,2), separación 4,00 m', 'Ampliación': 'Vano de 12,00 m hasta el pórtico de barra de la bahía TP-385', Anclaje: 'Cadenas de aisladores de suspensión' }, planos: ['OE-604', 'OE-605'] });
 
   // cable de guarda entre castilletes
@@ -287,7 +287,7 @@ function patio138() {
   for (const k of [0, 1]) CG.add(conectar(p3(G.xs[1], G.ys[k], tp), p3(L.b385.porticoX, L.b385.porticoYs[k], 1.09 + 10.4 + 2.6), 0.25, 0.006, M.aceroOsc));
   reg(CG, 'cables', { id: 'Cable de guarda', nombre: 'Cable de guarda 40 mm² EHS', estado: 'E', datos: { Material: 'Acero EHS 40 mm²' }, planos: ['OE-606'] });
 
-  // ---- bahía de llegada L-2045 (de SE Pampa Alta)
+  // ---- bahía de salida L-2201 (a la SE Cerro Azul)
   const y = L.y380;
   const LL = new THREE.Group();
   L.lineaX.forEach((X, i) => {
@@ -314,14 +314,14 @@ function patio138() {
     const fb = [L.barra.T, L.barra.S, L.barra.R][i];
     LL.add(conectar(p3(X, y.SB - 1.0, 4.85), p3(X, fb, hb - 0.7), 0.4));
   });
-  reg(LL, 'patio138', { id: 'Bahía L-2045', nombre: 'Bahía de llegada de línea L-2045 desde SE Pampa Alta', estado: 'E',
-    datos: { Línea: 'L-2045, 138 kV, 47,83 km', 'Equipos (norte → sur)': 'PR-380 pararrayos 120 kV MCOV 98 kV · TT-380 Arteche DDB-245 + B-380 trampa de onda · SL-380 MESA 1 250 A con cuchilla ST-380 · IN-380 General Electric GL313F3/4031P 3 150 A, 40 kA · TC-380 ABB IMB170 400/1/1/1 A · SB-380 MESA 1 250 A', Protección: 'Tablero 14: SEL 421 (21/21N, 79) · SEL 351A (27) · KCEG 140 (67N) · DFR Qualitrol', Separación: 'Equipos a 3,00–3,20 m entre fases' },
+  reg(LL, 'patio138', { id: 'Bahía L-2201', nombre: 'Bahía de salida de la línea L-2201 a la SE Cerro Azul', estado: 'E',
+    datos: { Línea: 'L-2201, 220 kV, 8,3 km', 'Equipos (norte → sur)': 'PR-380 pararrayos 198 kV MCOV 156 kV · TT-380 Arteche DDB-245 + B-380 trampa de onda · SL-380 MESA 1 250 A con cuchilla ST-380 · IN-380 General Electric GL313F3/4031P 3 150 A, 40 kA · TC-380 ABB IMB170 400/1/1/1 A · SB-380 MESA 1 250 A', Protección: 'Tablero 14: SEL 421 (21/21N, 79) · SEL 351A (27) · KCEG 140 (67N) · DFR Qualitrol', Separación: 'Equipos a 3,00–3,20 m entre fases' },
     planos: ['OE-602 (2/2)', 'OE-604'], aprox: true });
-  etiqueta(LL, 'L-2045 · llegada SE Pampa Alta', 7.5, 26.7, 37.0);
+  etiqueta(LL, 'L-2201 · salida a SE Cerro Azul', 7.5, 26.7, 37.0);
   // conductores de la línea saliendo al norte (hacia la última estructura, fuera del plano)
   const LN = new THREE.Group();
   L.lineaX.forEach((X) => LN.add(conectar(p3(X, y.PR + 0.2, 4.4), p3(X - 6, 82, 19), 2.2, 0.016)));
-  reg(LN, 'cables', { id: 'L-2045', nombre: 'Línea 138 kV L-2045 (llega desde SE Pampa Alta)', estado: 'E', datos: { Longitud: '47,86 km', Nota: 'Se dibuja solo el tramo dentro del modelo; la estructura terminal está fuera del plano.' }, planos: ['OE-602 (2/2)'], aprox: true });
+  reg(LN, 'cables', { id: 'L-2201', nombre: 'Línea 220 kV L-2201 (sale a la SE Cerro Azul)', estado: 'E', datos: { Longitud: '8,30 km', Nota: 'Se dibuja solo el tramo dentro del modelo; la estructura terminal está fuera del plano.' }, planos: ['OE-602 (2/2)'], aprox: true });
 
   // ---- bahía TP-384 (al sur de la barra)
   const y4 = L.y384; const B4 = new THREE.Group();
@@ -342,7 +342,7 @@ function patio138() {
   });
   B4.add(en(P.caja(0.8, 1.1, 0.5, M.gabinete), 28.2, y4.IN, 0.55));
   reg(B4, 'patio138', { id: 'Bahía TP-384', nombre: 'Bahía de transformador TP-384', estado: 'E',
-    datos: { Equipos: 'SB-382 AEG 1 250 A · IN-382 AEG 3 150 A, 40 kA/3 s · PR-380 120 kV · TC 100–200/1/1/1 A (base de pararrayos existente)', Transformador: 'TP-384 ABB 138+2/−14×1,25 % / 22 / 10 kV · 18/6/18 MVA ONAN · 22/8/22 MVA ONAF · YNyn0d5', Protección: 'Tablero 9: R32 SEL 351A (50/51, 50N/51N, 27/59) · R31 SEL 387E (87T) · R33 86' }, planos: ['OE-602', 'OE-603', 'OE-604'], aprox: true });
+    datos: { Equipos: 'SB-382 AEG 1 250 A · IN-382 AEG 3 150 A, 40 kA/3 s · PR-380 198 kV · TC 100–200/1/1/1 A (base de pararrayos existente)', Transformador: 'TP-384 ABB 220+2/−14×1,25 % / 22 / 10 kV · 18/6/18 MVA ONAN · 22/8/22 MVA ONAF · YNyn0d5', Protección: 'Tablero 9: R32 SEL 351A (50/51, 50N/51N, 27/59) · R31 SEL 387E (87T) · R33 86' }, planos: ['OE-602', 'OE-603', 'OE-604'], aprox: true });
 
   // ---- bahía TP-383 (al oeste)
   const b3 = L.b383; const B3 = new THREE.Group();
@@ -363,7 +363,7 @@ function patio138() {
   });
   // cadenas de la viga oeste hacia la bahía
   for (const Y of Object.values(L.barra)) B3.add(P.cadena(p3(G.xs[0] - 0.45, Y, hb - 0.45), p3(G.xs[0] - 1.9, Y, hb - 0.45)));
-  reg(B3, 'patio138', { id: 'Bahía TP-383', nombre: 'Bahía de transformador TP-383 (138/33 kV)', estado: 'E',
+  reg(B3, 'patio138', { id: 'Bahía TP-383', nombre: 'Bahía de transformador TP-383 (220/33 kV)', estado: 'E',
     datos: { Equipos: 'SB-381 MESA 1 250 A · IN-381 Magrini Galileo 2 000 A, 31,5 kA · PR-381 120 kV · TC 100–200/1/1/1 A', Transformador: 'TP-383 WEG 127,65 ± 10×1 % / 34,5 / 4,16 kV · 20/18/20 MVA ONAN · 25/22/25 MVA ONAF · YNyn0d5', Protección: 'Tablero 9: R22 KCGG 140 (50/51, 50N/51N) · R21 SEL 387E (87T) · R23 86 · R41 KCGG 140 lado 33 kV', Fases: 'Horizontales a 3,00 m (Y 29,2 · 26,2 · 23,2)' }, planos: ['OE-602', 'OE-603', 'OE-604'], aprox: true });
 }
 
@@ -399,7 +399,7 @@ function bahia385() {
   C.add(conectar(p3(xS[1], L.barra.S, hb - 0.5), p3(xS[1], b.ySec + 1.0, ySec), 0.45));
   C.add(conectar(p3(xS[2], L.barra.R, hb - 0.5), p3(xS[2], b.ySec + 1.0, ySec), 0.25));
   for (let i = 0; i < 3; i++) C.add(conectar(p3(xS[i], b.ySec - 1.0, ySec), p3(xI[i] + 0.22, b.yIn, yIn), 0.45));
-  reg(C, 'cables', { id: 'Conexiones AT', nombre: 'Conexiones 138 kV barra → seccionador → interruptor', estado: 'P', datos: { Conductor: 'AAAC Ø 240 mm² (plano de conectores)' }, planos: ['OE-615'] });
+  reg(C, 'cables', { id: 'Conexiones AT', nombre: 'Conexiones 220 kV barra → seccionador → interruptor', estado: 'P', datos: { Conductor: 'AAAC Ø 240 mm² (plano de conectores)' }, planos: ['OE-615'] });
   // ACAR 557 interruptor → bornes AT del transformador (con conectores)
   const A = new THREE.Group();
   const yBorne = 0.25 + 7.0;
@@ -470,7 +470,7 @@ function patio33() {
   // TT de barra 33 kV
   est.add(en(P.transformadorMedida({ tipo: 'TT', hPed: 2.0 }), 12.7, 32.2));
   reg(est, 'patio33', { id: 'Patio 33 kV', nombre: 'Patio de llaves 33 kV — salidas a SE Mina Norte y SE Mina Sur', estado: 'E',
-    datos: { Estructura: `${(G.xs[1] - G.xs[0]).toFixed(1)} × ${(G.ys[0] - G.ys[1]).toFixed(1)} m`, Salidas: 'SE Mina Norte (L-331, AAAC 150 mm²) y SE Mina Sur (L-332, AAAC 95 mm²)', 'Alimentación': 'Desde TP-383 138/33 kV' },
+    datos: { Estructura: `${(G.xs[1] - G.xs[0]).toFixed(1)} × ${(G.ys[0] - G.ys[1]).toFixed(1)} m`, Salidas: 'SE Mina Norte (L-331, AAAC 150 mm²) y SE Mina Sur (L-332, AAAC 95 mm²)', 'Alimentación': 'Desde TP-383 220/33 kV' },
     planos: ['OE-602 (2/2)', 'OE-604'], aprox: true });
   etiqueta(est, 'Patio 33 kV', 9.5, 8.9, 35.2);
 }

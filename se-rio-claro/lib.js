@@ -423,7 +423,7 @@ export function transformadorPotencia({ L = 5.4, W = 2.4, H = 3.1, radiadores = 
   g.add(caja(0.22, 0.2, 0.2, M.gabinete, L * 0.15, yb + H + 0.45, W * 0.2));
   // deshumectador
   g.add(cil(0.08, 0.08, 0.45, M.vidrio, 12, -L * 0.42, yb + H * 0.55, W / 2 + 0.05));
-  // bushings AT 138 kV (3) — en el lado +Z del techo, separados sepAT
+  // bushings AT 220 kV (3) — en el lado +Z del techo, separados sepAT
   const bushH = Math.max(1.6, hTotal - (yb + H) - 0.2);
   for (let i = -1; i <= 1; i++) {
     const b = new THREE.Group();

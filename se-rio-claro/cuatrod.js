@@ -1,4 +1,4 @@
-// BIM 4D del servicio de Integrador Demo (habilitación del nuevo tablero CPM L-2045): estados de las actividades a una fecha, zonas del
+// BIM 4D del servicio de Integrador Demo (habilitación del nuevo tablero CPM L-2201): estados de las actividades a una fecha, zonas del
 // modelo coloreadas por ese estado, barra de tiempo (debajo del visor) y Gantt (pestaña Cronograma: control diario de Integrador Demo;
 // cronogramas V8 de Supervisión Demo y Integrador Demo Rev. 1 como referencia). Datos: rio4d.js (gen/uchu_build.py); sin nombres de personas.
 // La relación actividad ↔ zona del modelo sale de la columna «TABLERO / UBICACIÓN» del control; las ubicaciones del nuevo
@@ -8,7 +8,7 @@
 import * as THREE from 'three';
 
 // estados (paleta del tablero de la LT; sin rojo de juicio: «detrás de lo programado» va en ámbar)
-export const COL4 = { pend: '#9aa4ad', curso: '#c89030', term: '#204683', atras: '#e08a1e', cond: '#c3c8cd' };
+export const COL4 = { pend: '#9aa4ad', curso: '#c89030', term: '#265eb9', atras: '#e08a1e', cond: '#c3c8cd' };
 export const TXT4 = { pend: 'Por iniciar', curso: 'En curso', term: 'Terminado', atras: 'Detrás de lo programado', cond: 'Condicionada' };
 const MES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'];
 const DIA = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -75,7 +75,7 @@ const CSS = `
 .g4 .n b{font:600 .68rem "JetBrains Mono",monospace;color:var(--ink-mut);text-align:right;margin:0}
 .g4 .n .nm{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .g4 .n .pc{font:600 .66rem "JetBrains Mono",monospace;color:var(--ink-2);white-space:nowrap;text-align:right;min-width:4.6em}
-.g4 .n .pc.term{color:#204683}
+.g4 .n .pc.term{color:#265eb9}
 .g4 .n .pc.atras{color:#b8650a}
 .g4 .n .pc.nd{color:var(--ink-mut);font-weight:400}
 .g4 .r.hoy .n .nm{font-weight:600}
@@ -84,7 +84,7 @@ const CSS = `
 .g4 .t{position:relative;align-self:stretch;min-height:26px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--dw) - 1px),var(--line) calc(var(--dw) - 1px),var(--line) var(--dw))}
 .g4 .t .lb{position:absolute;top:calc(50% - 7px);height:14px;border:1px solid var(--line-2);background:var(--panel-3);border-radius:3px;box-sizing:border-box}
 .g4 .t .ev{position:absolute;top:calc(50% - 7px);height:14px;border-radius:3px}
-.g4 .t .pv{position:absolute;top:calc(50% - 7px);height:14px;border-radius:3px;background:repeating-linear-gradient(135deg,rgba(32,70,131,.42) 0 3px,transparent 3px 6px)}
+.g4 .t .pv{position:absolute;top:calc(50% - 7px);height:14px;border-radius:3px;background:repeating-linear-gradient(135deg,rgba(38,94,185,.42) 0 3px,transparent 3px 6px)}
 .g4 .t .pm{position:absolute;top:calc(50% - 9px);height:18px;width:2px;background:var(--ink);opacity:.55}
 .g4 .t .l{position:absolute;top:-1px;bottom:-1px;width:2px;margin-left:-1px;background:#d9714f;z-index:1}
 .g4 .t .c{position:absolute;top:-1px;bottom:-1px;width:0;border-left:1px dashed var(--ink-mut);z-index:1}

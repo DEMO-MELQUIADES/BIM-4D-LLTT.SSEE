@@ -21,8 +21,8 @@ export class ViewCube {
     this.r.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); this.r.setSize(size, size, false); this.r.setClearColor(0x000000, 0);
     const CS = 1.42, FR = 1.64; this.CS = CS;
     this.sc = new THREE.Scene(); this.cam = new THREE.OrthographicCamera(-FR, FR, FR, -FR, 0.1, 30);
-    const tex = (txt, bg, w, h, fs, col = '#132035') => { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
-      if (bg) { x.fillStyle = bg; x.fillRect(0, 0, w, h); x.strokeStyle = '#617492'; x.lineWidth = 5; x.strokeRect(2.5, 2.5, w - 5, h - 5); }
+    const tex = (txt, bg, w, h, fs, col = '#122139') => { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
+      if (bg) { x.fillStyle = bg; x.fillRect(0, 0, w, h); x.strokeStyle = '#5e769d'; x.lineWidth = 5; x.strokeRect(2.5, 2.5, w - 5, h - 5); }
       x.fillStyle = col; x.font = `bold ${fs}px Archivo, Arial, sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, w / 2, h / 2 + 1);
       const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t; };
     // caras laterales: el rumbo más cercano a su normal según el norte del plano
@@ -34,13 +34,13 @@ export class ViewCube {
     const faces = [[lado(new THREE.Vector3(1, 0, 0)), '#e3ece9'], [lado(new THREE.Vector3(-1, 0, 0)), '#e3ece9'], ['PLANTA', '#f4f8f6'], ['ABAJO', '#c9d6d2'], [lado(new THREE.Vector3(0, 0, 1)), '#ecf2f0'], [lado(new THREE.Vector3(0, 0, -1)), '#ecf2f0']];
     this.cube = new THREE.Mesh(new THREE.BoxGeometry(CS, CS, CS), faces.map((f) => new THREE.MeshBasicMaterial({ map: tex(f[0], f[1], 128, 128, f[0].length > 5 ? 23 : 27) })));
     this.sc.add(this.cube, new THREE.LineSegments(new THREE.EdgesGeometry(this.cube.geometry), new THREE.LineBasicMaterial({ color: 0x4f6b63 })));
-    this.hl = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x204683, transparent: true, opacity: 0.6, depthTest: false }));
+    this.hl = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x265eb9, transparent: true, opacity: 0.6, depthTest: false }));
     this.hl.visible = false; this.hl.renderOrder = 3; this.sc.add(this.hl);
     const RY = -0.5 * CS - 0.06;
-    const ring = new THREE.Mesh(new THREE.RingGeometry(0.78 * CS, 0.9 * CS, 64), new THREE.MeshBasicMaterial({ color: 0x8392ab, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
+    const ring = new THREE.Mesh(new THREE.RingGeometry(0.78 * CS, 0.9 * CS, 64), new THREE.MeshBasicMaterial({ color: 0x7e91b0, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
     ring.rotation.x = -Math.PI / 2; ring.position.y = RY; this.sc.add(ring);
     for (const [txt, v] of [['N', norte], ['E', E], ['S', norte.clone().negate()], ['O', E.clone().negate()]]) {
-      const m = new THREE.Mesh(new THREE.PlaneGeometry(0.44, 0.44), new THREE.MeshBasicMaterial({ map: tex(txt, null, 96, 96, 66, txt === 'N' ? '#b5452a' : '#303f58'), transparent: true, side: THREE.DoubleSide, depthTest: false }));
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(0.44, 0.44), new THREE.MeshBasicMaterial({ map: tex(txt, null, 96, 96, 66, txt === 'N' ? '#b5452a' : '#486592'), transparent: true, side: THREE.DoubleSide, depthTest: false }));
       m.rotation.set(-Math.PI / 2, 0, 0); m.position.copy(v.clone().multiplyScalar(1.06 * CS)); m.position.y = RY; m.renderOrder = 2; this.sc.add(m);
     }
     let pd = null;

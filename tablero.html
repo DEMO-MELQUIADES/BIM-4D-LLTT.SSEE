@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Demo · Tablero · LT 138 kV Cerro Azul</title>
-<style>body{margin:0;background:#e5e8ed;font:15px system-ui,sans-serif;color:#142a4e;display:grid;place-items:center;min-height:100vh}#m{text-align:center}#m b{display:block;font-size:18px;margin-bottom:6px}#m span{color:#576172}</style>
+<title>Demo · Tablero · LT 220 kV Cerro Azul</title>
+<style>body{margin:0;background:#e4e8ee;font:15px system-ui,sans-serif;color:#2557a7;display:grid;place-items:center;min-height:100vh}#m{text-align:center}#m b{display:block;font-size:18px;margin-bottom:6px}#m span{color:#61718b}</style>
 </head><body><div id="m"><b>Armando el tablero…</b><span id="s">cargando el diseño</span></div>
 <script>
 /* tablero.html · arma la página en el navegador: plantilla.html (diseño) + datos.
@@ -34,14 +34,14 @@
       t = t.replace(/[−\-+]?\s?US\$\s?[−\-]?\d[\d.,]*\s?(?:k|K|M|mil)?/g, '—').replace(/(?<![\w$])\$\s?\d[\d.,]*\s?(?:k|K|M)\b/g, '—');
       t = t.replace(/\b(4087246|2404173|1099075|1168933|255282|251203|608558)\b/g, '0');
       t = t.replace(/\s*<button[^>]*data-v="v-dec"[^>]*>[\s\S]*?<\/button>/, '').replace(/\s*<button[^>]*data-v="v-res"[^>]*>[\s\S]*?<\/button>/, '');
-      const css = '\n/* modo visita: solo BIM 4D y Proceso Constructivo */\n#v-dec,#v-res{display:none!important}\n#visitaChip{position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:8px;align-items:center;background:#142a4e;color:#fff;font:600 12px/1 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}\n#visitaChip a{color:#f5d7a3;text-decoration:none;font-weight:700}\n';
+      const css = '\n/* modo visita: solo BIM 4D y Proceso Constructivo */\n#v-dec,#v-res{display:none!important}\n#visitaChip{position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:8px;align-items:center;background:#2557a7;color:#fff;font:600 12px/1 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}\n#visitaChip a{color:#f5d7a3;text-decoration:none;font-weight:700}\n';
       const k = t.lastIndexOf('</style>'); t = t.slice(0, k) + css + t.slice(k);
       const chip = '<div id="visitaChip">👁️ Modo visita · BIM 4D y Proceso Constructivo · <a href="index.html">🔐 Iniciar sesión</a></div>\n<script>window.addEventListener("load",()=>setTimeout(()=>{ const b=document.querySelector("#nav button[data-v=\\"v-bim\\"]"); if(b) b.click(); },250));<\/script>\n';
       const j = t.lastIndexOf('</body>'); t = t.slice(0, j) + chip + t.slice(j);
       t = t.replace('<title>', '<title>Visita · ');
     } else if (sesion) {   /* 29-Oct-26 (auditoría, ok del usuario): el chip «usuario · acceso completo · Cerrar sesión» solo con sesión real; en el portal abierto
                               (decisión del 19-Oct) no hay sesión que cerrar y en el celular tapaba texto del Resumen y de Reportes diarios */
-      const chip = '<div id="sesionChip">👤 <b id="sesionUser"></b> · acceso completo · <a href="index.html" onclick="try{sessionStorage.clear()}catch(e){}">Cerrar sesión</a></div>\n<style>#sesionChip{position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:6px;align-items:center;background:#142a4e;color:#fff;font:600 12px/1 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}\n#sesionChip a{color:#f5d7a3;text-decoration:none;font-weight:700}</style>\n<script>try{document.getElementById("sesionUser").textContent=sessionStorage.getItem("cerroazulUser")||"usuario"}catch(e){}<\/script>';
+      const chip = '<div id="sesionChip">👤 <b id="sesionUser"></b> · acceso completo · <a href="index.html" onclick="try{sessionStorage.clear()}catch(e){}">Cerrar sesión</a></div>\n<style>#sesionChip{position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:6px;align-items:center;background:#2557a7;color:#fff;font:600 12px/1 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}\n#sesionChip a{color:#f5d7a3;text-decoration:none;font-weight:700}</style>\n<script>try{document.getElementById("sesionUser").textContent=sessionStorage.getItem("cerroazulUser")||"usuario"}catch(e){}<\/script>';
       const j = t.lastIndexOf('</body>'); t = t.slice(0, j) + chip + t.slice(j);
     }
     /* 23-Oct-26 · enlace directo desde el BIM general (pedido del usuario: «si quisiese irme al detalle, que me lleve al 4D de esa
