@@ -17170,6 +17170,29 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 :root[data-theme="light"]{--c-civ:#2563eb;--c-elm:#93c5fd;--c-acc:#e9a23b}
 @media (max-width:700px){.topbar .tb-l .sub{display:none}.topbar .tb-m>span:not(:last-child){display:none}}
 
+.dm-gal{margin-top:0}
+#v-proc .obra-bottom > #dmGal{order:-1;grid-column:1/-1}
+@media(max-width:860px){#v-proc .obra-bottom{display:flex!important;flex-direction:column}}
+.dm-gal h3{display:flex;align-items:center;gap:8px}
+.dm-gal h3 .dm-gn{margin-left:auto;font:600 .62rem/1 inherit;font-family:inherit;color:var(--ink-mut);text-transform:none;letter-spacing:0}
+.dm-gal-g{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:8px}
+.dm-ft{position:relative;border:0;padding:0;border-radius:10px;overflow:hidden;cursor:zoom-in;background:var(--panel-3);aspect-ratio:4/3;
+  opacity:0;transform:translateY(8px) scale(.98);animation:dmFt .45s cubic-bezier(.2,.75,.2,1) forwards}
+@keyframes dmFt{to{opacity:1;transform:none}}
+.dm-ft img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.dm-ft:hover img{transform:scale(1.06)}
+.dm-ft span{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 6px;font:600 .62rem/1.2 inherit;font-family:inherit;color:#fff;text-align:left;
+  background:linear-gradient(transparent,rgba(5,15,35,.72))}
+.dm-gal-v{display:flex;align-items:center;justify-content:center;min-height:120px;border:1px dashed var(--line-2);border-radius:10px;
+  color:var(--ink-mut);font-size:.72rem;text-align:center;padding:12px;margin-top:8px}
+.dm-gal-pie{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+.dm-gal-pie button{border:1px solid var(--line-2);background:var(--panel);color:var(--sky);border-radius:999px;padding:6px 12px;font:600 .66rem/1 inherit;
+  font-family:inherit;cursor:pointer;transition:background-color .18s,color .18s}
+.dm-gal-pie button:hover{background:var(--sky);color:#fff}
+@media (max-width:1100px){.dm-gal-g{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:700px){.dm-gal-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;padding-bottom:4px}
+  .dm-ft{flex:0 0 62%;scroll-snap-align:start}}
+
 /* demo pública */
 #demoChip{position:fixed;right:14px;bottom:14px;z-index:9999;max-width:calc(100vw - 28px);background:#2563eb;color:#fff;font:600 12px/1.35 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.18);pointer-events:none;opacity:.92}
 @media (max-width:700px){#demoChip{font-size:10.5px;padding:6px 10px;right:8px;bottom:8px}}
@@ -17340,6 +17363,85 @@ html body #v-bim > .bim-stages{grid-row:7!important}
     })();
   }
   irHash(); addEventListener('hashchange', irHash);
+})();</script>
+<script>(function(){
+  var MES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'];
+  function fc(s){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return m ? m[3] + '-' + MES[+m[2] - 1] : ''; }
+  var NOM = {acceso:'Caminos de acceso', 'excavación':'Excavación', solado:'Concreto solado', stub:'Nivelación de stub', acero:'Acero de refuerzo',
+             encofrado:'Encofrado de pedestal', vaciado:'Vaciado de concreto', relleno:'Relleno compactado', pat:'Puesta a tierra'};
+  function faseDe(n){ n = n || '';
+    if (/puesta a tierra|\bpat\b|contrapeso|varillas/i.test(n)) return 'pat';
+    if (/^caminos|acceso/i.test(n)) return 'acceso';
+    if (/excavaci/i.test(n)) return 'excavación';
+    if (/solado/i.test(n)) return 'solado';
+    if (/stub/i.test(n)) return 'stub';
+    if (/acero/i.test(n)) return 'acero';
+    if (/encofrado/i.test(n)) return 'encofrado';
+    if (/concreto f/i.test(n)) return 'vaciado';
+    if (/relleno compactado/i.test(n)) return 'relleno';
+    return null; }
+  function fotos(){ try { return (typeof FOTOS_CAMPO !== 'undefined' && FOTOS_CAMPO) ? FOTOS_CAMPO : []; } catch(e){ return []; } }
+  // coherencia con el avance oficial: una foto de la etapa entra solo si su torre tiene esa actividad iniciada en el corte
+  // (hoja Avance); las fotos de caminos y las de actividades sin desglose por torre entran todas
+  var CLAVE = {'excavación':'Excavación', solado:'Solado', stub:'Stub', acero:'Acero', encofrado:'Encofrado', vaciado:'Concreto', acceso:'Caminos'};
+  function coherente(f, fase){
+    var k = CLAVE[fase]; if (!k || !f.torre) return true;
+    try { var t = DATA.towers.find(function(x){ return x.t === f.torre; }); var v = t && t.d ? t.d[k] : null;
+      return typeof v === 'number' && v > 0; } catch(e){ return true; }
+  }
+  // de la más reciente a la más antigua, alternando torres (la última de cada torre primero)
+  function orden(L){
+    var por = {}, k = [];
+    L.slice().sort(function(a, b){ var na = (a.q || 999) < 200 ? 1 : 0, nb = (b.q || 999) < 200 ? 1 : 0;      // movidas al final
+        return na - nb || (b.fecha + (b.hora || '')).localeCompare(a.fecha + (a.hora || '')); })
+      .forEach(function(f){ var t = f.torre || f.camino || '—'; if (!por[t]) { por[t] = []; k.push(t); } por[t].push(f); });
+    var out = [], hay = true;
+    while (hay){ hay = false; k.forEach(function(t){ if (por[t].length){ out.push(por[t].shift()); hay = true; } }); }
+    return out;
+  }
+  function tarjeta(){
+    var c = document.getElementById('dmGal'); if (c) return c;
+    var ref = document.querySelector('#v-proc .obra-bottom'); if (!ref) return null;
+    c = document.createElement('div'); c.className = 'card dm-gal'; c.id = 'dmGal';
+    ref.appendChild(c); return c;            // al final del DOM (no mueve los nth-child del tablero) y primero por «order»
+  }
+  var ultima = null;
+  function pintar(forzar){
+    var c = tarjeta(); if (!c) return;
+    var row = document.querySelector('#flowSvg .pc-row.on'); if (!row) return;
+    var nm = (row.querySelector('.pc-nm') || row).childNodes[0]; nm = nm ? nm.textContent.trim() : '';
+    var fase = faseDe(nm), clave = nm + '|' + fotos().length;
+    if (!forzar && clave === ultima) return; ultima = clave;
+    var L = fase ? orden(fotos().filter(function(f){ return f.fase === fase && coherente(f, fase); })) : [];
+    var tit = '<h3><span class="dot"></span>Fotos de la etapa · ' + (fase ? NOM[fase] : nm) + '<span class="dm-gn">' + (L.length ? L.length + ' fotos' : '') + '</span></h3>';
+    if (!L.length){
+      c.innerHTML = tit + '<div class="dm-gal-v">' + (!fotos().length ? 'Cargando las fotos de obra…' :
+        (/montaje|tendido|amortiguador|telecomunic|pruebas|perfiles/i.test(nm) ? 'El montaje electromecánico aún no empieza: sus fotos aparecerán aquí cuando inicie.' :
+         'Esta actividad aún no tiene fotos de obra.')) + '</div>';
+      return;
+    }
+    var N = Math.min(L.length, 12), h = tit + '<div class="desc">Fotos de obra de esta actividad, de la más reciente a la más antigua y de distintas torres · toque una para verla en grande</div><div class="dm-gal-g">';
+    for (var i = 0; i < N; i++){ var f = L[i];
+      h += '<button type="button" class="dm-ft" data-i="' + i + '" style="animation-delay:' + (i * 0.04).toFixed(2) + 's"><img loading="lazy" alt="" src="' + (f.mini || f.src) + '"><span>' +
+        (f.torre || ('Camino ' + (f.camino || ''))) + ' · ' + fc(f.fecha) + '</span></button>'; }
+    h += '</div><div class="dm-gal-pie"><button type="button" data-todas="1">Ver las ' + L.length + ' en Fotos de obra →</button></div>';
+    c.innerHTML = h;
+    c.querySelectorAll('.dm-ft').forEach(function(b){ b.onclick = function(){ try { abrirFoto(L[+b.dataset.i].src, L); } catch(e){} }; });
+    var todas = c.querySelector('[data-todas]');
+    if (todas) todas.onclick = function(){
+      try { fotSel.fase = fase; fotSel.zona = 'Todas'; fotSel.sem = null; fotSel.celda = null; fotSel.obs = null; } catch(e){}
+      var b = document.querySelector('[data-v="v-fot"]'); if (b) b.click();
+      setTimeout(function(){ try { renderFotosTab(); } catch(e){} }, 60);
+    };
+  }
+  function vigilar(){
+    var fl = document.getElementById('flowSvg'); if (!fl) return setTimeout(vigilar, 500);
+    var t = null; new MutationObserver(function(){ clearTimeout(t); t = setTimeout(function(){ pintar(false); }, 60); }).observe(fl, { childList: true, subtree: true });
+    var n = 0; (function esperar(){ if (fotos().length) { pintar(true); return; } try { if (typeof cargarFotosCampo === 'function') cargarFotosCampo(); } catch(e){}
+      if (n++ < 120) setTimeout(esperar, 500); })();
+    pintar(true);
+  }
+  vigilar();
 })();</script>
 <div id="demoChip">Demo con datos ficticios · LT 220 kV Río Claro – Cerro Azul</div>
 </body>
