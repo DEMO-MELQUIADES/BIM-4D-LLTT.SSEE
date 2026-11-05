@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo · Tablero · LT 138 kV Cerro Azul</title>
+<style>body{margin:0;background:#e5e8ed;font:15px system-ui,sans-serif;color:#142a4e;display:grid;place-items:center;min-height:100vh}#m{text-align:center}#m b{display:block;font-size:18px;margin-bottom:6px}#m span{color:#576172}</style>
+</head><body><div id="m"><b>Armando el tablero…</b><span id="s">cargando el diseño</span></div>
+<script>
+/* tablero.html · arma la página en el navegador: plantilla.html (diseño) + datos.
+   Sin sesión: la parte «visita» de datos.json (sin montos ni decisiones). Con sesión (index.html): los datos descifrados que
+   quedaron en sessionStorage. Hace en el navegador lo mismo que tablero.py generar. */
+(async () => {
+  const $s = document.getElementById('s'); const say = t => { $s.textContent = t; };
+  try {
+    let datos = null, modo = 'visita', sesion = false;   /* 29-Oct-26: «sesion» = datos que dejó un inicio de sesión (index.html) */
+    try { const j = sessionStorage.getItem('demoDatos'); if (j) { datos = JSON.parse(j); modo = 'completo'; sesion = true; } } catch (e) {}
+    const tplR = await fetch('plantilla.html', {cache: 'no-cache'});   /* 24-Oct-26: no-cache revalida con el servidor (304 si no cambió) en vez de bajar 1,8 MB en cada visita */ if (!tplR.ok) throw new Error('no se pudo cargar plantilla.html');
+    let t = await tplR.text();
+    if (!datos) { say('cargando los datos'); const r = await fetch('datos.json', {cache: 'no-cache'}); if (!r.ok) throw new Error('no se pudo cargar datos.json');
+      const j = await r.json();
+      /* 19-Oct-26 (decisión del usuario: «que esté libre, que ya no requiera clave ni contraseña, solo un botón de entrar»):
+         si datos.json trae el tablero completo, se muestra entero sin sesión; si trae «visita», el modo visita de siempre. */
+      if (j.completo) { datos = j.completo; modo = 'completo'; } else datos = j.visita; }
+    say('colocando los datos del corte ' + (datos.campos.fecha_larga || ''));
+    for (const [n, v] of Object.entries(datos.bloques)) t = t.split('⟦bloque:' + n + '⟧').join(v);
+    /* 22-Oct-26 (v72.53): un bloque que la plantilla conoce y el corte publicado todavía no trae (bloque nuevo, como PERSONAL)
+       va vacío (null) y la plantilla usa su respaldo; antes, cualquier bloque nuevo dejaba el portal en «no coinciden» hasta
+       republicar los datos. Los campos sueltos (⟦fecha_larga⟧…) siguen siendo obligatorios. */
+    t = t.replace(/⟦bloque:\w+⟧/g, 'null');
+    t = t.replace(/⟦(\w+)⟧/g, (m, k) => (k in datos.campos ? datos.campos[k] : m));
+    if (t.includes('⟦')) throw new Error('la plantilla y los datos no coinciden (' + (datos.plantilla || '?') + ')');
+    if (modo === 'visita') {
+      /* mismas reglas que build_visita.py sobre el código de la interfaz */
+      t = t.replace(/const BAC = \d+, EV_TOT = \d+;/, 'const BAC = 0, EV_TOT = 0;   // visita: sin montos');
+      const i = t.indexOf('const costs = ['); if (i >= 0) { let d = 0, p = i + 14; for (; p < t.length; p++) { if (t[p] === '[') d++; else if (t[p] === ']') { d--; if (!d) { p++; break; } } } t = t.slice(0, i + 14) + '[]' + t.slice(p); }
+      t = t.replace(/[−\-+]?\s?US\$\s?[−\-]?\d[\d.,]*\s?(?:k|K|M|mil)?/g, '—').replace(/(?<![\w$])\$\s?\d[\d.,]*\s?(?:k|K|M)\b/g, '—');
+      t = t.replace(/\b(4087246|2404173|1099075|1168933|255282|251203|608558)\b/g, '0');
+      t = t.replace(/\s*<button[^>]*data-v="v-dec"[^>]*>[\s\S]*?<\/button>/, '').replace(/\s*<button[^>]*data-v="v-res"[^>]*>[\s\S]*?<\/button>/, '');
+      const css = '\n/* modo visita: solo BIM 4D y Proceso Constructivo */\n#v-dec,#v-res{display:none!important}\n#visitaChip{position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:8px;align-items:center;background:#142a4e;color:#fff;font:600 12px/1 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}\n#visitaChip a{color:#f5d7a3;text-decoration:none;font-weight:700}\n';
+      const k = t.lastIndexOf('</style>'); t = t.slice(0, k) + css + t.slice(k);
+      const chip = '<div id="visitaChip">👁️ Modo visita · BIM 4D y Proceso Constructivo · <a href="index.html">🔐 Iniciar sesión</a></div>\n<script>window.addEventListener("load",()=>setTimeout(()=>{ const b=document.querySelector("#nav button[data-v=\\"v-bim\\"]"); if(b) b.click(); },250));<\/script>\n';
+      const j = t.lastIndexOf('</body>'); t = t.slice(0, j) + chip + t.slice(j);
+      t = t.replace('<title>', '<title>Visita · ');
+    } else if (sesion) {   /* 29-Oct-26 (auditoría, ok del usuario): el chip «usuario · acceso completo · Cerrar sesión» solo con sesión real; en el portal abierto
+                              (decisión del 19-Oct) no hay sesión que cerrar y en el celular tapaba texto del Resumen y de Reportes diarios */
+      const chip = '<div id="sesionChip">👤 <b id="sesionUser"></b> · acceso completo · <a href="index.html" onclick="try{sessionStorage.clear()}catch(e){}">Cerrar sesión</a></div>\n<style>#sesionChip{position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:6px;align-items:center;background:#142a4e;color:#fff;font:600 12px/1 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}\n#sesionChip a{color:#f5d7a3;text-decoration:none;font-weight:700}</style>\n<script>try{document.getElementById("sesionUser").textContent=sessionStorage.getItem("cerroazulUser")||"usuario"}catch(e){}<\/script>';
+      const j = t.lastIndexOf('</body>'); t = t.slice(0, j) + chip + t.slice(j);
+    }
+    /* 23-Oct-26 · enlace directo desde el BIM general (pedido del usuario: «si quisiese irme al detalle, que me lleve al 4D de esa
+       parte de un clic»): tablero.html#torre=T12 abre el BIM 4D con esa torre centrada y #torre=T12&detalle, su detalle. */
+    /* 24-Oct-26 (auditoría): también atiende el cambio de #torre sin recargar, acepta t12 o T5, avisa si la torre no existe y en el
+       celular desplaza la página hasta el visor (el detalle se abría con el 3D fuera de la pantalla). */
+    {
+      const sc = '<script>(function(){function leer(){var m=/(?:^#|&)torre=T?(\\d{1,2})(&detalle)?/i.exec(location.hash);return m?{t:"T"+("0"+(+m[1])).slice(-2),det:!!m[2]}:null;}' +
+        'function aviso(x){try{var d=document.createElement("div");d.textContent=x;d.style.cssText="position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:99999;background:#1d2733;color:#fff;padding:9px 14px;border-radius:8px;font:600 13px system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.35)";document.body.appendChild(d);setTimeout(function(){d.remove();},4500);}catch(e){}}' +
+        'function ver(){if(innerWidth<=860){var v=document.querySelector(".bim-viewport");if(v)v.scrollIntoView({block:"start",behavior:"smooth"});}}' +
+        'function ir(){var p=leer();if(!p)return;var n=0;(function go(){n++;if(typeof window.dcGoTower!=="function"||typeof DATA==="undefined"){if(n<160)setTimeout(go,250);return;}' +
+        'if(!DATA.towers.some(function(x){return x.t===p.t;})){aviso("La torre "+p.t+" no está en el tablero (T01 a T"+("0"+DATA.towers.length).slice(-2)+").");return;}' +
+        'window.dcGoTower(p.t);var k=0;(function d(){k++;var ok=typeof GLB_READY!=="undefined"&&GLB_READY&&typeof towerObjs!=="undefined"&&towerObjs&&towerObjs.length;if(!ok){if(k<160)setTimeout(d,250);return;}' +
+        'setTimeout(function(){try{if(p.det)openTowerDetail();}catch(e){console.warn("detalle",e);}ver();},900);})();})();}' +
+        'ir();addEventListener("hashchange",ir);})();<\/script>\n';
+      const j = t.lastIndexOf('</body>'); t = t.slice(0, j) + sc + t.slice(j);
+    }
+    document.open(); document.write(t); document.close();
+  } catch (e) {
+    document.getElementById('m').innerHTML = '<b>No se pudo armar el tablero</b><span>' + (e && e.message ? e.message : e) + '. Recarga la página (Ctrl+F5) o vuelve a <a href="index.html">la portada</a>.</span>';
+  }
+})();
+</script></body></html>
