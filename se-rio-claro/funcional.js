@@ -1,13 +1,13 @@
 // Datos funcionales de la sala de control — carpeta «PLANOS FUNCIONALES» del Drive (oct-2025):
 //   · 04 Ficha de conexionado externo Rev. D (PEABB-PGGA-AS6010-EF-UCHU-CE, «Actualización por ingreso de TP-36MVA»)
-//   · 03 Diagrama de bloques del cableado, Rev. 0 (28/10/2025): azul = cable nuevo · naranja = reconexión de cables reubicados · negro = existente
-//   · 02 Esquemas funcionales del tablero =E1.A01.CP01 Rev. D (23-10-2025) · 01 Tablero de regulación automática del TP-385 (EPLI)
+//   · 03 Diagrama de bloques del cableado, Rev. 0 (30/09/2025): azul = cable nuevo · naranja = reconexión de cables reubicados · negro = existente
+//   · 02 Esquemas funcionales del tablero =E1.A01.CP01 Rev. D (25-09-2025) · 01 Tablero de regulación automática del TP-385 (EPLI)
 // Generado con gen/funcional_gen.py desde el Excel; no editar CABLES a mano.
 
 export const FUENTES = {
   ficha: '04 Ficha de conexionado externo Rev. D (PEABB-PGGA-AS6010-EF-UCHU-CE)',
-  bloques: '03 Diagrama de bloques del cableado TP-385, Rev. 0 (28/10/2025)',
-  cp01: '02 Esquemas funcionales =E1.A01.CP01 Rev. D (23-10-2025)',
+  bloques: '03 Diagrama de bloques del cableado TP-385, Rev. 0 (30/09/2025)',
+  cp01: '02 Esquemas funcionales =E1.A01.CP01 Rev. D (25-09-2025)',
   regt: '01 Tablero de regulación automática TP-385 (EPLI, Rev. E)',
 };
 

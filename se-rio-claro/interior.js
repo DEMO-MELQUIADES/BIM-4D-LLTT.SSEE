@@ -181,7 +181,7 @@ export const TABLEROS = [
     obraTxt: 'Reconexión de los disparos al IN-383 y a los IN-380/381/382 (cables reubicados por obras civiles) e intercambio de corrientes y disparos con el CP01 del TP-385.',
     datos: { Relé: 'REB 670 ABB (87B · 50BF)', Zonas: 'Línea L-2201 · TP-383 · TP-384 · TP-385 (bahía IN-383: TC 170–200/1/1/1 A, 15 VA, 5P20)' } },
   { n: 18, nombre: 'Protección y control del transformador TP-385', sigla: 'CP01', cod: '=E1.A01.CP01', tipo: 'prot', X: 36.55, Y: -2.02, rot: -90, w: 0.8, d: 0.8, visor: ['RET 670', 'REC 650'], obra: 'interv',
-    obraTxt: 'Tablero existente (esquemas funcionales de 2016) actualizado en la Rev. D del 23-10-2025 «para ingreso TP-36MVA»: cables nuevos a los TC y al gabinete del TP-385, reconexión de los cables del IN-383; mantiene los existentes a SB-383, K03, K01, TT-382, CP02, CS01 y SS.AA.',
+    obraTxt: 'Tablero existente (esquemas funcionales de 2016) actualizado en la Rev. D del 25-09-2025 «para ingreso TP-36MVA»: cables nuevos a los TC y al gabinete del TP-385, reconexión de los cables del IN-383; mantiene los existentes a SB-383, K03, K01, TT-382, CP02, CS01 y SS.AA.',
     datos: { 'Protección principal': 'RET 670 ABB — 87T · 50/51 · 50N/51N (relé -FP1)', 'Protección de respaldo': 'REC 650 ABB — 50/51 · 50N/51N · 27/59 (relé -FP2)', Bloqueo: '86T relé de disparo y bloqueo', Medición: 'ION 7650 Schneider (-P11) · tensión de barra desde el TT-382', Comunicaciones: 'Switch AFS670 (-TJ1 / -TJ2)', 'TC AT': '170–200/1/1/1 A · 15 VA cl. 0,2 / 5P20 / 5P20', 'TC neutro 22,9 kV': '900–1 100/1/1/1 A', 'TC 10 kV': '2 100–2 500/1/1/1 A', Mandos: 'Cierre y disparo (bobinas 1 y 2) del IN-383 · apertura y cierre del SB-383 · disparo y cierre del IN-10' } },
   { n: 19, nombre: 'Registrador de fallas', sigla: 'TLRF-01', tipo: 'prot', X: 36.55, Y: -1.17, rot: -90, w: 0.8, d: 0.8 },
   { n: 20, nombre: 'Comunicaciones Telecom Demo', tipo: 'com', X: 24.2, Y: 0.15, rot: 0, w: 0.6, d: 0.45 },
@@ -242,12 +242,12 @@ export function construirInterior(ctx) {
   equipo({ key: 'T22', n: 22, tipo: 'tablero', cod: '=A1.C01.REGT', nombre: 'Regulación del transformador TP-385', X: 38.6, Y: -4.55, rot: 180, w: 0.8, d: 0.6, h: 1.9, zocalo: 0.2, yPiso: y2, piso: 2, obj: t22, info: info22, obra: 'nuevo' });
   ctx.t22 = t22;
   // nuevo tablero CPM de la L-2201 (=E01+WR01) que instala Integrador Demo — proyecto de la LT 220 kV de la SE Río Claro a la SE Cerro Azul.
-  // Ubicación SUPUESTA: en el lugar del tablero 19 (registrador de fallas), que Integrador Demo retiró al almacén el 17–18-Oct (R-05 de su
-  // control diario) y montó el nuevo tablero el 18-Oct. Ningún plano lo ubica: se confirma en campo y se corrige aquí.
+  // Ubicación SUPUESTA: en el lugar del tablero 19 (registrador de fallas), que Integrador Demo retiró al almacén el 17–20-Set (R-05 de su
+  // control diario) y montó el nuevo tablero el 20-Set. Ningún plano lo ubica: se confirma en campo y se corrige aquí.
   const t19 = TABLEROS.find((t) => t.n === 19);
   const cpm = gabinete({ w: t19.w, h: 2.2, d: t19.d, tex: frenteTablero({ num: 'CPM', nombre: 'Protección y control de la L-2201 (nuevo · Integrador Demo)', cod: '=E01+WR01', tipo: 'prot', w: t19.w, h: 2.2, nuevo: true, visor: ['L-2201', ''] }), X: t19.X, Y: t19.Y, rot: t19.rot, mat: M.tableroNuevo, piso });
   const infoCPM = { id: 'CPM L-2201', nombre: 'Tablero de protección y control de la L-2201 (=E01+WR01) · nuevo, lo instala Integrador Demo', estado: 'P', obra: 'integ', integ: 'CPM L-2201',
-    obraTxt: 'Ubicación supuesta: en el lugar del tablero 19 (registrador de fallas), que Integrador Demo retiró al almacén el 17–18-Oct; el nuevo tablero se montó el 18-Oct. Ningún plano disponible lo ubica: confirmar en campo.',
+    obraTxt: 'Ubicación supuesta: en el lugar del tablero 19 (registrador de fallas), que Integrador Demo retiró al almacén el 17–20-Set; el nuevo tablero se montó el 20-Set. Ningún plano disponible lo ubica: confirmar en campo.',
     datos: { Código: '=E01+WR01 (control diario de Integrador Demo)', Contratista: 'Integrador Demo · DEMO-OS · OS demo', Proyecto: 'LT 220 kV Río Claro – Cerro Azul (L-2201)', Ubicación: 'Sala de control, primer piso · supuesta (ver nota)' },
     planos: ['Control diario de Integrador Demo (Excel)'], lista: true };
   reg(cpm, 'sala', infoCPM);

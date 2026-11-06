@@ -3,7 +3,7 @@
 // cronogramas V8 de Supervisión Demo y Integrador Demo Rev. 1 como referencia). Datos: rio4d.js (gen/uchu_build.py); sin nombres de personas.
 // La relación actividad ↔ zona del modelo sale de la columna «TABLERO / UBICACIÓN» del control; las ubicaciones del nuevo
 // CPM y de las rutas de Integrador Demo son supuestas (ningún plano las da) y la ficha lo dice.
-// 22-Oct-26: reestructurado para el tablero de la SE (pestañas como el de la LT): ya no crea un panel fijo abajo; dibuja en los
+// 24-Set-26: reestructurado para el tablero de la SE (pestañas como el de la LT): ya no crea un panel fijo abajo; dibuja en los
 // contenedores que le pasa index.html (ctx.mount) y avisa de cada cambio de fecha o de actividad con ctx.onFecha / ctx.onAct.
 import * as THREE from 'three';
 

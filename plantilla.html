@@ -7309,7 +7309,7 @@ figure.ft-rota,.hi-foto.ft-rota{display:none!important}
 .d4-tw .hoy{position:absolute;top:-7px;right:-3px;background:#e4572e;color:#fff;font:700 .5rem/1 "Inter",system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:2px 4px;border-radius:999px;box-shadow:0 1px 3px rgba(0,0,0,.25);pointer-events:none}
 .chip.hoy{border-color:#e4572e!important;color:#e4572e}
 .chip.hoy.on{background:#e4572e!important;color:#fff!important}
-/* v72.26: la marca dice la fecha del corte («04-Oct»), no «hoy»; la franja de la torre (#bimInfo) crece con su contenido y ya no se monta sobre los botones de torre */
+/* v72.26: la marca dice la fecha del corte («06-Set»), no «hoy»; la franja de la torre (#bimInfo) crece con su contenido y ya no se monta sobre los botones de torre */
 .d4-tw .hoy{text-transform:none;letter-spacing:0;font-variant-numeric:tabular-nums}
 html body #v-bim > .bim-info{min-height:auto}
 html body #v-bim > .bim-info .bim-overlay-hud{min-height:22px}
@@ -7912,20 +7912,19 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
   <button data-v="v-res" class="active"><span class="ic">◈</span> Resumen</button>
   <button data-v="v-bim" class="bim-badge"><span class="ic">🏛️</span> BIM 4D · Construcción</button>
   <button data-v="v-fot"><span class="ic">📷</span> Fotos de obra</button>
-  <button data-v="v-hit"><span class="ic">⚠️</span> Eventos del proyecto</button>
   <button data-v="v-proc"><span class="ic">🏗️</span> Proceso Constructivo</button>
   <button data-v="v-rep"><span class="ic">📋</span> Reportes diarios</button>
 </div>
 
 <div class="views">
 
-  <!-- v72.27 (06-Oct-26, pedido del usuario): se retiró la pestaña «¿Dónde intervenir?» (Centro de decisión); el tablero completo abre en Resumen -->
+  <!-- v72.27 (08-Set-26, pedido del usuario): se retiró la pestaña «¿Dónde intervenir?» (Centro de decisión); el tablero completo abre en Resumen -->
   <!-- ==================== RESUMEN ==================== -->
   <section id="v-res" class="view on">
     <!-- La tarjeta de personal operativo se retiró de la vista; estos contenedores
          ocultos evitan tocar la lógica que la rellenaba. -->
     <div id="persOculto" hidden><div id="persDesc"></div><div id="persK"></div><div id="persT"></div></div>
-    <div class="kpi accent"><div class="lab">Avance obra civil · línea</div><div class="val" id="k-oc">—<span>%</span></div><div class="foot">media simple de las 19 torres (% oficial por torre) · ponderado por pesos de la hoja Avance <b id="k-oc-pond">—</b> · PV_AC financiero 33.3 % <span class="sem-inf">(último informe semanal)</span></div></div>
+    <div class="kpi accent"><div class="lab">Avance obra civil · línea</div><div class="val" id="k-oc">—<span>%</span></div><div class="foot">media simple de las 19 torres (% oficial por torre) · ponderado por pesos de la hoja Avance <b id="k-oc-pond">—</b> · PV_AC financiero 28.6 % <span class="sem-inf">(último informe semanal)</span></div></div>
     <div class="kpi"><div class="lab">Accesos habilitados</div><div class="val" id="k-acc">—</div><div class="foot" id="k-acc-f">caminos de acceso a torre</div></div>
     <div class="kpi"><div class="lab">Torres iniciadas</div><div class="val" id="k-ini">—</div><div class="foot">al menos acceso o cimentación</div></div>
     <div class="kpi"><div class="lab">EV integral proyecto</div><div class="val" id="k-ev">—<span>%</span></div><div class="foot">valor ganado global (hoja PV_AC)</div></div>
@@ -7937,13 +7936,13 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
       <div class="txt" id="vd-txt"></div>
     </div>
 
-    <!-- v72.34 (07-Oct-26): fila «hoy» — pronóstico de término por Earned Schedule, avance del día con evidencia fotográfica y clima en obra -->
+    <!-- v72.34 (09-Set-26): fila «hoy» — pronóstico de término por Earned Schedule, avance del día con evidencia fotográfica y clima en obra -->
     <div class="card third" id="pronCard"><h3><span class="dot"></span>Pronóstico de término · Earned Schedule</h3>
       <div class="desc" id="pronDesc"></div><div class="body" id="pronBody"></div></div>
     <div class="card third" id="evidCard"><h3><span class="dot"></span>Avance del día con evidencia fotográfica</h3>
       <div class="desc" id="evidDesc"></div><div class="body" id="evidBody"><div class="ev-res">Cargando las fotos de obra…</div></div></div>
-    <!-- v72.64 (29-Oct-26, auditoría, ok del usuario): se retira la tarjeta «Clima en obra · vaciados»; el flujo de clima (MET Norway)
-         se eliminó el 14-Oct y la tarjeta quedó mostrando «Pronóstico del 13-Oct… ya venció». clima() no hace nada sin #climaBody. -->
+    <!-- v72.64 (01-Oct-26, auditoría, ok del usuario): se retira la tarjeta «Clima en obra · vaciados»; el flujo de clima (MET Norway)
+         se eliminó el 16-Set y la tarjeta quedó mostrando «Pronóstico del 15-Set… ya venció». clima() no hace nada sin #climaBody. -->
 
     <div class="card half"><h3><span class="dot"></span>Avance por macro-fase constructiva</h3>
       <div class="desc">Cada torre atraviesa 3 fases en secuencia: acceso → obra civil → electromecánica. Promedio de las 19 estructuras.</div>
@@ -8209,7 +8208,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
   </section>
 
   <!-- ==================== PROCESO CONSTRUCTIVO ==================== -->
-  <!-- ==================== INGENIERÍA LT (v72.65 · 29-Oct-26) ====================
+  <!-- ==================== INGENIERÍA LT (v72.65 · 01-Oct-26) ====================
        Pedido del usuario (encargo del jefe de proyecto): «crear una pestaña y subir el status de la ingeniería de la LT 220 kV»;
        fuente única, el control semanal (hojas Entregables LT220kV, Resumen ID LT220kV, Dashboard y PV_AC). «Aparte la curva de
        ingeniería… no mezclar»: esta pestaña no toca ninguna cifra de construcción. Datos: bloque INGENIERIA (ingenieria_build.py). -->
@@ -8271,7 +8270,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
     </div>
   </section>
 
-  <!-- ==================== REPORTES DIARIOS (v72.48 · rediseño v72.49, 20-Oct-26) ====================
+  <!-- ==================== REPORTES DIARIOS (v72.48 · rediseño v72.49, 22-Set-26) ====================
        Los reportes diarios de los últimos 7 días dentro del tablero. v72.49 (pedido del usuario: «mejora toda la representación
        visual y distribución de campo de la pestaña, lo noto muy cargado de texto y poco estructurado»): tira de días + cuatro
        cifras del día; tarjetas de torre (chips de partida con resultado, «hoy» en una línea y el estado plegado); personal en
@@ -8286,7 +8285,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
       <div class="rp-tira" id="rpTira"></div>
       <div class="rp-kpis" id="rpKpis"></div>
     </div>
-    <!-- v72.60 (25-Oct-26, pedido del usuario: «los Word de reportes diarios tienen información importante de varias áreas:
+    <!-- v72.60 (27-Set-26, pedido del usuario: «los Word de reportes diarios tienen información importante de varias áreas:
          arqueológico, seguridad, ambiental… claro, resumido, estructurado y no tan largo»): la columna izquierda sigue el orden
          del Word — resumen ejecutivo, programación por torre y la sección de anexos (restricciones, SST, ambiental, arqueología
          y social) con su hecho del día e indicadores. Datos: REPORTES_7D.dias[].ejecutivo y .areas (reportes7_build.py). -->
@@ -8384,7 +8383,7 @@ const INTERV = (DATA.corte_diario && DATA.corte_diario.intervenidas) || null;
 function intervDe(tt){ const L = INTERV && INTERV.torres && INTERV.torres[tt]; return (L && L.length) ? L : null; }
 function intervFecha(){ if (!INTERV) return ''; const d = new Date(INTERV.fecha + 'T12:00:00'), M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic']; return String(d.getDate()).padStart(2,'0') + '-' + M[d.getMonth()]; }
 function intervTxt(tt){ const L = intervDe(tt); if (!L) return ''; return 'Intervenida el ' + intervFecha() + ': ' + L.map(x => x.act + ' ' + (typeof x.pct === 'number' ? String(x.pct).replace('.', ',') + ' %' : x.pct)).join(', '); }
-/* v72.34 (07-Oct-26): avance del día con evidencia fotográfica — para cada actividad marcada en el Resumen (INTERV), las fotos de ese
+/* v72.34 (09-Set-26): avance del día con evidencia fotográfica — para cada actividad marcada en el Resumen (INTERV), las fotos de ese
    día y esa torre cuya fase reconocida coincide (para Caminos, también las de sus caminos de acceso: CAMINOS_DET). Solo cuenta: no
    cambia ningún %. Actividades sin fase fotográfica equivalente (remediación, eliminación, muros) quedan fuera de la cuenta. */
 const EVID_FASE = {'Caminos':['acceso'], 'Excavación':['excavación'], 'Solado':['solado'], 'Stub':['stub','topografía'], 'Acero':['acero'],
@@ -8395,7 +8394,7 @@ function caminosDeTorre(tt){
   if (r){ (r.deps || []).forEach(d => d.c && s.add(d.c)); if (r.peat && r.peat.c) s.add(r.peat.c); if (r.pa) s.add(r.pa); }
   return s;
 }
-/* v72.38 (08-Oct-26, pedido del usuario: «cada camino tiene que estar asociado a su torre, en fotos también»): torres a las que sirve cada
+/* v72.38 (10-Set-26, pedido del usuario: «cada camino tiene que estar asociado a su torre, en fotos también»): torres a las que sirve cada
    camino según la hoja PORCENTAJE POR TORRE (CAMINOS_DET: acceso requerido, dependencias y peatonal). Los peatonales P3…P7 de la hoja
    son CP3…CP7 en el KMZ (y en fotos.json). Una foto tomada sobre un camino, lejos de toda torre, se asocia a la torre más cercana de las que
    ese camino sirve (por sus coordenadas); sin coordenadas, solo si el camino sirve a una sola torre. Así la ficha de T18 muestra las fotos
@@ -8415,16 +8414,16 @@ function torreAcceso(f){
   ts.forEach(tt => { const g = (GEO.towers || []).find(x => x.t === tt); if (!g) return; const d = Math.hypot(g.e - p.e, g.n - p.n); if (d < dm){ dm = d; mejor = tt; } });
   return mejor;
 }
-/* v72.47 (19-Oct-26): ubicación que todavía no es firme — torre heredada de las fotos vecinas (GPS congelado) o leída del
+/* v72.47 (21-Set-26): ubicación que todavía no es firme — torre heredada de las fotos vecinas (GPS congelado) o leída del
    sello porque la coordenada caía lejos. Se ve en la galería con «·?» y no cuenta como evidencia hasta que el usuario la confirme. */
 const ubicDudosa = f => !!(f.inferida || /GPS lejos/.test(f.origen_ubicacion || ''));
 function evidDe(tt){
   const L = intervDe(tt); if (!L || typeof FOTOS_CAMPO === 'undefined' || !FOTOS_CAMPO.length) return null;
   const dia = INTERV.fecha;
-  /* v72.46 (18-Oct-26) y v72.47 (19-Oct-26): una foto cuya torre se heredó de las vecinas en el tiempo (f.inferida, GPS congelado) NO cuenta como
+  /* v72.46 (20-Set-26) y v72.47 (21-Set-26): una foto cuya torre se heredó de las vecinas en el tiempo (f.inferida, GPS congelado) NO cuenta como
      evidencia de la ficha de torre: se muestra en la galería con su chapa «·?» hasta que el usuario la confirme. Lo mismo
      vale para la que se ubicó leyendo la torre del sello porque su coordenada caía lejos de toda torre (GPS congelado). */
-  /* v72.59 (24-Oct-26, ficha de T14 del 23-Oct): una foto de camino cuenta solo para la torre a la que la asocia su tramo (f.tacc, la misma
+  /* v72.59 (26-Set-26, ficha de T14 del 25-Set): una foto de camino cuenta solo para la torre a la que la asocia su tramo (f.tacc, la misma
      regla de la galería), no para todas las que sirve ese camino. Antes las 3 fotos del C10 tomadas junto a T16–T17 salían en T13 y T14
      como «3 fotos de otra fase ese día», aunque estaban a más de 1 km. */
   const tAcc = f => f.tacc !== undefined ? f.tacc : torreAcceso(f);
@@ -8868,7 +8867,7 @@ let espaciadoUniforme = false;         // v72.12: vanos reales del KMZ siempre (
 /* Sobre la imagen satelital las torres deben caer en su ubicación real (KMZ): con la
    ortofoto activa se anula el reparto visual, que desplaza las intermedias hasta ~210 m. */
 function ortoActiva(){ try { return !!(ORTO.on && ORTO.tex); } catch(e){ return false; } }
-/* v72.17 (28-Set-26, pedido del usuario: «juega con la paleta de colores para que se vean mejor las torres, ya sin aplicar eso
+/* v72.17 (31-Ago-26, pedido del usuario: «juega con la paleta de colores para que se vean mejor las torres, ya sin aplicar eso
    del borde blanco»; reemplaza el doble contorno de v72.16). Sobre la ortofoto el acero galvanizado translúcido se confundía con
    la roca y el pasto. Con la ortofoto encendida, en la vista de ruta, las torres (proyectadas y montadas) y el tendido van en
    cian intenso: es el tono que más contrasta con el paisaje altoandino (ΔE2000 torre/terreno ≈ 20 frente a 7,5 del gris) y no
@@ -8923,8 +8922,8 @@ function ajustarShaderTerreno(mat){
 }
 const VIS_DEF = { tBrillo:1.0, tContraste:1.0, tSaturacion:1.0, resalte:0.0 };
 
-/* v72.50 (20-Oct-26, pedido del usuario: «la vista 3D mejoraría… tienes las fotos»): texturas de obra sacadas de las fotos de campo,
-   publicadas en portal/tex (83 KB): puna (T-12, 19-Oct), tierra del foso (T-12), roca y grava (pedestal T-10, 21-Ago), concreto (T-10)
+/* v72.50 (22-Set-26, pedido del usuario: «la vista 3D mejoraría… tienes las fotos»): texturas de obra sacadas de las fotos de campo,
+   publicadas en portal/tex (83 KB): puna (T-12, 21-Set), tierra del foso (T-12), roca y grava (pedestal T-10, 24-Jul), concreto (T-10)
    y encofrado fenólico (T-13). Se cargan una vez; con VIS.texturas=false todo vuelve a los colores planos. */
 window.TEX = (function(){
   const L = new THREE.TextureLoader(); const T = { ok: false, _copias: {} };
@@ -8939,7 +8938,7 @@ window.TEX = (function(){
   return T; })();
 const VIS = {
   tBrillo: 1.0, tContraste: 1.0, tSaturacion: 1.0,   // terreno en Realista
-  caminos: false,          // caminos de acceso reales (KMZ) · v72.13: apagados por defecto (eran líneas rojas que confundían) · v72.52 (21-Oct-26, pedido del usuario): apagados otra vez por defecto (se encienden en el panel) · v72.50: encendidos, ya son caminos de tierra sobre el relieve (pedido del usuario: «ruta de caminos de acceso de acuerdo a carreteras»)
+  caminos: false,          // caminos de acceso reales (KMZ) · v72.13: apagados por defecto (eran líneas rojas que confundían) · v72.52 (23-Set-26, pedido del usuario): apagados otra vez por defecto (se encienden en el panel) · v72.50: encendidos, ya son caminos de tierra sobre el relieve (pedido del usuario: «ruta de caminos de acceso de acuerdo a carreteras»)
   resalte: 0.0,            // v71: franja del eje apagada por defecto (se confundía con un camino)
   aislador: 'vidrio',      // el modelo trae cadena de discos: vidrio o porcelana
   aceroRough: 0.42,        // rugosidad del galvanizado
@@ -8956,7 +8955,7 @@ const VIS = {
   sombras: true,             // v72.50: sombras encendidas por defecto (se apagan en Render)
   vegetacion: true,          // v72.50: ichu y tropilla en el detalle de torre
   texturas: true,            // v72.50: texturas de obra sacadas de las fotos (portal/tex)
-  rutaTexturas: false        // v72.52 (21-Oct-26, pedido del usuario: «dejarlo en la vista tipo malla azul que estaba antes»): la vista de ruta vuelve al terreno esquemático translúcido con la malla de cotas; las texturas, el ichu y la tropilla siguen solo en el detalle de torre
+  rutaTexturas: false        // v72.52 (23-Set-26, pedido del usuario: «dejarlo en la vista tipo malla azul que estaba antes»): la vista de ruta vuelve al terreno esquemático translúcido con la malla de cotas; las texturas, el ichu y la tropilla siguen solo en el detalle de torre
 };
 const TEXR = () => TEX.on() && VIS.rutaTexturas !== false;   // v72.52: texturas en la vista de ruta
 let bimComposer = null, bimBloom = null, bimEnvMap = null;
@@ -9616,7 +9615,7 @@ function utmAEscena(E,N){
   const e=UTM_AFIN.e[0]*E+UTM_AFIN.e[1]*N+UTM_AFIN.e[2], n=UTM_AFIN.n[0]*E+UTM_AFIN.n[1]*N+UTM_AFIN.n[2];
   return { x:(e-GEO_E0)*GEO_SCALE, z:-(n-GEO_N0)*GEO_SCALE };
 }
-const FOTOS_VISITA_SOLO_AVANCE = false;                             // v72.8 (27-Set-26): la visita muestra todas las fotos; las personas salen difuminadas y los documentos pixelados desde el carril de fotos
+const FOTOS_VISITA_SOLO_AVANCE = false;                             // v72.8 (30-Ago-26): la visita muestra todas las fotos; las personas salen difuminadas y los documentos pixelados desde el carril de fotos
 const esVisita = () => !!document.getElementById('visitaChip');
 const FASE_TXT = {acceso:'Acceso', 'topografía':'Topografía', 'excavación':'Excavación', solado:'Solado', stub:'Stub', acero:'Acero', encofrado:'Encofrado', vaciado:'Vaciado', relleno:'Relleno', pat:'PAT', otras:'Otras fotos'};
 const faseTxt = f => f.fase ? (FASE_TXT[f.fase]||f.fase) : '';
@@ -9949,7 +9948,7 @@ function ampliarPlano(el){
   requestAnimationFrame(()=>dibujarPlano());
 }
 /* =====================================================================
-   LÍNEA DE TIEMPO FOTOGRÁFICA (v72.7 · 27-Set-26)
+   LÍNEA DE TIEMPO FOTOGRÁFICA (v72.7 · 30-Ago-26)
    · Toda la línea: matriz torres/caminos × semanas (lunes a domingo). El número es la cantidad de fotos y la franja,
      las fases que se ven. Clic en una semana o en una celda: sus fotos aparecen debajo, completas y sin «ver más».
    · Una torre o un camino: película por fases (un carril por fase, una columna por semana) con la foto más
@@ -9962,7 +9961,7 @@ const ltLunes = f => { const d=new Date(f+'T12:00:00'); d.setDate(d.getDate()-((
 const ltMas = (f,n) => { const d=new Date(f+'T12:00:00'); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10); };
 const ltDM = f => `${f.slice(8,10)}-${MES3[+f.slice(5,7)-1]}`;
 const DIA3 = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-const ltDia = f => `${DIA3[new Date(f+'T12:00:00').getDay()]} ${ltDM(f)}`;   // «Sáb 26-Set»
+const ltDia = f => `${DIA3[new Date(f+'T12:00:00').getDay()]} ${ltDM(f)}`;   // «Sáb 29-Ago»
 const ltRango = w => `${ltDM(w)} al ${ltDM(ltMas(w,6))}`;
 const faseDe = f => f.fase || 'otras';
 const ltNom = k => FASE_TXT[k]||k;
@@ -9993,7 +9992,7 @@ function ltMatriz(fil, W){
   const G={}, N={}; fil.forEach(f=>{ filasDe(f).forEach(z=>{ (G[z+'|'+ltLunes(f.fecha)]=G[z+'|'+ltLunes(f.fecha)]||[]).push(f); N[z]=(N[z]||0)+1; }); });
   const cams=[...new Set(fil.filter(f=>!f.torre&&f.camino).map(f=>f.camino))].sort(ordCam), zonas=FOT_ZONAS.filter(z=>N[z]);
   const nAcc = z => esTorre(z) ? fil.filter(f=>!f.torre&&f.tacc===z).length : 0;
-  /* v72.44: la torre intervenida el día del corte lleva el mismo recuadro punteado y la fecha («08-Oct») que su botón en el BIM */
+  /* v72.44: la torre intervenida el día del corte lleva el mismo recuadro punteado y la fecha («10-Set») que su botón en el BIM */
   const ivT = z => esTorre(z) && intervDe(z);
   const fila = z => `<button type="button" class="lt-fila${N[z]?'':' vacia'}${FOT_ZONAS.includes(z)?' zona':''}${esCamino(z)?' cam':''}${ivT(z)?' iv':''}" data-z="${z}" title="${ivT(z)?intervTxt(z).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')+' · ':''}${FOT_ZONAS.includes(z)?z+' · '+FOT_ZONA_TXT[z]+' · ':esCamino(z)&&camTxt(z)?z+' · '+camTxt(z)+' · ':''}${N[z]||0} foto(s)${nAcc(z)?` (${nAcc(z)} de su camino de acceso)`:''}${N[z]?' · ver la película de '+z:''}">${zonaEtq(z)}${ivT(z)?`<span class="hoy">${intervFecha()}</span>`:''}</button>`+
     W.map(w=>{ const L=G[z+'|'+w], cs=fotSel.sem===w?' csel':'';
@@ -10195,7 +10194,7 @@ function abrirFoto(src, lista){
   { const im=box.querySelector('img'); box.dataset.src=f.src; im.src=f.mini||f.src;   // v72.13: se ve al instante y se afina al llegar la de 800 px
     if (f.mini && f.mini!==f.src){ const big=new Image(); big.onload=()=>{ if (box.dataset.src===f.src) im.src=f.src; }; big.src=f.src; }
     if (ftNav.lista) [ftNav.i-1, ftNav.i+1].forEach(j=>{ const g=ftNav.lista[j]; if (g){ const x=new Image(); x.src=g.src; } }); }
-  // v72.30 (06-Oct-26, pedido del usuario): el pie solo dice dónde está (torre o camino), su UTM y una breve descripción si está clara
+  // v72.30 (08-Set-26, pedido del usuario): el pie solo dice dónde está (torre o camino), su UTM y una breve descripción si está clara
   // (pie del PPT o fase revisada; no la etiqueta de YOLO). Nada del proceso (difuminado, origen de fecha/ubicación, código, avisos):
   // eso queda en el panel «Por revisar»; en modo completo el código #xxxxxx sale al pasar el puntero por la foto.
   const vis=esVisita(), escP = t => String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -10779,8 +10778,9 @@ function aplicarOrto(on){
   const m=terr.material; if(!m) return;
   if (on && ORTO.tex){
     if (!m.userData.mapProc) m.userData.mapProc = m.map || null;      // se guarda la textura procedural
-    m.map=ORTO.tex; m.color.set(0xffffff); m.opacity=1; m.transparent=false;
+    m.map=null; m.color.set(0x000000); m.emissive.set(0xffffff); m.emissiveMap=ORTO.tex; m.emissiveIntensity=0.96; m.roughness=1; m.metalness=0; m.toneMapped=false; m.opacity=1; m.transparent=false;   // demo: la imagen con sus colores, sin luces
   } else {
+    m.emissiveMap=null; m.emissive.set(0x000000); m.emissiveIntensity=1; m.toneMapped=true;
     if (terr.userData.uvOriginal){ terr.geometry.setAttribute('uv', terr.userData.uvOriginal.clone()); }
     m.map = m.userData.mapProc || null;
     if (!m.map){ const TC=bimThemeColors(); m.color.set(realista ? 0x7b8752 : TC.ground); }
@@ -12460,7 +12460,7 @@ function stepCameraTween(){
   if (k >= 1) _camTween = null;
   return true;
 }
-/* v72.57 (auditoría 24-Oct-26): al armar la ruta quedan programados tres encuadres de toda la línea (30, 60 y 0 ms); si en ese
+/* v72.57 (auditoría 26-Set-26): al armar la ruta quedan programados tres encuadres de toda la línea (30, 60 y 0 ms); si en ese
    lapso se enfoca una torre (enlace #torre=Txx, salto desde el Resumen o Proceso, «ir a la torre» desde el detalle) llegaban después
    y devolvían la cámara a la línea completa. Enfocar una torre los cancela. */
 function cancelarEncuadreRuta(){ ['_fitRutaT1','_fitRutaT2','_fitRutaT3'].forEach(k => { if (window[k]) clearTimeout(window[k]); window[k] = 0; }); }
@@ -12863,7 +12863,7 @@ function b4Gantt(){
     if (acc) acc.innerHTML = `<button type="button" data-b4="acts">Actividades de ${b4Esc(tSel.t)} →</button>`;
   }
   // dominio de tiempo: inicio de la Base MS → fin de la Base MS (o el corte, o la última ventana, si es posterior)
-  let x0 = B.inicio || '2026-06-01', x1 = B.fin || b4Corte();
+  let x0 = B.inicio || '2026-05-04', x1 = B.fin || b4Corte();
   filas.forEach(r => { [r.w, r.w2].forEach(w => { if (w) { if (w[0] < x0) x0 = w[0]; if (w[1] > x1) x1 = w[1]; } }); });
   if (b4Corte() > x1) x1 = b4Corte();
   const W = Math.max(300, el.clientWidth || 600), acts = b4Modo === 'acts';
@@ -13093,8 +13093,8 @@ function draw4D(){
   $('d4Slider').value = d4i;
 }
 
-/* v72.57: índice del inicio de obra (01-Jun-26) en la serie; antes estaba fijo en 21 en tres lugares */
-function d4inicio(){ const w = DATA.tl_weeks, i = w.indexOf('2026-06-01'); return i >= 0 ? i : Math.min(21, w.length - 1); }
+/* v72.57: índice del inicio de obra (04-May-26) en la serie; antes estaba fijo en 21 en tres lugares */
+function d4inicio(){ const w = DATA.tl_weeks, i = w.indexOf('2026-05-04'); return i >= 0 ? i : Math.min(21, w.length - 1); }
 function d4ticks(){
   const el = $('d4Ticks'), w = DATA.tl_weeks;
   const s0 = d4inicio(), L = w.length - 1 - s0;
@@ -13563,7 +13563,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
   // =====================================================================================
   // Curva S de construcción (rediseño v23): ventana de obra, hitos FC, proyección y SPI del reporte
   // =====================================================================================
-  const START_ISO = '2026-06-01', DAY = 864e5;
+  const START_ISO = '2026-05-04', DAY = 864e5;
   const S0 = Math.max(0, DATA.tl_weeks.indexOf(START_ISO));
   const msOf = iso => Date.parse(iso + 'T00:00:00');
   const semObra = iso => Math.floor((msOf(iso) - msOf(START_ISO)) / (7 * DAY)) + 1;
@@ -13735,7 +13735,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
     `<span><i class="dot"></i>ritmo requerido PdR LB1</span><span><i class="tri"></i>hitos forecast</span>` +
     `<span style="margin-left:auto;color:var(--ink-mut)">arrastra sobre la curva para mover el 4D</span>`;
   // línea de tiempo: arranca en el inicio de obra
-  // v72.53: el máximo de la barra sale de la serie (el HTML traía max="39" fijo, de cuando la serie tenía 40 fechas: la barra no pasaba del 13-Set)
+  // v72.53: el máximo de la barra sale de la serie (el HTML traía max="39" fijo, de cuando la serie tenía 40 fechas: la barra no pasaba del 16-Ago)
   try { const sl = $('d4Slider'); if (sl){ sl.min = S0; sl.max = DATA.tl_weeks.length - 1; if (typeof d4i === 'number') sl.value = d4i; if (+sl.value < S0) sl.value = S0; } if (typeof d4i === 'number' && d4i < S0) d4i = S0; } catch(e){}
   // v42 (M-08): con el visor oculto, el cambio de tema no reconstruye la escena (solo fondo y niebla); se reconstruye al volver al BIM
   try { const _apply = window.applyBimTheme; if (typeof _apply === 'function' && !_apply.__bimx){
@@ -13804,7 +13804,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
     const cd = DATA.corte_diario;
     if (cd){
       const semPrev = (cd.ultimo_semanal && cd.ultimo_semanal.semana) || ((cd.semana || 0) - 1);   // v42 (H-11): del generador
-      // v72.64 (29-Oct-26, auditoría): las cifras del informe semanal llevan la FECHA del informe (DATA.corte_diario.ultimo_semanal.fecha);
+      // v72.64 (01-Oct-26, auditoría): las cifras del informe semanal llevan la FECHA del informe (DATA.corte_diario.ultimo_semanal.fecha);
       // «Sem N» mostraba la semana de obra de la Base MS (configs: semana_reporte), no la del informe, y parecía una cifra de esta semana
       const fUS = (cd.ultimo_semanal && cd.ultimo_semanal.fecha) || '';
       const MESus = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'];
@@ -13848,7 +13848,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
   const keyOf = a => a.k || ('x' + a.idx);
   window.pcSel = window.pcSel || 'Caminos';
   const secCol = s => /acceso/i.test(s) ? cssv('--c-acc') : (/montaje|tendido/i.test(s) ? cssv('--c-elm') : cssv('--c-civ'));
-  // 15-Oct-26: TODAS las partidas se ven por torre, como en la tabla resumen del Excel. Las 8 del % de torre salen de
+  // 17-Set-26: TODAS las partidas se ven por torre, como en la tabla resumen del Excel. Las 8 del % de torre salen de
   // DATA.towers[].d; las demás (relleno, puesta a tierra, muros, electromecánicas) traen sus 23 valores en a.vals.
   const vT = (a, i) => a.k ? (DATA.towers[i] ? DATA.towers[i].d[a.k] : null) : (a.vals ? a.vals[i] : null);
   const valsT = a => DATA.towers.map((t, i) => vT(a, i));
@@ -13958,7 +13958,7 @@ const BRIEF = ⟦bloque:BRIEF⟧ || { lookahead: [], hallazgos: [], restriccione
       const b = ACTL.find(x => x.k === selStage);
       if (b){ a = b; window.pcSel = keyOf(b); if (b.g !== grupo){ grupo = b.g; if (tabs) tabs.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.g === grupo)); try { drawFlow(); } catch(e){} } }
     }
-    // 15-Oct-26: partida sin clave pero con desglose en la hoja (relleno, puesta a tierra, muros): gráfico por torre igual que las demás
+    // 17-Set-26: partida sin clave pero con desglose en la hoja (relleno, puesta a tierra, muros): gráfico por torre igual que las demás
     if (a && !a.k && a.vals && a.conDato > 0){
       selStage = null;
       $('detTitle').textContent = `${a.nm} · Avance por Torre`;
@@ -15455,7 +15455,7 @@ window.BMS_HECHOS = ⟦bloque:BMS_HECHOS⟧;
   const st = { modo: 'sem', unidad: 'pct', barras: true, tabla: false };
   const cur = () => (B.corte || '').slice(0);
   const semIdx = AC.semana - 1;
-  // v72.66 (31-Oct-26): desde el último día de la LB1 el Plan de Recuperación está vencido y no hay ritmo requerido
+  // v72.66 (03-Oct-26): desde el último día de la LB1 el Plan de Recuperación está vencido y no hay ritmo requerido
   // (base_ms_build deja ritmo_req_dia en null y trae fin_lb1 / dias_vencido)
   const pdrVenc = AC.ritmo_req_dia == null, finPdr = AC.fin_lb1 || B.fin, dVenc = AC.dias_vencido || 0;
   const vencTxt = dVenc > 0 ? `venció el ${fd(finPdr)} (hace ${dVenc} día${dVenc === 1 ? '' : 's'})` : `vence hoy, ${fd(finPdr)}`;
@@ -15486,7 +15486,7 @@ window.BMS_HECHOS = ⟦bloque:BMS_HECHOS⟧;
       { c: 'lb1', l: 'Planificado LB1 · Plan de Recuperación', v: F2(AC.lb1) + '<small> %</small>', f: `al ${fd(AC.fecha)} · cierre S${AC.semana} (${fd(AC.sem_fin)}): ${F2(AC.lb1_sem)} %` },
       { c: 'ev', l: 'Ejecutado (EV)', v: F2(AC.ev) + '<small> %</small>', f: `valorizado al ${fd(AC.ev_fecha)} · % del presupuesto de construcción` },
       { c: ds < 0 ? 'bad' : 'good', l: 'Desfase vs planificado (LB1)', v: (ds > 0 ? '+' : '−') + F2(Math.abs(ds)) + '<small> pts</small>', f: `S${AC.semana} (reporte) · al ${fd(AC.fecha)} diario: ${dd > 0 ? '+' : '−'}${F2(Math.abs(dd))} pts` },
-      // v72.64 (29-Oct-26, auditoría): el valor es EV/PV AL DÍA, igual que su fórmula y que las tarjetas SPI de arriba (antes mostraba el del
+      // v72.64 (01-Oct-26, auditoría): el valor es EV/PV AL DÍA, igual que su fórmula y que las tarjetas SPI de arriba (antes mostraba el del
       // cierre de la semana —spi_ab_sem / spi_are_sem— con la fórmula del día: «0,29 = 29,35 / 91,16»)
       { c: ((AC.lb0 > 0 ? AC.ev / AC.lb0 : 0)) < 0.9 ? 'bad' : 'good', l: 'SPI vs LB0 · contractual', v: (AC.lb0 > 0 ? F2(AC.ev / AC.lb0) : '—') + '<small> LB0</small>', f: `EV ${F2(AC.ev)} % / LB0 ${F2(AC.lb0)} % · mide el atraso frente al contrato` },
       { c: ((AC.lb1 > 0 ? AC.ev / AC.lb1 : 0)) < 0.9 ? 'bad' : 'good', l: 'SPI vs LB1 · planificado', v: (AC.lb1 > 0 ? F2(AC.ev / AC.lb1) : '—') + '<small> LB1</small>', f: `EV ${F2(AC.ev)} % / LB1 ${F2(AC.lb1)} % · mide el atraso frente al Plan de Recuperación` },
@@ -15496,7 +15496,7 @@ window.BMS_HECHOS = ⟦bloque:BMS_HECHOS⟧;
     el.innerHTML = items.map(k => `<div class="k ${k.c}"><div class="l">${k.l}</div><div class="v">${k.v}</div><div class="f">${k.f}</div></div>`).join('');
     const tt = $('bmsTitle'); if (tt) tt.textContent = `· Base de seguimiento MS · S${AC.semana} de obra · corte ${fdl(AC.fecha)}`;
     const de = $('bmsDesc'); if (de) de.innerHTML = `Línea base contractual (LB0), línea de recuperación del Plan de Recuperación (LB1) y ejecutado financiero, en % del presupuesto de construcción. Fuente: hojas «Curva S» y «Avance» de <b>${esc(B.fuente)}</b> (${esc(B.archivo)}). El ejecutado está valorizado hasta el ${fdl(AC.ev_fecha)}; el reporte diario ${(typeof DATA !== 'undefined' && DATA.corte_diario) ? esc(DATA.corte_diario.fuente) : ''} actualiza torres y actividades pero no la valorización.` +
-      // v72.67 (05-Nov-26): semanas posteriores al fin del Plan de Recuperación sin línea base nueva (base_ms_build: sin_linea_base)
+      // v72.67 (08-Oct-26): semanas posteriores al fin del Plan de Recuperación sin línea base nueva (base_ms_build: sin_linea_base)
       (() => { const ext = SEM.filter(w => w.sin_linea_base); if (!ext.length) return '';
         const f = ext[0], l = ext[ext.length - 1];
         return ` <b>Desde la S${f.n}</b> no hay línea base nueva: la LB0 y la LB1 se mantienen planas al 100 % y el ejecutado sale de la hoja «Avance» (S${l.n}${l.en_curso ? `, en curso: al ${fdl(l.ev_al)}` : ''}).`; })();
@@ -15687,7 +15687,7 @@ window.BMS_HECHOS = ⟦bloque:BMS_HECHOS⟧;
     const pvRest = 100 - AC.lb1_sem;
     const pico = SEM.slice().sort((a, b) => (b.pvRE || 0) - (a.pvRE || 0))[0];
     r.innerHTML = `<p><b>Lectura.</b> El SPI acumulado frente a la línea de recuperación llegó a <b>${F2(peakW.spiARE)}</b> en la S${peakW.n} y cae desde entonces (${fall.length} semanas seguidas) hasta <b>${F2(last.spiARE)}</b> en la S${last.n}: la obra dejó de seguir el PdR cuando el plan pedía acelerar (${n1} de ${N} semanas con SPI ≥ 1).</p>` +
-      (pdrVenc   // v72.67 (05-Nov-26): con el PdR vencido no queda plan por delante; se dice qué pasó desde el fin de la LB1
+      (pdrVenc   // v72.67 (08-Oct-26): con el PdR vencido no queda plan por delante; se dice qué pasó desde el fin de la LB1
         ? `<p>El Plan de Recuperación terminó el ${fd(finPdr)} con la LB1 al 100 % (pico de ${F2(pico.pvRE)} % en la S${pico.n}) y aún no hay línea base nueva; en la S${AC.semana}${SEM[semIdx].en_curso ? ` (en curso, al ${fd(SEM[semIdx].ev_al)})` : ''} se ejecutó ${F2(SEM[semIdx].evS)} %.</p>`
         : `<p>Desde la S${AC.semana + 1} el PdR concentra el <b>${F1(pvRest)} %</b> restante en ${semLB1.length} semanas (${F1(pvRest / Math.max(1, semLB1.length))} % por semana, pico de ${F2(pico.pvRE)} % en la S${pico.n}); en la S${AC.semana} se ejecutó ${F2(SEM[semIdx].evS)} %.</p>`) +
       `<p>Al corte diario (${fd(AC.fecha)}) el PV de LB1 ya es ${F2(AC.lb1)} % y el ejecutado valorizado ${F2(AC.ev)} % (${fd(AC.ev_fecha)}): SV US$ ${F0(AC.svUSD)}, SPI ${F2(AC.spi_re)}.</p>`;
@@ -15858,7 +15858,7 @@ window.BMS_HECHOS = ⟦bloque:BMS_HECHOS⟧;
 })();
 </script>
 <script id="pron-script">
-/* v72.34 (07-Oct-26, propuesta aprobada por el usuario): fila «hoy» del Resumen.
+/* v72.34 (09-Set-26, propuesta aprobada por el usuario): fila «hoy» del Resumen.
    1) Pronóstico de término por Earned Schedule (Lipke; PMI, Practice Standard for Earned Value Management) con la serie diaria de la
       Base de seguimiento MS (BASE_MS.diario): ES = día en que el plan (PdR o LB0) llegaba al ejecutado de hoy (interpolado entre días);
       atraso = días transcurridos − ES; SPI(t) = ES / días transcurridos; término = inicio + duración planificada / SPI(t). Además, el
@@ -15884,7 +15884,7 @@ window.BMS_HECHOS = ⟦bloque:BMS_HECHOS⟧;
     return null;
   }
   function calc(B, nom){
-    // v72.66 (31-Oct-26): días transcurridos al corte real (iReal); iCorte se queda en el último día de la serie diaria
+    // v72.66 (03-Oct-26): días transcurridos al corte real (iReal); iCorte se queda en el último día de la serie diaria
     const D = B.diario, S = D && D[nom], ev = B.al_corte && B.al_corte.ev, at = D && (D.iReal != null ? D.iReal : D.iCorte);
     if (!S || ev == null || at == null || !(at > 0)) return null;
     const e = esDe(S, ev), P = S.findIndex(v => v != null && v >= 99.995); if (e == null) return null;
@@ -16112,7 +16112,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 #p-patas .ft-h .ft-ir{margin:0}
 #p-patas .ft-tira{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
 #p-patas .ft-mas{cursor:pointer;border:1px dashed var(--line-2);border-radius:6px;background:var(--panel-2);font-family:inherit;font-weight:700;padding:6px}
-/* v72.38 (08-Oct-26, pedido del usuario con captura): ficha «Avance torre» en dos columnas cuando el panel es ancho (≥ 600 px): a la
+/* v72.38 (10-Set-26, pedido del usuario con captura): ficha «Avance torre» en dos columnas cuando el panel es ancho (≥ 600 px): a la
    izquierda los porcentajes, fijos (cabecera, intervenida, vía de acceso, obra civil, excavación y cimentaciones); a la derecha todas las
    fotos de la torre y de su camino de acceso, por día, con desplazamiento propio. Con el panel angosto (320 px) o en celular, una columna. */
 .slide-deck{container-type:inline-size}
@@ -16301,7 +16301,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 #ftBox .ftb-pie{color:#fff;font-size:.8rem;text-align:center} #ftBox .ftb-pie small{color:#93a8c9} .ftb-rev{color:#f0c674}
 #ftBox .ftb-x{position:absolute;top:-6px;right:-6px;width:34px;height:34px;border-radius:50%;border:0;background:#fff;font-size:22px;cursor:pointer;line-height:1}
 /* ==========================================================================================================
-   v72.13 · BIM despejado (pedido del usuario, 27-Set-26): el visor 3D muestra solo el modelo, el cubo y la
+   v72.13 · BIM despejado (pedido del usuario, 30-Ago-26): el visor 3D muestra solo el modelo, el cubo y la
    ventana móvil del trazo. Los datos de la selección van en la franja #bimInfo (encima) y la leyenda en
    #bimLeyenda (debajo), fuera del 3D. Un solo esquema de filas por ancho de pantalla (reemplaza a los de v63/v72.11).
    ========================================================================================================== */
@@ -16396,7 +16396,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
     {l: 'Ejecutado real', v: nf(E.ev, 2) + ' %', f: usd(E.evUSD) + ' de ' + usd(E.pvUSD) + ' programados', c: 'bad'},
     {l: 'Desfase vs PdR', v: nf(E.desfase, 2) + ' pts', f: 'semana cerrada: ' + nf(E.desfase_sem, 2) + ' pts · SV ' + usd(E.svUSD), c: 'bad'},
     {l: 'Ritmo requerido', v: nf(R.requerido, 2) + ' %/día', f: 'para cerrar el ' + fx(R.fin_lb1) + ' (' + R.dias_a_lb1 + ' días)', c: 'warn'},
-    {l: 'Ritmo observado', v: nf(R.observado, 3) + ' %/día', f: 'promedio desde que rige el PdR (14-ago)', c: 'bad'},
+    {l: 'Ritmo observado', v: nf(R.observado, 3) + ' %/día', f: 'promedio desde que rige el PdR (17-jul)', c: 'bad'},
     {l: 'Brecha de ritmo', v: '×' + nf(R.brecha, 1), f: 'habría que multiplicar el ritmo actual por ' + nf(R.brecha, 1), c: 'bad'}
   ];
   $('pdrKpis').innerHTML = K.map(k =>
@@ -16726,14 +16726,14 @@ html body #v-bim > .bim-stages{grid-row:7!important}
   const rN = r => String(r || '').toLowerCase();
   const esNoEj = a => rN(a.resultado).startsWith('no ejec');
   const kRes = r => { const x = rN(r); return x.startsWith('cumpl') ? 'ok' : (x.startsWith('parc') ? 'med' : (x.startsWith('no ejec') ? 'mal' : 'np')); };
-  // v72.61 (26-Oct-26, usuario): «no programado, ejecutado» = lo que Contratista Demo declara sin haberlo programado + lo que solo registra el Resumen
+  // v72.61 (28-Set-26, usuario): «no programado, ejecutado» = lo que Contratista Demo declara sin haberlo programado + lo que solo registra el Resumen
   const npe = c => (c && c.no_prog_ejec !== undefined && c.no_prog_ejec !== null) ? c.no_prog_ejec : ((c && c.no_programadas) || 0);
   const pct = v => (v === null || v === undefined) ? null : Math.round(v * 100);
   const clPPC = p => p === null ? '' : (p >= 50 ? 'ok' : (p >= 25 ? 'med' : 'mal'));
 
   function tira(){
     document.getElementById('rpTira').innerHTML = D.map((d, i) => {
-      // v72.51 (21-Oct-26, pedido del usuario: «0 % se ve muy preocupante cuando también hay parciales»): el % del día es el
+      // v72.51 (23-Set-26, pedido del usuario: «0 % se ve muy preocupante cuando también hay parciales»): el % del día es el
       // metrado ejecutado sobre el programado (la línea del gráfico de abajo); el PPC estricto va debajo como «c/p al 100 %».
       const c = d.cumplimiento || {}, am = pct(c.avance_metrado), p = pct(c.ppc);
       return `<button class="rp-dia ${i === sel ? 'on' : ''} ${clPPC(am === null ? p : am)}" data-i="${i}" title="${esc(d.reporte || '')}${p === null ? '' : ` · Porcentaje de Plan Cumplido (PPC) ${p} %`}">
@@ -16858,7 +16858,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
   }
 
   function grafico(){
-    // v72.62 (26-Oct-26): lo no programado, ejecutado se dibuja SOBRE el 100 % del programa, en la misma escala (cada partida
+    // v72.62 (28-Set-26): lo no programado, ejecutado se dibuja SOBRE el 100 % del programa, en la misma escala (cada partida
     // vale 1 / programadas) y con el color de su estado —completada o parcial— rayado en azul. El PPC y el metrado no cambian.
     const npC = k => k.np_completadas ?? 0, npP = k => (k.np_parciales ?? 0) + Math.max(0, npe(k) - (k.np_completadas ?? 0) - (k.np_parciales ?? 0));
     const sobre = D.map(x => { const k = x.cumplimiento || {}; return k.programadas ? (npC(k) + npP(k)) / k.programadas : 0; });
@@ -16950,7 +16950,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
   function tira(){
     const hs=H(); if(!hs.length) return '';
     const corte = (window.HITOS.corte) || hs[hs.length-1].fecha;
-    const x0 = dd('2026-06-01').getTime(), x1 = dd(corte).getTime()+3*864e5;
+    const x0 = dd('2026-05-04').getTime(), x1 = dd(corte).getTime()+3*864e5;
     const W=1000, L=150, R=10, lh=26, top=18, lanes=HI_CATS.filter(([k])=>hs.some(h=>h.cat===k));
     const Hh = top + lanes.length*lh + 6;
     const X = s => L + 8 + (dd(s).getTime()-x0)/(x1-x0)*(W-L-R-8);
@@ -17034,7 +17034,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
     if(sel.id && !visibles().some(h=>h.id===sel.id)) sel.id=null;
     { const fl = x => { const d=dd(x); return `${String(d.getDate()).padStart(2,'0')}-${MESES[d.getMonth()]}-${String(d.getFullYear()).slice(2)}`; };   // v72.24: periodo con fechas (antes «junio de 2026 al corte»)
       const hs=H(), c=(window.HITOS&&window.HITOS.corte)||(hs.length?hs[hs.length-1].fecha:null);
-      document.getElementById('hiTitulo').textContent = c ? `Eventos del proyecto · del ${fl('2026-06-01')} (inicio de obra) al ${fl(c)} (corte)` : 'Eventos del proyecto'; }
+      document.getElementById('hiTitulo').textContent = c ? `Eventos del proyecto · del ${fl('2026-05-04')} (inicio de obra) al ${fl(c)} (corte)` : 'Eventos del proyecto'; }
     document.getElementById('hiKpis').innerHTML = kpis();
     document.getElementById('hiFil').innerHTML = filtros();
     const ti=document.getElementById('hiTira'); ti.innerHTML = tira(); ti.scrollLeft = ti.scrollWidth;
@@ -17170,28 +17170,128 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 :root[data-theme="light"]{--c-civ:#2563eb;--c-elm:#93c5fd;--c-acc:#e9a23b}
 @media (max-width:700px){.topbar .tb-l .sub{display:none}.topbar .tb-m>span:not(:last-child){display:none}}
 
-.dm-gal{margin-top:0}
-#v-proc .obra-bottom > #dmGal{order:-1;grid-column:1/-1}
-@media(max-width:860px){#v-proc .obra-bottom{display:flex!important;flex-direction:column}}
-.dm-gal h3{display:flex;align-items:center;gap:8px}
-.dm-gal h3 .dm-gn{margin-left:auto;font:600 .62rem/1 inherit;font-family:inherit;color:var(--ink-mut);text-transform:none;letter-spacing:0}
-.dm-gal-g{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:8px}
-.dm-ft{position:relative;border:0;padding:0;border-radius:10px;overflow:hidden;cursor:zoom-in;background:var(--panel-3);aspect-ratio:4/3;
-  opacity:0;transform:translateY(8px) scale(.98);animation:dmFt .45s cubic-bezier(.2,.75,.2,1) forwards}
-@keyframes dmFt{to{opacity:1;transform:none}}
-.dm-ft img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
-.dm-ft:hover img{transform:scale(1.06)}
-.dm-ft span{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 6px;font:600 .62rem/1.2 inherit;font-family:inherit;color:#fff;text-align:left;
-  background:linear-gradient(transparent,rgba(5,15,35,.72))}
-.dm-gal-v{display:flex;align-items:center;justify-content:center;min-height:120px;border:1px dashed var(--line-2);border-radius:10px;
-  color:var(--ink-mut);font-size:.72rem;text-align:center;padding:12px;margin-top:8px}
-.dm-gal-pie{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
-.dm-gal-pie button{border:1px solid var(--line-2);background:var(--panel);color:var(--sky);border-radius:999px;padding:6px 12px;font:600 .66rem/1 inherit;
-  font-family:inherit;cursor:pointer;transition:background-color .18s,color .18s}
-.dm-gal-pie button:hover{background:var(--sky);color:#fff}
-@media (max-width:1100px){.dm-gal-g{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media (max-width:700px){.dm-gal-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;padding-bottom:4px}
-  .dm-ft{flex:0 0 62%;scroll-snap-align:start}}
+/* ===== demo: vistas propias de Proceso constructivo y Reportes diarios ===== */
+#v-proc.view.on,#v-rep.view.on{display:block!important;padding:0 2px 10px}
+#v-proc > :not(.dmp),#v-rep > :not(.dmr){display:none!important}
+.dmp,.dmr{display:flex;flex-direction:column;gap:10px;min-width:0}
+.dmx-cab{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dmx-cab h3{margin:0}
+.dmx-seg{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.dmx-seg button{border:0;background:none;font:600 .72rem/1 inherit;font-family:inherit;color:var(--ink-2);padding:7px 14px;border-radius:999px;cursor:pointer;transition:background-color .18s,color .18s}
+.dmx-seg button.on{background:var(--sky);color:#fff;box-shadow:0 6px 14px -8px rgba(37,99,235,.7)}
+.dmx-res{font-size:.74rem;color:var(--ink-2)}
+.dmx-res b{color:var(--ink)}
+.dmx-in{opacity:0;transform:translateY(8px);animation:dmxIn .45s cubic-bezier(.2,.75,.2,1) forwards}
+@keyframes dmxIn{to{opacity:1;transform:none}}
+.dmx-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line-2);background:var(--panel);border-radius:999px;padding:3px 9px;
+  font:600 .66rem/1.2 inherit;font-family:inherit;color:var(--ink);cursor:pointer;transition:background-color .15s,border-color .15s}
+.dmx-chip:hover{border-color:var(--sky);background:var(--sky-soft)}
+.dmx-chip small{color:var(--ink-mut);font-weight:600}
+.dmx-k{font:700 .62rem/1.2 inherit;font-family:inherit;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-mut)}
+.dmx-vacio{display:flex;align-items:center;justify-content:center;min-height:90px;border:1px dashed var(--line-2);border-radius:10px;color:var(--ink-mut);
+  font-size:.74rem;text-align:center;padding:12px}
+
+/* ---- Proceso constructivo ---- */
+.dmp-tubo{display:flex;gap:0;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.dmp-et{flex:1 0 118px;max-width:170px;position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px 10px;margin-right:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;cursor:pointer;text-align:center;transition:transform .18s,box-shadow .18s,border-color .18s}
+.dmp-et:last-child{margin-right:0}
+.dmp-et:not(:last-child)::after{content:"";position:absolute;right:-13px;top:50%;width:10px;height:10px;border-top:2px solid var(--line-2);border-right:2px solid var(--line-2);
+  transform:translateY(-50%) rotate(45deg)}
+.dmp-et:hover{transform:translateY(-2px);box-shadow:0 12px 26px -18px rgba(15,40,90,.5)}
+.dmp-et.on{border-color:var(--sky);box-shadow:0 0 0 2px var(--sky-soft),0 14px 30px -18px rgba(37,99,235,.6)}
+.dmp-et .nm{font:700 .72rem/1.2 inherit;font-family:inherit;color:var(--ink)}
+.dmp-et .pl{font-size:.6rem;color:var(--ink-mut)}
+.dmp-ring{width:64px;height:64px}
+.dmp-ring circle{fill:none;stroke-width:7}
+.dmp-ring .bg{stroke:var(--panel-3)}
+.dmp-ring .fg{stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1s cubic-bezier(.3,.7,.2,1)}
+.dmp-ring text{font:800 15px/1 Manrope,Inter,sans-serif;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.dmp-ring .fg.ok{stroke:#16a34a}.dmp-ring .fg.med{stroke:#f59e0b}.dmp-ring .fg.mal{stroke:#dc2626}.dmp-ring .fg.np{stroke:var(--line-2)}
+.dmp-cuerpo{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,1fr);gap:10px;align-items:start}
+.dmp-mat{overflow-x:auto}
+.dmp-mat table{border-collapse:separate;border-spacing:3px;width:100%;min-width:640px}
+.dmp-mat th{font:600 .6rem/1 JetBrains Mono,monospace;color:var(--ink-mut);padding:2px 0;text-align:center}
+.dmp-mat th.f{text-align:left;font:700 .66rem/1.2 inherit;font-family:inherit;color:var(--ink-2);padding-right:6px;white-space:nowrap;cursor:pointer}
+.dmp-mat tr.on th.f{color:var(--sky)}
+.dmp-mat td{height:24px;border-radius:5px;text-align:center;font:600 .58rem/1 JetBrains Mono,monospace;cursor:pointer;transition:transform .12s;min-width:22px}
+.dmp-mat td:hover{transform:scale(1.15);position:relative;z-index:2}
+.dmp-mat td.ok{background:#16a34a;color:#fff}
+.dmp-mat td.curso{background:rgba(245,158,11,var(--a,.6));color:#3b2a06}
+.dmp-mat td.cero{background:var(--panel-3)}
+.dmp-mat td.na{background:repeating-linear-gradient(45deg,var(--panel-2) 0 4px,var(--line) 4px 6px)}
+.dmp-mat td.sd{background:transparent;border:1px dashed var(--line)}
+.dmp-mat tr.on td{box-shadow:inset 0 0 0 1px rgba(37,99,235,.35)}
+.dmp-mat tr{animation:dmxIn .4s cubic-bezier(.2,.75,.2,1) both}
+.dmp-ley{display:flex;gap:12px;flex-wrap:wrap;font-size:.64rem;color:var(--ink-mut);margin-top:6px}
+.dmp-ley i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+.dmp-sel h4{margin:0 0 2px;font:800 1rem/1.25 Manrope,Inter,sans-serif;color:var(--ink)}
+.dmp-kp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}
+.dmp-kp div{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.dmp-kp b{display:block;font:800 1.25rem/1.1 Manrope,Inter,sans-serif;color:var(--ink);margin-top:3px}
+.dmp-kp b.ok{color:#0054da}.dmp-kp b.med{color:#b45309}.dmp-kp b.mal{color:#b91c1c}
+.dmp-dist{display:flex;height:12px;border-radius:999px;overflow:hidden;background:var(--panel-3);margin:6px 0 4px}
+.dmp-dist i{display:block;height:100%;transition:width .8s cubic-bezier(.3,.7,.2,1)}
+.dmp-dist-l{display:flex;gap:10px;flex-wrap:wrap;font-size:.64rem;color:var(--ink-2)}
+.dmp-dist-l span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px;background:var(--c)}
+.dmp-tw{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.dmp-gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px}
+.dmp-ft{position:relative;border:0;padding:0;border-radius:9px;overflow:hidden;cursor:zoom-in;background:var(--panel-3);aspect-ratio:4/3}
+.dmp-ft img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.dmp-ft:hover img{transform:scale(1.07)}
+.dmp-ft span{position:absolute;left:0;right:0;bottom:0;padding:12px 6px 4px;font:600 .56rem/1.2 inherit;font-family:inherit;color:#fff;text-align:left;
+  background:linear-gradient(transparent,rgba(5,15,35,.75))}
+.dmp-mas{display:flex;justify-content:flex-end;margin-top:8px}
+
+/* ---- Reportes diarios ---- */
+.dmr-dias{display:flex;gap:8px;align-items:flex-end;overflow-x:auto;padding:4px 2px}
+.dmr-dia{flex:1 0 76px;max-width:220px;display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid var(--line);background:var(--panel);
+  border-radius:12px;padding:8px 6px 6px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.dmr-dia:hover{transform:translateY(-2px)}
+.dmr-dia.on{border-color:var(--sky);box-shadow:0 0 0 2px var(--sky-soft)}
+.dmr-dia .b{width:26px;height:46px;border-radius:6px;background:var(--panel-3);display:flex;align-items:flex-end;overflow:hidden}
+.dmr-dia .b i{display:block;width:100%;background:linear-gradient(180deg,#60a5fa,#2563eb);border-radius:6px 6px 0 0;transition:height .7s cubic-bezier(.3,.7,.2,1)}
+.dmr-dia .d{font:700 .7rem/1 inherit;font-family:inherit;color:var(--ink)}
+.dmr-dia .w{font-size:.58rem;color:var(--ink-mut);text-transform:capitalize}
+.dmr-dia .p{font:600 .58rem/1 JetBrains Mono,monospace;color:var(--ink-2)}
+.dmr-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dmr-kpi{display:flex!important;flex-direction:row!important;align-items:center;gap:12px;min-height:96px}
+.dmr-kpi svg{flex:0 0 auto}
+.dmr-kpi .t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dmr-kpi b{font:800 1.45rem/1.05 Manrope,Inter,sans-serif;color:var(--ink)}
+.dmr-kpi small{font-size:.64rem;color:var(--ink-2);line-height:1.35}
+.dmr-don circle{fill:none;stroke-width:9;transform:rotate(-90deg);transform-origin:50% 50%}
+.dmr-don text{font:800 14px/1 Manrope,Inter,sans-serif;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.dmr-pila{display:flex;height:9px;border-radius:999px;overflow:hidden;background:var(--panel-3);width:100%;margin-top:4px}
+.dmr-pila i{display:block;height:100%}
+.dmr-al{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%}
+.dmr-al div{background:var(--panel-2);border-radius:9px;padding:6px 4px;text-align:center}
+.dmr-al b{display:block;font:800 1.15rem/1 Manrope,Inter,sans-serif;color:#b91c1c}
+.dmr-al span{font-size:.58rem;color:var(--ink-2)}
+.dmr-cuerpo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,1fr);gap:10px;align-items:start}
+.dmr-tit{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.dmr-tit li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start}
+.dmr-tit li i{width:22px;height:22px;border-radius:7px;background:var(--sky-soft);color:var(--sky);display:grid;place-items:center;font:800 .66rem/1 inherit;font-family:inherit;font-style:normal}
+.dmr-tit li b{display:block;font:700 .76rem/1.3 inherit;font-family:inherit;color:var(--ink)}
+.dmr-tit li span{font-size:.7rem;color:var(--ink-2);line-height:1.4}
+.dmr-tw{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.dmr-tr{display:grid;grid-template-columns:52px minmax(0,1fr) 120px 96px;gap:8px;align-items:center;padding:7px 8px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.dmr-tr .nm{font-size:.7rem;color:var(--ink);line-height:1.3}
+.dmr-tr .nm small{display:block;color:var(--ink-mut);font-size:.6rem;margin-top:2px}
+.dmr-tr .br{height:8px;border-radius:999px;background:var(--panel-3);overflow:hidden}
+.dmr-tr .br i{display:block;height:100%;border-radius:999px;transition:width .8s cubic-bezier(.3,.7,.2,1)}
+.dmr-tr .q{font:600 .58rem/1.2 JetBrains Mono,monospace;color:var(--ink-mut);margin-top:3px}
+.dmr-est{justify-self:end;font:700 .6rem/1 inherit;font-family:inherit;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.dmr-est.ok{background:#dcfce7;color:#0054da}.dmr-est.mal{background:#fee2e2;color:#b91c1c}.dmr-est.np{background:var(--panel-3);color:var(--ink-2)}.dmr-est.med{background:#fef3c7;color:#92400e}
+.dmr-sem svg{width:100%;height:auto;display:block}
+.dmr-clima{font-size:.72rem;color:var(--ink-2);margin-top:6px}
+.dmp-cuerpo>*,.dmr-cuerpo>*{min-width:0}
+@media (max-width:1100px){.dmp-cuerpo,.dmr-cuerpo{grid-template-columns:minmax(0,1fr)}.dmr-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){
+  .dmp-et{flex:0 0 108px}.dmp-gal{grid-template-columns:repeat(2,minmax(0,1fr))}.dmp-kp b{font-size:1.05rem}
+  .dmr-kpis{grid-template-columns:1fr}.dmr-tr{grid-template-columns:44px minmax(0,1fr);}
+  .dmr-tr .brw{grid-column:2}.dmr-tr .dmr-est{grid-column:2;justify-self:start}
+}
 
 /* demo pública */
 #demoChip{position:fixed;right:14px;bottom:14px;z-index:9999;max-width:calc(100vw - 28px);background:#2563eb;color:#fff;font:600 12px/1.35 "Inter",system-ui,sans-serif;padding:8px 12px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.18);pointer-events:none;opacity:.92}
@@ -17199,7 +17299,7 @@ html body #v-bim > .bim-stages{grid-row:7!important}
 .demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}#bTema,#themeBtn{display:none!important}:root[data-theme="light"]{--bg:#f2f5fa;--sky:#2563eb;--sky-soft:rgba(37,99,235,.10);--amber:#b7791f;--amber-soft:rgba(245,158,11,.16);--amber-fill:#f59e0b}:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2563eb 0%,#3b82f6 60%,#60a5fa 100%)}:root[data-theme="light"] .verdict .big{color:var(--amber)!important}.nav button.bim-badge::after{background:#f59e0b!important;color:#1f2937!important}.topbar .demo-tag{background:#fff;color:#2563eb}</style>
 <script id="ingenieria-data">window.INGENIERIA = ⟦bloque:INGENIERIA⟧;</script>
 <script>
-// ===== Ingeniería LT (v72.65, 29-Oct-26) · estado de la ingeniería de detalle desde el control semanal =====
+// ===== Ingeniería LT (v72.65, 01-Oct-26) · estado de la ingeniería de detalle desde el control semanal =====
 (function(){
   const I = window.INGENIERIA;
   const $i = id => document.getElementById(id);
@@ -17363,85 +17463,214 @@ html body #v-bim > .bim-stages{grid-row:7!important}
     })();
   }
   irHash(); addEventListener('hashchange', irHash);
+  window.demoIrTorre = function(t){ if (location.hash === '#torre=' + t) irHash(); else location.hash = '#torre=' + t; };
 })();</script>
 <script>(function(){
   var MES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'];
   function fc(s){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return m ? m[3] + '-' + MES[+m[2] - 1] : ''; }
-  var NOM = {acceso:'Caminos de acceso', 'excavación':'Excavación', solado:'Concreto solado', stub:'Nivelación de stub', acero:'Acero de refuerzo',
-             encofrado:'Encofrado de pedestal', vaciado:'Vaciado de concreto', relleno:'Relleno compactado', pat:'Puesta a tierra'};
-  function faseDe(n){ n = n || '';
-    if (/puesta a tierra|\bpat\b|contrapeso|varillas/i.test(n)) return 'pat';
-    if (/^caminos|acceso/i.test(n)) return 'acceso';
-    if (/excavaci/i.test(n)) return 'excavación';
-    if (/solado/i.test(n)) return 'solado';
-    if (/stub/i.test(n)) return 'stub';
-    if (/acero/i.test(n)) return 'acero';
-    if (/encofrado/i.test(n)) return 'encofrado';
-    if (/concreto f/i.test(n)) return 'vaciado';
-    if (/relleno compactado/i.test(n)) return 'relleno';
-    return null; }
-  function fotos(){ try { return (typeof FOTOS_CAMPO !== 'undefined' && FOTOS_CAMPO) ? FOTOS_CAMPO : []; } catch(e){ return []; } }
-  // coherencia con el avance oficial: una foto de la etapa entra solo si su torre tiene esa actividad iniciada en el corte
-  // (hoja Avance); las fotos de caminos y las de actividades sin desglose por torre entran todas
-  var CLAVE = {'excavación':'Excavación', solado:'Solado', stub:'Stub', acero:'Acero', encofrado:'Encofrado', vaciado:'Concreto', acceso:'Caminos'};
-  function coherente(f, fase){
-    var k = CLAVE[fase]; if (!k || !f.torre) return true;
-    try { var t = DATA.towers.find(function(x){ return x.t === f.torre; }); var v = t && t.d ? t.d[k] : null;
-      return typeof v === 'number' && v > 0; } catch(e){ return true; }
-  }
-  // de la más reciente a la más antigua, alternando torres (la última de cada torre primero)
-  function orden(L){
-    var por = {}, k = [];
-    L.slice().sort(function(a, b){ var na = (a.q || 999) < 200 ? 1 : 0, nb = (b.q || 999) < 200 ? 1 : 0;      // movidas al final
-        return na - nb || (b.fecha + (b.hora || '')).localeCompare(a.fecha + (a.hora || '')); })
-      .forEach(function(f){ var t = f.torre || f.camino || '—'; if (!por[t]) { por[t] = []; k.push(t); } por[t].push(f); });
-    var out = [], hay = true;
-    while (hay){ hay = false; k.forEach(function(t){ if (por[t].length){ out.push(por[t].shift()); hay = true; } }); }
-    return out;
-  }
-  function tarjeta(){
-    var c = document.getElementById('dmGal'); if (c) return c;
-    var ref = document.querySelector('#v-proc .obra-bottom'); if (!ref) return null;
-    c = document.createElement('div'); c.className = 'card dm-gal'; c.id = 'dmGal';
-    ref.appendChild(c); return c;            // al final del DOM (no mueve los nth-child del tablero) y primero por «order»
-  }
-  var ultima = null;
-  function pintar(forzar){
-    var c = tarjeta(); if (!c) return;
-    var row = document.querySelector('#flowSvg .pc-row.on'); if (!row) return;
-    var nm = (row.querySelector('.pc-nm') || row).childNodes[0]; nm = nm ? nm.textContent.trim() : '';
-    var fase = faseDe(nm), clave = nm + '|' + fotos().length;
-    if (!forzar && clave === ultima) return; ultima = clave;
-    var L = fase ? orden(fotos().filter(function(f){ return f.fase === fase && coherente(f, fase); })) : [];
-    var tit = '<h3><span class="dot"></span>Fotos de la etapa · ' + (fase ? NOM[fase] : nm) + '<span class="dm-gn">' + (L.length ? L.length + ' fotos' : '') + '</span></h3>';
-    if (!L.length){
-      c.innerHTML = tit + '<div class="dm-gal-v">' + (!fotos().length ? 'Cargando las fotos de obra…' :
-        (/montaje|tendido|amortiguador|telecomunic|pruebas|perfiles/i.test(nm) ? 'El montaje electromecánico aún no empieza: sus fotos aparecerán aquí cuando inicie.' :
-         'Esta actividad aún no tiene fotos de obra.')) + '</div>';
-      return;
+  function f1(v){ return Number(v).toLocaleString('es-ES', {minimumFractionDigits: 1, maximumFractionDigits: 1}); }
+  function f2(v){ return Number(v).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+  function esc(s){ return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function irTorre(t){ if (window.demoIrTorre) window.demoIrTorre(t); else location.hash = '#torre=' + t; }
+  window.demoIrTorre = window.demoIrTorre || function(t){ location.hash = ''; setTimeout(function(){ location.hash = '#torre=' + t; }, 0); };
+
+  /* ================= PROCESO CONSTRUCTIVO ================= */
+  (function(){
+    var D = (typeof DATA !== 'undefined') ? DATA : null; var sec = document.getElementById('v-proc');
+    if (!D || !D.actividades || !sec) return;
+    var T = D.towers || [];
+    var R = [[/^caminos/i,'Accesos'],[/^excavación para cimentación/i,'Excavación'],[/solado/i,'Solado'],[/stub/i,'Stub'],[/acero/i,'Acero'],[/encofrado/i,'Encofrado'],
+      [/concreto f/i,'Concreto'],[/^relleno compactado/i,'Relleno'],[/excavación para sistema puesta/i,'PAT · excavación'],[/contrapeso/i,'PAT · contrapeso'],
+      [/varillas/i,'PAT · varillas'],[/préstamo para pat/i,'PAT · relleno'],[/resistividad/i,'PAT · medición'],[/muro/i,'Muros'],[/eliminación/i,'Eliminación'],
+      [/traslado de perfiles/i,'Traslado de perfiles'],[/montaje/i,'Montaje'],[/tendido/i,'Tendido'],[/amortiguadores/i,'Amortiguadores'],[/telecomunic/i,'Telecom.'],[/pruebas/i,'Pruebas']];
+    function corto(a){ for (var i = 0; i < R.length; i++) if (R[i][0].test(a.nm || '')) return R[i][1]; return a.nm; }
+    function val(a, i){ var v = a.k ? (T[i] && T[i].d ? T[i].d[a.k] : null) : (a.vals ? a.vals[i] : null); return v === undefined ? null : v; }
+    function porTorre(a){ return (!!a.k && a.k !== 'Montaje') || !!(a.vals && a.conDato > 0); }
+    function etapas(g){ return D.actividades.map(function(a, i){ a._i = i; return a; }).filter(function(a){
+      if (a.g !== g || a.k === 'Remediación') return false; return g !== 'civil' || porTorre(a) || (+a.pv > 0); }); }
+    function clave(a){ return a.k || ('x' + a._i); }
+    function estado(a){ var ev = +a.ev || 0, pv = +a.pv || 0; if (ev >= 99.5) return 'ok'; if (!pv && !ev) return 'np';
+      var k = pv ? ev / pv : 1; return k >= 0.95 ? 'ok' : (k >= 0.7 ? 'med' : 'mal'); }
+    function cuenta(a){ var c = {ok:0, curso:0, cero:0, na:0, sd:0}; if (!porTorre(a)) return null;
+      T.forEach(function(t, i){ var v = val(a, i); if (v === 'NA') c.na++; else if (typeof v !== 'number') c.sd++; else if (v >= 99.5) c.ok++; else if (v > 0) c.curso++; else c.cero++; }); return c; }
+    // fotos de la etapa
+    var FASE = {'Accesos':'acceso','Excavación':'excavación','Solado':'solado','Stub':'stub','Acero':'acero','Encofrado':'encofrado','Concreto':'vaciado','Relleno':'relleno',
+      'PAT · excavación':'pat','PAT · contrapeso':'pat','PAT · varillas':'pat','PAT · relleno':'pat','PAT · medición':'pat'};
+    var CL = {'excavación':'Excavación', solado:'Solado', stub:'Stub', acero:'Acero', encofrado:'Encofrado', vaciado:'Concreto', acceso:'Caminos'};
+    function fotos(){ try { return (typeof FOTOS_CAMPO !== 'undefined' && FOTOS_CAMPO) ? FOTOS_CAMPO : []; } catch(e){ return []; } }
+    function coherente(f, fase){ var k = CL[fase]; if (!k || !f.torre) return true;
+      var t = T.find(function(x){ return x.t === f.torre; }); var v = t && t.d ? t.d[k] : null; return typeof v === 'number' && v > 0; }
+    function orden(L){ var por = {}, ks = [];
+      L.slice().sort(function(a, b){ var na = (a.q || 999) < 200 ? 1 : 0, nb = (b.q || 999) < 200 ? 1 : 0; return na - nb || (b.fecha + (b.hora || '')).localeCompare(a.fecha + (a.hora || '')); })
+       .forEach(function(f){ var t = f.torre || f.camino || '—'; if (!por[t]) { por[t] = []; ks.push(t); } por[t].push(f); });
+      var out = [], hay = true; while (hay){ hay = false; ks.forEach(function(t){ if (por[t].length){ out.push(por[t].shift()); hay = true; } }); } return out; }
+
+    var cont = document.createElement('div'); cont.className = 'dmp'; sec.insertBefore(cont, sec.firstChild);
+    var grupo = 'civil', sel = null;
+    function elegirInicial(){ var E = etapas('civil'), best = null, bc = -1;
+      E.forEach(function(a){ var c = cuenta(a); var n = c ? c.curso : -1; if (n > bc){ bc = n; best = a; } }); return best ? clave(best) : null; }
+    sel = elegirInicial();
+
+    function anillo(a){ var ev = Math.max(0, Math.min(100, +a.ev || 0)), C = 2 * Math.PI * 26;
+      return '<svg class="dmp-ring" viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="26"/><circle class="fg ' + estado(a) + '" cx="32" cy="32" r="26" stroke-dasharray="' + C.toFixed(1) +
+        '" stroke-dashoffset="' + C.toFixed(1) + '" data-o="' + (C * (1 - ev / 100)).toFixed(1) + '"/><text x="32" y="32">' + Math.round(ev) + '%</text></svg>'; }
+
+    function pintar(){
+      var E = etapas(grupo); if (!E.some(function(a){ return clave(a) === sel; })) sel = E.length ? clave(E[0]) : null;
+      var a = E.find(function(x){ return clave(x) === sel; });
+      var c = D.counts || {}, ph = D.phaseRollup || {};
+      var res = grupo === 'civil'
+        ? 'Obra civil <b>' + f1(D.ocGlobal) + ' %</b> · <b>' + (c.civilFin != null ? c.civilFin : '—') + ' de ' + T.length + '</b> torres con la cimentación concluida · accesos <b>' + f1(ph.acceso || 0) + ' %</b>'
+        : 'Montaje electromecánico <b>por iniciar</b>: arranca cuando cierran las cimentaciones (' + (c.civilFin != null ? c.civilFin : '—') + ' de ' + T.length + ' torres listas)';
+      var h = '<div class="card"><div class="dmx-cab"><h3><span class="dot"></span>Proceso constructivo</h3><div class="dmx-seg">' +
+        '<button type="button" data-g="civil"' + (grupo === 'civil' ? ' class="on"' : '') + '>Obra civil</button><button type="button" data-g="elm"' + (grupo === 'elm' ? ' class="on"' : '') + '>Electromecánico</button></div>' +
+        '<span class="dmx-res">' + res + '</span></div>' +
+        '<div class="desc" style="margin-top:6px">Cada etapa con su avance (anillo) frente a lo planificado al corte · toque una etapa para ver sus torres y sus fotos</div><div class="dmp-tubo">';
+      E.forEach(function(x, i){ h += '<div class="dmp-et dmx-in' + (clave(x) === sel ? ' on' : '') + '" data-k="' + clave(x) + '" style="animation-delay:' + (i * 0.04).toFixed(2) + 's" title="' + esc(x.nm) + '">' +
+        anillo(x) + '<span class="nm">' + esc(corto(x)) + '</span><span class="pl">plan ' + (x.pv != null ? f1(+x.pv) + ' %' : '—') + '</span></div>'; });
+      h += '</div></div><div class="dmp-cuerpo"><div class="card"><h3><span class="dot"></span>Matriz de avance · torre por etapa</h3>' +
+        '<div class="desc">Cada celda es el % de la etapa en esa torre (hoja de avance del reporte) · toque una celda para ver la torre en el BIM 4D</div><div class="dmp-mat"><table><thead><tr><th></th>';
+      T.forEach(function(t){ h += '<th>' + t.t.replace('T0', 'T') + '</th>'; });
+      h += '</tr></thead><tbody>';
+      E.forEach(function(x, r){ h += '<tr class="' + (clave(x) === sel ? 'on' : '') + '" data-k="' + clave(x) + '" style="animation-delay:' + (r * 0.03).toFixed(2) + 's"><th class="f">' + esc(corto(x)) + '</th>';
+        T.forEach(function(t, i){ var v = val(x, i), cl, tx = '', st = '';
+          if (v === 'NA') cl = 'na'; else if (typeof v !== 'number') cl = 'sd'; else if (v >= 99.5) { cl = 'ok'; tx = '✓'; } else if (v > 0) { cl = 'curso'; tx = Math.round(v); st = ' style="--a:' + (0.3 + 0.6 * v / 100).toFixed(2) + '"'; } else cl = 'cero';
+          var tip = t.t + ' · ' + corto(x) + ': ' + (v === 'NA' ? 'no aplica' : (typeof v === 'number' ? f1(v) + ' %' : 'sin dato'));
+          h += '<td class="' + cl + '"' + st + ' data-t="' + t.t + '" title="' + esc(tip) + '">' + tx + '</td>'; });
+        h += '</tr>'; });
+      h += '</tbody></table></div><div class="dmp-ley"><span><i style="background:#16a34a"></i>terminada</span><span><i style="background:rgba(245,158,11,.75)"></i>en curso (el tono sube con el %)</span>' +
+        '<span><i style="background:var(--panel-3)"></i>sin iniciar</span><span><i style="background:repeating-linear-gradient(45deg,var(--panel-2) 0 3px,var(--line) 3px 5px)"></i>no aplica</span>' +
+        '<span><i style="border:1px dashed var(--line-2)"></i>sin desglose</span></div></div><div class="card dmp-sel" id="dmpSel"></div></div>';
+      cont.innerHTML = h;
+      requestAnimationFrame(function(){ cont.querySelectorAll('.dmp-ring .fg').forEach(function(c){ c.style.strokeDashoffset = c.dataset.o; }); });
+      cont.querySelectorAll('.dmx-seg button').forEach(function(b){ b.onclick = function(){ grupo = b.dataset.g; sel = null; pintar(); }; });
+      cont.querySelectorAll('.dmp-et').forEach(function(b){ b.onclick = function(){ sel = b.dataset.k; marcar(); detalle(); }; });
+      cont.querySelectorAll('.dmp-mat th.f').forEach(function(b){ b.onclick = function(){ sel = b.parentNode.dataset.k; marcar(); detalle(); }; });
+      cont.querySelectorAll('.dmp-mat td[data-t]').forEach(function(td){ td.onclick = function(){ irTorre(td.dataset.t); }; });
+      detalle();
     }
-    var N = Math.min(L.length, 12), h = tit + '<div class="desc">Fotos de obra de esta actividad, de la más reciente a la más antigua y de distintas torres · toque una para verla en grande</div><div class="dm-gal-g">';
-    for (var i = 0; i < N; i++){ var f = L[i];
-      h += '<button type="button" class="dm-ft" data-i="' + i + '" style="animation-delay:' + (i * 0.04).toFixed(2) + 's"><img loading="lazy" alt="" src="' + (f.mini || f.src) + '"><span>' +
-        (f.torre || ('Camino ' + (f.camino || ''))) + ' · ' + fc(f.fecha) + '</span></button>'; }
-    h += '</div><div class="dm-gal-pie"><button type="button" data-todas="1">Ver las ' + L.length + ' en Fotos de obra →</button></div>';
-    c.innerHTML = h;
-    c.querySelectorAll('.dm-ft').forEach(function(b){ b.onclick = function(){ try { abrirFoto(L[+b.dataset.i].src, L); } catch(e){} }; });
-    var todas = c.querySelector('[data-todas]');
-    if (todas) todas.onclick = function(){
-      try { fotSel.fase = fase; fotSel.zona = 'Todas'; fotSel.sem = null; fotSel.celda = null; fotSel.obs = null; } catch(e){}
-      var b = document.querySelector('[data-v="v-fot"]'); if (b) b.click();
-      setTimeout(function(){ try { renderFotosTab(); } catch(e){} }, 60);
-    };
-  }
-  function vigilar(){
-    var fl = document.getElementById('flowSvg'); if (!fl) return setTimeout(vigilar, 500);
-    var t = null; new MutationObserver(function(){ clearTimeout(t); t = setTimeout(function(){ pintar(false); }, 60); }).observe(fl, { childList: true, subtree: true });
-    var n = 0; (function esperar(){ if (fotos().length) { pintar(true); return; } try { if (typeof cargarFotosCampo === 'function') cargarFotosCampo(); } catch(e){}
+    function marcar(){ cont.querySelectorAll('.dmp-et').forEach(function(b){ b.classList.toggle('on', b.dataset.k === sel); });
+      cont.querySelectorAll('.dmp-mat tbody tr').forEach(function(r){ r.classList.toggle('on', r.dataset.k === sel); }); }
+    function detalle(){
+      var el = document.getElementById('dmpSel'); if (!el) return;
+      var a = etapas(grupo).find(function(x){ return clave(x) === sel; });
+      if (!a){ el.innerHTML = '<div class="dmx-vacio">Elija una etapa</div>'; return; }
+      var ev = +a.ev || 0, pv = +a.pv || 0, ki = pv ? ev / pv : null, es = estado(a), c = cuenta(a);
+      var h = '<div class="dmx-k">Etapa seleccionada</div><h4>' + esc(a.nm) + '</h4>' +
+        '<div class="dmp-kp"><div><span class="dmx-k">Ejecutado</span><b>' + f1(ev) + ' %</b></div><div><span class="dmx-k">Plan al corte</span><b>' + f1(pv) + ' %</b></div>' +
+        '<div><span class="dmx-k">Índice EV/PV</span><b class="' + (ki == null ? '' : es) + '">' + (ki == null ? '—' : f2(ki)) + '</b></div></div>';
+      if (c){
+        var n = T.length || 1, partes = [['#16a34a', c.ok, 'terminadas'], ['#f59e0b', c.curso, 'en curso'], ['var(--line-2)', c.cero, 'sin iniciar'], ['var(--panel-2)', c.na, 'no aplica']];
+        h += '<div class="dmp-dist">' + partes.map(function(p){ return '<i style="width:' + (100 * p[1] / n).toFixed(1) + '%;background:' + p[0] + '"></i>'; }).join('') + '</div>' +
+          '<div class="dmp-dist-l">' + partes.filter(function(p){ return p[1]; }).map(function(p){ return '<span style="--c:' + p[0] + '">' + p[1] + ' ' + p[2] + '</span>'; }).join('') + '</div>';
+        var curso = []; T.forEach(function(t, i){ var v = val(a, i); if (typeof v === 'number' && v > 0 && v < 99.5) curso.push([t.t, v]); });
+        if (curso.length) h += '<div class="dmp-tw">' + curso.map(function(x){ return '<button type="button" class="dmx-chip" data-t="' + x[0] + '">' + x[0] + ' <small>' + Math.round(x[1]) + ' %</small></button>'; }).join('') + '</div>';
+      } else {
+        h += '<div class="dmx-vacio" style="min-height:56px">' + (a.g === 'elm' ? 'Partida electromecánica aún sin iniciar' : 'Esta partida se reporta solo a nivel de línea, sin desglose por torre') + '</div>';
+      }
+      var fase = FASE[corto(a)], L = fase ? orden(fotos().filter(function(f){ return f.fase === fase && coherente(f, fase); })) : [];
+      h += '<div class="dmx-k" style="margin-top:14px">Fotos de la etapa' + (L.length ? ' · ' + L.length : '') + '</div>';
+      if (L.length){
+        h += '<div class="dmp-gal">' + L.slice(0, 8).map(function(f, i){ return '<button type="button" class="dmp-ft dmx-in" data-i="' + i + '" style="animation-delay:' + (i * 0.04).toFixed(2) + 's"><img loading="lazy" alt="" src="' + (f.mini || f.src) + '"><span>' +
+          esc(f.torre || ('Camino ' + (f.camino || ''))) + ' · ' + fc(f.fecha) + '</span></button>'; }).join('') + '</div>' +
+          '<div class="dmp-mas"><button type="button" class="dmx-chip" data-todas="1">Ver las ' + L.length + ' en Fotos de obra →</button></div>';
+      } else {
+        h += '<div class="dmx-vacio" style="min-height:64px;margin-top:6px">' + (!fotos().length ? 'Cargando las fotos de obra…' : (a.g === 'elm' ? 'Sus fotos aparecerán cuando empiece el montaje.' : 'Esta etapa aún no tiene fotos de obra.')) + '</div>';
+      }
+      el.innerHTML = h; el.classList.remove('dmx-in'); void el.offsetWidth; el.classList.add('dmx-in');
+      el.querySelectorAll('.dmx-chip[data-t]').forEach(function(b){ b.onclick = function(){ irTorre(b.dataset.t); }; });
+      el.querySelectorAll('.dmp-ft').forEach(function(b){ b.onclick = function(){ try { abrirFoto(L[+b.dataset.i].src, L); } catch(e){} }; });
+      var td = el.querySelector('[data-todas]');
+      if (td) td.onclick = function(){ try { fotSel.fase = fase; fotSel.zona = 'Todas'; fotSel.sem = null; fotSel.celda = null; fotSel.obs = null; } catch(e){}
+        var b = document.querySelector('[data-v="v-fot"]'); if (b) b.click(); setTimeout(function(){ try { renderFotosTab(); } catch(e){} }, 60); };
+    }
+    pintar();
+    var n = 0; (function esperar(){ if (fotos().length) { detalle(); return; } try { if (typeof cargarFotosCampo === 'function') cargarFotosCampo(); } catch(e){}
       if (n++ < 120) setTimeout(esperar, 500); })();
-    pintar(true);
-  }
-  vigilar();
+    var nb = document.querySelector('[data-v="v-proc"]');
+    if (nb) nb.addEventListener('click', function(){ setTimeout(function(){ cont.querySelectorAll('.dmp-ring .fg').forEach(function(c){ c.style.transition = 'none'; c.style.strokeDashoffset = c.getAttribute('stroke-dasharray'); void c.offsetWidth; c.style.transition = ''; c.style.strokeDashoffset = c.dataset.o; }); }, 30); });
+  })();
+
+  /* ================= REPORTES DIARIOS ================= */
+  (function(){
+    var sec = document.getElementById('v-rep'); var R = window.REPORTES_7D || {dias: []}; var DS = (R.dias || []).slice();
+    if (!sec || !DS.length) return;
+    var cont = document.createElement('div'); cont.className = 'dmr'; sec.insertBefore(cont, sec.firstChild);
+    var sel = DS.length - 1;
+    var DIA = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+    function dow(s){ var d = new Date(s + 'T12:00:00'); return DIA[d.getDay()]; }
+    function equipos(d){ var tot = 0, op = 0, fuera = 0; (d.equipos || []).forEach(function(e){ if (e.fuera) { fuera += 1; return; } tot += +e.total || 0; op += +e.operativos || 0; }); return {tot: tot, op: op, fuera: fuera}; }
+    function titulares(d){ return (d.ejecutivo || []).map(function(b){
+        var m = /^\*\*([^*]+?)\*\*\s*([\s\S]*)$/.exec(b || ''); var tit = m ? m[1].trim().replace(/[.:]\s*$/, '') : ''; var resto = (m ? m[2] : (b || '')).replace(/\*\*/g, '');
+        var k = resto.search(/[.;](\s|$)/); var fr = k > 0 ? resto.slice(0, k) : resto;
+        if (fr.length > 160) fr = fr.slice(0, 157).replace(/\s+\S*$/, '') + '…';
+        var ab = (fr.match(/\(/g) || []).length - (fr.match(/\)/g) || []).length; if (ab > 0) fr += ')';
+        return {tit: tit, txt: fr}; }).filter(function(x){ return x.tit || x.txt; }).slice(0, 5); }
+    function donut(seg, centro, sub){ var C = 2 * Math.PI * 30, acc = 0, tot = seg.reduce(function(s, x){ return s + x[0]; }, 0) || 1;
+      var h = '<svg class="dmr-don" width="84" height="84" viewBox="0 0 84 84"><circle cx="42" cy="42" r="30" stroke="var(--panel-3)"/>';
+      seg.forEach(function(x){ if (!x[0]) return; var L = C * x[0] / tot; h += '<circle cx="42" cy="42" r="30" stroke="' + x[1] + '" stroke-dasharray="' + L.toFixed(1) + ' ' + (C - L).toFixed(1) + '" stroke-dashoffset="' + (-acc).toFixed(1) + '"/>'; acc += L; });
+      return h + '<text x="42" y="38">' + centro + '</text><text x="42" y="54" style="font:600 8px Inter,sans-serif;fill:var(--ink-mut)">' + sub + '</text></svg>'; }
+    function semana(){ var W = 520, H = 170, pl = 30, pr = 34, pt = 14, pb = 26, n = DS.length, bw = (W - pl - pr) / n;
+      var pmax = Math.max.apply(null, DS.map(function(d){ return (d.personal || {}).total_obra || 0; }).concat([10]));
+      pmax = Math.ceil(pmax / 10) * 10;
+      var y = function(v, m){ return pt + (H - pt - pb) * (1 - v / m); };
+      var h = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Personal en obra y PPC de los últimos días">';
+      [0, 0.5, 1].forEach(function(k){ var yy = y(k * pmax, pmax); h += '<line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + yy + '" y2="' + yy + '" stroke="var(--line)" stroke-dasharray="3 3"/>' +
+        '<text x="' + (pl - 6) + '" y="' + (yy + 3) + '" text-anchor="end" style="font:600 9px JetBrains Mono,monospace;fill:var(--ink-mut)">' + Math.round(k * pmax) + '</text>' +
+        '<text x="' + (W - pr + 6) + '" y="' + (yy + 3) + '" style="font:600 9px JetBrains Mono,monospace;fill:#b45309">' + Math.round(k * 100) + '%</text>'; });
+      var pts = [];
+      DS.forEach(function(d, i){ var p = (d.personal || {}).total_obra || 0, x = pl + i * bw + bw * 0.2, w = bw * 0.6;
+        h += '<rect x="' + x.toFixed(1) + '" y="' + y(p, pmax).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + (H - pb - y(p, pmax)).toFixed(1) + '" rx="4" fill="' + (i === sel ? '#2563eb' : '#93c5fd') + '"><title>' + fc(d.fecha) + ': ' + p + ' personas</title></rect>' +
+          '<text x="' + (x + w / 2).toFixed(1) + '" y="' + (H - 9) + '" text-anchor="middle" style="font:600 9px Inter,sans-serif;fill:var(--ink-2)">' + dow(d.fecha) + ' ' + d.fecha.slice(8, 10) + '</text>';
+        var c = (d.cumplimiento || {}).ppc; if (typeof c === 'number') pts.push([x + w / 2, y(c * 100, 100), c]); });
+      if (pts.length > 1) h += '<polyline fill="none" stroke="#f59e0b" stroke-width="2.4" stroke-linejoin="round" points="' + pts.map(function(p){ return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '"/>';
+      pts.forEach(function(p){ h += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.6" fill="#fff" stroke="#f59e0b" stroke-width="2"><title>PPC ' + Math.round(p[2] * 100) + ' %</title></circle>'; });
+      return h + '</svg>'; }
+    function estadoAct(r){ r = (r || '').toLowerCase(); if (/cumplid/.test(r)) return ['ok', 'cumplida']; if (/parcial/.test(r)) return ['med', 'parcial']; if (/no ejecut/.test(r)) return ['mal', 'no ejecutada'];
+      if (/no program/.test(r)) return ['np', 'no programada']; return ['np', r || 'sin registro']; }
+    function n2(v){ return (typeof v === 'number') ? Number(v).toLocaleString('es-ES', {maximumFractionDigits: 1}) : '—'; }
+    function pintar(){
+      var d = DS[sel], cu = d.cumplimiento || {}, pe = d.personal || {}, eq = equipos(d), ar = d.areas || {};
+      var h = '<div class="card"><div class="dmx-cab"><h3><span class="dot"></span>Reporte diario</h3><span class="dmx-res">' + esc(d.reporte || '') + ' · <b>' + esc(d.fecha_txt || fc(d.fecha)) + '</b> · ' + esc(d.dia_semana || dow(d.fecha)) + '</span></div>' +
+        '<div class="desc" style="margin-top:6px">Últimos 7 días · la barra de cada día es el PPC (partidas del programa cumplidas) · toque un día</div><div class="dmr-dias">';
+      DS.forEach(function(x, i){ var p = (x.cumplimiento || {}).ppc;
+        h += '<button type="button" class="dmr-dia' + (i === sel ? ' on' : '') + '" data-i="' + i + '"><span class="b"><i style="height:' + (typeof p === 'number' ? Math.max(4, p * 100) : 0) + '%"></i></span>' +
+          '<span class="d">' + fc(x.fecha) + '</span><span class="w">' + esc(x.dia_semana || dow(x.fecha)) + '</span><span class="p">PPC ' + (typeof p === 'number' ? Math.round(p * 100) + '%' : '—') + '</span></button>'; });
+      h += '</div></div>';
+      // indicadores gráficos
+      var cont0 = (+pe.contr_staff || 0) + (+pe.operativos || 0) + (+pe.operadores_choferes || 0), sup = +pe.superv_staff || 0, arq = +pe.arqueologia || 0, tot = pe.total_obra || (cont0 + sup + arq);
+      var al = [['Seguridad', ((ar.sst || {}).cifras || {}).abiertas], ['Ambiental', ((ar.ambiental || {}).cifras || {}).abiertas], ['Restricciones', ((ar.restricciones || {}).cifras || {}).abiertas]];
+      h += '<div class="dmr-kpis">' +
+        '<div class="card dmr-kpi dmx-in">' + donut([[cu.cumplidas || 0, '#16a34a'], [cu.parciales || 0, '#f59e0b'], [cu.no_ejecutadas || 0, '#dc2626']], (typeof cu.ppc === 'number' ? Math.round(cu.ppc * 100) + '%' : '—'), 'PPC') +
+          '<div class="t"><span class="dmx-k">Programa del día</span><b>' + (cu.cumplidas || 0) + ' de ' + (cu.programadas || 0) + '</b><small>partidas cumplidas · ' + (cu.parciales || 0) + ' parciales · ' + (cu.no_ejecutadas || 0) + ' sin ejecutar</small></div></div>' +
+        '<div class="card dmr-kpi dmx-in" style="animation-delay:.05s"><div class="t" style="flex:1"><span class="dmx-k">Personal en obra</span><b>' + (tot || '—') + '</b>' +
+          '<div class="dmr-pila"><i style="width:' + (100 * cont0 / (tot || 1)).toFixed(1) + '%;background:#2563eb"></i><i style="width:' + (100 * sup / (tot || 1)).toFixed(1) + '%;background:#60a5fa"></i><i style="width:' + (100 * arq / (tot || 1)).toFixed(1) + '%;background:#f59e0b"></i></div>' +
+          '<small>contratista ' + cont0 + ' · supervisión ' + sup + ' · arqueología ' + arq + ((pe.sin_cubrir || []).length ? ' · sin cubrir: ' + esc(pe.sin_cubrir.join(', ')) : '') + '</small></div></div>' +
+        '<div class="card dmr-kpi dmx-in" style="animation-delay:.1s">' + donut([[eq.op, '#2563eb'], [Math.max(0, eq.tot - eq.op), '#dc2626']], eq.op + '/' + eq.tot, 'operativos') +
+          '<div class="t"><span class="dmx-k">Equipos</span><b>' + (eq.tot ? Math.round(100 * eq.op / eq.tot) + ' %' : '—') + '</b><small>operativos en obra' + (eq.fuera ? ' · ' + eq.fuera + ' fuera de obra' : '') + '</small></div></div>' +
+        '<div class="card dmr-kpi dmx-in" style="animation-delay:.15s"><div class="t" style="flex:1"><span class="dmx-k">Observaciones abiertas</span><div class="dmr-al">' +
+          al.map(function(a){ return '<div><b>' + (a[1] != null ? a[1] : '—') + '</b><span>' + a[0] + '</span></div>'; }).join('') + '</div></div></div></div>';
+      // cuerpo
+      var tl = titulares(d);
+      h += '<div class="dmr-cuerpo"><div class="card"><h3><span class="dot"></span>Lo principal del día</h3><ol class="dmr-tit">' +
+        (tl.length ? tl.map(function(x, i){ return '<li class="dmx-in" style="animation-delay:' + (i * 0.05).toFixed(2) + 's"><i>' + (i + 1) + '</i><div><b>' + esc(x.tit) + '</b><span>' + esc(x.txt) + '</span></div></li>'; }).join('') : '<li><div><span>Sin resumen para este día.</span></div></li>') + '</ol>' +
+        '<h3 style="margin-top:14px"><span class="dot"></span>Torres trabajadas</h3><div class="dmr-tw">';
+      var filas = 0;
+      (d.torres || []).forEach(function(t){ (t.actividades || []).forEach(function(a){ filas++;
+        var e = estadoAct(a.resultado), pr = +a.prog || 0, ej = +a.ejec || 0, k = pr ? Math.min(1, ej / pr) : (ej ? 1 : 0);
+        var col = e[0] === 'ok' ? '#16a34a' : (e[0] === 'mal' ? '#dc2626' : (e[0] === 'med' ? '#f59e0b' : '#93c5fd'));
+        h += '<div class="dmr-tr dmx-in"><button type="button" class="dmx-chip" data-t="' + t.t + '">' + t.t + '</button><div class="nm">' + esc(a.partida) + (t.siguiente ? '<small>Sigue: ' + esc(t.siguiente.length > 90 ? t.siguiente.slice(0, 88).replace(/\s+\S*$/, '') + '…' : t.siguiente) + '</small>' : '') + '</div>' +
+          '<div class="brw"><div class="br"><i style="width:' + (100 * k).toFixed(0) + '%;background:' + col + '"></i></div><div class="q">' + n2(a.ejec) + ' de ' + n2(a.prog) + ' ' + esc(a.und || '') + '</div></div>' +
+          '<span class="dmr-est ' + e[0] + '">' + e[1] + '</span></div>'; }); });
+      if (!filas) h += '<div class="dmx-vacio">Sin partidas registradas este día</div>';
+      h += '</div></div><div class="card dmr-sem"><h3><span class="dot"></span>La semana</h3><div class="desc">Barras: personal en obra · línea: PPC del programa</div>' + semana() +
+        '<div class="dmr-clima"><b>Clima del día:</b> ' + esc(d.clima || '—') + '</div></div></div>';
+      cont.innerHTML = h;
+      cont.querySelectorAll('.dmr-dia').forEach(function(b){ b.onclick = function(){ sel = +b.dataset.i; pintar(); }; });
+      cont.querySelectorAll('.dmx-chip[data-t]').forEach(function(b){ b.onclick = function(){ irTorre(b.dataset.t); }; });
+    }
+    pintar();
+  })();
 })();</script>
 <div id="demoChip">Demo con datos ficticios · LT 220 kV Río Claro – Cerro Azul</div>
 </body>

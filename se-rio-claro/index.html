@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_uchu_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:'light';})();</script>
 <style>
-/* 22-Oct-26 · tablero de la SE Río Claro con la distribución, la paleta y los botones del tablero de la LT 220 kV Cerro Azul
+/* 24-Set-26 · tablero de la SE Río Claro con la distribución, la paleta y los botones del tablero de la LT 220 kV Cerro Azul
    (tema oscuro en :root y claro en [data-theme="light"], como en la LT; claro por defecto) */
 :root{
   --bg:#0a121e; --panel:#0e1b2f; --panel-2:#0B1627; --panel-3:#13243f;
@@ -111,7 +111,7 @@ table.tb small,.ri small{display:block;color:var(--ink-mut);font-size:.6rem;marg
 :root:not([data-theme="light"]) .chart .el{stroke:#86aae4}:root:not([data-theme="light"]) .chart .ar{fill:rgba(134,170,228,.12)}
 .chart .cl{stroke:#d9714f;stroke-width:1.5;stroke-dasharray:3 3}.chart .ep{fill:#265eb9;stroke:var(--panel);stroke-width:2}
 .chart .ep.dd{stroke-width:1.2}.chart .aj{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-dasharray:2 2;cursor:help}
-/* 25-Oct-26: avance día a día (una columna por día) y nota del acumulado que no retrocede */
+/* 27-Set-26: avance día a día (una columna por día) y nota del acumulado que no retrocede */
 .dd-wrap{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:9px}
 table.dd{border-collapse:collapse;font-size:.66rem;min-width:100%;font-variant-numeric:tabular-nums}
 table.dd th,table.dd td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
@@ -364,7 +364,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
 
 /* ===== REPORTES DIARIOS ===== */
 #v-rep{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:max-content}
-#repTira{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:6px} /* 25-Oct-26: todos los días desde el inicio */
+#repTira{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:6px} /* 27-Set-26: todos los días desde el inicio */
 .rd{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;padding:8px 10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
 .rd .rf{font-size:.66rem;font-weight:700;color:var(--ink)}
 .rd b{font:800 1.15rem "Manrope",sans-serif;line-height:1.1}
@@ -629,12 +629,12 @@ addEventListener('message', (e) => { const d = e.data; if (d && d.tipo === 'tema
 const cont = $('#vista');
 const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
 renderer.setPixelRatio(Math.min(devicePixelRatio, movil ? 1.5 : 2));
-const tamVista = () => ({ W: cont.clientWidth || innerWidth, H: cont.clientHeight || innerHeight }); // el visor vive en la pestaña BIM 4D (22-Oct-26)
+const tamVista = () => ({ W: cont.clientWidth || innerWidth, H: cont.clientHeight || innerHeight }); // el visor vive en la pestaña BIM 4D (24-Set-26)
 renderer.setSize(tamVista().W, tamVista().H);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.shadowMap.autoUpdate = false; let sombras = true; // 24-Oct-26 (auditoría): antes se rehacía en cada cuadro
+renderer.shadowMap.autoUpdate = false; let sombras = true; // 26-Set-26 (auditoría): antes se rehacía en cada cuadro
 renderer.localClippingEnabled = true;
 cont.appendChild(renderer.domElement);
 const css = new CSS2DRenderer({ element: $('#rotulos') }); css.setSize(tamVista().W, tamVista().H);
@@ -1099,7 +1099,7 @@ function salirRecorrido() {
 const LLEGADA = { 1: [39.45, -4.35, 155, 0.12, -6], 2: [38.75, -3.05, 0, Y2, -8] };
 function irPiso(p) { const [X, Y, yaw, yPie, pitch] = LLEGADA[p]; entrarRecorrido(X, Y, yaw, yPie, pitch); seleccionar(null); aviso(p === 1 ? 'Primer piso · tableros 1–21, celdas C01–C05 y K01–K05' : 'Segundo piso · tablero 22 de regulación del TP-385 (nuevo), oficina y sala de reuniones', 4000); }
 function irA(e) { inspeccionar(e); }
-// ---------- inspección de tableros (22-Oct-26, con lo que resuelven Navisworks «Zoom Selected» y «Constrained Orbit», la «Selection
+// ---------- inspección de tableros (24-Set-26, con lo que resuelven Navisworks «Zoom Selected» y «Constrained Orbit», la «Selection
 // Box» de Revit, el «Focus» y el «Rewind» del visor de Autodesk y la navegación por plano de Matterport): un clic en un tablero (3D,
 // lista, plano o alzado) lleva la cámara en un vuelo suave a verlo de frente y entero; ◀ ▶, ← →, A D o la rueda pasan al vecino como
 // sobre un riel (al final de la fila sigue la siguiente); ↑ ↓ cambian de fila; arrastrar gira alrededor del tablero (±60°); Esc vuelve.
@@ -1398,7 +1398,7 @@ function panelSala() {
 // rutas de Integrador Demo: las ubicaciones son SUPUESTAS a partir del propio control diario y se dicen así en la ficha.
 var integOn = true, axRot = [], m4d = null; // m4d: BIM 4D (cuatrod.js)
 const AX_ZONAS = [
-  { u: ['CPM L-2201', 'Patio → CPM'], eq: 'CPM', nombre: 'Nuevo CPM L-2201', sup: 'Se supone en el lugar del tablero 19 (registrador de fallas): Integrador Demo lo retiró al almacén el 17–18-Oct (restricción R-05) y montó el nuevo tablero el 18-Oct.' },
+  { u: ['CPM L-2201', 'Patio → CPM'], eq: 'CPM', nombre: 'Nuevo CPM L-2201', sup: 'Se supone en el lugar del tablero 19 (registrador de fallas): Integrador Demo lo retiró al almacén el 17–20-Set (restricción R-05) y montó el nuevo tablero el 20-Set.' },
   { u: ['SSAA'], eq: 'T16', nombre: 'SS.AA.', sup: 'Se supone el tablero 16 (SS.AA. 220 Vca / 110 Vcc / 48 Vcc, =E1.A01.SSAA), junto al nuevo CPM; el control de Integrador Demo no dice cuáles tableros de SS.AA.' },
   { u: ['SCADA SE'], eq: 'T2', nombre: 'SCADA', sup: 'Se supone el tablero 2 (SCADA TAS-SEL); el control de Integrador Demo dice «SCADA de la SE».' },
   { u: ['Patio', 'Patio → CPM'], reg: 'Bahía L-2201', nombre: 'Patio · bahía L-2201', sup: 'Se supone que los cables multiconductores salen de los equipos de la llegada L-2201 hacia el nuevo CPM; el control no indica qué canaletas se destaparon.' },
@@ -1697,7 +1697,7 @@ function bucle(now) {
 const sup = (eq, reg) => (AX_ZONAS.find((z) => (eq && z.eq === eq) || (reg && z.reg === reg)) || {}).sup;
 const ZONAS4D = {
   cpm: { eq: 'CPM', corto: 'CPM', nombre: 'Nuevo CPM L-2201', sup: sup('CPM') },
-  t19: { eq: 'T19', corto: 'Tablero RF', nombre: 'Tablero 19 · registrador de fallas', sup: 'El tablero 19 sale de la sala el 17–18-Oct (restricción R-05) y en su lugar se supone el nuevo CPM.' },
+  t19: { eq: 'T19', corto: 'Tablero RF', nombre: 'Tablero 19 · registrador de fallas', sup: 'El tablero 19 sale de la sala el 17–20-Set (restricción R-05) y en su lugar se supone el nuevo CPM.' },
   ssaa: { eq: 'T16', corto: 'SS.AA.', nombre: 'SS.AA. (tablero 16)', sup: sup('T16') },
   scada: { eq: 'T2', corto: 'SCADA', nombre: 'SCADA (tablero 2)', sup: sup('T2') },
   patio: { reg: 'Bahía L-2201', corto: 'Patio', nombre: 'Patio · bahía L-2201', sup: sup(null, 'Bahía L-2201') },
@@ -1748,6 +1748,6 @@ requestAnimationFrame(bucle);
 $('#cargando').remove();
 window.__se = { zoomDe: () => zoomP, cajaDelModelo, inspeccionar, vecino, filaVecina, salirInspeccion, atrasInsp, encAnimDe: () => encAnim && { ...encAnim, t0: performance.now() - encAnim.t }, vcDe: () => vc, histVista, vista4D, objZona, ZONAS4D, m4dDe: () => m4d, caminarA, fijarVista, vistasPasillo, rejilla, LAY, EQ, EQUIPOS, filasDe: () => FILAS, abrirAlzado, verCompleto, salirEncuadre, encDe: () => enc, irA, irPiso, entrarSala, alDoble, mapaDe: () => mapa, pelDe: () => pel, raycastPx: (px, py) => { const r = renderer.domElement.getBoundingClientRect(); ptr.set(((px - r.left) / r.width) * 2 - 1, -((py - r.top) / r.height) * 2 + 1); ray.setFromCamera(ptr, camera); return ray.intersectObjects(REG.filter((x) => x.obj.visible).map((x) => x.obj), true); }, Box3: THREE.Box3, obstDe: () => obst, recDe: () => rec, pisoEn, scene, camera, controls, REG, renderer, seleccionar, VISTAS, pedir };
 </script>
-<script src="../nav-tableros.js" defer></script><!-- 24-Oct-26: botón «⌂ Tableros ▾» común (reemplaza el enlace «Portada») -->
+<script src="../nav-tableros.js" defer></script><!-- 26-Set-26: botón «⌂ Tableros ▾» común (reemplaza el enlace «Portada») -->
 </body>
 </html>

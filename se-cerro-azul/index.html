@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_scz_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:'light';})();</script>
 <style>
-/* 23-Oct-26 · espacio de la SE Cerro Azul con la distribución, la paleta y los botones del tablero de la LT y de la SE Río Claro */
+/* 25-Set-26 · espacio de la SE Cerro Azul con la distribución, la paleta y los botones del tablero de la LT y de la SE Río Claro */
 :root{
   --bg:#0a121e; --panel:#0e1b2f; --panel-2:#0B1627; --panel-3:#13243f;
   --ink:#ecf0f6; --ink-2:#9eb1cf; --ink-mut:#5e78a2; --line:#16263f; --line-2:#385d99;
@@ -309,7 +309,7 @@ function resumen() {
     <div class="card wide"><h3><span class="dot"></span>Equipos del cuadro del OE-605</h3><div class="desc">Ítems con su número de globo en el plano; toque «Ver en 3D» para ir al equipo.</div>
       <div style="overflow:auto"><table class="tb"><thead><tr><th>#</th><th>Equipo</th><th>Marca / tipo</th><th>Características</th><th>Cant.</th><th>Origen</th><th></th></tr></thead><tbody>
       ${eq.map((f) => `<tr><td class="mono">${f.item || ''}</td><td><b>${esc(f.nombre)}</b></td><td>${esc(ref(f))}</td><td>${esc(car(f))}</td><td>${esc(cant(f))}</td><td><span class="pill ${f.origen}">${f.origen === 'R' ? 'referencial' : f.origen === 'F' ? 'fabricante' : 'plano'}</span></td><td><button class="link" data-ir="${f.key}">Ver en 3D</button></td></tr>`).join('')}
-      </tbody></table></div><div class="fuente">Fuente: leyenda del DEMO-SE-OE-605 Rev. 0 (31-Oct-23); alturas del OE-612 y del OE-606.</div></div>
+      </tbody></table></div><div class="fuente">Fuente: leyenda del DEMO-SE-OE-605 Rev. 0 (03-Oct-23); alturas del OE-612 y del OE-606.</div></div>
     <div class="card half"><h3><span class="dot"></span>Límites de la subestación (UTM WGS-84 19S)</h3>
       <table class="tb"><thead><tr><th>Vértice</th><th>Este (m)</th><th>Norte (m)</th><th>Cota (m s.n.m.)</th></tr></thead><tbody>
       ${S.map(([n, X, Y, z]) => { const [E, N] = aUTM(X, Y); return `<tr><td>${n}</td><td class="mono">${fmt(E, 3)}</td><td class="mono">${fmt(N, 3)}</td><td class="mono">${z}</td></tr>`; }).join('')}
@@ -325,7 +325,7 @@ function resumen() {
 }
 function planos() {
   const usados = ['OE-605', 'OE-606', 'OE-604', 'OE-611', 'OE-612', 'OE-602', 'OE-622', 'OE-626', 'OE-619', 'OE-609', 'ME_P', 'ME_TC', 'ME_TT', 'ME_PA', 'ME_AS', 'OC-703', 'OC-705', 'OC-706', 'OC-302', 'OC-710', 'OC-713', 'OC-714', 'OC-715', 'OC-716', 'OEM', 'A11', 'LT'];
-  $('#v-pla').innerHTML = `<div class="card"><h3><span class="dot"></span>Planos usados para el modelo</h3><div class="desc">Carpeta de Drive CLAUDE › CERRO AZUL › Planos OC y Planos OE (subida el 23-Oct-26). Los DWG se convierten con LibreDWG y se leen con ezdxf; las medidas que no salen de un plano se marcan referenciales en la ficha.</div>
+  $('#v-pla').innerHTML = `<div class="card"><h3><span class="dot"></span>Planos usados para el modelo</h3><div class="desc">Carpeta de Drive CLAUDE › CERRO AZUL › Planos OC y Planos OE (subida el 25-Set-26). Los DWG se convierten con LibreDWG y se leen con ezdxf; las medidas que no salen de un plano se marcan referenciales en la ficha.</div>
     <table class="tb"><thead><tr><th>Código</th><th>Plano</th><th>Se usó para</th></tr></thead><tbody>
     ${usados.map((k) => `<tr><td class="mono">${k}</td><td>${esc(PLANOS[k])}</td><td>${esc(USO[k] || '')}</td></tr>`).join('')}
     </tbody></table></div>
@@ -727,7 +727,7 @@ function centrarGiro(e) {
 // ---------- unifilar OE-602
 const UNI_K = { pr: 'b2', tt: 'b2', sl: 'b2', tc: 'b2', int: 'b1', sb: 'b1', as: 'b1', trafo: 'trafo', barras: 'barra', conductores: 'barra', sala: 'mt', trafoSA: 'ssaa', grupo: 'ssaa', tabTransf: 'ssaa', linea: 'b3', salida10: 'mina1', portico10: 'mina1' };
 const UNI_EQ = { b1: 'int', b2: 'linea', b3: 'linea', barra: 'barras', ttbarra: 'tt', trafo: 'trafo', mt: 'sala', mina1: 'salida10', mina2: 'salida10', mina3: 'salida10', ssaa: 'trafoSA' };
-// 24-Oct-26 (auditoría): el equipo se enlaza con su bahía por su código del unifilar (IN-4280 → b3), no por su tipo
+// 26-Set-26 (auditoría): el equipo se enlaza con su bahía por su código del unifilar (IN-4280 → b3), no por su tipo
 const zonaDe = (info, raiz) => { const c = String((raiz && raiz.userData.cod) || '').split(' · ')[0];
   if (c) for (const [z, m] of Object.entries(COD)) if (m && typeof m === 'object' && Object.values(m).includes(c)) return z === 'barra' ? 'ttbarra' : z;
   return info ? UNI_K[info.key] : null; };
@@ -827,6 +827,6 @@ requestAnimationFrame(bucle);
 window.__nav = { camera, controls }; // pruebas automáticas de navegación
 window.__listo = true;
 </script>
-<script src="../nav-tableros.js" defer></script><!-- 24-Oct-26: botón «⌂ Tableros ▾» común (reemplaza el enlace «Portada») -->
+<script src="../nav-tableros.js" defer></script><!-- 26-Set-26: botón «⌂ Tableros ▾» común (reemplaza el enlace «Portada») -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-// Navegación del visor de la SE (22-Oct-26), con lo que resuelven Navisworks, Revit, el visor de Autodesk y Matterport:
+// Navegación del visor de la SE (24-Set-26), con lo que resuelven Navisworks, Revit, el visor de Autodesk y Matterport:
 //  · ViewCube (como el del tablero de la LT y el de Revit/Navisworks): caras, aristas y esquinas para orientar la vista con un
 //    giro suave; arrastrar sobre el cubo orbita; anillo con N, E, S, O según el norte del plano (bloque NM del DWG).
 //  · Ventana móvil y plegable (como el «Trazo» de la LT): se arrastra por su cabecera y recuerda su lugar en este navegador.

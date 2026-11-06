@@ -1,4 +1,4 @@
-/* nav-tableros.js · botón «⌂ Tableros ▾» común a la portada y a todos los tableros del portal (24-Oct-26, pedido del usuario:
+/* nav-tableros.js · botón «⌂ Tableros ▾» común a la portada y a todos los tableros del portal (26-Set-26, pedido del usuario:
    «enlaza los tableros… un botón para regresar al menú principal… tiene que estar interconectado… un botón discreto, que sea
    visible también, para poder navegar entre tableros»; eligió «⌂ Tableros ▾» en la cabecera).
    Uso: <script src="../nav-tableros.js" defer></script> (o "nav-tableros.js" en la raíz). Se monta en el elemento
@@ -10,7 +10,7 @@
   const BASE = src ? new URL('.', src).href : new URL('./', location.href).href;
   const T = [
     { k: 'portada', n: 'Inicio', s: 'el proyecto en una mirada', u: '', g: 'casa' },
-    { k: 'lt', n: 'LT 220 kV Río Claro – Cerro Azul', s: 'avance, BIM 4D, fotos y eventos', u: 'tablero.html', g: 'torre' },
+    { k: 'lt', n: 'LT 220 kV Río Claro – Cerro Azul', s: 'avance, BIM 4D, fotos y reportes', u: 'tablero.html', g: 'torre' },
     { k: 'sri', n: 'SE Río Claro', s: 'inicio · ampliación en 4D', u: 'se-rio-claro/', g: 'se' },
     { k: 'scz', n: 'SE Cerro Azul', s: 'llegada · SE nueva en 3D', u: 'se-cerro-azul/', g: 'se' },
   ];

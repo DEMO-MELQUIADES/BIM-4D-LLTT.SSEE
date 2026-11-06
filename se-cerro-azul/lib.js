@@ -1,4 +1,4 @@
-// Biblioteca de piezas (copiada de se-rio-claro/lib.js el 23-Oct-26; se mantiene independiente) — todo en código (Three.js r160).
+// Biblioteca de piezas (copiada de se-rio-claro/lib.js el 25-Set-26; se mantiene independiente) — todo en código (Three.js r160).
 // Unidades: metros. Ejes: X = este del plano, Z = sur del plano (−norte), Y = altura.
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';

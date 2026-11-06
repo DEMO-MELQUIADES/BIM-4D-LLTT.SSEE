@@ -1,4 +1,4 @@
-// Tablero de la SE Río Claro (22-Oct-26): pestañas Resumen · BIM 4D · Construcción · Cronograma · Fotos de obra · Reportes
+// Tablero de la SE Río Claro (24-Set-26): pestañas Resumen · BIM 4D · Construcción · Cronograma · Fotos de obra · Reportes
 // diarios, con la distribución, la paleta y los botones del tablero de la LT 220 kV Cerro Azul. Todo sale de rio4d.js (control
 // diario de Integrador Demo: hojas AVANCE, PERSONAL Y RESTRICCIONES y REGISTRO FOTOGRÁFICO); nada se escribe a mano aquí. Sin nombres
 // del personal: solo cantidades. Sin rojo de juicio: lo atrasado va en ámbar.
@@ -6,7 +6,7 @@ import { COL4, TXT4, fCorta, fLarga, pct, dias } from './cuatrod.js?v=3';
 
 // Primera letra en minúscula dentro de una frase, sin tocar siglas (CPM, SSAA, L-2201).
 const minus1 = (t) => String(t || '').replace(/^(\p{Lu})(?=\p{Ll})/u, (c) => c.toLowerCase());
-// Variación con signo: «+6,1 %» o «−8,6 %» (el control puede traer un avance del día negativo, p. ej. 24-Oct-26).
+// Variación con signo: «+6,1 %» o «−8,6 %» (el control puede traer un avance del día negativo, p. ej. 26-Set-26).
 const sig = (v, d) => (v < 0 ? '−' + pct(-v, d) : '+' + pct(v, d));
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -55,7 +55,7 @@ export function iniciarTablero(ctx) {
   // Actividades que Integrador Demo agregó en un control posterior (U4D.rebase): cambian los pesos y recalculan días ya publicados.
   // El tablero muestra la serie del control vigente y dice qué decía el control anterior.
   const RB = (U4D.rebase || []).filter((r) => r.control <= U4D.corte);
-  // corrección de Integrador Demo sin actividades nuevas (p. ej. el control del 29-Oct baja la 18 del 28-Oct de 100 a 50 %)
+  // corrección de Integrador Demo sin actividades nuevas (p. ej. el control del 01-Oct baja la 18 del 30-Set de 100 a 50 %)
   const actsCorr = (r) => (r.acts || []).map((z) => `la actividad ${esc_(z.n)} «${esc_(z.nombre)}» del ${fCorta(z.f)} de ${pct(z.ejec_antes, 0)} a ${pct(z.ejec, 0)}`).join('; ');
   function notaRebase(r) {
     const u = r.cambios[r.cambios.length - 1];

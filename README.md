@@ -2,7 +2,7 @@
 
 Portal de demostración: una línea de transmisión de 220 kV en doble terna (19 torres, 8,3 km) entre una subestación de inicio
 (SE Río Claro, con su ampliación en 4D) y una de llegada (SE Cerro Azul, en 3D). Avance físico y valor ganado, curva S y pronóstico,
-BIM 4D de la línea y sus dos subestaciones, fotos de obra identificadas por IA, eventos y reportes diarios. Sin licencias ni
+BIM 4D de la línea y sus dos subestaciones, fotos de obra identificadas por IA y reportes diarios. Sin licencias ni
 instalaciones: se abre en el navegador de una PC o de un celular.
 
 **Todos los datos son ficticios**: nombres, ubicación, cotas, avances y metrados están cambiados; no hay montos ni nombres de

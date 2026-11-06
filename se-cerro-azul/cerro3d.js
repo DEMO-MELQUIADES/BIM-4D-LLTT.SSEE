@@ -32,7 +32,7 @@ export const BAHIAS = [
 ];
 // Torre T19 de la LT (tablero de la LT, lat −15,885235 lon −71,235414 → UTM 260 641,47 / 8242 480,68)
 export const T19 = { X: 59.09, Y: -22.26 };
-// 24-Oct-26: el BIM general fija la cota de la T19 (la del KMZ del tablero) para que la llegada empalme con su torre; en esta página queda null
+// 26-Set-26: el BIM general fija la cota de la T19 (la del KMZ del tablero) para que la llegada empalme con su torre; en esta página queda null
 export const AJUSTE_T19 = { z: null };
 export const L_ANCLAJE = 2.5;   // cadena de anclaje (15 U120B × 146 mm + herrajes ≈ 2,5 m): en el pórtico y en la T19 (torre terminal)
 
@@ -59,22 +59,22 @@ export const SISTEMAS = { at: '220 kV', mt: '10 kV', ssaa: 'Servicios auxiliares
 
 // ------------------------------------------------------------------ planos (código corto → título completo)
 export const PLANOS = {
-  'OE-605': 'DEMO-SE-OE-605 Disposición de equipos – Planta · Rev. 0 · 31-Oct-23',
-  'OE-606': 'DEMO-SE-OE-606 Disposición de equipos – Secciones 1 (A-A, B-B) y 2 (C-C, D-D) · Rev. 0 · 31-Oct-23',
-  'OE-604': 'DEMO-SE-OE-604 Detalle de llegada y salida de línea 220 kV · Rev. 0 · 16-Oct-25',
+  'OE-605': 'DEMO-SE-OE-605 Disposición de equipos – Planta · Rev. 0 · 03-Oct-23',
+  'OE-606': 'DEMO-SE-OE-606 Disposición de equipos – Secciones 1 (A-A, B-B) y 2 (C-C, D-D) · Rev. 0 · 03-Oct-23',
+  'OE-604': 'DEMO-SE-OE-604 Detalle de llegada y salida de línea 220 kV · Rev. 0 · 18-Set-25',
   'OE-611': 'DEMO-SE-OE-611 Diagrama de cargas pórtico 220 kV (1/2) y 10 kV (2/2)',
-  'OE-612': 'DEMO-SE-OE-612 Diagrama de cargas equipos 220 kV · 06-Oct-23',
+  'OE-612': 'DEMO-SE-OE-612 Diagrama de cargas equipos 220 kV · 08-Set-23',
   'OE-602': 'DEMO-SE-OE-602 Diagrama unifilar',
-  'ME_P': 'ME_P-Rev.001 Pórtico P-19 m (Fabricante Demo) · aprobado Supervisión Demo 02-Oct-23',
+  'ME_P': 'ME_P-Rev.001 Pórtico P-19 m (Fabricante Demo) · aprobado Supervisión Demo 04-Set-23',
   'ME_TC': 'ME_TC-Rev.001 Soporte de transformador de corriente (Fabricante Demo) · aprobado',
   'ME_TT': 'ME_TT-Rev.001 Soporte de transformador de tensión (Fabricante Demo) · aprobado',
   'ME_PA': 'ME_PA-Rev.001 Soporte de pararrayos (Fabricante Demo) · aprobado',
   'ME_AS': 'ME_AS-Rev.001 Soporte de aislador (Fabricante Demo) · aprobado',
   'OC-703': 'DEMO-SE-OC-703 (1de3) Disposición general de obras civiles – Planta',
-  'OE-622': 'DEMO-SE-OE-622 Disposición de ductos para servicios eléctricos · 29-Nov-23',
+  'OE-622': 'DEMO-SE-OE-622 Disposición de ductos para servicios eléctricos · 01-Nov-23',
   'OE-626': 'DEMO-SE-OE-626 Salida en 10 kV',
   'OE-619': 'DEMO-SE-OE-619 (1de3) Montaje del transformador de SS.AA.',
-  'OE-609': 'DEMO-SE-OE-609 Red de tierra profunda – Planta (1/2, PDF) y detalles (2/2) · 13-Set-23',
+  'OE-609': 'DEMO-SE-OE-609 Red de tierra profunda – Planta (1/2, PDF) y detalles (2/2) · 16-Ago-23',
   'OC-705': 'DEMO-SE-OC-705 (5 a 8 de 8) Bases para pararrayos, TT, TC y aislador portabarras',
   'OC-706': 'DEMO-SE-OC-706 Bases para pórticos 220 kV (1de2) y 10 kV (2de2)',
   'OC-302': 'DEMO-SE-OC-302 (1de14) Explanaciones – Planta (superficie de diseño)',
@@ -132,7 +132,7 @@ export const F = {
       ['Cantidad', '2: Sala 2 (ER2, celdas 10 kV, este) y Sala 1 (ER1, tableros, oeste)', 'OEM · OC-710'], ['Apoyo', '8 pilotes de 0,50 × 0,50 × 1,60 m por sala (16 bases BSE)', 'OEM ER1-04-001 · OC-703'],
       ['Posición', 'Sala 2 X 20,66–32,66 · Sala 1 X 6,06–18,06 · Y 46,55–49,55', 'OE-622'], ['ER2', '3 celdas 22 kV (futuro) + 7 celdas 10 kV de 1,225 m de fondo y 2,25 m de alto; cargador y baterías', 'OEM ER2-01-004/006'],
       ['ER1', '10 tableros de 0,80 × 0,80 contra el muro norte; baterías y cargador', 'OEM ER1-01-004'], ['Peso Sala 1 sin equipos', '18 348,5 kg', 'OEM ER1-04-001']],
-    planos: P('OEM', 'OE-605', 'OE-606', 'OE-622', 'OC-703'), nota: 'El OC-703 (Ago-23) dibuja las salas 0,53 m más al este; se usan el OE-622 (Nov-23) y los planos OEM, que coinciden. Alto de puertas y equipos interiores sin cota: referenciales.' }),
+    planos: P('OEM', 'OE-605', 'OE-606', 'OE-622', 'OC-703'), nota: 'El OC-703 (Jul-23) dibuja las salas 0,53 m más al este; se usan el OE-622 (Oct-23) y los planos OEM, que coinciden. Alto de puertas y equipos interiores sin cota: referenciales.' }),
   plataforma: fi({ key: 'plataforma', nombre: 'Plataforma de servicio y escaleras de las salas', origen: 'F', sistema: 'mt',
     datos: [['Plataforma', '2,60 × 4,00 m entre las salas · piso a 1,903 m', 'OEM ER-01-004/005'], ['Escaleras', '2 de 2,234 × 1,14 m (huella 1,025) hacia el oeste y el este', 'OEM ER-01-004'], ['Posición', 'X 18,06–20,66 · Y 45,05–49,05', 'OEM + OE-622']], planos: P('OEM', 'OE-622'), nota: 'Barandas referenciales.' }),
   portico10: fi({ key: 'portico10', nombre: 'Pórtico de salidas 10 kV', origen: 'D', sistema: 'mt',
@@ -144,7 +144,7 @@ export const F = {
       ['Salida aérea', 'amarre a 7,20 m; la conexión la hace la empresa de distribución', 'OE-626 nota 4'], ['Celdas', 'IN-131 Mina 1 · IN-132 Mina 2 · IN-133 Mina 3', 'OE-602']], planos: P('OE-626', 'OE-602'), nota: 'Silueta de pararrayos, seccionador y terminales referencial; el tramo aéreo se dibuja solo hasta 14 m del pórtico.' }),
   ductos: fi({ key: 'ductos', nombre: 'Ductos PVC SAP enterrados', origen: 'D', sistema: 'civ', datos: [['Bz-1 → Bz-2', '9 × Ø4"', 'OE-622'], ['C-90 → SS.AA.', '6 × Ø4" (X 3,2–3,9)', 'OE-622'], ['SS.AA. → Sala 1', '4 × Ø4" (X 5,3–5,6)', 'OE-622'], ['A cada salida 10 kV', '3 × Ø4"', 'OE-622']], planos: P('OE-622'), nota: 'Profundidad de los ductos referencial (0,70 m).' }),
   recintoSA: fi({ key: 'recintoSA', nombre: 'Recinto de servicios auxiliares', origen: 'D', sistema: 'ssaa', datos: [['Losa', '6,40 × 8,90 m (X 1,17–7,57 · Y 31,80–40,70)', 'OE-622'], ['Cerco', '4,70 × 8,50 m en 2 celdas: trafo 3,00 m (norte) y grupo 5,50 m (sur), portones al este', 'OE-619'], ['Alto del cerco', 'no indicado (2,40 m referencial)', '—']],
-    planos: P('OE-619', 'OE-622', 'OC-703'), nota: 'El OC-703 (Ago-23) dibuja una versión anterior del recinto (6,0 × 8,0 m); se usa el OE-622/OE-619.' }),
+    planos: P('OE-619', 'OE-622', 'OC-703'), nota: 'El OC-703 (Jul-23) dibuja una versión anterior del recinto (6,0 × 8,0 m); se usa el OE-622/OE-619.' }),
   tierra: fi({ key: 'tierra', nombre: 'Red de tierra profunda', origen: 'D', sistema: 'civ',
     datos: [['Conductor', 'Cu desnudo 120 mm² en zanja de 0,30 × 0,80 m (mín.), a 0,70 m (mín.) bajo la plataforma', 'OE-609 2/2'], ['Cuadrícula', '8 × 8 m (IEEE-80) · 65,0 × 53,0 m', 'OE-609 1/2 nota 5'],
       ['Pozos', '15 con caja de registro 0,4 × 0,4 × 0,5 m y varilla Cu 5/8" × 2,4 m', 'OE-609 metrado'], ['Conexiones', '31 en cruz y 58 en T (soldadura exotérmica)', 'OE-609 leyenda'], ['Cruce de canaletas', 'profundizar a 1,50 m', 'OE-609 2/2 nota 1']],
@@ -196,7 +196,7 @@ export const F = {
     planos: P('OE-604', 'OE-606', 'LT'), nota: 'La posición de la T19 sale del tablero de la LT; su cota de terreno es la de la superficie de diseño del OC-302.' }),
   t23: fi({ key: 't23', nombre: 'Torre T19 (terminal de la LT)', origen: 'R', sistema: 'lin',
     datos: [['Ubicación', 'UTM 260 641,47 E · 8 242 480,68 N (WGS-84 19S)', 'tablero LT'], ['Cota en el tablero de la LT', '4 344,2 m s.n.m.', 'tablero LT'], ['Altura de amarres', 'fase más baja 16,30 m', 'OE-604']],
-    planos: P('LT', 'OE-604'), nota: 'Torre dibujada como silueta referencial: su modelo detallado está en el tablero de la LT. Ojo: el OE-605 de 2023 dibuja las salidas hacia el sureste; el OE-604 de Oct-25 y el tablero de la LT las llevan a la T19 junto a la esquina A-6.' }),
+    planos: P('LT', 'OE-604'), nota: 'Torre dibujada como silueta referencial: su modelo detallado está en el tablero de la LT. Ojo: el OE-605 de 2023 dibuja las salidas hacia el sureste; el OE-604 de Set-25 y el tablero de la LT las llevan a la T19 junto a la esquina A-6.' }),
   // obra civil
   basePortico: fi({ key: 'basePortico', nombre: 'Base de pórtico 220 kV (BP1)', origen: 'D', sistema: 'civ', datos: [['Cantidad', '8', 'OC-703'], ['Huella', '3,21 × 3,19 m', 'OC-703']], planos: P('OC-703', 'OC-706') }),
   baseEq: fi({ key: 'baseEq', nombre: 'Bases de equipos 220 kV', origen: 'D', sistema: 'civ',
@@ -693,7 +693,7 @@ function llegadaLinea(escena) {
   for (const b of BAHIAS.filter((x) => x.tipo === 'linea')) for (const [ph, dx] of FASES) {
     const X = esp(b.x0 + dx);
     const pa = p3(X, COL_Y[0] - 0.5, H_SOP + 16.0);
-    // 24-Oct-26: la T19 es torre terminal: la cadena es de anclaje, horizontal, desde la punta de la cruceta hacia el pórtico
+    // 26-Set-26: la T19 es torre terminal: la cadena es de anclaje, horizontal, desde la punta de la cruceta hacia el pórtico
     // (antes colgaba vertical 1,6 m como una de suspensión); en el pórtico, la cadena de anclaje mira hacia la torre
     const tip = p3(T19.X + lado[b.k] * perp.x * brazo, T19.Y + lado[b.k] * perp.y * brazo, zT + hF[ph]);
     const dir = tip.clone().sub(pa); dir.y = 0; dir.normalize();
