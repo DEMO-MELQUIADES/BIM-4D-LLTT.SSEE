@@ -12,7 +12,7 @@
     { k: 'portada', n: 'Inicio', s: 'el proyecto en una mirada', u: '', g: 'casa' },
     { k: 'lt', n: 'LT 220 kV Río Claro – Cerro Azul', s: 'avance, BIM 4D, fotos y reportes', u: 'tablero.html', g: 'torre' },
     { k: 'sri', n: 'SE Río Claro', s: 'inicio · ampliación en 4D', u: 'se-rio-claro/', g: 'se' },
-    { k: 'scz', n: 'SE Cerro Azul', s: 'llegada · SE nueva en 3D', u: 'se-cerro-azul/', g: 'se' },
+    { k: 'scz', n: 'SE Cerro Azul', s: 'llegada · SE nueva · cronograma 4D', u: 'se-cerro-azul/', g: 'se' },
   ];
   const G = {
     casa: '<path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>',

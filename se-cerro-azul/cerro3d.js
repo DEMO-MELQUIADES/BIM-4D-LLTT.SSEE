@@ -94,7 +94,7 @@ const P = (...k) => k.map((x) => PLANOS[x] || x);
 const fi = (o) => ({ planos: [], datos: [], ...o });
 export const F = {
   trafo: fi({ key: 'trafo', item: 1, nombre: 'Transformador de potencia trifásico 220/10 kV', origen: 'R', sistema: 'at',
-    datos: [['Marca / tipo', 'ABB · TD2LF', 'OE-605 ítem 1'], ['Tensiones', '138 ± 2 / −14 × 1,25 % / 10 kV', 'OE-605'], ['Potencia', '10 MVA ONAN · 12,5 MVA ONAF', 'OE-605'],
+    datos: [['Marca / tipo', 'ABB · TD2LF', 'OE-605 ítem 1'], ['Tensiones', '220 ± 2 / −14 × 1,25 % / 10 kV', 'OE-605'], ['Potencia', '10 MVA ONAN · 12,5 MVA ONAF', 'OE-605'],
       ['Grupo de conexión', 'YNd5', 'OE-605'], ['Cantidad', '1', 'OE-605'], ['Huella en planta', '6,48 × 3,65 m (con radiadores), centro X 51,90 · Y 35,38', 'OE-605 bloque TP1'],
       ['Bahía', 'Eje 4–5 «A transformador TP-390»', 'OE-605 / OE-606 C-C']],
     planos: P('OE-605', 'OE-606', 'OC-703'),

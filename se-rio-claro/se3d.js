@@ -65,7 +65,7 @@ export const L = {
 const F = {
   TP385: {
     id: 'TP-385', nombre: 'Transformador de potencia trifásico 30/36 MVA', estado: 'P',
-    datos: { Marca: 'EPLI', Modelo: 'TP30', Relación: '138 ± 2×1,25 % − 18×1,25 % / 22,9 / 10 kV', Potencia: '30/30/30 MVA ONAN · 36/36/36 MVA ONAF',
+    datos: { Marca: 'EPLI', Modelo: 'TP30', Relación: '220 ± 2×1,25 % − 18×1,25 % / 22,9 / 10 kV', Potencia: '30/30/30 MVA ONAN · 36/36/36 MVA ONAF',
       Grupo: 'YNyn0d5 · 60 Hz', Regulación: 'Bajo carga (OLTC) con tablero de regulación automática (T1)', Altura: '7,203 m del nivel de base al borne AT',
       Nota: 'Equipo existente suministrado por Cliente Demo; se traslada, monta y prueba en la SE Río Claro (actividad del fabricante).' },
     planos: ['DEMO-SE-OE-605', 'OE-606', 'OE-612 (1/2 y 2/2)'], cod: ['=TP-385', '=TP-385 (CBC)'] },
@@ -101,7 +101,7 @@ const F = {
   MALLA: { id: 'Malla de tierra profunda', nombre: 'Malla de tierra profunda — modificación', estado: 'C',
     datos: { Conductor: 'Cobre desnudo 120 mm² temple blando (144 m)', Derivaciones: 'Cobre desnudo 70 mm² (51 m)', Uniones: 'Soldadura exotérmica en + y en T', Profundidad: '0,70–0,80 m bajo el terreno', Pozos: '2 pozos PT1 con varilla Cu Ø3/4"×2,4 m y caja de registro' }, planos: ['OE-610 Rev.1'] },
   TSUP: { id: 'Tierra superficial', nombre: 'Red de tierra superficial del TP-385', estado: 'P',
-    datos: { Conductor: 'Cobre desnudo 70 mm² y 120 mm²', Salidas: 'Pararrayos AT, cuba, neutros 138 y 22,9 kV, pararrayos MT, canaletas C-70/C-90 y bandejas' }, planos: ['OE-611'] },
+    datos: { Conductor: 'Cobre desnudo 70 mm² y 120 mm²', Salidas: 'Pararrayos AT, cuba, neutros 220 y 22,9 kV, pararrayos MT, canaletas C-70/C-90 y bandejas' }, planos: ['OE-611'] },
   SALA: { id: 'Sala de control', nombre: 'Sala de control (dos pisos)', estado: 'E',
     datos: { 'Primer piso': 'Sala de control, tableros 1–21, celdas C01–C05 (TP-384) y K01–K05 (TP-385), sala de baterías, baño', 'Segundo piso': 'Oficina, sala de reuniones y tablero 22 (nuevo)', NPT: '4 295,03' }, planos: ['OE-607 (1/2 y 2/2)'] },
   BANDEJA: { id: 'Bandejas', nombre: 'Bandejas portacables tipo escalera 300×100 mm', estado: 'P',

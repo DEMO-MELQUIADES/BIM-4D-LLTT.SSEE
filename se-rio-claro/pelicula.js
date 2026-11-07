@@ -4,11 +4,11 @@ import * as THREE from 'three';
 const P3 = (X, Y, h) => new THREE.Vector3(X, h, -Y);
 // Paradas: cámara (pos), punto de mira (tgt), duración del viaje hasta aquí (s), pausa (s), subtítulo y acciones
 export const GUION = [
-  { pos: P3(-30, 70, 38), tgt: P3(26, 18, 0), viaje: 0, pausa: 2.5, t: 'SE Río Claro · 138 / 33 / 22,9 / 10 kV', s: 'Implementación del transformador de potencia TP-385 de 30/36 MVA' },
+  { pos: P3(-30, 70, 38), tgt: P3(26, 18, 0), viaje: 0, pausa: 2.5, t: 'SE Río Claro · 220 / 33 / 22,9 / 10 kV', s: 'Implementación del transformador de potencia TP-385 de 30/36 MVA' },
   { pos: P3(26.7, 56, 10), tgt: P3(26.7, 32, 6), viaje: 7, pausa: 2.5, t: 'Salida de la línea L-2201', s: 'Hacia la SE Cerro Azul · 8,3 km · pararrayos, TT con trampa de onda, seccionador de línea, interruptor, TC' },
   { pos: P3(10, 24, 8), tgt: P3(34, 26, 8.5), viaje: 6, pausa: 2.5, t: 'Barras 220 kV', s: 'Fases a 4,00 m · vano de 12,00 m hasta el pórtico de la bahía nueva' },
   { pos: P3(52, 29, 6), tgt: P3(40.6, 19.5, 4), viaje: 6, pausa: 3, t: 'Bahía del TP-385 · SB-383 e IN-383', s: 'Equipos existentes: aislador soporte EMEK C4-750 · seccionador ABB SDF170 · interruptor ABB LTB 170D1/B; se reconectan sus cables de control' },
-  { pos: P3(47.5, 4.5, 4.2), tgt: P3(40.6, 11.6, 3.6), viaje: 6, pausa: 3, t: 'TP-385 · EPLI TP30', s: '138 ± 2×1,25 % − 18×1,25 % / 22,9 / 10 kV · 30/30/30 MVA ONAN · 36/36/36 MVA ONAF · base nueva 10,20 × 6,30 m con poza' },
+  { pos: P3(47.5, 4.5, 4.2), tgt: P3(40.6, 11.6, 3.6), viaje: 6, pausa: 3, t: 'TP-385 · EPLI TP30', s: '220 ± 2×1,25 % − 18×1,25 % / 22,9 / 10 kV · 30/30/30 MVA ONAN · 36/36/36 MVA ONAF · base nueva 10,20 × 6,30 m con poza' },
   { pos: P3(44.5, 19.8, 2.4), tgt: P3(40.7, 16.0, 0.3), viaje: 5, pausa: 3, t: 'Ductos y canaleta C1', s: 'Gabinete del IN-383 → 4 ductos PVC Ø2" → C1 0,70 × 0,70 → canaleta existente → sala de control', destapar: true },
   { pos: P3(39.6, -10, 1.65), tgt: P3(39.6, -4.5, 1.6), viaje: 7, pausa: 1.5, t: 'Sala de control', s: 'Entrando por la puerta sur', destapar: true },
   { pos: P3(20.3, -0.4, 1.7), tgt: P3(31, -2.9, 1.1), via: [P3(39.6, -5.1, 1.65), P3(39.7, -2.6, 1.65), P3(39.6, -0.6, 1.65), P3(30, -0.4, 1.7)], viaje: 9, pausa: 3, t: 'Sala de control', s: 'Tableros 1–21, celdas 10 kV C01–C05 y K01–K05, sala de baterías', destapar: true },

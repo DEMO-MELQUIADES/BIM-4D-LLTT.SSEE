@@ -262,7 +262,7 @@ export function iniciarTablero(ctx) {
   // ---------------------------------------------------------------- CRONOGRAMA: detalle de la actividad elegida
   function croDet() {
     const i = m4d.i;
-    if (!act) { $('#croDet').innerHTML = `<div class="tw-head">Detalle de la actividad</div><div class="vacio">Clic en una actividad del cronograma (a la izquierda) para ver aquí su ventana, su avance a la fecha y sus fotos. La fecha se elige con los días de la cabecera o con la barra de tiempo del BIM 4D.</div>`; return; }
+    if (!act) { $('#croDet').innerHTML = `<div class="tw-head">Detalle de la actividad</div><div class="vacio">Toque una barra del cronograma (abajo) o una zona del 3D para ver aquí su ventana, su avance a la fecha y sus fotos. La fecha se elige con la barra de tiempo o con los días de la cabecera del cronograma.</div>`; return; }
     const fotos = FOTOS.filter((x) => String(x.act) === String(act.n));
     const av = avance([act], i);
     $('#croDet').innerHTML = `<div class="cd"><div><div class="tw-head">${esc_(act.n)} · ${esc_(act.nombre)}<span>${esc_(act.grupo)} · zona ${esc_(zonaTxt(act))} (${esc_(act.ubic)})</span></div>

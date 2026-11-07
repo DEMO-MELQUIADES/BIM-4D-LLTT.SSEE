@@ -455,7 +455,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
   <button data-v="v-res" class="active"><span class="ic">◈</span> Resumen</button>
   <button data-v="v-bim" class="bim-badge"><span class="ic">🏗️</span> BIM 4D · Construcción</button>
   <button data-v="v-fot"><span class="ic">📷</span> Fotos de obra</button>
-  <button data-v="v-cro"><span class="ic">📅</span> Cronograma</button>
+  <button data-v="v-cro"><span class="ic">📅</span> Cronograma 4D</button>
   <button data-v="v-rep"><span class="ic">📋</span> Reportes diarios</button>
 </nav>
 
@@ -1746,8 +1746,9 @@ tablero = iniciarTablero({ U4D, m4d, ZONAS: ZONAS4D, esc_, visor: abrirVisor, ta
   onTab: (v) => { if (v === 'v-bim') requestAnimationFrame(() => { redimensionar(); }); else if (rec) { rec.teclas.clear(); rec.mov.set(0, 0); } } });
 requestAnimationFrame(bucle);
 $('#cargando').remove();
-window.__se = { zoomDe: () => zoomP, cajaDelModelo, inspeccionar, vecino, filaVecina, salirInspeccion, atrasInsp, encAnimDe: () => encAnim && { ...encAnim, t0: performance.now() - encAnim.t }, vcDe: () => vc, histVista, vista4D, objZona, ZONAS4D, m4dDe: () => m4d, caminarA, fijarVista, vistasPasillo, rejilla, LAY, EQ, EQUIPOS, filasDe: () => FILAS, abrirAlzado, verCompleto, salirEncuadre, encDe: () => enc, irA, irPiso, entrarSala, alDoble, mapaDe: () => mapa, pelDe: () => pel, raycastPx: (px, py) => { const r = renderer.domElement.getBoundingClientRect(); ptr.set(((px - r.left) / r.width) * 2 - 1, -((py - r.top) / r.height) * 2 + 1); ray.setFromCamera(ptr, camera); return ray.intersectObjects(REG.filter((x) => x.obj.visible).map((x) => x.obj), true); }, Box3: THREE.Box3, obstDe: () => obst, recDe: () => rec, pisoEn, scene, camera, controls, REG, renderer, seleccionar, VISTAS, pedir };
+window.__se = { U4D, zoomDe: () => zoomP, cajaDelModelo, inspeccionar, vecino, filaVecina, salirInspeccion, atrasInsp, encAnimDe: () => encAnim && { ...encAnim, t0: performance.now() - encAnim.t }, vcDe: () => vc, histVista, vista4D, objZona, ZONAS4D, m4dDe: () => m4d, caminarA, fijarVista, vistasPasillo, rejilla, LAY, EQ, EQUIPOS, filasDe: () => FILAS, abrirAlzado, verCompleto, salirEncuadre, encDe: () => enc, irA, irPiso, entrarSala, alDoble, mapaDe: () => mapa, pelDe: () => pel, raycastPx: (px, py) => { const r = renderer.domElement.getBoundingClientRect(); ptr.set(((px - r.left) / r.width) * 2 - 1, -((py - r.top) / r.height) * 2 + 1); ray.setFromCamera(ptr, camera); return ray.intersectObjects(REG.filter((x) => x.obj.visible).map((x) => x.obj), true); }, Box3: THREE.Box3, obstDe: () => obst, recDe: () => rec, pisoEn, scene, camera, controls, REG, renderer, seleccionar, VISTAS, pedir };
 </script>
 <script src="../nav-tableros.js" defer></script><!-- 26-Set-26: botón «⌂ Tableros ▾» común (reemplaza el enlace «Portada») -->
+<script type="module" src="cro4d_rio.js?v=8c630622"></script>
 </body>
 </html>

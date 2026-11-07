@@ -190,11 +190,12 @@ input[type=range]{width:100%;accent-color:var(--sky)}
   <div class="tb-l"><h1><b class="demo-tag">Demo</b>SE Cerro Azul <span>· 220/10 kV · 10/12,5 MVA</span></h1>
     <div class="sub">LT 220 kV Río Claro – Cerro Azul · llegada a la SE Cerro Azul · obras electromecánicas y civiles · modelo 3D levantado desde la ingeniería de detalle</div></div>
   <div class="tb-m"><span>Patio <b>67 × 56 m</b></span><span>Cota <b>4 340,45 m s.n.m.</b></span><span>Bahías <b>3 × 220 kV</b></span><span>Salidas <b>3 × 10 kV</b></span></div>
-  <div class="tb-r"><span class="badge">Modelo 3D · sin avance de obra aún</span><a class="iconbtn" href="../" title="Volver a la portada">⌂ Portada</a><button class="iconbtn" id="bTema" title="Tema claro u oscuro">◐</button></div>
+  <div class="tb-r"><span class="badge">Obra en curso · corte 07-Oct-26</span><a class="iconbtn" href="../" title="Volver a la portada">⌂ Portada</a><button class="iconbtn" id="bTema" title="Tema claro u oscuro">◐</button></div>
 </header>
 <nav class="nav" id="nav" aria-label="Pestañas">
   <button data-v="res">Resumen</button>
   <button data-v="bim" class="active bim-badge">BIM · Modelo 3D</button>
+  <button data-v="cro">Cronograma 4D</button>
   <button data-v="pla">Planos y fuentes</button>
 </nav>
 <main class="views">
@@ -260,6 +261,7 @@ input[type=range]{width:100%;accent-color:var(--sky)}
       </div>
     </div>
   </section>
+  <section id="v-cro" class="view"></section>
   <section id="v-pla" class="view"></section>
 </main>
 
@@ -276,7 +278,7 @@ const movil = matchMedia('(max-width: 820px), (max-height: 500px)').matches;
 const fmt = (v, d = 2) => v.toLocaleString('es-PE', { minimumFractionDigits: d, maximumFractionDigits: d });
 
 // ---------- pestañas y tema
-const VISTA_TAB = { res: 'v-res', bim: 'v-bim', pla: 'v-pla' };
+const VISTA_TAB = { res: 'v-res', bim: 'v-bim', cro: 'v-cro', pla: 'v-pla' };
 function tab(k) {
   if (!VISTA_TAB[k]) k = 'bim';
   document.querySelectorAll('.view').forEach((v) => v.classList.toggle('on', v.id === VISTA_TAB[k]));
@@ -299,7 +301,7 @@ function resumen() {
   const car = (f) => f.datos.filter((d) => !/Marca|Fabricante|Cantidad|Base|Huella|Bahía|Soporte|Peso|Altura|Estructura/.test(d[0])).map((d) => d[1]).join(' · ');
   const S = [['S1', 0, 0, '4 340,77'], ['S2', 0, 56, '4 340,43'], ['S3', 67, 56, '4 340,12'], ['S4', 67, 0, '4 340,46']];
   $('#v-res').innerHTML = `
-    <div class="verdict wide"><div class="big">Modelo 3D listo · avance por cargar</div><div class="txt">Este espacio reúne la <b>SE Cerro Azul</b> levantada en 3D desde sus planos (disposición OE-605, secciones OE-606, llegada de línea OE-604, pórtico P-19 m aprobado, obras civiles OC-703 y explanación OC-302). Todavía <b>no hay reportes diarios de la subestación</b>: el BIM 4D (avance por equipo y por base, curvas y fotos) se enciende cuando lleguen, como en la SE Río Claro.</div></div>
+    <div class="verdict wide"><div class="big">Obra civil en cierre · montaje electromecánico en curso</div><div class="txt">Al 07-Oct-26 la <b>SE Cerro Azul</b> lleva <b>39,6 %</b> ejecutado frente a 46,8 % programado (SPI 0,85): de 27 actividades, 8 terminadas, 6 atrasadas y 13 por iniciar. Lo que más pesa en el atraso: montaje del pórtico 220 kV (el acero galvanizado del pórtico llegó a obra 9 días tarde); cerco perimétrico y portón (los paneles prefabricados llegan por partes). En <b>Cronograma 4D</b> el modelo se construye día por día, enlazado a cada actividad, y se comparan dos fechas. Cronograma típico y avance ficticios: es una demo.</div></div>
     ${k('Bahías 220 kV', '3', 'transformador + líneas L-2202 y L-2201', true)}
     ${k('Transformador', '10/12,5 <span>MVA</span>', 'ABB TD2LF · 220/10 kV · YNd5')}
     ${k('Salidas 10 kV', '3', 'Mina 1, Mina 2 y Mina 3')}
@@ -825,8 +827,10 @@ visibilidad(); aplicarColor();
 $('#cargando').classList.add('oculto');
 requestAnimationFrame(bucle);
 window.__nav = { camera, controls }; // pruebas automáticas de navegación
+window.__se = { THREE, scene, camera, controls, renderer, REG, F, pedir, sombra, volar, visibilidad, aplicarColor, seleccionar, fijarSubsuelo, subsueloDe: () => subsuelo, CTX, selBox, tocar }; // cronograma 4D (cro4d_cerro.js)
 window.__listo = true;
 </script>
 <script src="../nav-tableros.js" defer></script><!-- 26-Set-26: botón «⌂ Tableros ▾» común (reemplaza el enlace «Portada») -->
+<script type="module" src="cro4d_cerro.js?v=8c630622"></script>
 </body>
 </html>

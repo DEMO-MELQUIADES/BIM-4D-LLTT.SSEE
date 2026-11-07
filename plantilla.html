@@ -17410,19 +17410,22 @@ html body #v-bim > .bim-stages{grid-row:7!important}
   function fc(s){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return m ? m[3] + '-' + MES[+m[2] - 1] + '-' + m[1].slice(2) : ''; }
   var SE = {
     inicio: { n: 'SE Río Claro', r: 'Subestación de inicio · 220 kV', u: 'se-rio-claro/',
-      d: 'Ampliación de la SE: bahía de salida de la L-2201 y su nuevo tablero de control y protección. Avance diario, cronograma, fotos y recorrido por la sala.' },
+      d: 'Ampliación de la SE: bahía de salida de la L-2201 y su nuevo tablero de control y protección. Avance diario, cronograma 4D enlazado al 3D, fotos y recorrido por la sala.' },
     llegada: { n: 'SE Cerro Azul', r: 'Subestación de llegada · 220/10 kV', u: 'se-cerro-azul/',
-      d: 'SE nueva: patio de 220 kV con dos bahías de línea y una de transformador, transformador de 10/12,5 MVA y salas de 10 kV, en 3D desde la ingeniería de detalle.' }
+      d: 'SE nueva: patio de 220 kV con dos bahías de línea y una de transformador, transformador de 10/12,5 MVA y salas de 10 kV. Su cronograma 4D construye el modelo día por día.' }
   };
   var avRio = null;
   try { import('./se-rio-claro/rio4d.js').then(function(m){ var T = m.U4D.total, i = -1; T.ejec.forEach(function(v, k){ if (v != null) i = k; });
     if (i >= 0) avRio = { v: T.ejec[i] * 100, f: m.U4D.fechas[i] }; }).catch(function(){}); } catch(e){}
+  var avCerro = null;
+  try { import('./se-cerro-azul/crono4d.js').then(function(m){ var C = m.CRONO, i = C.fechas.indexOf(C.corte);
+    if (i >= 0) avCerro = { v: C.total.ejec[i] * 100, f: C.corte }; }).catch(function(){}); } catch(e){}
   function tarjeta(){ var c = document.getElementById('dmSE'); if (!c){ c = document.createElement('div'); c.id = 'dmSE'; c.className = 'dm-se';
     (document.querySelector('#v-bim .bim-viewport') || document.body).appendChild(c); } return c; }
   window.demoSE = function(k){
     var s = SE[k]; if (!s) return; var c = tarjeta();
     var cif = k === 'inicio' ? (avRio ? '<div class="dm-cif"><b>' + avRio.v.toFixed(1).replace('.', ',') + ' %</b><span>avance al ' + fc(avRio.f) + '</span></div>' : '')
-      : '<div class="dm-cif"><b>3D</b><span>modelo listo · obra de la SE por iniciar</span></div>';
+      : (avCerro ? '<div class="dm-cif"><b>' + avCerro.v.toFixed(1).replace('.', ',') + ' %</b><span>avance al ' + fc(avCerro.f) + ' · cronograma 4D</span></div>' : '');
     c.innerHTML = '<button class="dm-x" aria-label="Cerrar">×</button><div class="dm-k">' + s.r + '</div><h3>' + s.n + '</h3><p>' + s.d + '</p>' + cif +
       '<a class="dm-go" href="' + s.u + '">Ver detalle de la subestación →</a>';
     c.classList.remove('on'); void c.offsetWidth; c.classList.add('on');
