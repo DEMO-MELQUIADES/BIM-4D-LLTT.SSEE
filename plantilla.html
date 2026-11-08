@@ -7289,6 +7289,7 @@ body.lay-drag canvas,body.lay-drag iframe,body.lay-drag svg{pointer-events:none}
 .ev-c{display:inline-block;border-radius:9px;padding:0 6px;margin:1px 3px 1px 0;font-size:.6rem;font-weight:600;white-space:nowrap}
 .ev-c.si{background:var(--lime-soft);color:var(--lime)}
 .ev-c.no{background:var(--red-soft);color:var(--red)}
+.ev-c.si.hist{background:var(--amber-soft,#fdf1dc);color:var(--amber,#b7791f)}
 .ev-c.na{background:var(--panel-2);color:var(--ink-mut)}
 .ev-m{display:flex;gap:3px}
 .ev-m img{width:44px;height:44px;object-fit:cover;border-radius:5px;cursor:zoom-in;display:block;background:var(--panel-2)}
@@ -7867,7 +7868,7 @@ const DATA = ⟦bloque:DATA⟧
 const INTERV = (DATA.corte_diario && DATA.corte_diario.intervenidas) || null;
 function intervDe(tt){ const L = INTERV && INTERV.torres && INTERV.torres[tt]; return (L && L.length) ? L : null; }
 function intervFecha(){ if (!INTERV) return ''; const d = new Date(INTERV.fecha + 'T12:00:00'), M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic']; return String(d.getDate()).padStart(2,'0') + '-' + M[d.getMonth()]; }
-function intervTxt(tt){ const L = intervDe(tt); if (!L) return ''; return 'Intervenida el ' + intervFecha() + ': ' + L.map(x => x.act + ' ' + (typeof x.pct === 'number' ? String(x.pct).replace('.', ',') + ' %' : x.pct)).join(', '); }
+function intervTxt(tt){ const L = intervDe(tt); if (!L) return ''; return 'Intervenida el ' + intervFecha() + ': ' + L.map(x => x.act + ' ' + (typeof x.pct === 'number' ? String(x.pct).replace('.', ',') + ' %' : (!x.pct || x.pct === '—' ? 'en curso' : x.pct))).join(', '); }
 const EVID_FASE = {'Caminos':['acceso'], 'Excavación':['excavación'], 'Solado':['solado'], 'Stub':['stub','topografía'], 'Acero':['acero'],
   'Encofrado':['encofrado'], 'Concreto':['vaciado'], 'Relleno compactado':['relleno'], 'Excavación PAT':['pat'], 'Contrapeso PAT':['pat'],
   'Relleno PAT':['pat','relleno'], 'Medición de resistencia PAT':['pat']};
@@ -7897,22 +7898,30 @@ function evidDe(tt){
   const L = intervDe(tt); if (!L || typeof FOTOS_CAMPO === 'undefined' || !FOTOS_CAMPO.length) return null;
   const dia = INTERV.fecha;
   const tAcc = f => f.tacc !== undefined ? f.tacc : torreAcceso(f);
-  const delDia = FOTOS_CAMPO.filter(f => f.fecha === dia && !ubicDudosa(f) && (f.torre === tt || (!f.torre && f.camino && tAcc(f) === tt)));
+  const enTorre = f => !ubicDudosa(f) && (f.torre === tt || (!f.torre && f.camino && tAcc(f) === tt));
+  const delDia = FOTOS_CAMPO.filter(f => f.fecha === dia && enTorre(f));
   const acts = L.map(x => {
     const fs = EVID_FASE[x.act]; if (!fs) return { act: x.act, pct: x.pct, n: null, fotos: [] };
-    const m = delDia.filter(f => fs.includes(f.fase) && (f.torre === tt || x.act === 'Caminos'));
-    return { act: x.act, pct: x.pct, n: m.length, fotos: m };
+    const deFase = f => fs.includes(f.fase) && (f.torre === tt || x.act === 'Caminos');
+    let m = delDia.filter(deFase), hist = false;
+    if (!m.length){
+      const prev = FOTOS_CAMPO.filter(f => f.fecha < dia && enTorre(f) && deFase(f))
+        .sort((a, b) => b.fecha.localeCompare(a.fecha) || String(b.hora || '').localeCompare(String(a.hora || '')));
+      if (prev.length){ m = prev.slice(0, 3); hist = true; }
+    }
+    return { act: x.act, pct: x.pct, n: m.length, fotos: m, hist, fh: m.length ? m[0].fecha : null };
   });
   const ap = acts.filter(a => a.n !== null), con = ap.filter(a => a.n > 0);
   const ultima = FOTOS_CAMPO.reduce((m, f) => f.fecha > m ? f.fecha : m, '');
   const estado = !ap.length ? 'na' : con.length === ap.length ? 'ok' : con.length ? 'parcial' : ultima < dia ? 'pendiente' : delDia.length ? 'otra' : 'sin';
   return { tt, dia, acts, delDia, estado };
 }
+const evidFd = d => { const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic']; return d ? d.slice(8, 10) + '-' + M[+d.slice(5, 7) - 1] : ''; };
 function evidTxt(tt){
   const E = evidDe(tt); if (!E || E.estado === 'na') return '';
   if (E.estado === 'pendiente') return `📷 Las fotos del ${intervFecha()} aún no están sincronizadas`;
   if (E.estado === 'sin') return `📷 Sin fotos de ${tt} el ${intervFecha()}`;
-  const det = E.acts.filter(a => a.n !== null).map(a => `${a.act.toLowerCase()} ${a.n ? a.n + ' foto' + (a.n > 1 ? 's' : '') : 'sin foto'}`).join(' · ');
+  const det = E.acts.filter(a => a.n !== null).map(a => `${a.act.toLowerCase()} ${a.n ? a.n + ' foto' + (a.n > 1 ? 's' : '') + (a.hist ? ' (' + evidFd(a.fh) + ')' : '') : 'sin foto'}`).join(' · ');
   return ({ ok: '📷 Con evidencia: ', parcial: '📷 Evidencia parcial: ', otra: '📷 Sin fotos de esa fase: ' })[E.estado] + det +
     (E.estado === 'otra' ? ` (${E.delDia.length} foto${E.delDia.length > 1 ? 's' : ''} de otra fase ese día)` : '');
 }
@@ -9017,20 +9026,20 @@ function pintarEvidResumen(){
   const body = document.getElementById('evidBody'), desc = document.getElementById('evidDesc'); if (!body) return;
   const TT = INTERV && INTERV.torres ? Object.keys(INTERV.torres).sort() : [];
   if (!TT.length){ if (desc) desc.textContent = ''; body.innerHTML = '<div class="ev-res">El Resumen del corte no marca torres intervenidas ese día.</div>'; return; }
-  if (desc) desc.textContent = `Frentes trabajados el ${intervFecha()} según el Resumen (celdas marcadas) frente a las fotos de ese día con la misma fase, en la torre o en su camino de acceso.`;
+  if (desc) desc.textContent = `Frentes trabajados el ${intervFecha()} según el reporte, cada uno con sus fotos de la misma fase en la torre o en su camino de acceso: las del día y, si ese día no hay, las más recientes de esa actividad.`;
   if (!FOTOS_CAMPO.length){ body.innerHTML = '<div class="ev-res">Cargando las fotos de obra…</div>'; return; }
-  const E = TT.map(evidDe).filter(Boolean), pc = v => typeof v === 'number' ? String(v).replace('.', ',') + ' %' : (v || '');
+  const E = TT.map(evidDe).filter(Boolean), pc = v => typeof v === 'number' ? String(v).replace('.', ',') + ' %' : (!v || v === '—' ? 'en curso' : v);
   const nAp = E.filter(e => e.estado !== 'na').length, nOk = E.filter(e => e.estado === 'ok').length, nPar = E.filter(e => e.estado === 'parcial').length;
-  let h = `<div class="ev-res"><b>${nOk} de ${nAp}</b> torre${nAp === 1 ? '' : 's'} intervenida${nAp === 1 ? '' : 's'} con evidencia en todas sus actividades${nPar ? ` · <b>${nPar}</b> con evidencia parcial` : ''}${E.some(e => e.estado === 'pendiente') ? ` · las fotos del ${intervFecha()} aún no están sincronizadas` : ''}</div>`;
+  let h = `<div class="ev-res"><b>${nOk} de ${nAp}</b> frente${nAp === 1 ? '' : 's'} del día con evidencia fotográfica${(() => { const h = E.filter(e => e.acts.some(a => a.hist)).length; return h ? ` · ${h} con la foto más reciente de su actividad` : ''; })()}${nPar ? ` · <b>${nPar}</b> con evidencia parcial` : ''}${E.some(e => e.estado === 'pendiente') ? ` · las fotos del ${intervFecha()} aún no están sincronizadas` : ''}</div>`;
   h += E.map(e => {
     const chips = e.acts.map(a => a.n === null ? `<span class="ev-c na" title="Sin fase fotográfica equivalente">${a.act} ${pc(a.pct)}</span>`
-      : `<span class="ev-c ${a.n ? 'si' : 'no'}">${a.act} ${pc(a.pct)} · ${a.n ? '📷 ' + a.n : 'sin foto'}</span>`).join('');
+      : `<span class="ev-c ${a.n ? 'si' : 'no'}${a.hist ? ' hist' : ''}" title="${a.hist ? 'Fotos más recientes de esa actividad en la torre' : 'Fotos del día'}">${a.act} ${pc(a.pct)} · ${a.n ? '📷 ' + a.n + (a.hist ? ' · ' + evidFd(a.fh) : ' · hoy') : 'sin foto'}</span>`).join('');
     const extra = e.estado === 'otra' ? `<span class="ev-c na">${e.delDia.length} foto${e.delDia.length > 1 ? 's' : ''} de otra fase</span>` : e.estado === 'sin' ? '<span class="ev-c na">sin fotos ese día</span>' : '';
     const fotos = [...new Set(e.acts.flatMap(a => a.fotos))].slice(0, 3);
     return `<div class="ev-row"><span class="ev-t" data-t="${e.tt}" title="Ver ${e.tt} en el BIM 4D">${e.tt}</span><div class="ev-a">${chips}${extra}</div>
       <div class="ev-m">${fotos.map(f => `<figure style="margin:0"><img src="${f.mini || f.src}" data-src="${f.src}" loading="lazy" decoding="async" alt="${e.tt} ${f.fecha}" title="${(faseTxt(f) + ' · ' + (f.hora || '').slice(0, 5) + (etqTxt(f) ? ' · ' + etqTxt(f) : '')).replace(/"/g, '&quot;')}"></figure>`).join('')}</div></div>`;
   }).join('');
-  h += `<div class="ev-foot">Fase reconocida por visión (Claude o YOLO, las de YOLO por revisar) o tomada del pie de foto del reporte. «Sin foto» no quiere decir que no se trabajó: solo que ese día no hay foto de esa fase. Clic en una miniatura para verla; en la torre, para abrirla en el BIM 4D.</div>`;
+  h += `<div class="ev-foot">Fase reconocida por visión (Claude o YOLO, las de YOLO por revisar) o tomada del pie de foto del reporte. Verde: fotos del día; ámbar: las más recientes de esa actividad en la torre, con su fecha. Clic en una miniatura para verla; en la torre, para abrirla en el BIM 4D.</div>`;
   body.innerHTML = h;
   const L = [...new Set(E.flatMap(e => e.acts.flatMap(a => a.fotos)))];
   body.querySelectorAll('.ev-m img').forEach(im => im.onclick = () => abrirFoto(im.dataset.src, L));
