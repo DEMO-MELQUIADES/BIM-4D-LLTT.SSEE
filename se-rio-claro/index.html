@@ -1,0 +1,1666 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo · SE Río Claro · Tablero BIM 4D</title>
+<meta name="description" content="Tablero de control de la SE Río Claro: servicio de Integrador Demo para el nuevo tablero CPM L-2201 (=E01+WR01) y modelo 3D de la implementación del TP-385 30/36 MVA, con resumen, BIM 4D, cronograma, fotos de obra y reportes diarios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<script>(function(){var q=new URLSearchParams(location.search).get('tema'),t=null;try{t=localStorage.getItem('se_rio_tema')}catch(e){}document.documentElement.dataset.theme=(q==='dark'||q==='light')?q:'light';})();</script>
+<style>
+:root{
+  --bg:#0a121e; --panel:#0e1b2f; --panel-2:#0B1627; --panel-3:#13243f;
+  --ink:#ecf0f6; --ink-2:#9eb1cf; --ink-mut:#5e78a2; --line:#16263f; --line-2:#385d99;
+  --sky:#2c67c7; --sky-2:#86aae4; --sky-soft:rgba(38,94,185,.20);
+  --amber:#d79a32; --amber-soft:rgba(215,154,50,.16); --lime:#7fc99a; --red:#d9714f; --plan:#8296b5;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px -18px rgba(0,0,0,.75);
+  --E:#9aa4ad; --P:#4f8be8; --C:#3fb36a; --R:#e07b1f;
+  --ink2:var(--ink-2); --ink3:var(--ink-mut); --hover:var(--panel-3); --acc:var(--sky); --acc-soft:var(--sky-soft); --panel-solid:var(--panel); --r:11px;
+}
+:root[data-theme="light"]{
+  --bg:#eceff4; --panel:#ffffff; --panel-2:#f5f7fb; --panel-3:#e3e9f2;
+  --ink:#0b192f; --ink-2:#486592; --ink-mut:#5e769d; --line:#d6dfec; --line-2:#bcc9dd;
+  --sky:#265eb9; --sky-2:#122139; --sky-soft:rgba(38,94,185,.12);
+  --amber:#9a6e22; --amber-soft:rgba(215,154,50,.20); --lime:#1f9d57; --red:#b5452a; --plan:#7e91b0;
+  --shadow:0 1px 2px rgba(15,28,42,.06),0 12px 30px -16px rgba(15,28,42,.28);
+  --E:#7c8794; --P:#1f5fd6; --C:#22a04b;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:13px;line-height:1.45;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;padding:8px 12px;gap:8px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Manrope","Inter",system-ui,sans-serif;letter-spacing:-.01em;margin:0}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px}::-webkit-scrollbar-track{background:transparent}
+button{font:inherit;font-size:12px;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:7px;padding:5px 9px;cursor:pointer}
+button:hover{border-color:var(--line-2);background:var(--panel-3)}
+button.on{background:var(--sky);border-color:var(--sky);color:#fff}
+button:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+.oculto{display:none!important}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(115deg,#122139,#265eb9);border:1px solid var(--line);border-radius:11px;padding:8px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2c59a1,#265eb9)}
+.topbar::after{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(120% 140% at 88% -30%,#000,transparent 62%)}
+.tb-l,.tb-m,.tb-r{position:relative;z-index:1}
+.tb-l h1{font-size:.96rem;line-height:1.15;color:#fff;font-weight:800}
+.tb-l h1 span{font-weight:500;color:#cfe0f5}
+.tb-l .sub{font-size:.66rem;color:#bcd2ec;margin-top:2px}
+.tb-m{display:flex;gap:12px;font-size:.68rem;color:#cfe0f5;flex-wrap:wrap}
+.tb-m b{color:#fff;font-weight:600}
+.tb-r{display:flex;align-items:center;gap:8px}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);padding:5px 11px;border-radius:18px;font-weight:700;font-size:.7rem;color:#fff;white-space:nowrap}
+.iconbtn{white-space:nowrap;cursor:pointer;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);color:#fff;min-width:30px;height:30px;border-radius:7px;display:grid;place-items:center;padding:0 8px;font-size:.7rem;font-weight:600;text-decoration:none}
+.iconbtn:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.4)}
+
+.nav{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap}
+.nav button{border:1px solid var(--line);background:var(--panel);color:var(--ink-2);padding:6px 13px;border-radius:8px;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:6px;transition:.15s}
+.nav button:hover{border-color:var(--line-2);color:var(--ink);background:var(--panel)}
+.nav button.active{background:var(--sky);border-color:var(--sky);color:#fff;box-shadow:0 4px 14px -6px var(--sky)}
+.nav button.bim-badge{border-color:var(--amber);position:relative}
+.nav button.bim-badge::after{content:"3D+4D";position:absolute;top:-6px;right:-4px;background:var(--amber);color:#111;font-size:.52rem;font-weight:900;padding:1px 4px;border-radius:4px;letter-spacing:.3px}
+.nav .ic{font-size:.85rem;line-height:1}
+
+main.views{flex:1;min-height:0;position:relative}
+.view{position:absolute;inset:0;display:none;gap:8px;overflow:auto;align-content:start}
+.view.on{display:grid}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 12px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:0;min-width:0}
+.card>h3{font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:6px;color:var(--ink)}
+.card>h3 .dot,.dot{width:7px;height:7px;border-radius:50%;background:var(--sky);flex-shrink:0;display:inline-block}
+.card .desc{font-size:.66rem;color:var(--ink-mut);margin:2px 0 6px;line-height:1.35}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .lab{font-size:.63rem;color:var(--ink-mut);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.kpi .val{font-family:"Manrope","Inter",sans-serif;font-size:1.6rem;font-weight:800;line-height:1;margin-top:2px}
+.kpi .val span{font-size:.85rem;font-weight:600;color:var(--ink-mut)}
+.kpi .foot{font-size:.63rem;color:var(--ink-2);margin-top:2px}
+.kpi.accent{background:linear-gradient(135deg,var(--sky-soft),transparent),var(--panel)}
+.verdict{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:9px 14px;box-shadow:var(--shadow)}
+.verdict .big{font-family:"Manrope","Inter",sans-serif;font-size:1.1rem;font-weight:800;color:var(--amber);white-space:nowrap}
+:root[data-theme="light"] .verdict .big{color:#76541a}
+.verdict .txt{font-size:.7rem;color:var(--ink-2);line-height:1.4}
+.verdict .txt b{color:var(--ink)}
+.vacio{color:var(--ink-mut);font-size:.68rem;padding:4px 0}
+.fuente{font-size:.6rem;color:var(--ink-mut);margin-top:8px;line-height:1.35}
+.pill{display:inline-block;font-size:.6rem;font-style:normal;font-weight:700;border:1px solid var(--line-2);border-radius:999px;padding:0 7px;white-space:nowrap;color:var(--ink-2)}
+.pill.ok{border-color:#265eb9;color:#265eb9}.pill.warn{border-color:#e08a1e;color:#c46f0b}
+:root:not([data-theme="light"]) .pill.ok{border-color:var(--sky-2);color:var(--sky-2)}:root:not([data-theme="light"]) .pill.warn{color:#f0a64a}
+table.kv{width:100%;border-collapse:collapse;font-size:.68rem}
+table.kv td{border-top:1px solid var(--line);padding:4px 4px;vertical-align:top}
+table.kv td:first-child{color:var(--ink-mut);width:44%}
+table.tb{width:100%;border-collapse:collapse;font-size:.66rem}
+table.tb th{text-align:left;font-size:.58rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-mut);font-weight:700;padding:4px;border-bottom:1px solid var(--line-2);position:sticky;top:0;background:var(--panel)}
+table.tb td{padding:5px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+table.tb small,.ri small{display:block;color:var(--ink-mut);font-size:.6rem;margin-top:1px}
+.leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.6rem;color:var(--ink-2);margin-top:6px}
+.leg i{display:inline-block;width:12px;height:8px;border-radius:2px;margin-right:4px;vertical-align:0}
+.leg .lp{border-top:2px dashed var(--plan);height:0;width:14px;border-radius:0;vertical-align:3px}.leg .le{background:#265eb9}.leg .lc{border-left:2px solid #d9714f;width:2px;height:10px;border-radius:0;vertical-align:-1px}
+.leg .lpb{background:var(--panel-3);border:1px solid var(--line-2)}
+.leg .b1,.chart .b1{background:#122139;fill:#122139}.leg .b2,.chart .b2{background:#265eb9;fill:#265eb9}.leg .b3,.chart .b3{background:#c89030;fill:#c89030}
+:root:not([data-theme="light"]) .chart .b1{fill:#86aae4}:root:not([data-theme="light"]) .leg .b1{background:#86aae4}
+.chart{width:100%;height:auto;display:block}
+.chart text{font:500 10px "Inter",sans-serif;fill:var(--ink-mut)}
+.chart .ax{font-size:9.5px}.chart .lb{font:700 11px "Manrope",sans-serif;fill:var(--ink)}
+.chart .gl{stroke:var(--line);stroke-width:1}
+.chart .pl{fill:none;stroke:var(--plan);stroke-width:2;stroke-dasharray:5 4}
+.chart .el{fill:none;stroke:#265eb9;stroke-width:2.6}.chart .ar{fill:rgba(38,94,185,.14)}
+:root:not([data-theme="light"]) .chart .el{stroke:#86aae4}:root:not([data-theme="light"]) .chart .ar{fill:rgba(134,170,228,.12)}
+.chart .cl{stroke:#d9714f;stroke-width:1.5;stroke-dasharray:3 3}.chart .ep{fill:#265eb9;stroke:var(--panel);stroke-width:2}
+.chart .ep.dd{stroke-width:1.2}.chart .aj{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-dasharray:2 2;cursor:help}
+.dd-wrap{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:9px}
+table.dd{border-collapse:collapse;font-size:.66rem;min-width:100%;font-variant-numeric:tabular-nums}
+table.dd th,table.dd td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+table.dd thead th{font-size:.6rem;font-weight:700;color:var(--ink);background:var(--panel-2);position:sticky;top:0}
+table.dd thead th small{display:block;font-weight:500;color:var(--ink-mut);font-size:.55rem}
+table.dd tbody th{position:sticky;left:0;z-index:1;background:var(--panel);text-align:left;font-weight:600;color:var(--ink-2);font-size:.62rem}
+table.dd thead th:first-child{left:0;z-index:2}
+table.dd td.hoy,table.dd th.hoy{background:var(--sky-soft);font-weight:700;color:var(--ink)}
+table.dd td.fut,table.dd th.fut{color:var(--ink-mut);opacity:.7}
+table.dd .neg{color:var(--red);font-weight:600}
+table.dd tr:last-child td,table.dd tr:last-child th{border-bottom:0}
+.nota-aj{display:block;margin-top:6px;padding:6px 8px;border-left:3px solid var(--amber);background:var(--amber-soft);border-radius:6px;font-size:.62rem;color:var(--ink-2);line-height:1.35}
+.rd .rs b.ra{font:700 .66rem "Manrope",sans-serif;color:var(--ink);white-space:nowrap}.rd .rs .nw{white-space:nowrap}
+.link{border:0;background:none;color:var(--sky);font-size:.66rem;font-weight:700;padding:4px 0;cursor:pointer}
+.link:hover{background:none;text-decoration:underline}
+:root:not([data-theme="light"]) .link{color:var(--sky-2)}
+
+#v-res{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:max-content}
+#v-res .kpi{grid-column:span 2}
+#v-res .wide{grid-column:span 6}
+#v-res .half{grid-column:span 3}
+.gr{display:grid;grid-template-columns:minmax(150px,1.1fr) 2fr 74px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.gr .gn{font-size:.68rem;font-weight:600;color:var(--ink);line-height:1.25}
+.gr .gn small{display:block;font-weight:400;color:var(--ink-mut);font-size:.6rem}
+.gr .gb{position:relative;height:12px;background:var(--panel-2);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.gr .gb .gp{position:absolute;left:0;top:0;bottom:0;background:var(--panel-3);border-right:2px solid var(--plan)}
+.gr .gb .ge{position:absolute;left:0;top:2px;bottom:2px;border-radius:4px}
+.gr .gv{text-align:right;font-size:.6rem;color:var(--ink-mut);line-height:1.2}
+.gr .gv b{display:block;font:800 .82rem "Manrope",sans-serif;color:var(--ink)}
+#resRestr,#resHab{overflow:auto;max-height:330px}
+
+#v-bim{grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:auto auto auto minmax(360px,1fr) auto;overflow:hidden}
+.bim-top-bar{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:8px 14px}
+.bim-controls{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.bim-btn{border:1px solid var(--line);background:var(--panel-2);color:var(--ink-2);border-radius:7px;padding:5px 10px;font-size:.68rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;transition:.15s;white-space:nowrap}
+.bim-btn:hover{border-color:var(--line-2);color:var(--ink);background:var(--panel-3)}
+.bim-btn.active,.bim-btn.on{background:var(--sky);border-color:var(--sky);color:#fff}
+.bim-btn .ic{font-size:.8rem;line-height:1}
+.bim-sep{width:1px;height:20px;background:var(--line-2);margin:0 3px;flex:0 0 auto}
+.bim-btn.vista-ini{border:1px solid #265eb9;color:#265eb9;background:var(--panel);font-weight:800}
+.bim-btn.vista-ini:hover{background:#265eb9;color:#fff}
+:root:not([data-theme="light"]) .bim-btn.vista-ini{border-color:var(--sky-2);color:var(--sky-2)}
+.bim-towers-bar{grid-column:1/-1;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:7px 12px 8px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:5px;min-width:0}
+.btb-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:.62rem;color:var(--ink-mut)}
+.btb-head b{font-size:.74rem;color:var(--ink);display:flex;align-items:center;gap:6px}
+.zonas-list{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.zt{position:relative;padding:4px 6px 3px;text-align:left;border-radius:6px;border:1px solid var(--line);background:var(--panel-2);min-width:0}
+.zt:hover{border-color:var(--line-2)}
+.zt.sel{border-color:var(--sky);box-shadow:0 0 0 1px var(--sky) inset;background:var(--sky-soft)}
+.zt .tn{font-size:.64rem;font-weight:700;display:flex;align-items:center;gap:5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zt .tn i{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.zt .tb{height:4px;border-radius:3px;background:var(--panel-3);margin-top:4px;overflow:hidden}
+.zt .tb i{display:block;height:100%}
+.zt .tf{font-size:.56rem;color:var(--ink-2);margin-top:2px;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bim-info{grid-column:1;grid-row:3;display:flex;align-items:center;gap:8px;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 6px 4px 10px;min-height:32px;font-size:.64rem;color:var(--ink-2)}
+.bim-info .bi{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bim-info #biSel{color:var(--sky);font-weight:800;letter-spacing:.2px;margin-right:8px}
+:root:not([data-theme="light"]) .bim-info #biSel{color:var(--sky-2)}
+.bim-info .bim-btn{padding:4px 10px;font-size:.62rem}
+.bim-viewport{grid-column:1;grid-row:4;position:relative;border-radius:11px;border:1px solid var(--line);overflow:hidden;min-height:0;background:#cfdde6}
+#vista{position:absolute;inset:0}
+#vista canvas{display:block;touch-action:none;outline:none}
+#rotulos{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bim-time{grid-column:1;grid-row:5;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:7px 12px;box-shadow:var(--shadow)}
+.bim-side{grid-column:2;grid-row:3/6;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 12px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.bim-panel-tabs{display:flex;gap:4px;margin-bottom:8px;flex-shrink:0}
+.bpt{flex:1;border:1px solid var(--line);background:var(--panel-2);color:var(--ink-2);border-radius:7px;padding:5px 6px;font-size:.66rem;font-weight:700;transition:.15s}
+.bpt.on{background:var(--sky);border-color:var(--sky);color:#fff}
+.bp{flex:1;min-height:0;overflow:auto;display:none;padding-right:2px}
+.bp.on{display:block}
+.tw-head{font-family:"Manrope","Inter",sans-serif;font-weight:800;font-size:.82rem;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.tw-head span{display:block;font-family:"Inter";font-weight:500;font-size:.62rem;color:var(--ink-mut)}
+.tw-kpi{border:1px solid var(--line);background:var(--panel-2);border-radius:9px;padding:8px 10px;margin-bottom:7px}
+.tw-kpi-h{display:flex;justify-content:space-between;align-items:baseline;font-size:.72rem;font-weight:600;color:var(--ink)}
+.tw-kpi-h b{font-family:"Manrope","Inter",sans-serif;font-size:1rem;font-variant-numeric:tabular-nums}
+.tw-bar{height:8px;border-radius:5px;background:var(--panel-3);overflow:hidden;margin-top:5px}
+.tw-bar.sm{height:5px;margin-top:4px}
+.tw-bar i{display:block;height:100%;border-radius:5px;transition:width .4s}
+.tw-sub{font-size:.6rem;color:var(--ink-mut);margin-top:6px}
+.tw-sec{font-size:.62rem;font-weight:700;color:var(--ink-mut);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 6px}
+.al{display:flex;flex-direction:column;gap:3px}
+.ar{display:grid;grid-template-columns:1fr 64px 86px;gap:6px;align-items:center;text-align:left;padding:4px 6px;border-radius:6px;background:var(--panel-2);border:1px solid var(--line)}
+.ar.sel{border-color:var(--sky);background:var(--sky-soft)}
+.ar .an{font-size:.64rem;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ar .an b{font:600 .62rem "JetBrains Mono",monospace;color:var(--ink);margin-right:5px}
+.ar .ab{position:relative;height:8px;background:var(--panel-3);border-radius:4px;overflow:hidden}
+.ar .ab .ap{position:absolute;left:0;top:0;bottom:0;border-right:2px solid var(--plan)}
+.ar .ab .ae{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.ar .av{font:700 .64rem "Manrope",sans-serif;color:var(--ink);text-align:right;line-height:1.1}
+.ar .av em{display:block;font:600 .54rem "Inter",sans-serif;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aprox{margin-top:8px;font-size:.62rem;color:var(--ink-2);background:var(--panel-2);border:1px dashed var(--line-2);border-radius:8px;padding:6px 8px;line-height:1.35}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.fg button,.fgrid button{padding:0;border:0;background:none;border-radius:6px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:zoom-in}
+.fg img,.fgrid img{width:100%;height:100%;object-fit:cover;display:block;background:var(--panel-3)}
+.fg span{position:absolute;left:0;right:0;bottom:0;font-size:.54rem;line-height:1.2;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.72));padding:10px 4px 3px;text-align:left}
+.se-viewcube{position:absolute;top:8px;right:8px;z-index:5;display:flex;flex-direction:column;align-items:center;gap:3px;pointer-events:none}
+.se-viewcube canvas{width:104px;height:104px;display:block;pointer-events:auto;cursor:grab;touch-action:none;border-radius:12px}
+.se-viewcube canvas:hover{background:rgba(127,138,148,.10)}.se-viewcube canvas.drag{cursor:grabbing}
+.se-viewcube .vc-tools{display:flex;gap:3px;pointer-events:auto}
+.se-viewcube .vc-tools button{border:1px solid var(--line-2);background:var(--panel);color:var(--ink-2);border-radius:6px;font-size:.62rem;line-height:1;padding:4px 7px;box-shadow:var(--shadow)}
+body.sala .se-viewcube{display:none}
+#coord{position:absolute;top:10px;left:10px;z-index:4;background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:4px 9px;font:11px "JetBrains Mono",monospace;color:var(--ink-2);box-shadow:var(--shadow);max-width:calc(100% - 80px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rot{font:500 11px/1.2 "Inter",sans-serif;color:#fff;background:rgba(13,21,34,.8);padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translateY(-6px);border-left:3px solid var(--E)}
+.rot.P{border-left-color:#5b9bff}.rot.C{border-left-color:#3fcf72}
+.num{font:600 10.5px/1 "JetBrains Mono",monospace;color:#18212b;background:rgba(255,255,255,.92);border:1px solid #9aa4ad;border-radius:4px;padding:2px 4px;text-align:center}
+.num b{font-weight:700}.num span{display:none}
+.num.o-nuevo{background:#2f6fe4;color:#fff;border-color:#2f6fe4}.num.o-integ{background:#8e44ad;color:#fff;border-color:#8e44ad}
+.num i.ax{display:none;font:600 9px/1 "Inter",sans-serif;font-style:normal;background:#8e44ad;color:#fff;border-radius:3px;padding:2px 4px;margin-top:3px}
+body.integ.dentro .num i.ax{display:inline-block}
+.rot.ax{border-left-color:#8e44ad;background:rgba(62,24,84,.86)}
+.num.o-interv{background:#e07b1f;color:#fff;border-color:#e07b1f}.num.o-rel{background:#fff6d6;border-color:#c9a227}
+body.sinZonas .num.o-interv,body.sinZonas .num.o-rel{background:rgba(255,255,255,.92);color:#18212b;border-color:#9aa4ad}
+body.dentro .num{font:600 12px/1.15 "Inter",sans-serif;padding:4px 8px 5px;border-radius:7px;box-shadow:0 2px 8px rgba(0,0,0,.25);pointer-events:auto;cursor:pointer}
+body.dentro .num b{display:block;font-size:17px;line-height:1.05}
+body.dentro .num span{display:block;font:500 11px/1.2 "JetBrains Mono",monospace;opacity:.92;margin-top:1px}
+body.dentro #mirando{pointer-events:auto;cursor:pointer}
+#mirando{position:absolute;left:50%;bottom:calc(var(--mapaH,0px) + 14px);transform:translateX(-50%);z-index:5;pointer-events:none;background:rgba(13,21,34,.86);color:#fff;font-size:12.5px;line-height:1.3;padding:6px 11px;border-radius:9px;max-width:min(440px,90%);text-align:center;border-left:4px solid #9aa4ad}
+#mirando b{font-size:13.5px}#mirando small{display:block;opacity:.8;font-size:11.5px}
+#mapa{position:absolute;z-index:5;bottom:10px;left:10px;background:var(--panel);border:1px solid var(--line-2);box-shadow:var(--shadow);border-radius:10px;padding:5px 8px 7px;touch-action:none}
+#mapa.arrastrando{opacity:.9;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#mapa .cab{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-2);margin-bottom:4px;cursor:move;user-select:none}
+#mapa .cab small{color:var(--ink-mut);font-size:10.5px}
+#mapa .cab b{color:var(--ink);font-weight:600}
+#mapa .cab .sp{flex:1}
+#mapa .cab button{padding:1px 8px;font-size:12px}
+#mapa .ley{display:flex;gap:10px;font-size:10.5px;color:var(--ink-mut);flex-wrap:wrap;margin-top:4px}
+#mapa .ley i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+#mapa canvas{display:block;touch-action:none;border-radius:6px}
+#mapa.min canvas,#mapa.min .ley{display:none}
+#barraEnc{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:6;display:flex;gap:6px;align-items:center;background:var(--panel);border:1px solid var(--line-2);box-shadow:var(--shadow);border-radius:12px;padding:6px 8px;max-width:calc(100% - 16px)}
+#barraEnc button{padding:5px 10px;font-size:12.5px;white-space:nowrap}
+#barraEnc .t{font-size:13px;padding:0 6px;text-align:center;line-height:1.25;min-width:0}
+#barraEnc .t b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#barraEnc .t small{display:block;color:var(--ink-mut);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+body.encuadre #mira,body.encuadre #mirando,body.encuadre #hud{display:none!important}
+#hud{position:absolute;left:50%;bottom:calc(var(--mapaH,0px) + 54px);transform:translateX(-50%);z-index:6;pointer-events:none;background:rgba(13,21,34,.84);color:#fff;font-size:12.5px;padding:7px 12px;border-radius:14px;max-width:92%;text-align:center;line-height:1.35}
+#joy{position:fixed;z-index:30;width:110px;height:110px;border-radius:50%;border:2px solid rgba(255,255,255,.55);background:rgba(255,255,255,.12);pointer-events:none;transform:translate(-50%,-50%)}
+#joy i{position:absolute;left:50%;top:50%;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.75);transform:translate(-50%,-50%)}
+#mira{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border:2px solid rgba(255,255,255,.8);border-radius:50%;pointer-events:none;z-index:6;mix-blend-mode:difference}
+body.sala #coord{display:none}
+#cine{position:absolute;inset:0;z-index:8;pointer-events:none;display:none}
+#cine.on{display:block}
+#cine .sub{position:absolute;left:0;right:0;bottom:28px;background:rgba(11,16,24,.72);color:#fff;padding:14px 36px 18px}
+#cine .sub b{display:block;font-size:22px;font-weight:600;margin-bottom:6px}
+#cine .sub span{font-size:14px;opacity:.85}
+#cine .sub i{position:absolute;right:36px;bottom:14px;font:12px "JetBrains Mono",monospace;opacity:.6;font-style:normal}
+#cine .salir{position:absolute;top:14px;right:14px;pointer-events:auto;font-size:13px;color:#fff;background:rgba(11,16,24,.7);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:6px 12px}
+#cine .rec{position:absolute;top:18px;left:18px;color:#fff;font-size:12.5px;background:rgba(11,16,24,.7);border-radius:999px;padding:5px 10px;display:none;align-items:center;gap:6px}
+#cine .rec::before{content:'';width:9px;height:9px;border-radius:50%;background:#e74c3c;animation:par 1s infinite}
+#cine .rec.on{display:flex}
+@keyframes par{50%{opacity:.25}}
+body.cine .bim-viewport{position:fixed;inset:0;z-index:40;border-radius:0;border:0}
+body.cine #rotulos,body.cine #hud,body.cine #mira,body.cine .se-viewcube,body.cine #coord,body.cine #mapa{display:none!important}
+.bim-viewport:fullscreen{border-radius:0}
+body.embed .topbar,body.embed .nav{display:none}
+.bp h2{font-family:"Inter";font-size:.62rem;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-mut);margin:12px 0 6px;font-weight:700}
+.bp h2:first-child{margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.grid2 button{text-align:left}
+.capa{display:flex;align-items:center;gap:8px;padding:3px 2px;cursor:pointer;border-radius:6px;font-size:.7rem;color:var(--ink-2)}
+.capa:hover{background:var(--panel-2)}
+.capa input{accent-color:var(--sky)}
+.capa span.n{margin-left:auto;color:var(--ink-mut);font:11px "JetBrains Mono",monospace}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;border:0;border-radius:0;font-size:.66rem;padding:5px 8px;background:var(--panel-2);white-space:nowrap}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--sky);color:#fff}
+input[type=range]{width:100%;accent-color:var(--sky)}
+.etapa{font-size:.66rem;color:var(--ink-2);min-height:52px}
+.etapa b{color:var(--ink);font-weight:600}
+.salaCab{display:flex;align-items:center;gap:8px}.salaCab h2{margin:0!important;flex:1}
+.ayuda{font-size:.64rem;color:var(--ink-2);margin:8px 0 4px}
+.chipsObra{display:flex;flex-wrap:wrap;gap:5px}
+.chipsObra button{font-size:.64rem;padding:4px 8px;display:flex;align-items:center;gap:6px;border-left-width:4px}
+.ley2{display:flex;flex-direction:column;gap:2px;font-size:.62rem;color:var(--ink-2);margin:6px 0}
+.ley2 i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+#buscar{width:100%;font:inherit;font-size:.7rem;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel-2);color:var(--ink);margin-bottom:4px}
+#eqLista button b{min-width:34px;display:inline-block}
+#eqLista button i{width:8px;height:8px;border-radius:2px;flex:none;align-self:center}
+#integPanel{border:1px solid var(--line);border-left:4px solid #8e44ad;border-radius:8px;padding:7px 9px;margin:6px 0 2px;font-size:.66rem;color:var(--ink-2)}
+#integPanel b{color:var(--ink)}#integPanel .chipsObra{margin-top:6px}
+#integPanel .kp{display:flex;gap:10px;flex-wrap:wrap;margin-top:3px}#integPanel .kp span b{font-size:.8rem}
+.lista .g{font-size:.6rem;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-mut);margin:12px 0 4px;font-weight:700}
+.lista button{display:flex;width:100%;text-align:left;border:0;background:none;padding:5px 6px;gap:8px;align-items:baseline;border-radius:6px}
+.lista button:hover{background:var(--panel-2)}
+.lista button b{font-weight:600;white-space:nowrap;font-size:.7rem}
+.lista button span{color:var(--ink-mut);font-size:.64rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cerrar{float:right;border:0;background:none;font-size:18px;line-height:1;padding:2px 6px;color:var(--ink-mut)}
+.ficha{font-size:.7rem}
+.ficha .est{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:999px;color:#fff}
+.ficha h3{margin:8px 0 2px;font-size:1rem}
+.ficha .nom{color:var(--ink-2);margin:0 0 10px}
+.ficha table{width:100%;border-collapse:collapse;font-size:.66rem}
+.ficha td{border-top:1px solid var(--line);padding:5px 4px;vertical-align:top}
+.ficha td:first-child{color:var(--ink-mut);width:38%}
+.ficha .pl{font:11px "JetBrains Mono",monospace;color:var(--ink-2);margin-top:8px}
+.ficha .aprox{font-size:.64rem}
+.ficha img.frente{display:block;max-height:220px;max-width:46%;float:right;margin:0 0 8px 10px;border-radius:4px;border:1px solid var(--line);cursor:zoom-in;background:#ccc}
+.ficha .obra{clear:both;margin:10px 0;border-left:4px solid;padding:6px 9px;background:var(--panel-2);border-radius:6px;font-size:.66rem}
+.ficha .obra b{display:block;margin-bottom:2px}
+.ficha .acc{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:8px 0}
+.ficha .acc button{white-space:nowrap}
+.ficha h4{clear:both;font-family:"Inter";font-size:.6rem;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-mut);margin:14px 0 4px;font-weight:700}
+.ficha .res{display:flex;gap:6px;flex-wrap:wrap;font-size:.62rem;margin-bottom:4px}
+.ficha .res span{border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.ficha .res i,.ficha table.cab i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.ficha table.cab td{font-size:.64rem}
+.ficha table.cab td:first-child{width:44%;color:var(--ink)}
+.ficha table.cab code{font:500 .62rem "JetBrains Mono",monospace}
+.ficha table.cab small{display:block;color:var(--ink-mut);font-size:.6rem}
+.ficha table.cab small.nota{color:#b5651d}
+.ficha .fuente{font-size:.6rem}
+.ficha .integ{clear:both;margin:12px 0 4px;border-left:4px solid #8e44ad;padding:6px 9px;background:var(--panel-2);border-radius:6px;font-size:.66rem}
+.ficha .integ b{color:#8e44ad}
+:root:not([data-theme="light"]) .ficha .integ b{color:#c39bd3}
+.ficha table.axt td{font-size:.64rem}.ficha table.axt td:first-child{width:auto;color:var(--ink)}
+
+#v-cro{grid-template-columns:minmax(0,1fr) clamp(320px,29%,500px);grid-template-rows:minmax(0,1fr);overflow:hidden}  
+.cro-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cro-head h3{flex:1;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:6px}
+#croGantt{flex:1;min-height:0;overflow:auto;margin-top:6px}
+#croDet{overflow:auto}
+#croDet .cd{display:flex;flex-direction:column;gap:12px}
+#croDet .fg{grid-template-columns:repeat(2,1fr);gap:6px}
+#croDet .fg span{font-size:.6rem}
+#croDet .vacio{padding:14px 2px;font-size:.72rem;line-height:1.5}
+#croDet .bim-btn{margin-top:8px}
+
+#v-fot{grid-template-columns:240px minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden}
+#v-fot .card{overflow:hidden}
+#fotDias{display:flex;flex-direction:column;gap:3px;overflow:auto;flex:1;min-height:0;margin-top:6px}
+.fd{display:flex;justify-content:space-between;align-items:center;text-align:left;padding:6px 9px;font-size:.68rem;background:var(--panel-2)}
+.fd b{font-weight:600;color:var(--ink)}.fd span{font:600 .64rem "JetBrains Mono",monospace;color:var(--ink-mut)}
+.fd.sel{background:var(--sky);border-color:var(--sky)}.fd.sel b,.fd.sel span{color:#fff}
+#fotAct{width:100%;font:inherit;font-size:.66rem;padding:5px 6px;border:1px solid var(--line);border-radius:7px;background:var(--panel-2);color:var(--ink);margin-top:6px}
+#fotGrid{flex:1;min-height:0;overflow:auto;margin-top:6px}
+.fdia h4{font-family:"Inter";font-size:.68rem;font-weight:700;color:var(--ink);margin:10px 0 6px;position:sticky;top:0;background:var(--panel);padding:2px 0;z-index:1}
+.fdia:first-child h4{margin-top:0}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.fgrid span.fp{position:absolute;left:0;right:0;bottom:0;font-size:.58rem;line-height:1.25;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:14px 5px 4px;text-align:left}
+.fgrid span.fa{position:absolute;top:4px;left:4px;font:700 .54rem "Inter",sans-serif;background:var(--sky);color:#fff;border-radius:4px;padding:1px 5px}
+
+#v-rep{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:max-content}
+#repTira{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:6px}  
+.rd{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;padding:8px 10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
+.rd .rf{font-size:.66rem;font-weight:700;color:var(--ink)}
+.rd b{font:800 1.15rem "Manrope",sans-serif;line-height:1.1}
+.rd .rs{font-size:.58rem;color:var(--ink-mut)}
+.rd.sel{border-color:var(--sky);box-shadow:0 0 0 1px var(--sky) inset;background:var(--sky-soft)}
+#repDet{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#repDet .wide{grid-column:1/-1}
+#repDet .fg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.ri{display:flex;gap:8px;align-items:flex-start;font-size:.68rem;padding:4px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.ri:last-child{border-bottom:0}
+.ri code{font:600 .64rem "JetBrains Mono",monospace;color:var(--ink);min-width:30px}
+.ri span{flex:1;min-width:0}
+.ri .pill{align-self:center}
+
+#alzado{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column}
+#alzado.on{display:flex}
+#alzado .cab{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+#alzado .cab h3{margin:0;font-size:15px;font-weight:600;flex:1;min-width:200px}
+#alzado .cab h3 small{display:block;font-weight:400;color:var(--ink-2);font-size:12px;font-family:"Inter"}
+#alzado .filas{display:flex;gap:5px;flex-wrap:wrap;padding:8px 14px 0}
+#alzado .filas button{font-size:12px;padding:4px 9px}
+#alzado .lienzo{flex:1;overflow:auto;padding:8px 14px 14px}
+#alzado canvas{display:block;margin:0 auto;cursor:pointer}
+#visor{position:fixed;inset:0;z-index:70;background:rgba(6,10,17,.88);display:none;place-items:center;padding:20px}
+#visor.on{display:grid}
+#visor img{height:84vh;width:auto;max-width:96vw;object-fit:contain;border-radius:6px}  
+#visor p{color:#fff;text-align:center;margin:10px 0 0;font-size:13px;max-width:900px}
+#cargando{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:80;font-size:14px;color:var(--ink-2)}
+#cargando div{display:flex;flex-direction:column;align-items:center;gap:10px}
+.barra{width:180px;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.barra i{display:block;height:100%;width:30%;background:var(--sky);animation:car 1.1s infinite ease-in-out}
+@keyframes car{0%{transform:translateX(-100%)}100%{transform:translateX(330%)}}
+
+@media (max-width:1250px){
+  #v-res .kpi{grid-column:span 3}#v-res .half{grid-column:span 6}
+  .zonas-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #repTira{grid-template-columns:repeat(auto-fill,minmax(118px,1fr))}
+}
+@media (max-width:900px){
+  body{padding:6px 8px;gap:6px}
+  .topbar{flex-wrap:wrap;padding:7px 10px}.tb-m{display:none}.tb-l .sub{display:none}
+  .nav{flex-wrap:nowrap;overflow-x:auto}.nav button{flex:none;padding:6px 10px}
+  #v-res{grid-template-columns:repeat(2,minmax(0,1fr))}#v-res .kpi{grid-column:span 1}#v-res .half,#v-res .wide,#v-res .verdict{grid-column:1/-1}
+  .verdict{flex-direction:column;align-items:flex-start;gap:4px}
+  #v-bim{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto 62vh auto auto;overflow:auto}
+  .bim-top-bar,.bim-towers-bar,.bim-info,.bim-viewport,.bim-time,.bim-side{grid-column:1}
+  .bim-info{grid-row:3}.bim-viewport{grid-row:4}.bim-time{grid-row:5}.bim-side{grid-row:6;max-height:none;overflow:visible}
+  .bp{overflow:visible}
+  .bim-top-bar{padding:6px 8px}.bim-controls{flex-wrap:nowrap;overflow-x:auto;width:100%}
+  .zonas-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #coord{display:none}
+  .se-viewcube canvas{width:80px;height:80px}
+  #v-cro{grid-template-columns:1fr;grid-template-rows:70vh auto;overflow:auto}
+  #croDet .cd{grid-template-columns:1fr}
+  #v-fot{grid-template-columns:1fr;grid-template-rows:max-content 75vh;overflow:auto}
+  .g4 .cab .t span:nth-child(even):not(.on),.g4 .cab .t span.cerca{display:none}
+  #fotDias{flex-direction:row;overflow-x:auto;flex:none}.fd{flex:none;gap:8px}
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  #v-rep{grid-template-columns:1fr}#repTira{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}#repDet{grid-template-columns:1fr}
+  #barraEnc .solo-pc{display:none}
+  #cine .sub{padding:10px 14px 14px;bottom:0}#cine .sub b{font-size:16px}#cine .sub span{font-size:12px}#cine .sub i{display:none}
+  .ficha img.frente{max-height:170px}
+}
+.demo-tag{display:inline-block;font:700 .58em/1 "Inter",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:.42em .62em .36em;border-radius:6px;background:#2563eb;color:#fff;margin-right:.6em;vertical-align:.18em}#bTema,#themeBtn{display:none!important}:root[data-theme="light"]{--bg:#f2f5fa;--sky:#2563eb;--sky-soft:rgba(37,99,235,.10);--amber:#b7791f;--amber-soft:rgba(245,158,11,.16);--amber-fill:#f59e0b}:root[data-theme="light"] .topbar{background:linear-gradient(115deg,#2563eb 0%,#3b82f6 60%,#60a5fa 100%)}:root[data-theme="light"] .verdict .big{color:var(--amber)!important}.nav button.bim-badge::after{background:#f59e0b!important;color:#1f2937!important}.topbar .demo-tag{background:#fff;color:#2563eb}#vistas button[data-v="trafo"],#vistas button[data-v="secA"],#vistas button[data-v="secB"],#vistas button[data-v="sub"],#bPelRec{display:none!important}</style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<style>.sx-src,.hi-fuente,.ing-fuente,.ficha .pl,#ficha .pl,#ficha h4{display:none!important}</style>
+</head>
+<body>
+<div id="cargando"><div><span>Construyendo la subestación…</span><div class="barra"><i></i></div></div></div>
+
+<header class="topbar">
+  <div class="tb-l">
+    <h1><b class="demo-tag">Demo</b>SE Río Claro · <span>Nuevo tablero CPM L-2201 (=E01+WR01)</span></h1>
+    <div class="sub">Servicio de Integrador Demo (DEMO-OS) · implementación del TP-385 30/36 MVA, 220/22,9/10 kV · modelo BIM en código desde los planos</div>
+  </div>
+  <div class="tb-m"><span>Propietario <b>Cliente Demo</b></span><span>Contratista <b id="hdContr">Integrador Demo</b></span><span>Supervisión <b>Demo</b></span><span>Corte <b id="hdCorte">—</b> (<span id="hdRep">diario</span>)</span></div>
+  <div class="tb-r">
+    <span class="badge" id="hdBadge">—</span>
+    <a class="iconbtn" href="../" title="Volver a la portada (LT 220 kV Cerro Azul y SE Río Claro)">← Portada</a>
+    <button class="iconbtn" id="bTema" title="Tema claro u oscuro">☀</button>
+  </div>
+</header>
+
+<nav class="nav" id="nav" aria-label="Pestañas">
+  <button data-v="v-res" class="active"><span class="ic">◈</span> Resumen</button>
+  <button data-v="v-bim" class="bim-badge"><span class="ic">🏗️</span> BIM 4D · Construcción</button>
+  <button data-v="v-fot"><span class="ic">📷</span> Fotos de obra</button>
+  <button data-v="v-cro"><span class="ic">📅</span> Cronograma 4D</button>
+  <button data-v="v-rep"><span class="ic">📋</span> Reportes diarios</button>
+</nav>
+
+<main class="views">
+  
+  <section id="v-res" class="view on">
+    <div id="resKpis" style="display:contents"></div>
+    <div class="verdict wide" id="resVer"></div>
+    <div class="card half"><h3><span class="dot"></span>Curva S del servicio</h3><div class="desc">Avance acumulado del control diario de Integrador Demo: programado frente a ejecutado, día por día (pesos de Integrador Demo).</div><div id="resCurva"></div></div>
+    <div class="card half"><h3><span class="dot"></span>Avance por grupo de actividades</h3><div class="desc">Ejecutado y programado al último reporte, por grupo del control de Integrador Demo.</div><div id="resGrupos"></div></div>
+    <div class="card wide"><h3><span class="dot"></span>Avance día a día</h3><div class="desc">Acumulado programado y ejecutado de cada día del control de Integrador Demo, con la desviación, el avance del día y el cumplimiento. Desliza la tabla a los lados en el celular.</div><div id="resDias"></div></div>
+    <div class="card half"><h3><span class="dot"></span>Personal de Integrador Demo por día</h3><div class="desc">Dotación en obra según el control diario.</div><div id="resPersonal"></div></div>
+    <div class="card half"><h3><span class="dot"></span>Plazo y pronóstico</h3><div class="desc">Fechas del control de Integrador Demo y ritmo observado.</div><div id="resPlazo"></div></div>
+    <div class="card half"><h3><span class="dot"></span>Restricciones</h3><div class="desc">Registro de restricciones del control de Integrador Demo.</div><div id="resRestr"></div></div>
+    <div class="card half"><h3><span class="dot"></span>Habilitantes · requisitos previos</h3><div class="desc">Planos, protocolos, permisos y materiales que cada actividad necesita antes de empezar.</div><div id="resHab"></div></div>
+  </section>
+
+  <section id="v-bim" class="view">
+    <div class="bim-top-bar">
+      <div class="bim-controls">
+        <span id="vistas" style="display:contents">
+          <button class="bim-btn" data-v="iso"><span class="ic">📐</span> Isométrica</button>
+          <button class="bim-btn" data-v="planta"><span class="ic">⬓</span> Planta</button>
+          <button class="bim-btn" data-v="bahia"><span class="ic">⚡</span> Bahía TP-385</button>
+          <button class="bim-btn" data-v="trafo">TP-385 de cerca</button>
+          <button class="bim-btn" data-v="secA">Sección A-A</button>
+          <button class="bim-btn" data-v="secB">Sección B-B</button>
+          <button class="bim-btn" data-v="sala"><span class="ic">🏠</span> Sala de control</button>
+          <button class="bim-btn" data-v="sub">Subsuelo</button>
+        </span>
+        <span class="bim-sep"></span>
+        <button class="bim-btn on" id="b4d" title="Colorear las zonas de trabajo de Integrador Demo según el estado de sus actividades a la fecha de la barra de tiempo"><span class="ic">🟩</span> Zonas 4D</button>
+        <button class="bim-btn" id="bEntrar" title="También: doble clic sobre la sala o sobre un tablero"><span class="ic">🚪</span> Entrar a la sala</button>
+        <button class="bim-btn" id="bRec"><span class="ic">🚶</span> Recorrer</button>
+        <span class="bim-sep"></span>
+        <button class="bim-btn" id="bPel" title="Recorrido cinematográfico de ~2 min"><span class="ic">🎬</span> Película</button>
+        <button class="bim-btn" id="bPelRec" title="Reproduce la película y descarga el video">⏺ Video</button>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="bim-btn vista-ini" id="bVistaIni" title="Volver a la vista inicial: sala de control sin techo con el patio detrás, toda la SE, fecha del último reporte">↺ Vista inicial</button>
+      </div>
+    </div>
+    <div class="bim-towers-bar">
+      <div class="btb-head" id="zonasHead"></div>
+      <div class="zonas-list" id="zonasList"></div>
+    </div>
+    <div class="bim-info"><div class="bi"><span id="biSel">SE COMPLETA</span><span id="biTxt"></span></div><button class="bim-btn" id="bFull" title="Ampliar el modelo 3D a pantalla completa">⛶ Pantalla completa</button></div>
+    <div class="bim-viewport" id="visorBIM">
+      <div id="vista"></div>
+      <div id="rotulos"></div>
+      <div class="se-viewcube" id="vcBox"><div class="vc-tools"><button id="vcHome" title="Vista inicial">🏠</button><button id="vcAtras" title="Volver a la vista anterior (como «Rewind» del visor de Autodesk)">⟲ Atrás</button></div></div>
+      <div id="coord">Pase el puntero sobre el modelo</div>
+      <div id="hud" class="oculto"></div>
+      <div id="mirando" class="oculto"></div>
+      <div id="mapa" class="oculto"><div class="cab" id="mapaCab" title="Arrastra para mover el plano"><b id="mapaTit">Plano · 1.er piso</b><small>toca un tablero para ir</small><span class="sp"></span><button id="mapaMin" title="Plegar o desplegar el plano">–</button></div><canvas id="mapaCv"></canvas><div class="ley"><span><i style="background:#2f6fe4"></i>nuevo</span><span><i style="background:#8e44ad"></i>Integrador Demo</span><span><i style="background:#e07b1f"></i>intervenido</span><span><i style="background:#c9a227"></i>relacionado</span></div></div>
+      <div id="barraEnc" class="oculto"><button id="encIzq" title="Tablero anterior (← , A o rueda hacia arriba); al inicio de la fila pasa a la fila anterior">◀</button><div class="t"><b id="encTit"></b><small id="encSub"></small></div><button id="encDer" title="Tablero siguiente (→ , D o rueda hacia abajo); al final de la fila pasa a la siguiente">▶</button><button id="encAlz" title="Alzado de la fila">📐<span class="solo-pc"> Alzado</span></button><button id="encCam" title="Caminar desde aquí (W o el joystick)">🚶<span class="solo-pc"> Caminar</span></button><button id="encAtras" title="Tablero anterior del recorrido">⟲</button><button id="encSalir" title="Volver a la vista anterior (Esc)">✕</button></div>
+      <div id="mira" class="oculto"></div>
+      <div id="cine"><div class="rec">Grabando</div><button class="salir">✕ Salir (Esc)</button><div class="sub"><b></b><span></span><i>SE Río Claro · modelo 3D en código</i></div></div>
+    </div>
+    <div class="bim-time" id="tiempo4d"></div>
+    <aside class="bim-side" id="der">
+      <div class="bim-panel-tabs" id="derTabs">
+        <button class="bpt on" data-p="avance">Avance</button>
+        <button class="bpt" data-p="ficha">Ficha</button>
+        <button class="bpt" data-p="sala">Sala</button>
+        <button class="bpt" data-p="capas">Capas</button>
+      </div>
+      <div class="bp on" id="p-avance"><div id="pAvance"></div></div>
+      <div class="bp" id="p-ficha"><div id="ficha" class="ficha oculto"></div><div id="lista" class="lista"></div></div>
+      <div class="bp" id="p-sala">
+        <div id="izqSala">
+          <div class="salaCab"><h2>Sala de control</h2><button id="bSalir" title="Volver a la vista general (Esc)">✕ Salir</button></div>
+          <div class="seg" id="pisoSel" style="margin-top:8px"><button data-p="1" class="on">1.er piso</button><button data-p="2">2.º piso</button></div>
+          <div class="seg" id="vistaSel" style="margin-top:6px" title="Tecla V"><button data-t="3" class="on">🧍 Tercera persona</button><button data-t="1">👁 Primera persona</button></div>
+          <button id="bAlzados" style="width:100%;margin-top:6px">📐 Alzados de los tableros por fila</button>
+          <p class="ayuda" id="ayudaSala"></p>
+          <label class="capa"><input type="checkbox" id="vZon" checked> Resaltar zonas en obra</label>
+          <label class="capa"><input type="checkbox" id="vDes2"> Destapar foso y canaletas</label>
+          <h2>Trabajos de Integrador Demo · CPM L-2201</h2>
+          <label class="capa"><input type="checkbox" id="vAx" checked> Mostrar trabajos de Integrador Demo</label>
+          <div id="integPanel"></div>
+          <div class="ley2"><span><i style="background:#2f6fe4"></i>Nuevo</span><span><i style="background:#8e44ad"></i>Nuevo · Integrador Demo (CPM L-2201)</span><span><i style="background:#e07b1f"></i>Existente con intervención (cables nuevos o reconexión)</span><span><i style="background:#c9a227"></i>Existente relacionado (cables existentes)</span></div>
+          <h2>Filas de tableros</h2>
+          <div class="chipsObra" id="pasillos"></div>
+          <h2>Zonas en obra</h2>
+          <div class="chipsObra" id="obraLista"></div>
+          <h2>Tableros y celdas</h2>
+          <input id="buscar" type="search" placeholder="Buscar: 18, CP01, K03, SS.AA.…" autocomplete="off">
+          <div id="eqLista" class="lista"></div>
+        </div>
+      </div>
+      <div class="bp" id="p-capas">
+        <h2>Color</h2>
+        <div class="seg" id="modoColor"><button data-m="real" class="on">Realista</button><button data-m="estado">Como el plano</button></div>
+        <div class="ley2" style="flex-direction:row;gap:10px;flex-wrap:wrap"><span><i style="background:var(--E)"></i>Existente</span><span><i style="background:var(--P)"></i>Proyectado</span><span><i style="background:var(--C)"></i>Nueva obra civil</span></div>
+        <h2>Etapas de la implementación TP-385</h2>
+        <input type="range" id="etapa" min="0" max="3" step="1" value="3">
+        <div class="etapa" id="etapaTxt"></div>
+        <h2>Capas</h2>
+        <div id="capas"></div>
+        <h2>Corte</h2>
+        <div class="seg" id="corteEje"><button data-c="no" class="on">Sin corte</button><button data-c="x">N–S</button><button data-c="y">E–O</button><button data-c="h">Altura</button></div>
+        <input type="range" id="corte" min="0" max="1" step="0.001" value="0.5" disabled>
+        <h2>Ver</h2>
+        <label class="capa"><input type="checkbox" id="vDes"> Destapar canaletas y abrir gabinetes</label>
+        <label class="capa"><input type="checkbox" id="vRot" checked> Rótulos</label>
+        <label class="capa"><input type="checkbox" id="vCad"> Plano CAD sobre el terreno</label>
+        <label class="capa"><input type="checkbox" id="vSom" checked> Sombras</label>
+        <label class="capa"><input type="checkbox" id="vZon0"> Zonas en obra del TP-385 (sala de control)</label>
+        <label class="capa"><input type="checkbox" id="vAx0" checked> Trabajos de Integrador Demo (CPM L-2201)</label>
+        <div class="fuente">Lo que los planos no detallan va marcado «referencial» en la ficha.</div>
+      </div>
+    </aside>
+  </section>
+
+  <section id="v-cro" class="view">
+    <div class="card" style="min-height:0">
+      <div class="cro-head"><h3><span class="dot"></span>Cronograma del servicio</h3>
+        <span class="seg" id="croSel"><button data-g="integ" class="on" title="Control diario de Integrador Demo: avance por actividad">Control Integrador Demo</button><button data-g="v8" title="Cronograma de referencia de la supervisión">Supervisión Demo</button><button data-g="r1" title="Cronograma resumido del integrador">Integrador Demo · resumen</button></span></div>
+      <div class="g4" id="croGantt"></div>
+      <div class="fuente" id="croNota"></div>
+    </div>
+    <div class="card" id="croDet"></div>
+  </section>
+
+  <section id="v-fot" class="view">
+    <div class="card"><h3><span class="dot"></span>Días con fotos</h3><select id="fotAct" aria-label="Actividad"></select><div id="fotDias"></div></div>
+    <div class="card"><h3><span class="dot"></span>Fotos de obra · servicio de Integrador Demo</h3><div class="desc" id="fotNota"></div><div id="fotGrid"></div></div>
+  </section>
+
+  <section id="v-rep" class="view">
+    <div id="repTira"></div>
+    <div id="repDet"></div>
+  </section>
+</main>
+
+<div id="visor"><div><img alt=""><p></p></div></div>
+<div id="alzado"><div class="cab"><h3 id="alzTit"></h3><button id="alzPng">⬇ Descargar PNG</button><button id="alzCerrar">✕ Cerrar</button></div><div class="filas" id="alzFilas"></div><div class="lienzo"><canvas id="alzCv"></canvas></div></div>
+<div id="joy" class="oculto"><i></i></div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { construir, REG, CAPAS, ESTADOS, ETAPAS, etapaDe, ORIGEN, NORTE, alturaTerreno, NUMS, CTX, pisoEn, OBST_EXTRA, L as LAY } from './se3d.js?v=5';
+import { EQUIPOS, zonaObra } from './interior.js?v=5';
+import { Recorrido, obstaculosDe } from './recorrer.js?v=8';
+import { ViewCube, ventanaMovil, suave, angLerp, bezier } from './navsala.js?v=1';
+import { crearPersona, Rejilla } from './persona.js?v=1';
+import { Pelicula } from './pelicula.js?v=2';
+import { Minimapa, frenteDe, filasDe, encuadreDe, rectDe } from './sala.js?v=3';
+import { cablesDe, resumen, CLASE, OBRA, FUENTES } from './funcional.js?v=2';
+import { U4D } from './rio4d.js?v=20261029';
+import { iniciar4D, integAlCorte } from './cuatrod.js?v=3';
+import { iniciarTablero } from './tablero.js?v=11';
+const INTEG = integAlCorte(U4D);
+
+const $ = (s) => document.querySelector(s);
+const movil = matchMedia('(max-width: 900px)').matches;
+const QS = new URLSearchParams(location.search); const EMBED = QS.get('embed') === '1';
+if (EMBED) document.body.classList.add('embed');
+if (QS.get('tema') === 'dark' || QS.get('tema') === 'light') document.documentElement.dataset.theme = QS.get('tema');
+addEventListener('message', (e) => { const d = e.data; if (d && d.tipo === 'tema' && (d.tema === 'dark' || d.tema === 'light')) document.documentElement.dataset.theme = d.tema; });
+
+const cont = $('#vista');
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, movil ? 1.5 : 2));
+const tamVista = () => ({ W: cont.clientWidth || innerWidth, H: cont.clientHeight || innerHeight });
+renderer.setSize(tamVista().W, tamVista().H);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.autoUpdate = false; let sombras = true;
+renderer.localClippingEnabled = true;
+cont.appendChild(renderer.domElement);
+const css = new CSS2DRenderer({ element: $('#rotulos') }); css.setSize(tamVista().W, tamVista().H);
+
+const scene = new THREE.Scene();
+function cielo() {
+  const c = document.createElement('canvas'); c.width = 2; c.height = 256; const g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, '#5f97cf'); gr.addColorStop(0.55, '#a9cbe6'); gr.addColorStop(1, '#e9eef0');
+  g.fillStyle = gr; g.fillRect(0, 0, 2, 256); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+scene.background = cielo();
+scene.fog = new THREE.Fog(0xdfe8ee, 140, 330);
+const camera = new THREE.PerspectiveCamera(40, tamVista().W / tamVista().H, 0.1, 800);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.09; controls.maxPolarAngle = Math.PI * 0.495; controls.minDistance = 0.3; controls.maxDistance = 260;
+controls.zoomToCursor = true; controls.screenSpacePanning = true;
+
+scene.add(new THREE.HemisphereLight(0xdbe9f7, 0x6f6450, 1.05));
+const sol = new THREE.DirectionalLight(0xfff3df, 2.4);
+sol.position.set(-40, 80, -30); sol.target.position.set(26, 0, -18);
+sol.castShadow = true; sol.shadow.mapSize.set(movil ? 2048 : 4096, movil ? 2048 : 4096);
+Object.assign(sol.shadow.camera, { left: -55, right: 55, top: 55, bottom: -55, near: 10, far: 220 });
+sol.shadow.bias = -0.0004; sol.shadow.normalBias = 0.03;
+scene.add(sol, sol.target);
+
+const t0 = performance.now();
+const { terreno } = construir(scene);
+console.log('modelo', (performance.now() - t0).toFixed(0), 'ms', REG.length, 'elementos');
+
+const matEstado = {
+  E: new THREE.MeshStandardMaterial({ color: 0xc3c8cd, roughness: 0.7, metalness: 0.1 }),
+  P: new THREE.MeshStandardMaterial({ color: 0x2f6fe4, roughness: 0.45, metalness: 0.2, emissive: 0x0a1f55 }),
+  C: new THREE.MeshStandardMaterial({ color: 0x2fae58, roughness: 0.6, emissive: 0x06300f }),
+};
+REG.forEach(({ obj }) => obj.traverse((m) => { if (m.isMesh) m.userData.mat0 = m.material; }));
+let modo = 'real';
+function aplicarColor() {
+  sombras = true;
+  REG.forEach(({ obj, info, capa }) => {
+    if (capa === 'terreno') return;
+    const e = info?.estado || 'E';
+    obj.traverse((m) => {
+      if (!m.isMesh) return;
+      if (modo === 'estado' && !m.material.transparent) m.material = matEstado[e];
+      else m.material = m.userData.mat0;
+    });
+  });
+  aplicarCorte(); pedir();
+}
+
+const rotulos = [];
+REG.forEach(({ obj, info }) => {
+  const et = obj.userData.etiqueta; if (!et) return;
+  const d = document.createElement('div'); d.className = 'rot ' + (info?.estado || 'E'); d.textContent = et.texto;
+  const o = new CSS2DObject(d);
+  const b = new THREE.Box3().setFromObject(obj); const c = b.getCenter(new THREE.Vector3());
+  if (et.X !== undefined) { c.x = et.X; c.z = -et.Y; }
+  o.position.set(c.x, et.alto, c.z); scene.add(o); o.userData.de = obj; o.userData.menor = et.menor; rotulos.push(o);
+});
+
+const EQ = Object.fromEntries(EQUIPOS.map((e) => [e.key, e]));
+const nums = NUMS.map((n) => {
+  const d = document.createElement('div'); d.className = 'num' + (n.obra ? ' o-' + n.obra : '');
+  d.innerHTML = `<b>${n.txt}</b>${n.cod ? `<span>${n.cod}</span>` : ''}`;
+  d.title = EQ[n.key] ? `${EQ[n.key].info.id} · ${EQ[n.key].nombre}` : '';
+  d.addEventListener('click', (ev) => { ev.stopPropagation(); const e = EQ[n.key]; if (e) { if (rec && rec.activo) irA(e); else seleccionar(e.info); } });
+  const o = new CSS2DObject(d); o.position.set(n.X, n.h, -n.Y); o.visible = false; o.userData.n = n; scene.add(o); return o;
+});
+let enSala = false;
+const Y2 = CTX.y2;
+const cajaEdif = (p) => p.x > 17.9 && p.x < 46.1 && -p.z > -5.2 && -p.z < 0.8;
+const pRef = () => (rec && rec.activo && rec.tercera && !enc ? rec.pos : camera.position);
+const pisoCam = () => (enc ? enc.e.piso : pRef().y > Y2 + 0.8 ? 2 : 1);
+let enc = null;
+function rotulosVis() {
+  const on = $('#vRot').checked;
+  rotulos.forEach((r) => { r.visible = on && r.userData.de.visible && (!r.userData.menor || camera.position.distanceTo(r.position) < 40); });
+  const enEdificio = rec && rec.activo && (enc || cajaEdif(pRef()));
+  const pc = pisoCam();
+  if (enEdificio) ocultamiento();
+  if (enc) camera.getWorldDirection(_dirC);
+  const delante = (n) => !enc || _vC.copy(n.position).sub(camera.position).dot(_dirC) > camera.near + 0.15;
+  nums.forEach((n) => (n.visible = capaOn.sala && !(EQ[n.userData.n.key] && EQ[n.userData.n.key].oculto) && (enSala ? n.userData.n.piso === 1 : enEdificio && n.userData.n.piso === pc && camera.position.distanceTo(n.position) < 16 && !n.userData.ocl && delante(n))));
+  document.body.classList.toggle('dentro', !!enEdificio);
+  if (enEdificio) rotulos.forEach((r) => (r.visible = false));
+  if (typeof integVis === 'function' && axRot && axRot.length) integVis();
+  const cp = renderer.clippingPlanes;
+  if (cp.length) rotulos.forEach((r) => { if (r.visible && cp.some((p) => p.distanceToPoint(r.position) < 0)) r.visible = false; });
+}
+let obstSala = null, obstSucio = false, tOcl = 0, oclKey = ''; const _rO = new THREE.Ray(), _pO = new THREE.Vector3(), _dirC = new THREE.Vector3(), _vC = new THREE.Vector3();
+function ocultamiento() {
+  const now = performance.now(); const k = camera.position.toArray().map((v) => v.toFixed(2)).join() + camera.rotation.y.toFixed(2);
+  if (k === oclKey) return; if (now - tOcl < 120) { clearTimeout(ocultamiento._t); ocultamiento._t = setTimeout(pedir, 130); return; } tOcl = now; oclKey = k;
+  if (!obstSala) obstSala = (obst || []).filter((b) => b.max.x > 17.5 && b.min.x < 46.5 && b.max.z > -1.2 && b.min.z < 5.6);
+  const cam = camera.position;
+  for (const n of nums) {
+    const N = n.userData.n; if (!N.caja) N.caja = new THREE.Box3().setFromObject(N.obj);
+    const D = cam.distanceTo(n.position); if (D > 16) { n.userData.ocl = true; continue; }
+    _rO.origin.copy(cam); _rO.direction.copy(n.position).sub(cam).normalize();
+    let tapada = false;
+    for (const b of obstSala) {
+      if (b.containsPoint(cam)) continue;
+      if (Math.abs(b.min.x - N.caja.min.x) < 0.02 && Math.abs(b.max.z - N.caja.max.z) < 0.02 && Math.abs(b.max.x - N.caja.max.x) < 0.02) continue;
+      const p = _rO.intersectBox(b, _pO); if (p) { const dp = cam.distanceTo(p); if (dp < D - 0.05 && dp > camera.near + 0.05) { tapada = true; break; } }
+    }
+    n.userData.ocl = tapada;
+  }
+}
+const NOMBRES = { patio138: 'Patio 220 kV', transformadores: 'Transformadores', patio33: 'Patio 33 kV', cables: 'Conductores y cables', obraCivil: 'Obras civiles', sala: 'Sala de control', edificaciones: 'Otras edificaciones', tierra: 'Puesta a tierra', cerco: 'Cerco y gaviones', terreno: 'Terreno y patio' };
+const capaOn = {}; Object.keys(NOMBRES).forEach((k) => (capaOn[k] = k !== 'tierra'));
+let etapa = 3;
+function visibilidad() {
+  sombras = true; obstSucio = true;
+  REG.forEach(({ obj, capa, info }) => { obj.visible = capaOn[capa] && etapaDe(info) <= etapa && !(info && info.eqKey && EQ[info.eqKey] && EQ[info.eqKey].oculto); });
+  if (typeof integVis === 'function') integVis();
+  if (m4d && m4d.pintarZonas) m4d.pintarZonas();
+  rotulosVis();
+  pedir();
+}
+const cc = $('#capas');
+Object.entries(NOMBRES).forEach(([k, n]) => {
+  const l = document.createElement('label'); l.className = 'capa';
+  l.innerHTML = `<input type="checkbox" ${capaOn[k] ? 'checked' : ''}> ${n} <span class="n">${(CAPAS[k] || []).length}</span>`;
+  l.querySelector('input').onchange = (e) => { capaOn[k] = e.target.checked; visibilidad(); };
+  cc.appendChild(l); l.dataset.capa = k;
+});
+function marcarCapa(k, v) { capaOn[k] = v; const i = cc.querySelector(`[data-capa=${k}] input`); if (i) i.checked = v; }
+function txtEtapa() { const e = ETAPAS[etapa]; $('#etapaTxt').innerHTML = `<b>${e.n}</b><br>${e.d}`; }
+$('#etapa').oninput = (e) => { etapa = +e.target.value; txtEtapa(); visibilidad(); };
+txtEtapa();
+$('#vRot').onchange = visibilidad;
+$('#vSom').onchange = (e) => { renderer.shadowMap.enabled = e.target.checked; scene.traverse((m) => { if (m.material) m.material.needsUpdate = true; }); sombras = true; pedir(); };
+
+
+let cad = null;
+$('#vCad').onchange = async (e) => {
+  if (e.target.checked && !cad) {
+    const r = await fetch('cad.json'); const d = await r.json();
+    cad = new THREE.Group();
+    const col = { e: 0x2b3640, n: 0x1f5fd6, r: 0xe07b1f };
+    for (const [k, ls] of Object.entries(d)) {
+      const v = [];
+      for (const l of ls) for (let i = 0; i + 3 < l.length; i += 2) {
+        const h0 = alturaTerreno(l[i], l[i + 1]) + 0.04, h1 = alturaTerreno(l[i + 2], l[i + 3]) + 0.04;
+        v.push(l[i], h0, -l[i + 1], l[i + 2], h1, -l[i + 3]);
+      }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(v, 3));
+      cad.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: col[k], transparent: true, opacity: k === 'e' ? 0.55 : 0.9 })));
+    }
+    scene.add(cad);
+  }
+  if (cad) cad.visible = e.target.checked; pedir();
+};
+
+const suelo = new THREE.Mesh(new THREE.BoxGeometry(150, 40, 150), new THREE.MeshStandardMaterial({ color: 0x7a6650, roughness: 1, side: THREE.BackSide }));
+suelo.position.set(26, -20.06, -18); suelo.visible = false; scene.add(suelo);
+let corte = 'no'; const plano = new THREE.Plane();
+const RANG = { x: [-5, 58], y: [-8, 46], h: [0.2, 15] };
+function aplicarCorte() {
+  const v = +$('#corte').value;
+  let planes = [];
+  if (corte !== 'no') {
+    const [a, b] = RANG[corte]; const t = a + (b - a) * v;
+    if (corte === 'x') plano.set(new THREE.Vector3(1, 0, 0), -t);
+    if (corte === 'y') plano.set(new THREE.Vector3(0, 0, -1), -t);
+    if (corte === 'h') plano.set(new THREE.Vector3(0, -1, 0), t);
+    planes = [plano];
+  }
+  renderer.clippingPlanes = planes; suelo.visible = corte !== 'no' || subsuelo; sombras = true; pedir();
+}
+$('#corteEje').onclick = (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  corte = b.dataset.c; $('#corteEje').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
+  $('#corte').disabled = corte === 'no'; aplicarCorte();
+};
+$('#corte').oninput = aplicarCorte;
+function fijarCorte(eje, valor) {
+  corte = eje; $('#corteEje').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x.dataset.c === eje));
+  const el = $('#corte'); el.disabled = eje === 'no';
+  if (eje !== 'no') { const [a, b] = RANG[eje]; el.value = (valor - a) / (b - a); }
+  aplicarCorte();
+}
+
+let subsuelo = false;
+function fijarSubsuelo(on) {
+  subsuelo = on; const m = terreno.material; m.transparent = on; m.opacity = on ? 0.28 : 1; m.depthWrite = !on; m.needsUpdate = true;
+  REG.forEach(({ obj }) => obj.traverse((x) => { if (x.userData.gravaBase || x.userData.tapa || x.userData.rejilla) x.visible = !on && !destapado; }));
+  m.opacity = on ? 0.16 : 1;
+  if (on) marcarCapa('tierra', true);
+  suelo.visible = on || corte !== 'no';
+  visibilidad();
+}
+const planoSala = new THREE.Plane(new THREE.Vector3(0, -1, 0), 1e5);
+const TECHO1 = 2.75; let techo = 'no';
+const matSala = new Map();
+const conv = (mat) => { if (!matSala.has(mat)) matSala.set(mat, mat.clone()); return matSala.get(mat); };
+(CAPAS.sala || []).forEach((o) => o.traverse((m) => {
+  if (!m.isMesh) return;
+  m.material = m.userData.mat0 = Array.isArray(m.material) ? m.material.map(conv) : conv(m.material);
+}));
+matSala.forEach((m) => { m.clippingPlanes = [planoSala]; });
+function cortarTecho(modo_, piso = 1) { techo = modo_; planoSala.constant = modo_ === 'no' ? 1e5 : (piso === 2 ? Y2 : 0) + TECHO1; sombras = true; pedir(); }
+function fijarSala(on) {
+  enSala = on;
+  cortarTecho(on ? 'sala' : 'no');
+  rotulosVis(); pedir();
+}
+
+const P3 = (X, Y, h = 0) => new THREE.Vector3(X, h, -Y);
+let anim = null;
+const histVista = [];
+function volar(pos, tgt, ms = 900, sinHist = false) {
+  const p0 = camera.position.clone(), t0_ = controls.target.clone(), ini = performance.now();
+  if (!sinHist && !(rec && rec.activo) && p0.distanceTo(pos) + t0_.distanceTo(tgt) > 0.5) { histVista.push({ p: p0, t: t0_ }); if (histVista.length > 30) histVista.shift(); }
+  anim = () => {
+    let k = Math.max(0, Math.min(1, (performance.now() - ini) / ms)); k = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+    camera.position.lerpVectors(p0, pos, k); controls.target.lerpVectors(t0_, tgt, k);
+    if (k >= 1) anim = null;
+  };
+  pedir();
+}
+const VISTAS = {
+  iso: () => volar(P3(-34, -38, 52), P3(24, 18, 0)),
+  planta: () => volar(P3(25.5, 17.9, 118), P3(25.5, 18, 0)),
+  bahia: () => volar(P3(58, 2, 19), P3(40.6, 18.5, 3.5)),
+  trafo: () => volar(P3(53, 25, 11.5), P3(40.6, 12, 3.4)),
+  secA: () => { fijarCorte('x', 38.2); volar(P3(-2, 16, 6.5), P3(40, 16, 5)); },
+  secB: () => { fijarCorte('y', 11.45); volar(P3(40.6, -9, 5.2), P3(40.6, 13, 3.6)); },
+  sala: () => { fijarSala(true); volar(P3(33, -14, 16), P3(34, -2.2, 0.6)); },
+  sub: () => { fijarSubsuelo(true); volar(P3(57, -2, 21), P3(39.5, 9, -0.8)); },
+};
+$('#vistas').onclick = (e) => {
+  const b = e.target.closest('button[data-v]'); if (!b) return;
+  const v = b.dataset.v; salirRecorrido(); if (pel && pel.activa) terminarPelicula();
+  $('#vistas').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
+  if (v !== 'secA' && v !== 'secB') fijarCorte('no');
+  if (v !== 'sala') fijarSala(false);
+  if (v !== 'sub' && subsuelo) fijarSubsuelo(false);
+  VISTAS[v]();
+};
+camera.position.copy(P3(-34, -38, 52)); controls.target.copy(P3(24, 18, 0)); controls.update();
+
+$('#modoColor').onclick = (e) => {
+  const b = e.target.closest('button'); if (!b) return; modo = b.dataset.m;
+  $('#modoColor').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b)); aplicarColor();
+};
+
+const sel = new THREE.Box3Helper(new THREE.Box3(), new THREE.Color(0xf0a500)); sel.visible = false; scene.add(sel);
+const COLEST = { E: 'var(--E)', P: 'var(--P)', C: 'var(--C)' };
+let actual = null;
+function infoDe(o) { while (o) { if (o.userData.info) return o.userData.info; o = o.parent; } return null; }
+const _frentes = new Map();
+function imagenFrente(e) {
+  if (_frentes.has(e.key)) return _frentes.get(e.key);
+  let url = null; e.obj.traverse((m) => { const mm = m.userData.mat0 || m.material; if (url || !m.isMesh || !Array.isArray(mm)) return; const t = mm[4]?.map; if (t?.image?.toDataURL) url = t.image.toDataURL('image/png'); });
+  _frentes.set(e.key, url); return url;
+}
+const esc_ = (t) => String(t ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+function tablaCables(cods) {
+  const cs = cablesDe(cods); if (!cs.length) return '';
+  const r = resumen(cods);
+  const TXT = { N: ['cable nuevo', 'cables nuevos'], R: ['reconexión', 'reconexiones'], E: ['cable existente', 'cables existentes'], V: ['por verificar', 'por verificar'] };
+  const res = Object.entries(r).filter(([, v]) => v).map(([k, v]) => `<span><i style="background:${CLASE[k].c}"></i>${v} ${TXT[k][v > 1 ? 1 : 0]}</span>`).join('');
+  const filas = cs.map((c) => `<tr><td><i style="background:${CLASE[c.k].c}" title="${CLASE[c.k].t}"></i><code>${c.c}</code><small>${esc_(c.t)} ${c.n}×${esc_(c.s)}${c.l ? ' · ' + c.l + ' m' : ''}</small></td><td>${esc_(c.otro)}<small>${esc_(c.propio || '—')} → ${esc_(c.otroReg || '—')}</small>${c.nota ? `<small class="nota">${esc_(c.nota)}</small>` : ''}</td></tr>`).join('');
+  return `<h4>Cables del conexionado externo (${cs.length})</h4><div class="res">${res}</div><table class="cab">${filas}</table><div class="fuente">Bornera propia → bornera del otro extremo.</div>`;
+}
+function seleccionar(info, volarA = false, abrirFicha = true) {
+  actual = info;
+  if (!info) { sel.visible = false; $('#ficha').classList.add('oculto'); $('#lista').classList.remove('oculto'); $('#der').classList.remove('conFicha'); if (mapa) { mapa.sel = null; mapa.dibujar(); } pedir(); return; }
+  const b = new THREE.Box3().setFromObject(info.obj); sel.box.copy(b); sel.visible = info.id !== 'Terreno';
+  const c = b.getCenter(new THREE.Vector3());
+  const X = (ORIGEN.X + c.x).toFixed(2), Y = (ORIGEN.Y - c.z).toFixed(2);
+  const eq = info.eqKey ? EQ[info.eqKey] : null;
+  const filas = Object.entries(info.datos || {}).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+  const img = eq ? imagenFrente(eq) : null;
+  const obra = info.obra ? `<div class="obra" style="border-color:${OBRA[info.obra].c}"><b style="color:${OBRA[info.obra].c}">${OBRA[info.obra].t}</b>${esc_(info.obraTxt || '')}</div>` : '';
+  const acc = eq ? `<div class="acc"><button data-ir="${eq.key}">🎯 Ver completo</button><button data-alz="1">📐 Alzado de la fila</button></div>` : '';
+  $('#ficha').innerHTML = `<button class="cerrar" title="Cerrar">×</button>
+    <span class="est" style="background:${COLEST[info.estado]}">${ESTADOS[info.estado]}</span>
+    ${img ? `<img class="frente" src="${img}" alt="Frente de ${esc_(info.id)}" title="Ampliar">` : ''}
+    <h3>${info.id}</h3><p class="nom">${info.nombre}</p>${acc}${obra}
+    <table>${filas}<tr><td>Centro</td><td style="font-family:JetBrains Mono,monospace">X ${X} · Y ${Y}</td></tr></table>
+    ${info.aprox ? '<div class="aprox">Posición en planta tomada del plano; las alturas y formas son referenciales porque los planos no detallan este elemento existente.</div>' : ''}
+    ${seccionInteg(info)}
+    ${info.cod ? tablaCables(info.cod) : ''}`;
+  $('#ficha').querySelector('.cerrar').onclick = () => seleccionar(null);
+  const verF = () => abrirAlzado(FILA_DE[eq.key].f, eq);
+  $('#ficha').querySelector('img.frente')?.addEventListener('click', verF);
+  $('#ficha').querySelector('[data-alz]')?.addEventListener('click', verF);
+  $('#ficha').querySelector('[data-ir]')?.addEventListener('click', () => (rec && rec.activo ? irA(eq) : entrarSala(eq)));
+  $('#ficha').classList.remove('oculto'); $('#lista').classList.add('oculto'); $('#der').classList.add('conFicha');
+  if (mapa) { mapa.sel = eq ? eq.key : null; mapa.dibujar(); }
+  if (abrirFicha) tabDer('ficha');
+  if (volarA) {
+    if (rec && rec.activo) (enc ? salirInspeccion() : salirRecorrido());
+    const s = b.getSize(new THREE.Vector3()).length();
+    const dir = camera.position.clone().sub(controls.target).normalize();
+    const dist = Math.min(90, Math.max(7, s * 1.5));
+    volar(c.clone().add(dir.multiplyScalar(dist)), c);
+  }
+  ajustarMapa(); pedir();
+}
+$('#visor').onclick = () => $('#visor').classList.remove('on');
+(function lista() {
+  const grupos = { P: [], C: [], E: [] };
+  REG.forEach(({ info }) => { if (info && info.id !== 'Terreno' && info.lista !== false) grupos[info.estado].push(info); });
+  const tit = { P: 'Proyectado · TP-385', C: 'Nueva obra civil', E: 'Existente' };
+  let h = '<h2 style="margin-top:2px">Elementos del modelo</h2><p style="margin:0 0 4px;color:var(--ink2);font-size:12.5px">Toque un elemento en la lista o en el 3D para ver su ficha.</p>';
+  for (const k of ['P', 'C', 'E']) {
+    h += `<div class="g"><span style="color:${COLEST[k]}">■</span> ${tit[k]} (${grupos[k].length})</div>`;
+    grupos[k].forEach((i, n) => (h += `<button data-k="${k}" data-n="${n}"><b>${i.id}</b><span>${i.nombre}</span></button>`));
+  }
+  $('#lista').innerHTML = h;
+  $('#lista').onclick = (e) => { const b = e.target.closest('button[data-k]'); if (b) seleccionar(grupos[b.dataset.k][+b.dataset.n], true); };
+})();
+const ray = new THREE.Raycaster(); const ptr = new THREE.Vector2(); let abajo = null;
+function pick(ev, soloTerreno = false) {
+  const r = renderer.domElement.getBoundingClientRect();
+  ptr.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(ptr, camera); ray.near = enc ? camera.near : 0;
+  const objs = soloTerreno ? [terreno] : REG.filter((x) => x.obj.visible).map((x) => x.obj);
+  const hits = ray.intersectObjects(objs, true).filter((h) => {
+    if (!h.object.visible) return false;
+    for (const p of renderer.clippingPlanes) if (p.distanceToPoint(h.point) < 0) return false;
+    if (techo !== 'no' && h.point.y > planoSala.constant && cajaEdif(h.point)) return false;
+    return true;
+  });
+  return hits;
+}
+const ptrs = new Set(); let multi = false;
+renderer.domElement.addEventListener('pointerdown', (e) => { ptrs.add(e.pointerId); if (ptrs.size > 1) { multi = true; if (ultTap) { clearTimeout(ultTap.timer); ultTap = null; } } abajo = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener('pointercancel', (e) => { ptrs.delete(e.pointerId); if (!ptrs.size) multi = false; abajo = null; });
+function tocar(e) {
+  if (encAnim) return;
+  const hits = pick(e);
+  if (rec && rec.activo && !enc && hits[0]) {
+    const h0 = hits[0]; const inf0 = infoDe(h0.object);
+    const nrm = h0.face ? h0.face.normal.clone().transformDirection(h0.object.matrixWorld) : null;
+    if (!(inf0 && inf0.eqKey) && nrm && nrm.y > 0.7 && Math.abs(h0.point.y - rec.pies) < 0.5) { caminarA(h0.point.x, -h0.point.z, h0.point.y); return; }
+  }
+  const h = hits.find((x) => infoDe(x.object) && !(subsuelo && x.object === terreno));
+  const inf = h ? infoDe(h.object) : null;
+  if (inf && inf.eqKey && EQ[inf.eqKey] && !EQ[inf.eqKey].oculto) { inspeccionar(EQ[inf.eqKey]); return; }
+  seleccionar(inf);
+}
+renderer.domElement.addEventListener('pointerup', (e) => {
+  const era = multi; ptrs.delete(e.pointerId); if (!ptrs.size) multi = false; if (era || e.button > 0) { abajo = null; return; }
+  if (!abajo || Math.hypot(e.clientX - abajo[0], e.clientY - abajo[1]) > 5) return;
+  if (e.pointerType === 'touch') {
+    const now = performance.now();
+    if (ultTap && now - ultTap.t < 380 && Math.hypot(e.clientX - ultTap.x, e.clientY - ultTap.y) < 32) { clearTimeout(ultTap.timer); ultTap = null; ultDoble = now; alDoble(e); return; }
+    const ev = { clientX: e.clientX, clientY: e.clientY };
+    if (ultTap) clearTimeout(ultTap.timer);
+    ultTap = { t: now, x: e.clientX, y: e.clientY, timer: setTimeout(() => { ultTap = null; tocar(ev); }, 340) };
+    return;
+  }
+  tocar(e);
+});
+let tCoord = 0;
+renderer.domElement.addEventListener('pointermove', (e) => {
+  const now = performance.now(); if (now - tCoord < 60 || movil || e.buttons) return; tCoord = now;
+  const h = pick(e)[0];
+  if (!h) { $('#coord').textContent = 'Fuera del modelo'; return; }
+  const p = h.point; const inf = infoDe(h.object);
+  $('#coord').innerHTML = `X ${(ORIGEN.X + p.x).toFixed(2)} · Y ${(ORIGEN.Y - p.z).toFixed(2)} · cota ${(ORIGEN.cota + p.y).toFixed(2)}${inf ? ' · ' + inf.id : ''}`;
+});
+addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#visor').classList.contains('on') && !$('#alzado').classList.contains('on')) seleccionar(null); });
+
+const iconoTema = () => ($('#bTema').textContent = document.documentElement.dataset.theme === 'dark' ? '☾' : '☀');
+$('#bTema').onclick = () => {
+  const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('se_rio_tema', r.dataset.theme); } catch (_) {} iconoTema();
+};
+iconoTema();
+$('#bFull').onclick = () => (document.fullscreenElement ? document.exitFullscreen() : $('#visorBIM').requestFullscreen?.());
+let tabActual = 'avance';
+function tabDer(p) {
+  tabActual = p;
+  document.querySelectorAll('#derTabs .bpt').forEach((b) => b.classList.toggle('on', b.dataset.p === p));
+  document.querySelectorAll('#der .bp').forEach((x) => x.classList.toggle('on', x.id === 'p-' + p));
+}
+$('#derTabs').onclick = (e) => { const b = e.target.closest('.bpt[data-p]'); if (b) tabDer(b.dataset.p); };
+function abrirVisor(src, txt) { if (document.fullscreenElement) document.exitFullscreen(); $('#visor img').src = src; $('#visor p').textContent = txt; $('#visor').classList.add('on'); }
+
+let destapado = false;
+function fijarDestapado(on) {
+  destapado = on;
+  REG.forEach(({ obj }) => obj.traverse((x) => { if (x.userData.tapa || x.userData.rejilla || x.userData.gravaBase) x.visible = !on && !subsuelo; }));
+  (CTX.puertas || []).forEach((p) => { p.rotation.y = on ? p.userData.puerta.abierta : p.userData.puerta.cerrada; });
+  sombras = true; pedir();
+}
+$('#vDes').onchange = (e) => { $('#vDes2').checked = e.target.checked; fijarDestapado(e.target.checked); };
+
+let rec = null; let camAntes = null; let obst = null; let hudT = 0;
+const hud = $('#hud'), joyEl = $('#joy'), mira = $('#mira');
+const HUD = { joy(j) { if (!j) { joyEl.classList.add('oculto'); return; } joyEl.classList.remove('oculto'); joyEl.style.left = j.x + 'px'; joyEl.style.top = j.y + 'px'; joyEl.querySelector('i').style.transform = `translate(calc(-50% + ${j.dx}px), calc(-50% + ${j.dy}px))`; } };
+function aviso(txt, ms = 7000) { hud.textContent = txt; hud.classList.remove('oculto'); clearTimeout(hudT); if (ms) hudT = setTimeout(() => hud.classList.add('oculto'), ms); }
+const AYUDA = movil ? 'Toca el piso para caminar hasta ahí por los pasillos · joystick abajo a la izquierda · arrastra para girar · toca un tablero para su ficha · doble toque: frente al tablero'
+  : 'Clic en el piso: camina hasta ahí por los pasillos · WASD o flechas (Shift corre) · arrastra para girar · rueda: acercar · V: primera / tercera persona · doble clic: frente al tablero · Esc: salir';
+let vistaTercera = true; try { vistaTercera = localStorage.getItem('se_rio_vista') !== '1'; } catch (_) {}
+const fovRec = () => (rec && rec.tercera ? (movil ? 62 : 52) : 68);
+function fijarVista(tercera) {
+  vistaTercera = tercera; try { localStorage.setItem('se_rio_vista', tercera ? '3' : '1'); } catch (_) {}
+  $('#vistaSel').querySelectorAll('button').forEach((b) => b.classList.toggle('on', (b.dataset.t === '3') === tercera));
+  if (!rec) return; rec.fijarTercera(tercera); if (!enc) { camera.fov = fovRec(); camera.updateProjectionMatrix(); }
+  mira.classList.toggle('oculto', tercera || !rec.activo); oclKey = ''; mapaKey = ''; pedir();
+}
+function entrarRecorrido(X = 39.6, Y = -7.2, yaw = 180, yPie = 0, pitch = 0, opt = {}) {
+  if (pel && pel.activa) terminarPelicula();
+  if (!obst) obst = obstaculosDe(REG).concat(OBST_EXTRA);
+  if (!rec) { rec = new Recorrido(camera, renderer.domElement, { pisoEn, obstaculos: obst, onCambio: pedir, puedeTeclas: (e) => bimActivo() && !tecleando() && !e.metaKey && !e.ctrlKey }); rec.avatar = crearPersona(); rec.avatar.visible = false; scene.add(rec.avatar); rec.tercera = vistaTercera;
+    if (movil) rec.boomSet = { dentro: { a: 1.0, L: 6.2 }, fuera: { a: 0.42, L: 6.4 } }; }
+  if (!rec.activo) {
+    camAntes = { p: camera.position.clone(), t: controls.target.clone() };
+    fijarCorte('no'); if (subsuelo) fijarSubsuelo(false); fijarSala(false);
+    controls.enabled = false; anim = null;
+    rec.dentro = cajaEdif(P3(X, Y)); rec.fijarTercera(vistaTercera);
+    rec.cortado = rec.tercera && rec.dentro; if (rec.cortado) cortarTecho('persona', yPie > Y2 - 0.6 ? 2 : 1);
+    camera.fov = fovRec(); camera.updateProjectionMatrix();
+    rec.activar(X, Y, yaw, HUD, yPie);
+  }
+  rec.colocar(X, Y, yaw, yPie, pitch);
+  $('#bRec').classList.add('on'); mira.classList.toggle('oculto', rec.tercera);
+  document.body.classList.add('sala'); tabDer('sala'); $('#mapa').classList.remove('oculto');
+  if (!opt.silencio) aviso(AYUDA, 9000); $('#vistas').querySelectorAll('button[data-v]').forEach((x) => x.classList.remove('on'));
+  ajustarMapa(); pedir();
+}
+function salirRecorrido() {
+  if (!rec || !rec.activo) return;
+  const prI = insp; insp = null; histInsp.length = 0;
+  const adentro = enc || cajaEdif(pRef()); salirEncuadre(false); marcaRuta.visible = false;
+  rec.desactivar(); controls.enabled = true; camera.fov = 40; camera.updateProjectionMatrix(); if (techo === 'persona') cortarTecho('no');
+  if (adentro && camAntes) { camera.position.copy(camAntes.p); controls.target.copy(camAntes.t); }
+  else { const d = new THREE.Vector3(); camera.getWorldDirection(d); controls.target.copy(camera.position).addScaledVector(d, 6); }
+  controls.update();
+  $('#bRec').classList.remove('on'); hud.classList.add('oculto'); mira.classList.add('oculto'); $('#mirando').classList.add('oculto'); HUD.joy(null);
+  document.body.classList.remove('sala', 'dentro'); $('#mapa').classList.add('oculto'); ajustarMapa();
+  if (prI && prI.enSala) fijarSala(true);
+  pedir();
+}
+const LLEGADA = { 1: [39.45, -4.35, 155, 0.12, -6], 2: [38.75, -3.05, 0, Y2, -8] };
+function irPiso(p) { const [X, Y, yaw, yPie, pitch] = LLEGADA[p]; entrarRecorrido(X, Y, yaw, yPie, pitch); seleccionar(null); aviso(p === 1 ? 'Primer piso · tableros 1–21, celdas C01–C05 y K01–K05' : 'Segundo piso · tablero 22 de regulación del TP-385 (nuevo), oficina y sala de reuniones', 4000); }
+function irA(e) { inspeccionar(e); }
+let encAnim = null, insp = null; const histInsp = [];
+const TXT_INSP = movil ? 'Inspección · ◀ ▶: tablero vecino · arrastra: girar alrededor · toca otro tablero para ir · ✕: volver'
+  : 'Inspección · ◀ ▶, ← → o la rueda: tablero vecino · ↑ ↓: otra fila · arrastra: girar alrededor · clic en otro tablero: ir · W: caminar · Esc: volver';
+function poseCamara() { const d = new THREE.Vector3(); camera.getWorldDirection(d); return { p: camera.position.clone(), yaw: Math.atan2(d.x, d.z), pitch: Math.asin(Math.max(-1, Math.min(1, d.y))), fov: camera.fov, near: camera.near }; }
+const eqInicial = () => (EQ.CPM && !EQ.CPM.oculto ? EQ.CPM : FILAS[0].eqs[0]);
+function inspeccionar(e, opt = {}) {
+  if (!e || e.oculto || !FILA_DE[e.key]) return;
+  if (pel && pel.activa) terminarPelicula();
+  const desde = poseCamara();
+  if (!rec || !rec.activo) {
+    insp = { enSala, techo };
+    const { nx, ny } = rectDe(e); const yaw0 = e.rot + 180;
+    entrarRecorrido(e.X + nx * (e.d / 2 + 0.8), e.Y + ny * (e.d / 2 + 0.8), yaw0, e.yPiso, 0, { silencio: true });
+    aviso(TXT_INSP, 7000);
+  } else if (!enc) aviso(TXT_INSP, 5000);
+  if (!opt.sinHist && histInsp[histInsp.length - 1] !== e.key) { histInsp.push(e.key); if (histInsp.length > 40) histInsp.shift(); }
+  seleccionarSuave(e); verCompleto(e, { desde });
+}
+function salirInspeccion() {
+  if (!rec || !rec.activo) return;
+  const cur = camera.position.clone(), dir = new THREE.Vector3(); camera.getWorldDirection(dir);
+  const ant = camAntes ? { p: camAntes.p.clone(), t: camAntes.t.clone() } : null; const pr = insp;
+  salirRecorrido();
+  if (pr && !pr.enSala && techo !== 'no') cortarTecho('no');
+  if (ant) { camera.position.copy(cur); controls.target.copy(cur).addScaledVector(dir, 4); controls.update(); volar(ant.p, ant.t, 850, true); }
+}
+function atrasInsp() {
+  if (histInsp.length > 1) { histInsp.pop(); const k = histInsp[histInsp.length - 1]; if (EQ[k] && !EQ[k].oculto) { inspeccionar(EQ[k], { sinHist: true }); return; } }
+  salirInspeccion();
+}
+const FOV_ENC = 55;
+const OBRA_CORTO = { nuevo: 'nuevo', interv: 'existente con intervención', rel: 'existente relacionado', integ: 'nuevo · Integrador Demo' };
+function areaLibre() {
+  const { W, H } = tamVista(); const vr = cont.getBoundingClientRect();
+  const vis = (el) => el && !el.classList.contains('oculto') && getComputedStyle(el).display !== 'none';
+  let l = 0, r = W, t = vis($('#barraEnc')) ? 62 : 10, b = H - 8;
+  if (b - t < 160) b = Math.min(H, t + 160);
+  return { l, r, t, b };
+}
+function verCompleto(e, opt = {}) {
+  if (!rec || !rec.activo) return;
+  const desde = opt.desde || poseCamara();
+  if (!enc) enc = { mapaMin: true };
+  const ant = enc.e; enc.e = e; document.body.classList.add('encuadre');
+  const { f, i } = FILA_DE[e.key]; const fi = FILAS.indexOf(f);
+  $('#encTit').textContent = `${e.info.id}${e.cod ? ' · ' + e.cod : e.sigla ? ' · ' + e.sigla : ''}`;
+  $('#encSub').textContent = `${e.nombre}${e.obra && e.obra !== 'integ' ? ' · ' + OBRA_CORTO[e.obra] : ''} · ${f.nombre} (${i + 1}/${f.eqs.length}) · fila ${fi + 1} de ${FILAS.length}`;
+  $('#encIzq').disabled = false; $('#encDer').disabled = false;
+  $('#barraEnc').classList.remove('oculto'); ajustarMapa();
+  { const a = areaLibre(); const bE = $('#barraEnc'); bE.style.left = (a.l + a.r) / 2 + 'px'; bE.style.maxWidth = Math.max(260, a.r - a.l - 12) + 'px'; }
+  const p = encuadreDe(e, areaLibre(), { ...tamVista(), fov: FOV_ENC });
+  const cTecho = (e.piso === 2 ? Y2 : 0) + TECHO1; if (techo !== 'sala' || planoSala.constant !== cTecho) cortarTecho('sala', e.piso);
+  const P = new THREE.Vector3(p.x, p.y, p.z);
+  const fin = { p: P, yaw: (p.yaw * Math.PI) / 180, pitch: (p.pitch * Math.PI) / 180, fov: FOV_ENC, near: nearLibre(e, P, p.near), near0: p.near, D: p.D };
+  const dist = desde.p.distanceTo(fin.p); const misma = ant && FILA_DE[ant.key] && FILA_DE[ant.key].f === f;
+  const ms = misma ? Math.min(560, 340 + dist * 60) : dist > 6 ? 950 : 680;
+  const pm = !misma && dist > 2.2 ? desde.p.clone().lerp(fin.p, 0.5).setY(Math.max(desde.p.y, fin.p.y) + Math.min(2.4, 0.6 + dist * 0.25)) : null;
+  encAnim = { t: 0, prev: null, ms, desde, fin, pm }; rec.encuadre = true; rec.orbita = null; rec.ruta = null;
+  if (mapa) { mapa.sel = e.key; mapa.dibujar(); }
+  oclKey = ''; mapaKey = ''; pedir();
+}
+const _rN = new THREE.Raycaster(), _vN = new THREE.Vector3(), _dN = new THREE.Vector3(), _cN = new THREE.Vector3();
+const visibleDe = (o) => { while (o) { if (!o.visible) return false; o = o.parent; } return true; };
+function nearLibre(e, P, near0) {
+  const { nx, ny } = rectDe(e); const z0 = e.zocalo ?? 0.1;
+  const Fx = e.X + nx * (e.d / 2), Fy = e.Y + ny * (e.d / 2), tx = -ny, ty = nx;
+  _cN.set(Fx, e.yPiso + z0 + e.h / 2, -Fy).sub(P).normalize();
+  const objs = REG.filter((x) => x.obj.visible && x.obj !== e.obj && x.capa !== 'terreno').map((x) => x.obj);
+  let near = near0, tope = Infinity;
+  for (const u of [-0.35, 0, 0.35]) for (const v of [0.3, 0.6, 0.9]) {
+    _vN.set(Fx + tx * u * e.w, e.yPiso + z0 + v * e.h, -(Fy + ty * u * e.w));
+    const prof = _dN.copy(_vN).sub(P).dot(_cN); tope = Math.min(tope, prof - 0.12);
+    const L = _dN.length(); _dN.normalize();
+    _rN.set(P, _dN); _rN.near = 0; _rN.far = L;
+    const h = _rN.intersectObjects(objs, true).find((x) => visibleDe(x.object) && x.point.clone().sub(P).dot(_cN) < prof - 0.2);
+    if (!h) continue;
+    _rN.set(_vN, _dN.clone().negate()); _rN.far = L;
+    const b = _rN.intersectObjects(objs, true).find((x) => visibleDe(x.object));
+    if (b) near = Math.max(near, b.point.clone().sub(P).dot(_cN) + 0.03);
+  }
+  return Math.max(0.1, Math.min(near, tope));
+}
+function pasoAnim(now) {
+  const a = encAnim; if (a.prev != null) a.t += Math.min(100, Math.max(0, now - a.prev)); a.prev = now;
+  const t = Math.min(1, a.t / a.ms); const k = suave(t);
+  const pos = a.pm ? bezier(a.desde.p, a.pm, a.fin.p, k) : a.desde.p.clone().lerp(a.fin.p, k);
+  rec.poseLibre(pos.x, pos.y, pos.z, angLerp(a.desde.yaw, a.fin.yaw, k), a.desde.pitch + (a.fin.pitch - a.desde.pitch) * k);
+  camera.fov = a.desde.fov + (a.fin.fov - a.desde.fov) * k; camera.near = Math.max(0.05, a.desde.near + (a.fin.near - a.desde.near) * k); camera.updateProjectionMatrix();
+  if (t >= 1) terminarAnim();
+}
+function terminarAnim() {
+  const f = encAnim.fin; encAnim = null;
+  rec.encuadrar(f.p.x, f.p.y, f.p.z, (f.yaw * 180) / Math.PI, (f.pitch * 180) / Math.PI);
+  camera.fov = f.fov; camera.near = f.near; camera.updateProjectionMatrix(); rec.fijarOrbita(f.D, 1.05);
+  if (enc) { enc.nearIns = f.near; enc.near0 = f.near0; }
+  oclKey = ''; mapaKey = ''; pedir();
+}
+function salirEncuadre(caminar = true) {
+  if (!enc) return; const e = enc.e; encAnim = null; if (rec) rec.orbita = null;
+  enc = null; document.body.classList.remove('encuadre'); $('#barraEnc').classList.add('oculto');
+  camera.near = 0.1; camera.fov = rec && rec.activo ? fovRec() : 40; camera.updateProjectionMatrix();
+  if (techo === 'sala' && !enSala) cortarTecho('no');
+  if (caminar && rec && rec.activo) { const f = frenteDe(e, (X, Y, yP) => rec.libre(X, Y, yP)); rec.colocar(f.X, f.Y, f.yaw, e.yPiso, f.pitch); aviso(AYUDA, 6000); }
+  ajustarMapa(); oclKey = ''; mapaKey = ''; pedir();
+}
+function vecino(dir) {
+  if (!enc) return; const { f, i } = FILA_DE[enc.e.key]; let n = f.eqs[i + dir];
+  if (!n) { const fi = FILAS.indexOf(f); const g = FILAS[(fi + dir + FILAS.length) % FILAS.length]; n = dir > 0 ? g.eqs[0] : g.eqs[g.eqs.length - 1]; }
+  inspeccionar(n);
+}
+function filaVecina(dir) { if (!enc) return; const { f, i } = FILA_DE[enc.e.key]; const g = FILAS[(FILAS.indexOf(f) + dir + FILAS.length) % FILAS.length]; inspeccionar(g.eqs[Math.min(i, g.eqs.length - 1)]); }
+$('#encIzq').onclick = () => vecino(-1); $('#encDer').onclick = () => vecino(1);
+$('#encCam').onclick = () => salirEncuadre(true); $('#encAlz').onclick = () => enc && abrirAlzado(FILA_DE[enc.e.key].f, enc.e);
+$('#encAtras').onclick = () => atrasInsp(); $('#encSalir').onclick = () => salirInspeccion();
+let tRueda = 0, ruedaAcum = 0, ruedaLista = true;
+renderer.domElement.addEventListener('wheel', (ev) => {
+  if (!enc) return; ev.preventDefault(); const now = performance.now();
+  if (now - tRueda > 220) { ruedaAcum = 0; ruedaLista = true; } tRueda = now; ruedaAcum += ev.deltaY;
+  if (ruedaLista && Math.abs(ruedaAcum) >= 30) { ruedaLista = false; vecino(ruedaAcum > 0 ? 1 : -1); }
+}, { passive: false });
+let zoomP = null, cajaModelo = null, tPick = 0, xyPick = null;
+function cajaDelModelo() {
+  if (cajaModelo) return cajaModelo;
+  const b = new THREE.Box3(); REG.forEach(({ obj, capa }) => { if (capa !== 'terreno') b.expandByObject(obj); });
+  const c = b.getCenter(new THREE.Vector3()), r = b.getSize(new THREE.Vector3()).length() / 2;
+  return (cajaModelo = { b, c, lejos: Math.max(95, r * 1.5), caja: b.clone().expandByScalar(12) });
+}
+const _vZ = new THREE.Vector3(), _pZ = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+function puntoZoom(ev) {
+  const hits = pick(ev).filter((h) => !(subsuelo && h.object === terreno));
+  if (hits[0]) { const h = hits[0]; const n = h.face ? h.face.normal.clone().transformDirection(h.object.matrixWorld) : null; return { P: h.point.clone(), dMin: h.object === terreno || (n && n.y > 0.8 && h.point.y < 0.6) ? 3 : 1.2 }; }
+  const q = ray.ray.intersectPlane(_pZ, new THREE.Vector3()); if (q && q.distanceTo(camera.position) < 400) return { P: q, dMin: 3 };
+  return { P: camera.position.clone().addScaledVector(ray.ray.direction, Math.max(20, camera.position.distanceTo(controls.target))), dMin: 0 };
+}
+renderer.domElement.parentElement.addEventListener('wheel', (ev) => {
+  if (enc || !controls.enabled || (rec && rec.activo) || ev.target !== renderer.domElement) return;
+  ev.preventDefault(); ev.stopPropagation(); anim = null;
+  let d = ev.deltaY * (ev.deltaMode === 1 ? 33 : ev.deltaMode === 2 ? 400 : 1); if (!d) return;
+  d = Math.max(-240, Math.min(240, d));
+  const now = performance.now(); const quieto = xyPick && Math.hypot(ev.clientX - xyPick[0], ev.clientY - xyPick[1]) < 6;
+  if (!zoomP || !quieto || now - tPick > 160) { const z = puntoZoom(ev); zoomP = { ...z, f: zoomP && quieto ? zoomP.f : 1 }; tPick = now; xyPick = [ev.clientX, ev.clientY]; }
+  zoomP.f = Math.max(0.3, Math.min(3, zoomP.f * Math.pow(1.0015, d)));
+  pedir();
+}, { capture: true, passive: false });
+function pasoZoom(dt) {
+  const z = zoomP; const M = cajaDelModelo();
+  const lf = Math.log(z.f) * (1 - Math.exp(-Math.min(0.1, dt) / 0.085)); const f = Math.exp(lf); z.f = Math.exp(Math.log(z.f) - lf);
+  const np = _vZ.copy(camera.position).sub(z.P).multiplyScalar(f).add(z.P);
+  const sueloZ = alturaTerreno(np.x, -np.z) + (subsuelo ? -6 : 1.2);
+  const tope = (f < 1 && np.distanceTo(z.P) < z.dMin) || (np.y < sueloZ && np.y < camera.position.y) || (f > 1 && np.distanceTo(M.c) > M.lejos);
+  if (tope) { zoomP = null; return; }
+  camera.position.copy(np); controls.target.sub(z.P).multiplyScalar(f).add(z.P);
+  if (f > 1) M.caja.clampPoint(controls.target, controls.target);
+  if (Math.abs(Math.log(z.f)) < 0.002) zoomP = null;
+}
+function seleccionarSuave(e) { if (movil) { actual = e.info; if (mapa) { mapa.sel = e.key; mapa.dibujar(); } pedir(); } else seleccionar(e.info); }
+function entrarSala(e = null) { inspeccionar(e || eqInicial()); }
+const marcaRuta = new THREE.Mesh(new THREE.RingGeometry(0.16, 0.26, 28), new THREE.MeshBasicMaterial({ color: 0x0b6bcb, transparent: true, opacity: 0.9, depthTest: false }));
+marcaRuta.rotation.x = -Math.PI / 2; marcaRuta.renderOrder = 5; marcaRuta.visible = false; marcaRuta.userData.noObst = true; scene.add(marcaRuta);
+const REJ = {};
+function rejilla(piso) {
+  if (REJ[piso]) return REJ[piso];
+  const S = LAY.sala; const libre = (X, Y, yP, r) => rec.libre(X, Y, yP, r);
+  const caja = piso === 2 ? { x0: S.x2p - 0.2, x1: S.x1 + 0.2, Y0: S.y0 - 0.2, Y1: S.y1 + 0.2 } : { x0: S.x0 - 4, x1: S.x1 + 4, Y0: S.y0 - 4, Y1: S.y1 + 3.5 };
+  return (REJ[piso] = new Rejilla({ caja, yPie: piso === 2 ? Y2 : 0.12, libre, pisoEn, paso: 0.15, holgura: 0.3 }));
+}
+function caminarA(X, Y, yP, alLlegar = null) {
+  if (!rec || !rec.activo) return false;
+  if (enc) salirEncuadre(false);
+  const pisoP = rec.pies > Y2 - 0.6 ? 2 : 1, pisoD = yP > Y2 - 0.6 ? 2 : 1;
+  if (pisoD !== pisoP) { const [Xl, Yl, yaw, yPl] = LLEGADA[pisoD]; rec.colocar(Xl, Yl, yaw, yPl, 0); aviso(pisoD === 2 ? 'Subiste al 2.º piso (escalera exterior norte)' : 'Bajaste al 1.er piso', 2500); }
+  const R = rejilla(pisoD); const X0 = rec.pos.x, Y0 = -rec.pos.z;
+  let ruta = null;
+  if (R.dentro(X0, Y0) && R.dentro(X, Y)) { ruta = R.camino(X0, Y0, X, Y); if (!ruta) { aviso('No encuentro un paso libre hasta ese punto', 2500); return false; } }
+  else ruta = [[X, Y]];
+  const fin = ruta[ruta.length - 1]; marcaRuta.position.set(fin[0], pisoEn(fin[0], fin[1], yP) + 0.03, -fin[1]); marcaRuta.visible = true;
+  rec.irPor(ruta, () => { marcaRuta.visible = false; if (alLlegar) alLlegar(); }); pedir(); return true;
+}
+let _vo = '';
+function centrarTercera() {
+  const on = rec && rec.activo && rec.tercera && !enc;
+  if (!on) { if (_vo) { camera.clearViewOffset(); _vo = ''; } return; }
+  const a = areaLibre(); const { W, H } = tamVista();
+  const dx = Math.round(W / 2 - (a.l + a.r) / 2), dy = Math.round(H / 2 - (a.t + a.b) / 2 - (a.b - a.t) * 0.08);
+  const k = dx + ',' + dy + ',' + W + ',' + H; if (k === _vo) return; _vo = k;
+  camera.setViewOffset(W, H, dx, dy, W, H); sucio = true;
+}
+function vistasPasillo() {
+  return FILAS.map((f) => {
+    const es = f.eqs, a = es[0], z = es[es.length - 1]; const { nx, ny } = rectDe(a);
+    const sep = Math.max(...es.map((e) => e.d)) / 2 + 0.75; const yP = a.yPiso;
+    let X = null, Y = null;
+    for (let k = 0; k <= 8 && X === null; k++) for (const [e0, sg] of [[a, -1], [z, 1]]) {
+      const Xc = e0.X + sg * f.dx * (e0.w / 2 + 0.5 - k * 0.25) + nx * sep, Yc = e0.Y + sg * f.dy * (e0.w / 2 + 0.5 - k * 0.25) + ny * sep;
+      if (rec.libre(Xc, Yc, yP)) { X = Xc; Y = Yc; f._sg = sg; break; }
+    }
+    if (X === null) { const fr = frenteDe(es[(es.length / 2) | 0], (Xc, Yc, y_) => rec.libre(Xc, Yc, y_)); return { f, X: fr.X, Y: fr.Y, yaw: fr.yaw, yP }; }
+    const dx = -f._sg * f.dx, dy = -f._sg * f.dy;
+    const yaw = (Math.atan2(dx - nx * 0.35, -(dy - ny * 0.35)) * 180) / Math.PI;
+    return { f, X, Y, yaw, yP };
+  });
+}
+function panelPasillos() {
+  $('#pasillos').innerHTML = FILAS.map((f, i) => `<button data-pa="${i}" title="Ir al pasillo de ${esc_(f.nombre)}"><b>${f.piso === 2 ? '2.º' : '1.er'}</b>${esc_(f.nombre)}</button>`).join('');
+}
+$('#pasillos').onclick = (ev) => {
+  const b = ev.target.closest('button[data-pa]'); if (!b) return; const f = FILAS[+b.dataset.pa];
+  inspeccionar(f.eqs[0]);
+};
+$('#vistaSel').onclick = (ev) => { const b = ev.target.closest('button[data-t]'); if (b) fijarVista(b.dataset.t === '3'); };
+$('#bRec').onclick = () => (rec && rec.activo ? salirRecorrido() : entrarRecorrido());
+$('#bEntrar').onclick = () => entrarSala();
+$('#bSalir').onclick = () => salirRecorrido();
+$('#pisoSel').onclick = (e) => { const b = e.target.closest('button[data-p]'); if (b) irPiso(+b.dataset.p); };
+function alDoble(ev) {
+  if ((pel && pel.activa) || encAnim) return;
+  const hits = pick(ev); const h = hits.find((x) => infoDe(x.object)) || hits[0]; if (!h) return;
+  const inf = infoDe(h.object); const e = inf && inf.eqKey ? EQ[inf.eqKey] : null;
+  if (rec && rec.activo) {
+    if (e) { irA(e); return; }
+    if (enc) return;
+    const o = ray.ray.origin, d = ray.ray.direction;
+    for (let t = h.distance - 0.35; t > 0; t -= 0.2) { const p = o.clone().addScaledVector(d, t); const yP = pisoEn(p.x, -p.z, rec.pies); if (Math.abs(yP - rec.pies) < 0.9 && rec.libre(p.x, -p.z, yP)) { rec.teletransportar(p.x, -p.z); return; } }
+    return;
+  }
+  if (e) entrarSala(e);
+  else if (inf && (inf.id === 'Sala de control' || (CAPAS.sala || []).includes(inf.obj))) entrarSala();
+  else if (inf && inf.id !== 'Terreno') seleccionar(inf, true);
+}
+let ultTap = null, ultDoble = 0;
+renderer.domElement.addEventListener('dblclick', (e) => { if (performance.now() - ultDoble < 700) return; alDoble(e); });
+const bimActivo = () => !!(tablero && tablero.tab === 'v-bim') && !$('#alzado').classList.contains('on') && !$('#visor').classList.contains('on');
+const tecleando = () => /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '');
+addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $('#visor').classList.contains('on')) { $('#visor').classList.remove('on'); return; }
+  if (e.key === 'Escape' && $('#alzado').classList.contains('on')) { cerrarAlzado(); return; }
+  if (!bimActivo()) return;
+  if (enc && !/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || '')) {
+    const k = e.key.toLowerCase();
+    if (k === 'arrowleft' || k === 'a') { if (!e.repeat) vecino(-1); e.preventDefault(); return; }
+    if (k === 'arrowright' || k === 'd') { if (!e.repeat) vecino(1); e.preventDefault(); return; }
+    if (k === 'arrowup') { if (!e.repeat) filaVecina(-1); e.preventDefault(); return; }
+    if (k === 'arrowdown') { if (!e.repeat) filaVecina(1); e.preventDefault(); return; }
+    if (k === 'w' || k === 's') { salirEncuadre(true); return; }
+    if (k === 'backspace') { atrasInsp(); e.preventDefault(); return; }
+    if (k === 'escape') { if (!$('#visor').classList.contains('on') && !$('#alzado').classList.contains('on')) salirInspeccion(); return; }
+  }
+  if (e.key === 'Escape' && rec && rec.activo) salirRecorrido();
+  if ((e.key === 'v' || e.key === 'V') && rec && rec.activo && !e.repeat && !/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || '')) fijarVista(!vistaTercera);
+  if (e.key === 'Enter' && rec && rec.activo && mirandoEq) seleccionar(mirandoEq.info);
+});
+const OBRA_ORD = { nuevo: 0, integ: 0.5, interv: 1, rel: 2 };
+function panelSala() {
+  const enObra = EQUIPOS.filter((e) => e.obra && !e.oculto).sort((a, b) => OBRA_ORD[a.obra] - OBRA_ORD[b.obra]);
+  $('#obraLista').innerHTML = enObra.map((e) => `<button data-k="${e.key}" style="border-left-color:${OBRA[e.obra].c}" title="${esc_(OBRA[e.obra].t)}"><b>${e.n}</b>${esc_(e.cod || e.sigla || '')}</button>`).join('');
+  const nombre = (e) => (e.tipo === 'celda' ? e.nombre : e.nombre.replace(/^Tablero (de )?/i, ''));
+  const lista = () => {
+    const q = $('#buscar').value.trim().toLowerCase();
+    const filtra = (e) => !q || [String(e.n), e.cod, e.sigla, e.nombre, e.info.id].some((t) => t && String(t).toLowerCase().includes(q));
+    let h = '';
+    for (const p of [1, 2]) {
+      const es = EQUIPOS.filter((e) => e.piso === p && !e.oculto && filtra(e)); if (!es.length) continue;
+      h += `<div class="g">${p === 1 ? '1.er piso' : '2.º piso'} (${es.length})</div>`;
+      h += es.map((e) => `<button data-k="${e.key}"><i style="background:${e.obra ? OBRA[e.obra].c : 'transparent'}"></i><b>${e.n}</b><span>${esc_(e.cod || e.sigla ? (e.cod || e.sigla) + ' · ' : '')}${esc_(nombre(e))}</span></button>`).join('');
+    }
+    $('#eqLista').innerHTML = h || '<p class="ayuda">Sin resultados.</p>';
+  };
+  $('#buscar').oninput = lista; lista();
+  const ir = (ev) => { const b = ev.target.closest('button[data-k]'); if (b) irA(EQ[b.dataset.k]); };
+  $('#obraLista').onclick = ir; $('#eqLista').onclick = ir;
+  $('#ayudaSala').textContent = movil ? 'Toca un tablero en el 3D, en la lista o en el plano y la cámara lo centra; ◀ ▶ pasa al vecino. 🚶 Caminar para moverte libre.' : 'Clic en un tablero (3D, lista o plano) y la cámara lo centra; ◀ ▶, ← → o la rueda pasan al vecino, ↑ ↓ cambian de fila, arrastrar gira alrededor. 🚶 Caminar para moverte libre.';
+}
+var integOn = true, axRot = [], m4d = null;
+const AX_ZONAS = [
+  { u: ['CPM L-2201', 'Patio → CPM'], eq: 'CPM', nombre: 'Nuevo CPM L-2201', sup: 'Se supone en el lugar del tablero 19 (registrador de fallas): Integrador Demo lo retiró al almacén el 17–20-Set (restricción R-05) y montó el nuevo tablero el 20-Set.' },
+  { u: ['SSAA'], eq: 'T16', nombre: 'SS.AA.', sup: 'Se supone el tablero 16 (SS.AA. 220 Vca / 110 Vcc / 48 Vcc, =E1.A01.SSAA), junto al nuevo CPM; el control de Integrador Demo no dice cuáles tableros de SS.AA.' },
+  { u: ['SCADA SE'], eq: 'T2', nombre: 'SCADA', sup: 'Se supone el tablero 2 (SCADA TAS); el control de Integrador Demo dice «SCADA de la SE».' },
+  { u: ['Patio', 'Patio → CPM'], reg: 'Bahía L-2201', nombre: 'Patio · bahía L-2201', sup: 'Se supone que los cables multiconductores salen de los equipos de la llegada L-2201 hacia el nuevo CPM; el control no indica qué canaletas se destaparon.' },
+  { u: ['Almacén', 'Tablero RF'], reg: 'Almacén', nombre: 'Almacén', sup: 'Se supone el almacén del plano: ahí se recibieron y prepararon los cables y quedó resguardado el registrador de fallas retirado (R-05).' },
+];
+const pct0 = (v) => (v == null ? '—' : Math.round(v * 100) + ' %');
+const fAx = (iso) => { if (!iso) return '—'; const [y, m, d] = iso.split('-'); return `${d}-${['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'][+m - 1]}-${y.slice(2)}`; };
+const axZ = new THREE.Group(); axZ.userData.noObst = true; CTX.sala.add(axZ);
+(function armarInteg() {
+  for (const z of AX_ZONAS) {
+    z.acts = INTEG.acts.filter((a) => z.u.includes(a.ubic));
+    if (z.eq) {
+      const e = EQ[z.eq]; e.integZ = (e.integZ || []).concat(z);
+      if (z.eq !== 'CPM') { const g = zonaObra({ ...e, obra: 'integ', w: e.w + 0.14, h: e.h + 0.1 }); g.traverse((m) => { if (m.isMesh) m.material = m.userData.mat0 = conv(m.material); }); axZ.add(g); }
+    }
+    if (z.reg) {
+      const r = REG.find((x) => x.info && x.info.id === z.reg); if (!r) continue; z.info = r.info; r.info.integZ = (r.info.integZ || []).concat(z);
+      const bx = new THREE.Box3().setFromObject(r.obj); const hlp = new THREE.Box3Helper(bx, new THREE.Color(0x8e44ad)); scene.add(hlp);
+      const d = document.createElement('div'); d.className = 'rot ax'; d.textContent = `Integrador Demo · ${z.nombre}`;
+      const o = new CSS2DObject(d); const c = bx.getCenter(new THREE.Vector3()); o.position.set(c.x, bx.max.y + 1.0, c.z); scene.add(o);
+      axRot.push({ h: hlp, o, obj: r.obj });
+    }
+  }
+  nums.forEach((n) => { const e = EQ[n.userData.n.key]; if (e && e.integZ && e.key !== 'CPM') n.element.insertAdjacentHTML('beforeend', '<i class="ax">Integrador Demo</i>'); if (e && e.key === 'CPM') n.element.className = 'num o-integ'; });
+})();
+function integVis() {
+  const en4 = !!(m4d && m4d.activo);
+  axZ.visible = integOn && !en4;
+  if (CTX.zonas) CTX.zonas.children.forEach((z) => { if (z.userData.zona === 'CPM') z.visible = integOn && !EQ.CPM.oculto; });
+  const dentro = document.body.classList.contains('dentro');
+  axRot.forEach((a) => { a.h.visible = integOn && !en4 && a.obj.visible; a.o.visible = integOn && !en4 && a.obj.visible && !dentro && $('#vRot').checked && !(pel && pel.activa); });
+}
+let eqFecha = null;
+function aplicarEquipos(forzar = false) {
+  const cpm = integOn && (!eqFecha || eqFecha.cpm), t19 = !cpm && (!integOn || !eqFecha || eqFecha.t19);
+  if (!forzar && EQ.CPM.oculto === !cpm && EQ.T19.oculto === !t19) return false;
+  EQ.CPM.oculto = !cpm; EQ.T19.oculto = !t19; armarFilas(); panelSala(); visibilidad(); return true;
+}
+function fijarInteg(on) {
+  integOn = on; $('#vAx').checked = on; $('#vAx0').checked = on; document.body.classList.toggle('integ', on);
+  aplicarEquipos(true); panelInteg();
+  if (mapa) { mapa.integ = on; mapa.dibujar(); }
+  if (enc && enc.e.oculto) salirEncuadre(true);
+  if (actual && actual.eqKey && EQ[actual.eqKey].oculto) seleccionar(null);
+  if ($('#alzado').classList.contains('on')) { alzFila = FILAS.find((f) => f.eqs.some((e) => alzFila.eqs.includes(e))) || FILAS[0]; dibujarAlzado(); }
+}
+$('#vAx').onchange = (e) => fijarInteg(e.target.checked); $('#vAx0').onchange = (e) => fijarInteg(e.target.checked);
+function panelInteg() {
+  const A = INTEG;
+  $('#integPanel').innerHTML = `<div><b>Control diario del ${fAx(A.fecha)}</b> · reporte N.º ${A.reporte} · día ${esc_(A.dia_plazo)} del plazo</div>
+    <div class="kp"><span>Prog. <b>${pct0(A.prog)}</b></span><span>Ejec. <b>${pct0(A.ejec)}</b></span><span>SPI <b>${A.spi != null ? A.spi.toFixed(2) : '—'}</b></span><span>Personal <b>${A.personal ?? '—'}</b></span><span>Habilitantes vencidos <b>${A.hab_vencidos ?? '—'}</b></span></div>
+    <div class="chipsObra">${AX_ZONAS.map((z, i) => `<button data-ax="${i}" style="border-left-color:#8e44ad" title="${esc_(z.sup)}"><b>${esc_(z.nombre)}</b>${z.acts.length} act.</button>`).join('')}</div>
+    <div style="margin-top:6px;font-size:11.5px;color:var(--ink3)">Ubicaciones supuestas (ningún plano ubica el nuevo CPM ni las rutas de Integrador Demo) · fuente: ${esc_(A.fuente)}</div>`;
+}
+$('#integPanel').onclick = (ev) => {
+  const b = ev.target.closest('button[data-ax]'); if (!b) return; const z = AX_ZONAS[+b.dataset.ax];
+  if (!integOn) fijarInteg(true);
+  if (z.eq) { irA(EQ[z.eq]); return; }
+  salirRecorrido(); if (z.info) seleccionar(z.info, true);
+};
+function seccionInteg(info) {
+  if (!integOn) return '';
+  const zs = (info.eqKey && EQ[info.eqKey] ? EQ[info.eqKey].integZ : info.integZ) || []; if (!zs.length) return '';
+  const en4 = m4d && m4d.activo; const AXF = en4 ? integAlCorte(U4D, m4d.i) : INTEG; const porN = Object.fromEntries(AXF.acts.map((a) => [String(a.n), a]));
+  const acts = [...new Map(zs.flatMap((z) => z.acts).map((a) => [a.n, porN[String(a.n)] || a])).values()];
+  const nums_ = new Set(acts.map((a) => String(a.n)));
+  const habs = INTEG.habilitantes.filter((h) => nums_.has(String(h.act)) && h.estado !== 'Aprobado / cumplido');
+  const EST4 = { pend: ['Por iniciar', ''], curso: ['En curso', '#926414'], term: ['Terminada', '#265eb9'], atras: ['Detrás de lo programado', '#c46f0b'], cond: ['Condicionada', ''] };
+  const est = (a) => { if (en4) { const [t, c] = EST4[m4d.estadoAct(a, m4d.i)]; return `<span class="pill" style="${c ? `border-color:${c};color:${c}` : ''}">${t}</span>`; }
+    return `<span class="pill" style="${a.estado === 'Completada' ? 'border-color:#265eb9;color:#265eb9' : a.estado === 'En curso' ? 'border-color:#926414;color:#926414' : ''}">${esc_(a.estado || '—')}</span>`; };
+  const filas = acts.map((a) => `<tr><td><b>${esc_(a.n)}</b> · ${esc_(a.nombre)}<small style="display:block;color:var(--ink3)">línea base ${fAx(a.ini)} → ${fAx(a.fin)}</small></td><td style="white-space:nowrap">${pct0(a.ev)} <small style="color:var(--ink3)">/ ${pct0(a.pv)}</small><br>${est(a)}</td></tr>`).join('');
+  const hb = habs.length ? `<div style="margin-top:6px"><b style="color:#c46f0b">Habilitantes pendientes</b>${habs.map((h) => `<div>${esc_(h.id)} · ${esc_(h.nombre)} — ${esc_(h.estado || 'sin estado')}${h.alerta ? ' · ' + esc_(h.alerta) : ''}</div>`).join('')}</div>` : '';
+  return `<div class="integ"><b>Trabajos de Integrador Demo · ${en4 ? `BIM 4D al ${fAx(m4d.fecha)}${m4d.i > m4d.corte ? ' (programado)' : ''}` : `control diario del ${fAx(INTEG.fecha)}`}</b>
+    <table class="axt" style="margin-top:4px">${filas}</table>${hb}
+    <div style="margin-top:6px;color:var(--ink2)">${zs.map((z) => esc_(z.sup)).join(' ')}</div>
+    <div class="fuente">Ejecutado / programado al corte, por actividad · fuente: ${esc_(INTEG.fuente)}</div></div>`;
+}
+function fijarZonas(on) {
+  if (CTX.zonas) CTX.zonas.visible = on; $('#vZon').checked = on; $('#vZon0').checked = on;
+  document.body.classList.toggle('sinZonas', !on); if (mapa) { mapa.zonas = on; mapa.dibujar(); } pedir();
+}
+$('#vZon').onchange = (e) => fijarZonas(e.target.checked); $('#vZon0').onchange = (e) => fijarZonas(e.target.checked);
+$('#vDes2').onchange = (e) => { $('#vDes').checked = e.target.checked; fijarDestapado(e.target.checked); };
+let FILAS = [], FILA_DE = {};
+function armarFilas() { FILAS = filasDe(EQUIPOS.filter((e) => !e.oculto)); FILA_DE = {}; FILAS.forEach((f) => f.eqs.forEach((e, i) => (FILA_DE[e.key] = { f, i }))); if (typeof panelPasillos === 'function' && $('#pasillos')) panelPasillos(); }
+armarFilas();
+const OPUESTO = { norte: 'sur', sur: 'norte', este: 'oeste', oeste: 'este' };
+let alzFila = null, alzMarca = null, alzCajas = [];
+function lienzoFrente(e) { let c = null; e.obj.traverse((m) => { const mm = m.userData.mat0 || m.material; if (c || !m.isMesh || !Array.isArray(mm)) return; const t = mm[4]?.map; if (t?.image?.getContext) c = t.image; }); return c; }
+function abrirAlzado(f, marca = null) { if (document.fullscreenElement) document.exitFullscreen(); alzFila = f || FILAS[0]; alzMarca = marca ? marca.key : null; $('#alzado').classList.add('on'); dibujarAlzado(); }
+function cerrarAlzado() { $('#alzado').classList.remove('on'); }
+function dibujarAlzado() {
+  const f = alzFila; const cv = $('#alzCv'); const g = cv.getContext('2d');
+  $('#alzFilas').innerHTML = FILAS.map((x, i) => `<button data-i="${i}" class="${x === f ? 'on' : ''}">${x.nombre}${x.piso === 2 ? ' · 2.º piso' : ''}</button>`).join('');
+  $('#alzTit').innerHTML = `Alzado · ${f.nombre}<small>Visto desde el frente, mirando al ${OPUESTO[f.rumbo]} · ${f.piso === 1 ? '1.er' : '2.º'} piso · frentes a escala; los equipos dibujados en cada frente son referenciales</small>`;
+  const it = f.eqs.map((e) => { const s_ = e.X * f.dx + e.Y * f.dy; return { e, x0: s_ - e.w / 2, x1: s_ + e.w / 2, z0: e.zocalo ?? 0.1 }; });
+  const sMin = Math.min(...it.map((q) => q.x0)), sMax = Math.max(...it.map((q) => q.x1)); const hMax = Math.max(...it.map((q) => q.z0 + q.e.h));
+  const mL = 0.45, arriba = 0.75, abajo = 0.85, pie = 0.55; const anchoM = sMax - sMin + 2 * mL, altoM = arriba + hMax + abajo + pie;
+  const caja = $('#alzado .lienzo'); const aw = caja.clientWidth - 16, ah = caja.clientHeight - 12;
+  let esc = Math.min(aw / anchoM, ah / altoM); esc = Math.max(movil ? 95 : 110, Math.min(300, esc));
+  const W = Math.round(anchoM * esc), H = Math.round(altoM * esc), dpr = Math.min(2, devicePixelRatio || 1);
+  cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
+  const yPiso = (arriba + hMax) * esc; const X = (s_) => (s_ - sMin + mL) * esc;
+  g.fillStyle = '#eef0ee'; g.fillRect(0, yPiso, W, 0.18 * esc); g.fillStyle = '#2a3038'; g.fillRect(0, yPiso - 1, W, 3);
+  alzCajas = []; const fsBase = Math.max(10, Math.min(15, esc * 0.075));
+  for (const q of it) {
+    const e = q.e, x0 = X(q.x0), x1 = X(q.x1), w = x1 - x0, yTop = yPiso - (q.z0 + e.h) * esc, yZ = yPiso - q.z0 * esc;
+    const col = e.obra ? OBRA[e.obra].c : null;
+    if (col) { g.save(); g.globalAlpha = 0.35; g.fillStyle = col; for (let k = x0 - 6; k < x1 + 6; k += 9) { g.fillRect(k, yPiso + 3, 4, 0.16 * esc); } g.restore(); }
+    const src = lienzoFrente(e); if (src) g.drawImage(src, x0, yTop, w, yZ - yTop); else { g.fillStyle = '#d6d9d3'; g.fillRect(x0, yTop, w, yZ - yTop); }
+    g.fillStyle = '#1f2328'; g.fillRect(x0, yZ, w, yPiso - yZ);
+    g.strokeStyle = '#4a5058'; g.lineWidth = 1; g.strokeRect(x0 + 0.5, yTop + 0.5, w - 1, yPiso - yTop - 1);
+    if (col) { g.strokeStyle = col; g.lineWidth = 4; g.strokeRect(x0 - 4, yTop - 4, w + 8, yPiso - yTop + 6); }
+    if (integOn && e.integZ && e.key !== 'CPM') { g.strokeStyle = '#8e44ad'; g.lineWidth = 2.5; g.setLineDash([6, 4]); g.strokeRect(x0 - 8, yTop - 8, w + 16, yPiso - yTop + 12); g.setLineDash([]); }
+    if (alzMarca === e.key) { g.strokeStyle = '#f0a500'; g.lineWidth = 3; g.setLineDash([7, 5]); g.strokeRect(x0 - 10, yTop - 10, w + 20, yPiso - yTop + 18); g.setLineDash([]); }
+    const cod = e.cod || e.sigla || ''; g.font = `700 ${fsBase * 1.35}px Inter, sans-serif`; const tw = Math.max(g.measureText(String(e.n)).width, (g.font = `500 ${fsBase * 0.85}px JetBrains Mono, monospace`, g.measureText(cod).width)) + 16;
+    const tx = (x0 + x1) / 2, ty = yTop - 0.18 * esc, th = cod ? fsBase * 2.6 : fsBase * 1.8;
+    g.fillStyle = col && e.obra !== 'rel' ? col : e.obra === 'rel' ? '#fff6d6' : '#ffffff'; g.strokeStyle = col || '#9aa4ad'; g.lineWidth = 1.5;
+    g.beginPath(); g.roundRect(tx - tw / 2, ty - th, tw, th, 6); g.fill(); g.stroke();
+    const tc = col && e.obra !== 'rel' ? '#ffffff' : '#18212b'; g.fillStyle = tc; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = `700 ${fsBase * 1.35}px Inter, sans-serif`; g.fillText(String(e.n), tx, ty - th + fsBase * 0.95);
+    if (cod) { g.font = `500 ${fsBase * 0.85}px JetBrains Mono, monospace`; g.fillText(cod, tx, ty - fsBase * 0.65); }
+    g.fillStyle = '#2a3038'; g.font = `${fsBase * 0.82}px Inter, sans-serif`;
+    const pal = String(e.nombre).split(' '); const lin = []; let l = '';
+    for (const p_ of pal) { const t = l ? l + ' ' + p_ : p_; if (g.measureText(t).width > w - 6 && l) { lin.push(l); l = p_; } else l = t; }
+    if (l) lin.push(l); lin.slice(0, 4).forEach((t, k) => g.fillText(k === 3 && lin.length > 4 ? t + '…' : t, tx, yPiso + 0.3 * esc + k * fsBase * 1.05));
+    alzCajas.push([x0 - 6, ty - th, x1 + 6, yPiso + 0.3 * esc + 4 * fsBase, e]);
+  }
+  const yP = H - pie * esc + 8; g.textAlign = 'left'; g.textBaseline = 'top';
+  g.fillStyle = '#18212b'; g.font = `600 ${fsBase}px Inter, sans-serif`; g.fillText(`SE Río Claro · sala de control · alzado ${f.nombre} (${f.piso === 1 ? '1.er' : '2.º'} piso, visto mirando al ${OPUESTO[f.rumbo]})`, 12, yP);
+  let lx = 12; g.font = `${fsBase * 0.85}px Inter, sans-serif`;
+  for (const [k, o] of Object.entries(OBRA)) { g.fillStyle = o.c; g.fillRect(lx, yP + fsBase * 1.55, 10, 10); g.fillStyle = '#4c5967'; g.fillText(o.t, lx + 15, yP + fsBase * 1.45); lx += g.measureText(o.t).width + 34; }
+  g.fillStyle = '#7b8794'; g.fillText('', 12, yP + fsBase * 2.9);
+}
+$('#alzFilas').onclick = (ev) => { const b = ev.target.closest('button[data-i]'); if (b) { alzFila = FILAS[+b.dataset.i]; alzMarca = null; dibujarAlzado(); } };
+$('#alzCerrar').onclick = cerrarAlzado;
+$('#bAlzados').onclick = () => { const e = enc ? enc.e : actual && actual.eqKey ? EQ[actual.eqKey] : null; abrirAlzado(e ? FILA_DE[e.key].f : FILAS[0], e); };
+$('#alzCv').addEventListener('click', (ev) => {
+  const r = $('#alzCv').getBoundingClientRect(); const x = ev.clientX - r.left, y = ev.clientY - r.top;
+  const c = alzCajas.find(([a, b, c_, d]) => x >= a && x <= c_ && y >= b && y <= d); if (!c) return;
+  cerrarAlzado(); if (rec && rec.activo) irA(c[4]); else entrarSala(c[4]);
+});
+$('#alzCv').addEventListener('mousemove', (ev) => {
+  const r = $('#alzCv').getBoundingClientRect(); const x = ev.clientX - r.left, y = ev.clientY - r.top;
+  const c = alzCajas.find(([a, b, c_, d]) => x >= a && x <= c_ && y >= b && y <= d);
+  $('#alzCv').title = c ? `${c[4].info.id}${c[4].cod ? ' · ' + c[4].cod : ''} — clic para verlo en 3D` : '';
+});
+$('#alzPng').onclick = () => $('#alzCv').toBlob((bl) => { const a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = `Alzado_SE_RioClaro_${alzFila.nombre.replace(/[^\wÁÉÍÓÚáéíóúñÑ]+/g, '_')}.png`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }, 'image/png');
+const mapa = new Minimapa($('#mapaCv'), { sala: LAY.sala, equipos: EQUIPOS, norte: NORTE,
+  onIr: (e) => irA(e),
+  onPunto: (X, Y, p) => { if (!rec || !rec.activo) return; salirEncuadre(false); const yP = p === 2 ? Y2 : 0.12; if (rec.libre(X, Y, yP)) caminarA(X, Y, yP); else aviso('Ese punto está ocupado por un tablero o un muro', 2500); },
+  onHover: (e) => { $('#mapaCv').title = e ? `${e.info.id}${e.cod ? ' · ' + e.cod : ''} — ${e.nombre}` : ''; } });
+function plegarMapa(min) { $('#mapa').classList.toggle('min', min); $('#mapaMin').textContent = min ? '+' : '–'; }
+$('#mapaMin').onclick = () => { const min = !$('#mapa').classList.contains('min'); plegarMapa(min); try { localStorage.setItem('se_rio_plano_min', min ? '1' : '0'); } catch (_) {} ajustarMapa(); };
+var vMapa = null;
+function ajustarMapa() {
+  document.documentElement.style.setProperty('--mapaH', '0px');
+  if (!vMapa) {
+    vMapa = ventanaMovil($('#mapa'), $('#mapaCab'), 'se_rio_plano');
+    let g = null; try { g = localStorage.getItem('se_rio_plano_min'); } catch (_) {}
+    plegarMapa(g == null ? movil : g === '1');
+  }
+  if ($('#mapa').classList.contains('oculto')) return;
+  const { W } = tamVista(); const ancho = movil ? Math.max(220, Math.min(W - 36, 320)) : Math.round(Math.max(260, Math.min(360, W * 0.3)));
+  mapa.ajustar(ancho); vMapa.encajar();
+}
+let mapaKey = '';
+function actualizarMapa() {
+  if (!rec || !rec.activo) return;
+  const p = pRef(); const dentro = !!enc || cajaEdif(p); const piso = dentro ? pisoCam() : mapa.piso;
+  const k = [p.x.toFixed(2), p.z.toFixed(2), rec.yaw.toFixed(2), piso, dentro].join('|'); if (k === mapaKey) return; mapaKey = k;
+  const cambio = piso !== mapa.piso; mapa.fijar({ piso, pos: { X: p.x, Y: -p.z }, yaw: rec.yaw, dentro });
+  if (cambio) { mapa.ajustar(mapa.anchoCss); $('#pisoSel').querySelectorAll('button').forEach((b) => b.classList.toggle('on', +b.dataset.p === piso)); } else mapa.dibujar();
+  $('#mapaTit').textContent = dentro ? `Plano · ${piso === 1 ? '1.er' : '2.º'} piso` : 'Plano · fuera de la sala';
+}
+let mirandoEq = null, tMira = 0, tSigue = 0; const _c0 = new THREE.Vector2(0, 0);
+function actualizarMirando(now) {
+  if (!rec || !rec.activo || now - tMira < 140) return; tMira = now;
+  let e = null;
+  if (cajaEdif(pRef())) {
+    if (rec.tercera && !enc) { ray.set(rec.pos, new THREE.Vector3(Math.sin(rec.yaw), -0.12, Math.cos(rec.yaw))); ray.far = 2.6; }
+    else { ray.setFromCamera(_c0, camera); ray.far = 7; } ray.near = 0;
+    const objs = EQUIPOS.filter((q) => q.obj.visible).map((q) => q.obj); const muros = (CAPAS.sala || []).filter((o) => o.visible);
+    const h = ray.intersectObjects(muros, true)[0]; ray.far = Infinity;
+    if (h) { const inf = infoDe(h.object); if (inf && inf.eqKey && objs.includes(EQ[inf.eqKey].obj)) e = EQ[inf.eqKey]; }
+  }
+  if (e === mirandoEq) return; mirandoEq = e; const el = $('#mirando');
+  clearTimeout(tSigue);
+  if (e && !enc && actual && actual.eqKey && actual !== e.info && $('#der').classList.contains('conFicha') && tabActual === 'ficha')
+    tSigue = setTimeout(() => { if (mirandoEq === e && !enc) seleccionar(e.info); }, 700);
+  if (!e) { el.classList.add('oculto'); return; }
+  const o = e.obra ? OBRA[e.obra] : null;
+  el.style.borderLeftColor = o ? o.c : '#9aa4ad';
+  el.innerHTML = `<b>${e.info.id}${e.cod ? ' · ' + esc_(e.cod) : e.sigla ? ' · ' + esc_(e.sigla) : ''}</b><small>${esc_(e.nombre)}${o && e.obra !== 'integ' ? ' · ' + OBRA_CORTO[e.obra] : ''}</small><small>${movil ? 'Toca para ver la ficha' : 'Clic o Enter para ver la ficha y sus cables'}</small>`;
+  el.classList.remove('oculto');
+}
+$('#mirando').onclick = () => { if (mirandoEq) { seleccionar(mirandoEq.info); tabDer('ficha'); } };
+const lucesSala = CTX.luces; const cajaSala = new THREE.Box3(new THREE.Vector3(14, -1, -6), new THREE.Vector3(50, 9, 10));
+function ajustarLuces() { if (!lucesSala) return; const dentro = cajaSala.containsPoint(camera.position) || enSala; lucesSala.traverse((l) => { if (l.isPointLight) l.intensity = dentro ? 10 : 0; }); }
+
+let pel = null; let pelTit = '', pelSub = ''; let pelAntes = null;
+const cine = $('#cine');
+function iniciarPelicula(grabar) {
+  salirRecorrido(); fijarCorte('no'); if (subsuelo) fijarSubsuelo(false); fijarSala(false);
+  pelAntes = { p: camera.position.clone(), t: controls.target.clone(), des: destapado };
+  if (!pel) pel = new Pelicula({ camera, renderer,
+    onParada: (p) => { pelTit = p.t; pelSub = p.s; cine.querySelector('.sub b').textContent = p.t; cine.querySelector('.sub span').textContent = p.s; },
+    onDestapar: (on) => { if (on !== destapado) { $('#vDes').checked = on; fijarDestapado(on); } },
+    onFin: () => terminarPelicula() });
+  controls.enabled = false; anim = null; document.body.classList.add('cine'); cine.classList.add('on'); redimensionar();
+  cine.querySelector('.rec').classList.toggle('on', !!grabar);
+  pel.iniciar(!!grabar); if (grabar && !pel.grabando) cine.querySelector('.rec').classList.remove('on');
+  pedir();
+}
+function terminarPelicula() {
+  if (!pel) return; if (pel.activa) pel.detener();
+  document.body.classList.remove('cine'); cine.classList.remove('on'); controls.enabled = true; redimensionar();
+  if (pelAntes) { camera.position.copy(pelAntes.p); controls.target.copy(pelAntes.t); if (pelAntes.des !== destapado) { $('#vDes').checked = pelAntes.des; fijarDestapado(pelAntes.des); } }
+  controls.update(); pedir();
+}
+$('#bPel').onclick = () => iniciarPelicula(false);
+$('#bPelRec').onclick = () => iniciarPelicula(true);
+cine.querySelector('.salir').onclick = terminarPelicula;
+addEventListener('keydown', (e) => { if (e.key === 'Escape' && pel && pel.activa) terminarPelicula(); });
+
+let sucio = true; function pedir() { sucio = true; }
+controls.addEventListener('change', pedir);
+function redimensionar() { if (!cont.clientWidth || !cont.clientHeight) return; const { W, H } = tamVista(); camera.aspect = W / H; camera.updateProjectionMatrix(); renderer.setSize(W, H); css.setSize(W, H); _vo = ''; ajustarMapa(); if (enc) verCompleto(enc.e); if ($('#alzado').classList.contains('on')) dibujarAlzado(); pedir(); }
+addEventListener('resize', redimensionar);
+let _roT = 0; new ResizeObserver(() => { cancelAnimationFrame(_roT); _roT = requestAnimationFrame(() => { if (cont.clientWidth && cont.clientHeight) redimensionar(); }); }).observe(cont);
+const vc = new ViewCube($('#vcBox'), { getCam: () => camera, getTarget: () => controls.target, norte: NORTE, size: movil ? 80 : 104,
+  ir: (dir) => {
+    if (rec && rec.activo) return; const tg = controls.target.clone(), d = camera.position.distanceTo(tg), nd = dir.clone();
+    if (nd.y < 0.03) nd.y = 0.03; if (Math.abs(nd.y) > 0.995) nd.z += 0.004; nd.normalize(); volar(tg.clone().add(nd.multiplyScalar(d)), tg, 600);
+  },
+  orbitar: (dx, dy) => {
+    if (rec && rec.activo) return; const off = camera.position.clone().sub(controls.target); const sph = new THREE.Spherical().setFromVector3(off);
+    sph.theta -= dx * 0.012; sph.phi -= dy * 0.012; sph.phi = Math.max(0.02, Math.min(controls.maxPolarAngle - 0.001, sph.phi)); sph.makeSafe();
+    camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(sph)); anim = null; controls.update(); pedir();
+  } });
+$('#vcHome').onclick = () => vistaInicial();
+$('#vcAtras').onclick = () => { const v = histVista.pop(); if (v) volar(v.p, v.t, 700, true); };
+let tAnt = performance.now();
+function bucle(now) {
+  requestAnimationFrame(bucle);
+  const dt = Math.max(0, (now - tAnt) / 1000); tAnt = now;
+  if (anim) { anim(now); sucio = true; }
+  if (zoomP) { if (controls.enabled && !(rec && rec.activo)) pasoZoom(dt); else zoomP = null; sucio = true; }
+  if (encAnim && rec && rec.activo) { pasoAnim(now); sucio = true; }
+  else if (enc && enc.nearIns > enc.near0 + 0.01 && rec && rec.orbita) {
+    const o = rec.orbita; const g = Math.min(1, (Math.abs(o.az - o.az0) + Math.abs(o.el - o.el0)) / 0.35);
+    const n = enc.nearIns + (enc.near0 - enc.nearIns) * g; if (Math.abs(n - camera.near) > 0.005) { camera.near = n; camera.updateProjectionMatrix(); sucio = true; }
+  }
+  if (obstSucio && rec) { obstSucio = false; obst = obstaculosDe(REG).concat(OBST_EXTRA); rec.obst = obst; obstSala = null; for (const k in REJ) delete REJ[k]; }
+  if (rec && rec.activo && rec.update(dt)) sucio = true;
+  if (rec && rec.activo) {
+    if (enc && rec.mov.lengthSq() > 0.05) salirEncuadre(true);
+    const den = cajaEdif(rec.pos); if (den !== rec.dentro) { rec.dentro = den; sucio = true; }
+    const quiere = rec.tercera && den && !enc ? 'persona' : 'no'; const pisoP = rec.pies > Y2 - 0.6 ? 2 : 1;
+    if (quiere !== techo && techo !== 'sala') { cortarTecho(quiere, pisoP); rec.cortado = quiere === 'persona'; rec._apuntar(); }
+    else if (techo === 'persona' && planoSala.constant !== (pisoP === 2 ? Y2 : 0) + TECHO1) cortarTecho('persona', pisoP);
+    if (marcaRuta.visible && !rec.ruta) marcaRuta.visible = false;
+    centrarTercera(); actualizarMapa(); actualizarMirando(now);
+  } else centrarTercera();
+  if (pel && pel.activa && pel.update(dt)) sucio = true;
+  const mov = controls.enabled ? controls.update() : false;
+  if (controls.enabled && !anim && !subsuelo) { const s0 = alturaTerreno(camera.position.x, -camera.position.z) + 0.8; if (camera.position.y < s0) { const d = s0 - camera.position.y; camera.position.y += d; controls.target.y += d; sucio = true; } }
+  if (!(sucio || mov)) return;
+  if (!renderer.domElement.clientWidth || !renderer.domElement.clientHeight) return;
+  sucio = false; ajustarLuces();
+  renderer.shadowMap.needsUpdate = sombras || !!(rec && rec.activo && rec.tercera) || !!(pel && pel.activa); sombras = false;
+  rotulosVis(); if (pel && pel.activa) rotulos.forEach((r) => (r.visible = false));
+  renderer.render(scene, camera); css.render(scene, camera);
+  if (pel && pel.grabando) pel.componer(pelTit, pelSub);
+  if (!(rec && rec.activo)) vc.dibujar();
+}
+const sup = (eq, reg) => (AX_ZONAS.find((z) => (eq && z.eq === eq) || (reg && z.reg === reg)) || {}).sup;
+const ZONAS4D = {
+  cpm: { eq: 'CPM', corto: 'CPM', nombre: 'Nuevo CPM L-2201', sup: sup('CPM') },
+  t19: { eq: 'T19', corto: 'Tablero RF', nombre: 'Tablero 19 · registrador de fallas', sup: 'El tablero 19 sale de la sala el 17–20-Set (restricción R-05) y en su lugar se supone el nuevo CPM.' },
+  ssaa: { eq: 'T16', corto: 'SS.AA.', nombre: 'SS.AA. (tablero 16)', sup: sup('T16') },
+  scada: { eq: 'T2', corto: 'SCADA', nombre: 'SCADA (tablero 2)', sup: sup('T2') },
+  patio: { reg: 'Bahía L-2201', corto: 'Patio', nombre: 'Patio · bahía L-2201', sup: sup(null, 'Bahía L-2201') },
+  almacen: { reg: 'Almacén', corto: 'Almacén', nombre: 'Almacén', sup: sup(null, 'Almacén') },
+};
+const objZona = (z) => (z.eq ? EQ[z.eq]?.obj : REG.find((x) => x.info && x.info.id === z.reg)?.obj);
+const infoZona = (z) => (z.eq ? EQ[z.eq]?.info : REG.find((x) => x.info && x.info.id === z.reg)?.info);
+function volarCaja(b, dir = new THREE.Vector3(-0.59, 0.6, 0.55)) {
+  const c = b.getCenter(new THREE.Vector3()); const r = Math.max(3, b.getSize(new THREE.Vector3()).length() / 2);
+  const d = Math.min(150, r / Math.sin(THREE.MathUtils.degToRad(camera.fov / 2)) * 0.95);
+  volar(c.clone().addScaledVector(dir.normalize(), d), c);
+}
+let tablero = null;
+m4d = iniciar4D({ U4D, scene, $, esc_, movil, ZONAS: ZONAS4D, pedir,
+  mount: { barra: $('#tiempo4d'), gantt: $('#croGantt'), ganttSel: $('#croSel'), ganttNota: $('#croNota') },
+  objDe: objZona, visibleZona: (z) => !(z.eq && EQ[z.eq].oculto),
+  equiposEnFecha(e) {
+    eqFecha = e ? { cpm: !!e.cpm, t19: !!e.t19 && !e.cpm } : null;
+    if (!aplicarEquipos()) return; if (mapa) mapa.dibujar();
+    if (enc && enc.e.oculto) salirEncuadre(true); if (actual && actual.eqKey && EQ[actual.eqKey].oculto) seleccionar(null);
+  },
+  irZona(zs) {
+    if (!zs.length) return; const z0 = zs[0]; const inf = infoZona(z0);
+    if (rec && rec.activo) { if (zs.every((z) => z.eq)) { irA(EQ[z0.eq]); return; } salirRecorrido(); }
+    const b = new THREE.Box3(); zs.forEach((z) => b.expandByObject(z.obj));
+    fijarSala(zs.some((z) => z.eq)); if (inf) seleccionar(inf, false, false); volarCaja(b.expandByScalar(1.5));
+  },
+  visor: abrirVisor,
+  onFecha() { if (actual && $('#der').classList.contains('conFicha') && seccionInteg(actual)) seleccionar(actual, false, false); if (tablero) tablero.alFecha(); },
+  onAct(a) { if (tablero) tablero.alAct(a); },
+});
+function vista4D() { fijarSala(true); const b = new THREE.Box3(); ['cpm', 'ssaa', 'scada'].forEach((k) => { const o = objZona(ZONAS4D[k]); if (o) b.expandByObject(o); }); volarCaja(b.expandByScalar(5), new THREE.Vector3(-0.35, 0.8, 0.62)); }
+$('#b4d').onclick = () => { const on = !m4d.zonasOn; m4d.verZonas(on); $('#b4d').classList.toggle('on', on); };
+fijarInteg(true); aplicarColor(); fijarVista(vistaTercera);
+fijarZonas(false); integVis(); vista4D();
+function vistaInicial() {
+  salirRecorrido(); if (pel && pel.activa) terminarPelicula(); fijarCorte('no'); if (subsuelo) fijarSubsuelo(false);
+  seleccionar(null); m4d.parar(); m4d.seleccionarAct(null, false); m4d.seleccionarZona(null, false); m4d.fijar(m4d.corte);
+  if (tablero) tablero.reset(); $('#vistas').querySelectorAll('button').forEach((x) => x.classList.remove('on'));
+  if (!m4d.zonasOn) $('#b4d').click(); tabDer('avance'); vista4D();
+}
+$('#bVistaIni').onclick = vistaInicial;
+tablero = iniciarTablero({ U4D, m4d, ZONAS: ZONAS4D, esc_, visor: abrirVisor, tabDer,
+  tabInicial: QS.get('modo') === '4d' || EMBED ? 'v-bim' : null,
+  onTab: (v) => { if (v === 'v-bim') requestAnimationFrame(() => { redimensionar(); }); else if (rec) { rec.teclas.clear(); rec.mov.set(0, 0); } } });
+requestAnimationFrame(bucle);
+$('#cargando').remove();
+window.__se = { U4D, zoomDe: () => zoomP, cajaDelModelo, inspeccionar, vecino, filaVecina, salirInspeccion, atrasInsp, encAnimDe: () => encAnim && { ...encAnim, t0: performance.now() - encAnim.t }, vcDe: () => vc, histVista, vista4D, objZona, ZONAS4D, m4dDe: () => m4d, caminarA, fijarVista, vistasPasillo, rejilla, LAY, EQ, EQUIPOS, filasDe: () => FILAS, abrirAlzado, verCompleto, salirEncuadre, encDe: () => enc, irA, irPiso, entrarSala, alDoble, mapaDe: () => mapa, pelDe: () => pel, raycastPx: (px, py) => { const r = renderer.domElement.getBoundingClientRect(); ptr.set(((px - r.left) / r.width) * 2 - 1, -((py - r.top) / r.height) * 2 + 1); ray.setFromCamera(ptr, camera); return ray.intersectObjects(REG.filter((x) => x.obj.visible).map((x) => x.obj), true); }, Box3: THREE.Box3, obstDe: () => obst, recDe: () => rec, pisoEn, scene, camera, controls, REG, renderer, seleccionar, VISTAS, pedir };
+</script>
+<script src="../nav-tableros.js" defer></script>
+<script type="module" src="cro4d_rio.js?v=de5666f4"></script>
+</body>
+</html>

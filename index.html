@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo · LT 220 kV Río Claro – Cerro Azul · control de obra y BIM 4D</title>
+<meta name="description" content="Demo con datos ficticios: control diario de la construcción de una línea de 220 kV y sus dos subestaciones con avance, valor ganado, BIM 4D y fotos de obra identificadas por IA, desde el navegador.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#f4f7fb; --fondo-2:#eaf1fb; --panel:#ffffff; --borde:#dde6f2; --borde-2:#c9d6ea;
+  --tinta:#0b192f; --tinta-2:#33476b; --gris:#5e769d;
+  --azul:#2563eb; --azul-2:#3b82f6; --azul-3:#93c5fd; --azul-s:#eaf2ff;
+  --ok:#16a34a; --curso:#f59e0b; --nada:#cbd5e1;
+  --sombra:0 1px 2px rgba(15,40,90,.06),0 18px 40px -26px rgba(15,40,90,.38);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+body{font:15px/1.55 "Inter",system-ui,sans-serif;color:var(--tinta);background:var(--fondo)}
+a{color:inherit}
+h1,h2,h3{font-family:"Manrope","Inter",sans-serif;letter-spacing:-.01em}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.envoltura{max-width:1200px;margin:0 auto;padding:0 24px}
+
+.barra{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--borde)}
+.barra .envoltura{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.marca{display:flex;align-items:center;gap:10px;font:800 17px/1 "Manrope",sans-serif;text-decoration:none;white-space:nowrap}
+.marca .logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(37,99,235,.7)}
+.marca .logo svg{width:16px;height:16px;fill:#fff}
+.demo{display:inline-block;font:700 10px/1 "Inter",sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:5px 7px 4px;border-radius:6px;background:var(--azul);color:#fff}
+.der{display:flex;align-items:center;gap:10px}
+.etq-demo{font:600 11px/1 "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:999px;padding:7px 11px;white-space:nowrap}
+
+.heroe{background:radial-gradient(900px 420px at 85% 10%,#dbeafe 0,rgba(219,234,254,0) 70%),linear-gradient(180deg,#fff 0,var(--fondo) 100%);border-bottom:1px solid var(--borde)}
+.heroe-g{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;padding-top:56px;padding-bottom:64px}
+.ceja{display:flex;align-items:center;gap:10px;margin:0 0 16px;font:600 12px/1.3 "Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--azul)}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.04;margin:0 0 18px;font-weight:800}
+h1 .suave{color:var(--azul)}
+.lead{font-size:17px;color:var(--tinta-2);max-width:560px;margin:0 0 26px}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;border-radius:12px;padding:13px 20px;transition:transform .15s ease,box-shadow .2s ease,background-color .2s}
+.btn.pri{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;box-shadow:0 12px 26px -12px rgba(37,99,235,.75)}
+.btn.pri:hover{transform:translateY(-2px);box-shadow:0 18px 32px -14px rgba(37,99,235,.8)}
+.btn.sec{background:#fff;color:var(--azul);border:1px solid var(--borde-2)}
+.btn.sec:hover{background:var(--azul-s);transform:translateY(-2px)}
+.corte{margin:0;color:var(--gris);font-size:13px}
+.corte b{color:var(--tinta)}
+
+.esquema{background:var(--panel);border:1px solid var(--borde);border-radius:20px;box-shadow:var(--sombra);padding:18px 18px 8px}
+.esquema h2{font-size:15px;margin:0 0 2px}
+.esquema .sub{font-size:12.5px;color:var(--gris);margin:0 0 4px}
+.esquema svg{width:100%;height:auto;display:block}
+.esquema a{cursor:pointer}
+.esq-et{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:start;margin:2px 0 10px}
+.esq-et a{text-decoration:none;display:flex;flex-direction:column;gap:2px;border-radius:10px;padding:6px 8px;transition:background-color .2s}
+.esq-et a:hover{background:var(--azul-s)}
+.esq-et a.c{text-align:center;align-items:center}.esq-et a.d{text-align:right;align-items:flex-end}
+.esq-et b{font:700 14.5px/1.2 "Manrope",sans-serif;color:var(--tinta)}
+.esq-et span{font-size:12px;color:var(--gris)}
+.esquema .se{fill:#fff;stroke:var(--azul);stroke-width:3;transition:fill .2s}
+.esquema a:hover .se{fill:var(--azul-s)}
+.esquema .traza{fill:none;stroke:var(--azul-3);stroke-width:6;stroke-linecap:round}
+.esquema .traza2{fill:none;stroke:var(--azul);stroke-width:1.4;stroke-dasharray:5 7;opacity:.55;animation:fluye2 1.4s linear infinite}
+@keyframes fluye2{to{stroke-dashoffset:-24}}
+.esquema .dibuja{stroke-dasharray:900;stroke-dashoffset:900;animation:dibuja 1.6s .2s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes dibuja{to{stroke-dashoffset:0}}
+.esquema circle.tw{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:pop .4s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes pop{to{transform:scale(1)}}
+.esquema a:hover circle.tw{stroke:var(--azul)}
+.esquema .ley{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--gris);padding:4px 8px 10px;border-top:1px solid var(--borde)}
+.esquema .ley i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:-34px;position:relative;z-index:2}
+.kpi{background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:18px 18px 16px;box-shadow:var(--sombra);transition:transform .2s ease,box-shadow .2s ease}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(15,40,90,.06),0 24px 44px -26px rgba(15,40,90,.45)}
+.kpi .lab{font-size:12px;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.06em}
+.kpi b{display:block;font:800 34px/1.1 "Manrope",sans-serif;margin:8px 0 4px;color:var(--tinta)}
+.kpi b small{font-size:16px;font-weight:700;color:var(--gris);margin-left:4px}
+.kpi .pie{font-size:12.5px;color:var(--tinta-2)}
+.kpi .barra-p{height:6px;border-radius:999px;background:var(--fondo-2);margin-top:10px;overflow:hidden}
+.kpi .barra-p i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#60a5fa,#2563eb);transition:width 1.2s cubic-bezier(.3,.7,.2,1)}
+.chip{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:1px;letter-spacing:.02em}
+.chip.mal{background:#fee2e2;color:#b91c1c}
+.chip.bien{background:#dcfce7;color:#15803d}
+
+.bloque{padding:56px 0 8px}
+.tit{display:flex;align-items:flex-end;justify-content:space-between;gap:8px 16px;margin-bottom:20px;flex-wrap:wrap}
+.tit h2{font-size:26px;margin:0}
+.tit p{margin:0;color:var(--gris);font-size:14px}
+
+.piezas{display:grid;grid-template-columns:1fr 42px 1.15fr 42px 1fr;align-items:stretch}
+.pieza{background:var(--panel);border:1px solid var(--borde);border-radius:18px;padding:20px;text-decoration:none;display:flex;flex-direction:column;box-shadow:var(--sombra);transition:transform .2s ease,box-shadow .2s ease,border-color .2s}
+.pieza:hover{transform:translateY(-4px);border-color:var(--azul-3);box-shadow:0 1px 2px rgba(15,40,90,.06),0 26px 48px -26px rgba(37,99,235,.5)}
+.pieza .k{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--azul)}
+.pieza h3{font-size:21px;margin:6px 0 8px}
+.pieza p{font-size:14px;color:var(--tinta-2);margin:0 0 16px;flex:1}
+.pieza .cifra{display:flex;align-items:baseline;gap:8px;padding:10px 12px;border-radius:12px;background:var(--azul-s);margin-bottom:14px}
+.pieza .cifra b{font:800 22px/1 "Manrope",sans-serif;color:var(--azul);white-space:nowrap}
+.pieza .cifra span{font-size:12.5px;color:var(--tinta-2)}
+.pieza .ir{font-weight:700;color:var(--azul)}
+.pieza.lt{background:linear-gradient(160deg,#fff 0,#f2f7ff 100%)}
+.conector{display:flex;align-items:center;justify-content:center}
+.conector span{display:block;width:100%;height:3px;background:repeating-linear-gradient(90deg,var(--azul-2) 0 8px,transparent 8px 13px);background-size:26px 3px;animation:fluye 1.2s linear infinite}
+@keyframes fluye{to{background-position:26px 0}}
+
+.tira{background:var(--panel);border:1px solid var(--borde);border-radius:18px;padding:26px 20px 16px;box-shadow:var(--sombra)}
+.barras{display:grid;grid-template-columns:repeat(19,minmax(0,1fr));gap:6px;align-items:end;height:170px}
+.barras a{position:relative;display:block;height:100%;text-decoration:none;border-radius:7px}
+.barras a:hover{background:var(--fondo)}
+.barras .v{position:absolute;left:0;right:0;bottom:0;border-radius:7px 7px 3px 3px;height:0;transition:height 1s cubic-bezier(.3,.7,.2,1),filter .15s}
+.barras a:hover .v{filter:brightness(1.08) saturate(1.2)}
+.barras .p{position:absolute;left:0;right:0;text-align:center;font:600 11px/1 "JetBrains Mono",monospace;color:var(--tinta-2);opacity:0;transition:opacity .4s .8s}
+.tira.lista .barras .p{opacity:1}
+.ejes{display:grid;grid-template-columns:repeat(19,minmax(0,1fr));gap:6px;margin-top:8px}
+.ejes span{text-align:center;font:600 11px/1 "JetBrains Mono",monospace;color:var(--gris)}
+.ley2{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--gris);margin-top:14px}
+.ley2 i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+.ideas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.idea{background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:18px;box-shadow:var(--sombra)}
+.idea .ic{width:40px;height:40px;border-radius:12px;background:var(--azul-s);display:grid;place-items:center;margin-bottom:12px}
+.idea .ic svg{width:21px;height:21px;fill:none;stroke:var(--azul);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.idea h3{font-size:16px;margin:0 0 6px}
+.idea p{font-size:13.5px;color:var(--tinta-2);margin:0}
+.pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:p}
+.paso{position:relative;background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:20px 18px 18px 64px;box-shadow:var(--sombra)}
+.paso::before{counter-increment:p;content:counter(p);position:absolute;left:18px;top:18px;width:32px;height:32px;border-radius:50%;background:var(--azul);color:#fff;font:800 15px/32px "Manrope",sans-serif;text-align:center}
+.paso h3{font-size:16px;margin:4px 0 6px}
+.paso p{font-size:13.5px;color:var(--tinta-2);margin:0}
+
+.nota{margin:40px 0 0;background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:18px 20px;color:#713f12;font-size:14px}
+.nota b{color:#92400e}
+footer{margin-top:48px;border-top:1px solid var(--borde);background:#fff}
+footer .envoltura{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:20px 24px;color:var(--gris);font-size:13px}
+
+.rev{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.rev.visto{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}.esquema .dibuja{stroke-dashoffset:0}.esquema circle.tw{transform:none}}
+
+@media (max-width:980px){
+  .heroe-g{grid-template-columns:1fr;padding-top:36px;padding-bottom:56px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .piezas{grid-template-columns:1fr;grid-auto-rows:auto}
+  .conector{height:26px}.conector span{width:3px;height:100%;background:repeating-linear-gradient(180deg,var(--azul-2) 0 8px,transparent 8px 13px);background-size:3px 26px;animation:none}
+  .ideas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pasos{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .envoltura{padding-left:16px;padding-right:16px}
+  .ceja .demo{display:none}
+  .etq-demo{display:none}
+  .kpis{gap:10px}
+  .kpi{padding:14px 14px 12px}
+  .kpi b{font-size:27px}
+  .kpi .lab{font-size:11px}
+  .ideas{grid-template-columns:1fr}
+  .barras{gap:3px;height:140px}.ejes{gap:3px}
+  .barras .p{font-size:8.5px}.ejes span{font-size:8.5px}
+  .tira{padding:22px 10px 14px}
+  .tit h2{font-size:22px}
+  .esq-et{gap:4px}.esq-et a{padding:4px 2px}.esq-et b{font-size:13px}.esq-et span{font-size:10.5px}
+}
+</style>
+<style>.sx-src,.hi-fuente,.ing-fuente,.ficha .pl,#ficha .pl,#ficha h4{display:none!important}</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="envoltura">
+    <a class="marca" href="./" aria-label="Inicio de la demo"><span class="logo"><svg viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7z"/></svg></span>Obra digital <span class="demo">Demo</span></a>
+    <div class="der"><span class="etq-demo">Demo · datos ficticios</span><div data-nav-tableros></div></div>
+  </div>
+</header>
+
+<section class="heroe" aria-label="Proyecto">
+  <div class="envoltura heroe-g">
+    <div>
+      <p class="ceja"><span class="demo">Demo</span>Control de construcción · línea y subestaciones</p>
+      <h1>LT 220 kV<br><span class="suave">Río Claro – Cerro Azul</span></h1>
+      <p class="lead">Una línea de 220 kV en doble terna, de 19 torres y 8,3 km, une la SE Río Claro con la nueva SE Cerro Azul. Cada día, los reportes de obra se convierten en avance, valor ganado, BIM 4D y alertas, directo en el navegador.</p>
+      <div class="acciones">
+        <a class="btn pri" href="tablero.html#bim">Ver el proyecto en 3D <span aria-hidden="true">→</span></a>
+        <a class="btn sec" href="tablero.html">Ver el resumen</a>
+      </div>
+      <p class="corte">Último corte <b id="kCorte" class="mono">—</b> · se actualiza a diario</p>
+    </div>
+    <div class="esquema">
+      <h2>El proyecto</h2>
+      <p class="sub">Toque una subestación o la línea para abrir su detalle</p>
+      <svg viewBox="20 50 600 142" role="img" aria-label="Esquema: la SE Río Claro, la LT 220 kV de 19 torres y la SE Cerro Azul">
+        <a href="tablero.html#bim" aria-label="LT 220 kV de 19 torres en el BIM 4D">
+          <path class="traza dibuja" id="trazo" d="M 94 150 C 190 40, 300 230, 400 122 S 520 62, 546 150"/>
+          <path class="traza2" d="M 94 150 C 190 40, 300 230, 400 122 S 520 62, 546 150"/>
+          <g id="torres"></g>
+        </a>
+        <a href="se-rio-claro/" aria-label="SE Río Claro, subestación de inicio">
+          <circle class="se" cx="70" cy="150" r="22"/><path d="M60 150h20M70 140v20" stroke="#2563eb" stroke-width="2.4" stroke-linecap="round"/>
+        </a>
+        <a href="se-cerro-azul/" aria-label="SE Cerro Azul, subestación de llegada">
+          <circle class="se" cx="570" cy="150" r="22"/><circle cx="570" cy="150" r="7" fill="#2563eb"/>
+        </a>
+      </svg>
+      <div class="esq-et">
+        <a href="se-rio-claro/"><b>SE Río Claro</b><span>inicio · 4D</span></a>
+        <a href="tablero.html#bim" class="c"><b>LT 220 kV</b><span>doble terna · 19 torres · 8,3 km</span></a>
+        <a href="se-cerro-azul/" class="d"><b>SE Cerro Azul</b><span>llegada · 4D</span></a>
+      </div>
+      <div class="ley"><span><i style="background:var(--ok)"></i>torre terminada</span><span><i style="background:var(--curso)"></i>en ejecución</span><span><i style="background:var(--nada)"></i>por iniciar</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="envoltura kpis" aria-label="Cifras del último corte">
+  <div class="kpi rev"><div class="lab">Obra civil de la línea</div><b><span data-n id="kOc">—</span><small>%</small></b><div class="pie" id="kOcT">media de las torres</div><div class="barra-p"><i id="kOcB"></i></div></div>
+  <div class="kpi rev"><div class="lab">Torres terminadas</div><b><span data-n id="kFin">—</span><small id="kTot"></small></b><div class="pie">con la obra civil concluida</div><div class="barra-p"><i id="kFinB"></i></div></div>
+  <div class="kpi rev"><div class="lab">SPI de construcción<span class="chip" id="kSpiC" hidden></span></div><b><span data-n id="kSpi">—</span></b><div class="pie" id="kSpiT">valor ganado frente al plan</div></div>
+  <div class="kpi rev"><div class="lab">Ampliación SE Río Claro</div><b><span data-n id="kSE">—</span><small>%</small></b><div class="pie" id="kSET">avance del integrador</div><div class="barra-p"><i id="kSEB"></i></div></div>
+</section>
+
+<main>
+  <section class="bloque">
+    <div class="envoltura">
+      <div class="tit rev"><h2>Tres piezas, un solo proyecto</h2><p>cada una con su tablero · toque para abrir</p></div>
+      <div class="piezas">
+        <a class="pieza rev" href="se-rio-claro/">
+          <div class="k">Subestación de inicio</div><h3>SE Río Claro</h3>
+          <p>Ampliación en 220 kV: la bahía de salida de la L-2201 y su nuevo tablero de control y protección, en 4D con cronograma enlazado al modelo, restricciones, fotos y recorrido por la sala.</p>
+          <div class="cifra"><b id="pSE">—</b><span id="pSET">avance de la ampliación</span></div>
+          <span class="ir">Abrir la SE →</span>
+        </a>
+        <div class="conector" aria-hidden="true"><span></span></div>
+        <a class="pieza lt rev" href="tablero.html">
+          <div class="k">Línea de transmisión</div><h3>LT 220 kV · 19 torres</h3>
+          <p>Avance torre por torre y pata por pata, curva S y pronóstico de término, BIM 4D, fotos de obra con IA y reportes diarios.</p>
+          <div class="cifra"><b id="pLT">—</b><span>obra civil de la línea</span></div>
+          <span class="ir">Abrir el tablero →</span>
+        </a>
+        <div class="conector" aria-hidden="true"><span></span></div>
+        <a class="pieza rev" href="se-cerro-azul/">
+          <div class="k">Subestación de llegada</div><h3>SE Cerro Azul</h3>
+          <p>Subestación nueva de 220/10 kV levantada en 3D desde la ingeniería de detalle, con su cronograma 4D enlazado al modelo: día por día se ve qué se construyó, qué falta y qué va atrasado.</p>
+          <div class="cifra"><b>10/12,5 MVA</b><span>transformador</span></div>
+          <span class="ir">Abrir la SE →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="envoltura">
+      <div class="tit rev"><h2>Avance por torre</h2><p>% de obra civil en el último corte · toque una torre para verla en el BIM 4D</p></div>
+      <div class="tira rev" id="tira">
+        <div class="barras" id="barras"></div>
+        <div class="ejes" id="ejes"></div>
+        <div class="ley2"><span><i style="background:var(--ok)"></i>terminada</span><span><i style="background:var(--curso)"></i>en ejecución</span><span><i style="background:var(--nada)"></i>por iniciar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="envoltura">
+      <div class="tit rev"><h2>Por qué funciona</h2><p>lo que cambia para el equipo y los interesados</p></div>
+      <div class="ideas">
+        <div class="idea rev"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div><h3>Sin licencias ni instalaciones</h3><p>Se abre en el navegador de una PC o de un celular. Para consultar el estado de la obra nadie necesita programas de cronograma, BI o BIM.</p></div>
+        <div class="idea rev"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M5 16l4-5 4 3 6-8"/></svg></div><h3>Avance, valor ganado y BIM 4D juntos</h3><p>La curva S, el SPI y el pronóstico de término se leen sobre el modelo de la obra: la salud del proyecto se entiende de un vistazo.</p></div>
+        <div class="idea rev"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h10M4 12h16M4 18h7"/><circle cx="18" cy="6" r="2"/><circle cx="15" cy="18" r="2"/></svg></div><h3>Del reporte diario al tablero</h3><p>La IA estructura los reportes de campo, calcula con Python, revisa contra el corte anterior y publica. Si un dato no está en los reportes, no lo inventa.</p></div>
+        <div class="idea rev"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></div><h3>Fotos de obra con IA</h3><p>Cada foto queda en su torre y en su fase constructiva, y se cruza con el avance oficial del día como evidencia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="envoltura">
+      <div class="tit rev"><h2>Cómo funciona</h2><p>todos los días, en tres pasos</p></div>
+      <div class="pasos">
+        <div class="paso rev"><h3>Campo</h3><p>Los reportes del día (obra y supervisión), el avance por pata y las fotos del celular.</p></div>
+        <div class="paso rev"><h3>IA y Python</h3><p>Estructuran los hechos del día, calculan avance, valor ganado y pronóstico, y explican cada cambio.</p></div>
+        <div class="paso rev"><h3>Tablero y BIM 4D</h3><p>Se publica en la web: síntesis para gerencia, BIM 4D para obra y supervisión, fotos y reportes para todos.</p></div>
+      </div>
+      <div class="nota rev"><b>Demo con datos ficticios.</b> Es la plataforma con la que se controla a diario una obra real, mostrada con otra identidad: nombres, ubicación, cotas, avances y metrados cambiados; sin montos ni nombres de personas; fotos de obra sin personas, logos ni sellos, y sin metadatos.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="envoltura"><span>Obra digital · demo · Cliente Demo · Contratista Demo · Supervisión Demo</span><span>Datos ficticios con fines de demostración</span></div>
+</footer>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const MES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'];
+  const fCorta = (iso) => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); return m ? m[3] + '-' + MES[+m[2] - 1] + '-' + m[1].slice(2) : ''; };
+  const num = (v, d = 1) => Number(v).toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const col = { fin: '#16a34a', prog: '#f59e0b', none: '#cbd5e1' };
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function contar(el, fin, dec) {
+    if (quieto) { el.textContent = num(fin, dec); return; }
+    const t0 = performance.now(), D = 1000;
+    (function paso(t) { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); el.textContent = num(fin * e, dec); if (k < 1) requestAnimationFrame(paso); })(t0);
+  }
+  const pend = new Map();
+  const soltar = () => document.querySelectorAll('.visto [data-n]').forEach((el) => { const p = pend.get(el); if (p) { pend.delete(el); contar(el, p[0], p[1]); } });
+  function cifra(id, v, dec) { const el = $(id); if (!el || v == null || isNaN(v)) return; pend.set(el, [v, dec]); soltar(); }
+
+  let torres = [];
+  function animarBarras() {
+    const b = $('barras'); if (!b || !torres.length || b.dataset.ok) return; b.dataset.ok = '1';
+    requestAnimationFrame(() => b.querySelectorAll('.v').forEach((v, i) => { setTimeout(() => { v.style.height = Math.max(3, torres[i].pct) + '%'; }, quieto ? 0 : i * 35); }));
+    setTimeout(() => $('tira').classList.add('lista'), quieto ? 0 : 400);
+  }
+  const ver = (el) => { el.classList.add('visto'); soltar(); if (el.id === 'tira') animarBarras(); };
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); ver(e.target); } }), { threshold: 0.15 }) : null;
+  document.querySelectorAll('.rev').forEach((el) => (io ? io.observe(el) : ver(el)));
+
+  const path = $('trazo'), G = $('torres'), NS = 'http://www.w3.org/2000/svg', NT = 19;
+  const L = path.getTotalLength(), puntos = [];
+  for (let i = 0; i < NT; i++) {
+    const p = path.getPointAtLength(L * (0.035 + 0.93 * i / (NT - 1)));
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', p.x.toFixed(1)); c.setAttribute('cy', p.y.toFixed(1)); c.setAttribute('r', '5.4');
+    c.setAttribute('fill', col.none); c.setAttribute('stroke', '#fff'); c.setAttribute('stroke-width', '2'); c.setAttribute('class', 'tw');
+    c.style.animationDelay = (0.6 + i * 0.05).toFixed(2) + 's'; c.dataset.t = 'T' + String(i + 1).padStart(2, '0');
+    const tt = document.createElementNS(NS, 'title'); tt.textContent = c.dataset.t; c.appendChild(tt);
+    G.appendChild(c); puntos.push(c);
+  }
+
+  fetch('datos.json', { cache: 'no-cache' }).then((r) => r.json()).then((j) => {
+    const C = j.completo || j.visita, B = C && C.bloques; let D = B && B.DATA; if (typeof D === 'string') D = JSON.parse(D);
+    if (!D || !D.towers) return;
+    torres = D.towers;
+    const c = D.counts || {}, tot = c.total || D.towers.length;
+    $('kCorte').textContent = fCorta(j.corte);
+    cifra('kOc', D.ocGlobal, 1); $('kOcB').style.width = Math.min(100, D.ocGlobal) + '%'; $('kOcT').textContent = `media de las ${tot} torres`;
+    if (c.civilFin != null) { cifra('kFin', c.civilFin, 0); $('kTot').textContent = 'de ' + tot; $('kFinB').style.width = (100 * c.civilFin / tot) + '%'; }
+    $('pLT').textContent = num(D.ocGlobal, 1) + ' %';
+    let M = B.BASE_MS; if (typeof M === 'string') { try { M = JSON.parse(M); } catch (e) { M = null; } }
+    const ac = M && M.al_corte;
+    if (ac && ac.spi_re != null) {
+      cifra('kSpi', ac.spi_re, 2);
+      if (ac.ev != null && ac.lb1 != null) $('kSpiT').textContent = `ejecutado ${num(ac.ev, 1)} % · plan ${num(ac.lb1, 0)} %`;
+      const ch = $('kSpiC'); ch.hidden = false;
+      if (ac.spi_re >= 0.95) { ch.textContent = 'en plazo'; ch.className = 'chip bien'; } else { ch.textContent = 'atraso'; ch.className = 'chip mal'; }
+    }
+    $('barras').innerHTML = D.towers.map((t) => `<a href="tablero.html#torre=${t.t}" title="${t.t} · ${num(t.pct, 1)} % de obra civil"><span class="p" style="bottom:calc(${Math.max(3, t.pct)}% + 5px)">${Math.round(t.pct)}</span><span class="v" style="background:${col[t.st] || col.none}"></span></a>`).join('');
+    $('ejes').innerHTML = D.towers.map((t) => `<span>${t.t.replace('T0', 'T')}</span>`).join('');
+    const est = Object.fromEntries(D.towers.map((t) => [t.t, t.st]));
+    puntos.forEach((p) => p.setAttribute('fill', col[est[p.dataset.t]] || col.none));
+    if ($('tira').classList.contains('visto')) animarBarras();
+  }).catch(() => {});
+
+  import('./se-rio-claro/rio4d.js').then((m) => {
+    const T = m.U4D.total; let i = -1; T.ejec.forEach((v, k) => { if (v != null) i = k; });
+    if (i < 0) return; const v = T.ejec[i] * 100, f = fCorta(m.U4D.fechas[i]);
+    cifra('kSE', v, 1); $('kSET').textContent = `avance del integrador al ${f}`; $('kSEB').style.width = Math.min(100, v) + '%';
+    $('pSE').textContent = num(v, 1) + ' %'; $('pSET').textContent = `avance al ${f}`;
+  }).catch(() => {});
+})();
+</script>
+<script src="nav-tableros.js" defer></script>
+</body>
+</html>
